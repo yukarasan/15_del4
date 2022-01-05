@@ -5,6 +5,8 @@ import gui_fields.GUI_Car;
 import gui_fields.GUI_Player;
 
 import java.awt.*;
+import java.util.Arrays;
+import java.util.Locale;
 
 public class Game {
     private GUI_Controller gui = new GUI_Controller();
@@ -58,8 +60,31 @@ public class Game {
 
             String name = gui.getInstance().getUserString("Spiller " + (i + 1) + ", indtast dit navn: ");
 
-                player[i].setName(name);
+            player[i].setName(name);
 
+            // If the name contains any numbers between 0 - 9, they will be replaced with an empty string.
+            String[] numbersInName = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+            name = name.replaceAll(Arrays.toString(numbersInName),"");
+
+            String[] otherCharacters = {"?", "´", "`", "+", "|", "~", "^", "¨", "'", "*", "_", ".", ":", ";", ","
+                    + "=", ")", "(", "/", "&", "%", "¤", "#", "\"", "!", "\\", "§", "½", "<", ">"
+                    + "@", "£", "$", "€", "{", "}", "[", "]"};
+            name = name.replaceAll(Arrays.toString(otherCharacters),"");
+
+            char firstChar = name.charAt(0);  // localizing the first character at index 0
+            char lastChar = name.charAt(name.length() - 1);  // localizing the last character at index "name length"
+            String firstLetter = (Character.toString(firstChar)).toUpperCase(Locale.ROOT);  // Converting to a string and making
+            String restOfName = name.substring(1);  // Making a variable that separates the name at index 1
+
+            // Determining if input contains " " and then trimming the string before computing the rest of the statements
+            if (Character.toString(firstChar).matches(" ") || Character.toString(lastChar).matches(" ")) {
+                name = name.trim();
+                firstChar = name.charAt(0);
+                firstLetter = (Character.toString(firstChar)).toUpperCase(Locale.ROOT);
+                restOfName = name.substring(1);
+            }
+
+            name = firstLetter + restOfName;
 
                 while (checkForSameName(name, i, player)) {
                     gui.getInstance().showMessage("Spiller " + (i + 1) + ", navnet er allerede taget, skriv et nyt");
