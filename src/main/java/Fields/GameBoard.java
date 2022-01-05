@@ -37,7 +37,6 @@ public class GameBoard {
     private void createOwnableField() {
         OwnableField ownableField = new OwnableField();
         ownableField.setFields(fields,1,10, Color.yellow, "hej");
-
     }
 
 }
