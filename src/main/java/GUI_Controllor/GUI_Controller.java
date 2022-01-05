@@ -1,8 +1,7 @@
 package GUI_Controllor;
+
 import Fields.*;
-
 import gui_main.GUI;
-
 import java.awt.*;
 
 public final class GUI_Controller {
@@ -14,11 +13,6 @@ public final class GUI_Controller {
     the class
      */
 
-    private GUI GUI_controller() {
-        fields.instantializeFields();
-        return new GUI(fields.getField(), Color.lightGray);
-    }
-
     public GUI getInstance() {
         if (GUI_instance == null) {
             GUI_Controller k = new GUI_Controller();
@@ -26,4 +20,10 @@ public final class GUI_Controller {
         }
         return GUI_instance;
     }
+
+    private GUI GUI_controller() {
+        fields.instantiatingFields();
+        return new GUI(fields.getField(), Color.lightGray);
+    }
+
 }
