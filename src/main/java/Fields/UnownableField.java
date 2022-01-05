@@ -18,7 +18,6 @@ public class UnownableField extends Field{
 
     public void freeParking(GUI_Field[] fields) {
         fields[20] = new GUI_Refuge();
-
     }
 
     public void chanceField(GUI_Field[] fields) {
