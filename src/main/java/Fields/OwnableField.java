@@ -6,9 +6,7 @@ import gui_main.GUI;
 import java.awt.*;
 import GUI_Controllor.*;
 
-public class OwnableField extends Field {
-
-    //GUI gui_controllor = GUI_Controllor.getInstance();
+public class OwnableField{
 
     public void setFields(GUI_Field[] fields, int fieldNumber, int price, Color color) {
         GUI_Street field = new GUI_Street();

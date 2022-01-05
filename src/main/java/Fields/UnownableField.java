@@ -2,7 +2,7 @@ package Fields;
 
 import gui_fields.*;
 
-public class UnownableField extends Field {
+public class UnownableField{
 
     public void startField(GUI_Field[] fields) {
         fields[0] = new GUI_Start();
@@ -25,5 +25,4 @@ public class UnownableField extends Field {
         fields[33] = new GUI_Chance();
         fields[36] = new GUI_Chance();
     }
-
 }
