@@ -32,7 +32,8 @@ public class Jackpot extends UnownableField {
 
     public void receiveJackpot(Player player) {
         if (player.getSquare() == 38 && jackpotBundle>0) {
-            gui.getInstance().showMessage(player.getName() + ", du har landet på jackpot og skal modtage " + jackpotBundle + " DKK!");
+            gui.getInstance().showMessage(player.getName() + ", du har landet på jackpot og skal modtage "
+                                            + jackpotBundle + " DKK!");
             player.getAccount().setMoney(jackpotBundle);
             jackpotBundle = 0;
         }
