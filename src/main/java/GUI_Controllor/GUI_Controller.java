@@ -29,8 +29,5 @@ public final class GUI_Controller {
         return GUI_instance;
     }
 
-    public static void main(String[] args) {
-        GUI_Controller gui = new GUI_Controller();
-        gui.getInstance();
-    }
+
 }
