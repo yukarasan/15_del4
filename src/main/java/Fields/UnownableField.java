@@ -1,26 +1,23 @@
 package Fields;
 
-import gui_fields.GUI_Chance;
-import gui_fields.GUI_Jail;
-import gui_fields.GUI_Refuge;
-import gui_fields.GUI_Start;
+import gui_fields.*;
 
 public class UnownableField extends Field {
 
-    public void startField() {
+    public void startField(GUI_Field[] fields) {
         fields[0] = new GUI_Start();
     }
 
-    public void jailField() {
+    public void jailField(GUI_Field[] fields) {
         fields[10] = new GUI_Jail();
         fields[30] = new GUI_Jail();
     }
 
-    public void freeParking() {
+    public void freeParking(GUI_Field[] fields) {
         fields[20] = new GUI_Refuge();
     }
 
-    public void chanceField() {
+    public void chanceField(GUI_Field[] fields) {
         fields[2] = new GUI_Chance();
         fields[7] = new GUI_Chance();
         fields[16] = new GUI_Chance();

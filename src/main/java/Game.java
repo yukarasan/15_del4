@@ -6,8 +6,7 @@ public class Game {
         GameBoard gameBoard = new GameBoard();
 
         // We place the board
-        gameBoard.placeBoard();
-        gameBoard.allField();
+        //gameBoard.placeBoard();
 
     }
 

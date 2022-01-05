@@ -1,48 +1,47 @@
 package Fields;
 
-import Fields.OwnableField;
-import Fields.UnownableField;
-import GUI_Controllor.GUI_Controllor;
 import gui_fields.GUI_Field;
+import gui_fields.GUI_Street;
 import gui_main.GUI;
 
 import java.awt.*;
 
 public class GameBoard {
+    private GUI_Field[] starters = new GUI_Field[40];
 
+    /*public void placeBoard() {
 
+     */
 
-    public void placeBoard() {
-        GUI gui_controllor = GUI_Controllor.getInstance();
+    public void instantializeFields(){
+
+        for(int i=0; i<starters.length; i++){
+            starters[i] = new GUI_Street();
+        }
+        allField();
     }
-
-    Field field = new Field();
 
     public void allField() {
         UnownableField unownableField = new UnownableField();
 
-        unownableField.startField();
-        unownableField.chanceField();
-        unownableField.jailField();
-        unownableField.freeParking();
+        unownableField.startField(starters);
+        unownableField.chanceField(starters);
+        unownableField.jailField(starters);
+        unownableField.freeParking(starters);
 
         createOwnableField();
     }
 
+
     public GUI_Field[] getField() {
-        return field.getFields();
+        return starters;
     }
 
     private void createOwnableField() {
         OwnableField ownableField = new OwnableField();
-        ownableField.setFields(1,10, Color.black);
+        ownableField.setFields(starters,1,10, Color.black);
     }
 
-
-
-    public void showField() {
-
-    }
 
 
 }

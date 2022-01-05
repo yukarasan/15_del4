@@ -1,12 +1,11 @@
 package Fields;
 
 import gui_fields.GUI_Field;
+import gui_fields.GUI_Street;
 
 public class Field {
-    protected GUI_Field[] fields = new GUI_Field[40];
 
-    public GUI_Field[] getFields() {
-        return fields;
+    public static void main(String[] args) {
+        Field field = new Field();
     }
-
 }
