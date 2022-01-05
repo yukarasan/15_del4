@@ -1,6 +1,7 @@
 package GUI_Controllor;
 
 import Fields.*;
+import gui_fields.GUI_Field;
 import gui_main.GUI;
 import java.awt.*;
 
@@ -25,4 +26,11 @@ public final class GUI_Controller {
         return new GUI(fields.getField(), Color.lightGray);
     }
 
+    public GameBoard getJustFields(){
+        return fields;
+    }
+
+    public GUI_Field getSpecificField(int specificField) {
+        return fields.getSpecificField(specificField);
+    }
 }

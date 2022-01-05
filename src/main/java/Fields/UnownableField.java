@@ -13,7 +13,6 @@ public class UnownableField extends Field{
     public void jailField(GUI_Field[] fields) {
         fields[10] = new GUI_Jail();
         fields[30] = new GUI_Jail();
-
     }
 
     public void freeParking(GUI_Field[] fields) {

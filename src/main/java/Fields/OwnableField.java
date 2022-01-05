@@ -3,9 +3,7 @@ package Fields;
 import Main.Player;
 import gui_fields.GUI_Field;
 import gui_fields.GUI_Street;
-import gui_main.GUI;
 import java.awt.*;
-import GUI_Controllor.*;
 
 public class OwnableField extends Field{
     Player owner;
