@@ -58,8 +58,6 @@ public class GameBoard {
         ownableField.setFields(fields,34, 6400,Color.yellow,"Nygade");
         ownableField.setFields(fields,37, 7000,Color.magenta,"Frederiksberg gade");
         ownableField.setFields(fields,39, 8000,Color.magenta,"Rådhuspladsen");
-
-
     }
 
 }
