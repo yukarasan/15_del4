@@ -4,12 +4,22 @@ import Fields.GameBoard;
 import GUI_Controllor.GUI_Controller;
 
 public class Game {
+    GUI_Controller gui = new GUI_Controller();
+
+
 
     public void startGame() {
-        GameBoard gameBoard = new GameBoard();
-        GUI_Controller gui_controller = new GUI_Controller();
 
-        gui_controller.getInstance();
+        gui.getInstance();
+        round();
+    }
+
+    public void round() {
+        DiceCup diceCup = new DiceCup();
+        gui.getInstance().setDice(diceCup.die1.rollDice(),diceCup.die2.rollDice());
+
+
+
     }
 
 }
