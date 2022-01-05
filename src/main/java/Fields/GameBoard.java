@@ -17,13 +17,13 @@ public class GameBoard {
 
     public void allField() {
         UnownableField unownableField = new UnownableField();
+        Jackpot jackpot = new Jackpot();
 
         unownableField.startField(fields);
         unownableField.chanceField(fields);
         unownableField.jailField(fields);
         unownableField.freeParking(fields);
-
-        createOwnableField();
+        jackpot.jackPot(fields);
     }
 
     public GUI_Field[] getField() {
@@ -32,7 +32,8 @@ public class GameBoard {
 
     private void createOwnableField() {
         OwnableField ownableField = new OwnableField();
-        ownableField.setFields(fields,1,10, Color.black);
+        ownableField.setFields(fields,1,10, Color.yellow, "hej");
+
     }
 
 }

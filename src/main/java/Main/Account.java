@@ -1,3 +1,5 @@
+package Main;
+
 public class Account {
     private int money=30_000;
 

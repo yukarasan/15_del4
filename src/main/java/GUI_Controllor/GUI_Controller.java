@@ -9,8 +9,7 @@ public final class GUI_Controller {
     private static final GameBoard fields = new GameBoard();
 
     /*
-    Creating a private constructor so that user cant create an instance of the default constructor
-    the class
+    Creating a private constructor so that user can't create more than one instance of this singleton class
      */
 
     public GUI getInstance() {

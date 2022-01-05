@@ -1,3 +1,5 @@
+package Main;
+
 public class Die {
 
     // Creating a variable that will show the face value of the die:

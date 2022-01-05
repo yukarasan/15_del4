@@ -2,7 +2,7 @@ package Fields;
 
 import gui_fields.*;
 
-public class UnownableField{
+public class UnownableField extends Field{
 
     public void startField(GUI_Field[] fields) {
         fields[0] = new GUI_Start();
@@ -15,6 +15,7 @@ public class UnownableField{
 
     public void freeParking(GUI_Field[] fields) {
         fields[20] = new GUI_Refuge();
+
     }
 
     public void chanceField(GUI_Field[] fields) {

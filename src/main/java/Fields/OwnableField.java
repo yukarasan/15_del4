@@ -6,13 +6,16 @@ import gui_main.GUI;
 import java.awt.*;
 import GUI_Controllor.*;
 
-public class OwnableField{
+public class OwnableField extends Field{
 
-    public void setFields(GUI_Field[] fields, int fieldNumber, int price, Color color) {
+    public void setFields(GUI_Field[] fields, int fieldNumber, int price, Color color, String name) {
         GUI_Street field = new GUI_Street();
         field.setDescription(" ");
         field.setRent(String.valueOf(price));
-        field = (GUI_Street) fields[fieldNumber];
+        field.setSubText("Pris: " + price + " DKK");
+        field.setBackGroundColor(color);
+        field.setTitle(name);
+        fields[fieldNumber] = field;
     }
 
 }

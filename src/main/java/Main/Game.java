@@ -1,3 +1,5 @@
+package Main;
+
 import Fields.GameBoard;
 import GUI_Controllor.GUI_Controller;
 
