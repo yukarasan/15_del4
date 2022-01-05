@@ -11,23 +11,23 @@ public class ChooseColorTest {
 
         Scanner scan = new Scanner(System.in);
 
-
-
         boolean again = true;
 
         while(true) {
-
             System.out.println("Which color?");
-            String color = scan.nextLine();
+
+            again = true;
 
             while (again) {
+
                 again = false;
+                String color = scan.nextLine();
 
                 switch (color) {
 
                     case "a":
                         if (a) {
-                            System.out.println("a is already taken");
+                            System.out.println("a is already taken, write a new color");
                             again = true;
                             break;
                         } else if(a != true){
@@ -36,7 +36,7 @@ public class ChooseColorTest {
                         }
                     case "b":
                         if (b) {
-                            System.out.println("b is already taken");
+                            System.out.println("b is already taken, write a new color");
                             again = true;
                             break;
                         } else if(b != true) {
