@@ -6,16 +6,18 @@ public class UnownableField extends Field{
 
     public void startField(GUI_Field[] fields) {
         fields[0] = new GUI_Start();
+   
+
     }
 
     public void jailField(GUI_Field[] fields) {
         fields[10] = new GUI_Jail();
         fields[30] = new GUI_Jail();
+
     }
 
     public void freeParking(GUI_Field[] fields) {
         fields[20] = new GUI_Refuge();
-
     }
 
     public void chanceField(GUI_Field[] fields) {
