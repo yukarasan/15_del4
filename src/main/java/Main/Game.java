@@ -8,8 +8,6 @@ import java.awt.*;
 
 public class Game {
     private GUI_Controller gui = new GUI_Controller();
-    private int numberOfPlayers;
-    private Player[] player = new Player[numberOfPlayers];
 
     public void startGame() {
         gui.getInstance();
@@ -22,19 +20,21 @@ public class Game {
         gui.getInstance().showMessage("Velkommen til Matador!");
     }
 
-    public boolean playerNamesAreSame(String name, int playerNumberYet){
-        boolean sameName = false;
-        for (int i = 0; i < playerNumberYet; i++) {
-            if (!name.equals(player[i].getName())){
-                sameName = false;
+    public boolean checkForSameName(String name, int playerNamesYet, Player[] players){
+
+        boolean writeNameAgain = false;
+
+        for(int i=0; i<playerNamesYet; i++) {
+            if (!name.equals(players[i].getName())) {
+                writeNameAgain = false;
             }
         }
-        for (int i = 0; i < playerNumberYet; i++) {
-            if (name.equals(player[i].getName())) {
-                sameName = true;
+        for (int i = 0; i < playerNamesYet; i++) {
+            if (name.equals(players[i].getName())) {
+                writeNameAgain = true;
             }
         }
-        return sameName;
+        return writeNameAgain;
     }
 
     private void createPlayer() {
@@ -56,20 +56,16 @@ public class Game {
             player[i] = new Player();
             car[i] = new GUI_Car();
 
-
             String name = gui.getInstance().getUserString("Spiller " + (i + 1) + ", indtast dit navn: ");
 
-            if(i == 0){
                 player[i].setName(name);
-            }
 
-            if(i > 0){
-                while(playerNamesAreSame(name, i) == true) {
-                    gui.getInstance().showMessage("Spiller " + (i+1) + ", navnet er allerede taget, skriv et nyt");
-                    String newName = gui.getInstance().getUserString("Spiller " + (i+1) + ", Indtast et navn");
-                    player[i].setName(newName);
+
+                while (checkForSameName(name, i, player)) {
+                    gui.getInstance().showMessage("Spiller " + (i + 1) + ", navnet er allerede taget, skriv et nyt");
+                    name = gui.getInstance().getUserString("Spiller " + (i + 1) + ", Indtast et navn");
                 }
-            }
+                player[i].setName(name);
 
             while (chooseColorAgain) {
 
@@ -146,22 +142,14 @@ public class Game {
                         }
                 }
             }
-
-            gui_player[i] = new GUI_Player(player[i].getName(),player[i].getAccount().getMoney(), car[i]);
-
+            gui_player[i] = new GUI_Player(player[i].getName(), player[i].getAccount().getMoney(), car[i]);
             gui.getInstance().addPlayer(gui_player[i]);
-
             gui.getSpecificField(0).setCar(gui_player[i], true);
-
         }
-
-
     }
 
     private void round() {
         DiceCup diceCup = new DiceCup();
         gui.getInstance().setDice(diceCup.die1.rollDice(),diceCup.die2.rollDice());
     }
-
-
 }
