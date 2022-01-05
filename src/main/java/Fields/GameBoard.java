@@ -30,6 +30,10 @@ public class GameBoard {
         return fields;
     }
 
+    public GUI_Field getSpecificField(int specificField){
+        return fields[specificField];
+    }
+
     private void createOwnableField() {
         OwnableField ownableField = new OwnableField();
         ownableField.setFields(fields,1,10, Color.yellow, "hej");
