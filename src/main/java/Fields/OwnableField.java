@@ -12,7 +12,7 @@ public class OwnableField extends Field{
         GUI_Street field = new GUI_Street();
         field.setDescription(" ");
         field.setRent(String.valueOf(price));
-        field.setSubText("Pris: " + price + " DKK");
+        field.setSubText("Pris: " + price);
         field.setBackGroundColor(color);
         field.setTitle(name);
         fields[fieldNumber] = field;

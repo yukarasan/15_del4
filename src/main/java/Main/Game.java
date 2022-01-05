@@ -34,6 +34,7 @@ public class Game {
         boolean chooseColorAgain = true;
 
         for (int i = 0; i < option; i++) {
+            chooseColorAgain = true;
 
             player[i] = new Player();
 
@@ -44,8 +45,7 @@ public class Game {
             car[i] = new Car(Color.blue);
 
             while (chooseColorAgain) {
-
-                String color = gui.getInstance().getUserSelection("Hvilken farve bil ønsker du?", "Blå", "Sort", "Hvid", "Gul", "Rød", "Grøn");
+                String color = gui.getInstance().getUserButtonPressed("Hvilken farve bil ønsker du?", "Blå", "Sort", "Hvid", "Gul", "Rød", "Grøn");
 
                 switch (color) {
                     case "Blå":

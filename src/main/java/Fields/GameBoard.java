@@ -24,6 +24,7 @@ public class GameBoard {
         unownableField.jailField(fields);
         unownableField.freeParking(fields);
         jackpot.jackPot(fields);
+        createOwnableField();
     }
 
     public GUI_Field[] getField() {
