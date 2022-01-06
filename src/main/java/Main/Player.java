@@ -6,7 +6,6 @@ public class Player {
     private int square = 0;
     private boolean passedStartField;
 
-
     public void setName(String name){
         this.name = name;
     }
@@ -23,16 +22,16 @@ public class Player {
         return square;
     }
 
+    public void moveToHere(int currentInt){
+        square = currentInt;
+    }
+
     public void moveSquare(int die1,int die2) {
         this.square += die1+die2;
 
         if(square > 39){
             passedStartField = true;
         }
-
-
-
-
         square %= 40;
     }
 
@@ -43,8 +42,6 @@ public class Player {
     public void resetPassedStartField(){
         passedStartField = false;
     }
-
-
     public void setMoney(int money) {
         account.setMoney(money);
     }
