@@ -55,8 +55,6 @@ public class UnownableField extends Field {
         gui.getInstance().showMessage("Ryk frem til Frederiksberg Allé.Hvis du passere start så modtag 4000 DKK");
         gui.getSpecificField(11);
         if (player.getSquare() == 0) {
-
-
             player.getAccount().setMoney(4000);
         }
     }
