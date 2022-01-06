@@ -1,10 +1,10 @@
 package Fields;
 
-import Main.Player;
 import gui_fields.GUI_Field;
-import gui_fields.GUI_Shipping;
 import gui_fields.GUI_Street;
 import java.awt.*;
+import java.util.Arrays;
+import java.util.stream.IntStream;
 
 public class GameBoard {
     private final GUI_Field[] fields = new GUI_Field[40];
@@ -66,10 +66,13 @@ public class GameBoard {
         ownableField.setFields(fields,39, 8000,Color.magenta,"Rådhuspladsen");
     }
 
+    public int[] allOwnableFields(){
+        int[] allOwnableFields = {1, 3, 6, 8, 9, 11, 13, 14, 16, 18, 19, 21, 23, 24, 26, 27, 29, 31, 32, 34, 37, 39};
+        return allOwnableFields;
+    }
+
     private void createStartField() {
         UnownableField unownableField = new UnownableField();
         unownableField.startField(fields);
-
     }
-
 }

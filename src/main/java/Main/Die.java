@@ -16,5 +16,9 @@ public class Die {
         final int MAX = 6;
         return faceValue = (int) (Math.random() * MAX + 1);
     }
+
+    public int getDie(){
+        return faceValue;
+    }
 }
 

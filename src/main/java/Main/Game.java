@@ -3,15 +3,21 @@ package Main;
 import GUI_Controllor.GUI_Controller;
 import gui_fields.GUI_Car;
 import gui_fields.GUI_Player;
+import gui_fields.GUI_Tax;
 
 import java.awt.*;
 import java.util.Arrays;
 import java.util.Locale;
+import java.util.stream.IntStream;
 
 public class Game {
     private final GUI_Controller gui = new GUI_Controller();
     private static boolean[] numberOfOption = new boolean[6];
     private static boolean chooseColorAgain;
+    private DiceCup diceCup = new DiceCup();
+    private static int numberOfPlayers;
+    private Player[] players = new Player[numberOfPlayers];
+    private GUI_Player[] gui_players = new GUI_Player[numberOfPlayers];
 
     public void startGame() {
         gui.getInstance();
@@ -57,21 +63,21 @@ public class Game {
         String buttonPressed = gui.getInstance().getUserButtonPressed("Hvor mange spillere ønsker I at være?", "3", "4",
                 "5", "6");
 
-        int option = Integer.parseInt(buttonPressed);
-        Player[] player = new Player[option];
+        numberOfPlayers = Integer.parseInt(buttonPressed);
+        players = new Player[numberOfPlayers];
 
-        GUI_Player[] gui_player = new GUI_Player[option];
-        GUI_Car[] car = new GUI_Car[option];
+        gui_players = new GUI_Player[numberOfPlayers];
+        GUI_Car[] car = new GUI_Car[numberOfPlayers];
 
-        for (int i = 0; i < option; i++) {
+        for (int i = 0; i < numberOfPlayers; i++) {
             chooseColorAgain = true;
 
-            player[i] = new Player();
+            players[i] = new Player();
             car[i] = new GUI_Car();
 
             String name = gui.getInstance().getUserString("Spiller " + (i + 1) + ", indtast dit navn: ");
 
-            player[i].setName(name);
+            players[i].setName(name);
 
             // If the name contains any numbers between 0 - 9, they will be replaced with an empty string.
             String[] numbersInName = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
@@ -100,11 +106,11 @@ public class Game {
 
             name = firstLetter + restOfName;
 
-                while (checkForSameName(name, i, player)) {
+                while (checkForSameName(name, i, players)) {
                     gui.getInstance().showMessage("Spiller " + (i + 1) + ", navnet er allerede taget, skriv et nyt");
                     name = gui.getInstance().getUserString("Spiller " + (i + 1) + ", Indtast et navn");
                 }
-                player[i].setName(name);
+                players[i].setName(name);
 
                 chooseColorAgain = true;
 
@@ -134,14 +140,52 @@ public class Game {
                         break;
                 }
             }
-            gui_player[i] = new GUI_Player(player[i].getName(), player[i].getAccount().getMoney(), car[i]);
-            gui.getInstance().addPlayer(gui_player[i]);
-            gui.getSpecificField(0).setCar(gui_player[i], true);
+            gui_players[i] = new GUI_Player(players[i].getName(), players[i].getAccount().getMoney(), car[i]);
+            gui.getInstance().addPlayer(gui_players[i]);
+            gui.getSpecificField(0).setCar(gui_players[i], true);
         }
     }
 
     private void round() {
-        DiceCup diceCup = new DiceCup();
-        gui.getInstance().setDice(diceCup.die1.rollDice(),diceCup.die2.rollDice());
+
+        while(true) {
+
+            for (int i = 0; i < numberOfPlayers; i++) {
+
+                gui.getInstance().getUserButtonPressed(players[i].getName() + ", kast terningerne", "Kast");
+
+                gui.getInstance().setDice(diceCup.die1.rollDice(), diceCup.die2.rollDice());
+
+                players[i].moveSquare(diceCup.die1.getDie(), diceCup.die2.getDie());
+
+                gui.getSpecificField(players[i].getSquare()).setCar(gui_players[i],true);
+
+                //We could also use this line below, however we choose not to
+                //gui_players[i].getCar().setPosition(gui.getSpecificField(players[i].getSquare()));
+
+
+
+
+
+
+            }
+        }
     }
+
+    public void optionToBuyProperty(Player player, GUI_Player gui_players){
+
+        int s = player.getSquare();
+
+
+
+        if(IntStream.of(gui.getJustFields().allOwnableFields()).anyMatch(x -> x == s)){
+
+
+
+        }
+
+
+    }
+
+
 }

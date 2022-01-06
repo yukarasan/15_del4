@@ -3,7 +3,7 @@ package Main;
 public class Player {
     private Account account = new Account();
     private String name;
-    private int square;
+    private int square = 0;
 
     public void setName(String name){
         this.name = name;
