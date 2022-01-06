@@ -148,19 +148,24 @@ public class Game {
                         }
                         break;
                     case "Grøn":
-                        if (greenTaken) {
-                            gui.getInstance().showMessage("Grøn er allerede taget");
-                            chooseColorAgain = true;
-                        } else {
-                            car[i].setPrimaryColor(Color.green);
-                            greenTaken = true;
-                        }
+                        colorChooser(Color.green,car[i],greenTaken,chooseColorAgain, "Grøn");
                         break;
                 }
             }
             gui_player[i] = new GUI_Player(player[i].getName(), player[i].getAccount().getMoney(), car[i]);
             gui.getInstance().addPlayer(gui_player[i]);
             gui.getSpecificField(0).setCar(gui_player[i], true);
+        }
+    }
+
+    public void colorChooser(Color color, GUI_Car car, boolean colorChosen, boolean chooseColorAgain, String colorString){
+
+        if (colorChosen) {
+            gui.getInstance().showMessage(colorString + " er allerede taget");
+            chooseColorAgain = true;
+        } else {
+            car.setPrimaryColor(color);
+            colorChosen = true;
         }
     }
 
