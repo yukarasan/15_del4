@@ -15,7 +15,7 @@ public final class GUI_Controller {
 
     private GUI GUI_controller() {
         fields.instantiatingFields();
-        Color customColor = new Color(91,112,17);  // Creating a custom color for the boardGame
+        Color customColor = new Color(109, 135, 0);  // Creating a custom color for the boardGame
         return new GUI(fields.getField(), customColor);
     }
 

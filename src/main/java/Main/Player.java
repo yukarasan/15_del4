@@ -21,7 +21,7 @@ public class Player {
         return square;
     }
 
-    public int moveSquare(int die1,int die2){
+    public int moveSquare(int die1,int die2) {
         this.square += die1+die2;
 
         square %= 40;
