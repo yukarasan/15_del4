@@ -39,4 +39,7 @@ public class Player {
     public void resetPassedStartField(){
         passedStartField = false;
     }
+    public void setMoney(int money) {
+        account.setMoney(money);
+    }
 }
