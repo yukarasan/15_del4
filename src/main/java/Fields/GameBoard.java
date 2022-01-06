@@ -4,11 +4,8 @@ import Main.Player;
 import gui_fields.GUI_Field;
 import gui_fields.GUI_Player;
 import gui_fields.GUI_Street;
-import gui_main.GUI;
 
 import java.awt.*;
-import java.util.Arrays;
-import java.util.stream.IntStream;
 
 public class GameBoard {
     private final GUI_Field[] fields = new GUI_Field[40];

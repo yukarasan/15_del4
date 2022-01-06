@@ -3,7 +3,6 @@ package Main;
 import GUI_Controllor.GUI_Controller;
 import gui_fields.GUI_Car;
 import gui_fields.GUI_Player;
-import gui_fields.GUI_Tax;
 
 import java.awt.*;
 import java.util.Arrays;
