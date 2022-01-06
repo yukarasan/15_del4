@@ -1,6 +1,8 @@
 package Fields;
 
+import Main.Player;
 import gui_fields.GUI_Field;
+import gui_fields.GUI_Player;
 import gui_fields.GUI_Street;
 import java.awt.*;
 
@@ -22,10 +24,11 @@ public class GameBoard {
         unownableField.chanceField(fields);
         unownableField.jailField(fields);
         unownableField.freeParking(fields);
+        createOwnableField();
         jackpot.jackPot(fields);
         Jail jail = new Jail();
         jail.jailFields(fields);
-        createOwnableField();
+        jail.inJail();
     }
 
     public GUI_Field[] getField() {
