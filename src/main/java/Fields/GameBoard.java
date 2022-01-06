@@ -1,6 +1,8 @@
 package Fields;
 
+import Main.Player;
 import gui_fields.GUI_Field;
+import gui_fields.GUI_Player;
 import gui_fields.GUI_Street;
 import java.awt.*;
 import java.util.Arrays;
@@ -38,6 +40,10 @@ public class GameBoard {
         return fields[specificField];
     }
 
+    public GUI_Street getSpecificStreetField(int specificField){
+        return (GUI_Street) fields[specificField];
+    }
+
     private void createOwnableField() {
         OwnableField ownableField = new OwnableField();
         ownableField.setFields(fields,1,1200, Color.blue, "Rødovrevej");
@@ -71,8 +77,16 @@ public class GameBoard {
         return allOwnableFields;
     }
 
-    private void createStartField() {
-        UnownableField unownableField = new UnownableField();
-        unownableField.startField(fields);
+    public void buyField(Player player, GUI_Player gui_player){
+
+
+
+        player.getAccount();
+
     }
+
+    public static void main(String[] args) {
+        getSpecificStreetField(player.getSquare()).getRent();
+    }
+
 }
