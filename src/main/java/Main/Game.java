@@ -84,7 +84,7 @@ public class Game {
                 restOfName = name.substring(1);
             }
 
-            // Detecting if the rest of the name contains any upper case letters, and converting them to lowercase
+            // Detecting if the rest of the name contains any upper case letters, and converting them to lowercase.
             restOfName = restOfName.toLowerCase();
 
             name = firstLetter + restOfName;
