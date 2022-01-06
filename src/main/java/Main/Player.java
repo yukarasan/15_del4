@@ -22,8 +22,8 @@ public class Player {
         return square;
     }
 
-    public void moveSquare(int die1,int die2) {
-        this.square += die1 + die2;
+    public int moveSquare(int die1,int die2) {
+        this.square += die1+die2;
 
         if(square > 39){
             passedStartField = true;

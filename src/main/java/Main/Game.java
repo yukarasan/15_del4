@@ -2,6 +2,7 @@ package Main;
 
 import GUI_Controllor.GUI_Controller;
 import gui_fields.GUI_Car;
+import gui_fields.GUI_Field;
 import gui_fields.GUI_Player;
 
 import java.awt.*;
@@ -172,8 +173,9 @@ public class Game {
                     //Player moves to the square that is plussed
                     gui.getSpecificField(players[i].getSquare()).setCar(gui_players[i], true);
 
+
+                    passStartField(players[i],gui_players[i]);
                 }
-                passStartField(players[i],gui_players[i]);
             }
         }
     }
