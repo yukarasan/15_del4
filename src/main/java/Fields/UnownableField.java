@@ -2,12 +2,13 @@ package Fields;
 
 import gui_fields.*;
 
-public class UnownableField extends Field{
+public class UnownableField extends Field {
 
     public void startField(GUI_Field[] fields) {
         fields[0] = new GUI_Start();
-   
-
+        fields[0].setTitle("Start");
+        fields[0].setSubText("Modtag 4000");
+        fields[0].setDescription("Dette er startfeltet");
     }
 
     public void jailField(GUI_Field[] fields) {
