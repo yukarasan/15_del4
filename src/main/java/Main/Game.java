@@ -153,10 +153,13 @@ public class Game {
 
             for (int i = 0; i < numberOfPlayers; i++) {
 
+                //Player throws dice
                 gui.getInstance().getUserButtonPressed(players[i].getName() + ", kast terningerne", "Kast");
 
+                //Dice get shown on board
                 gui.getInstance().setDice(diceCup.die1.rollDice(), diceCup.die2.rollDice());
 
+                //This is when the piece moves one square by one square up until thrown value
                 for(int j=0; j<(diceCup.die1.getDie()+diceCup.die2.getDie()); j++) {
 
                     players[i].moveSquare(1,0);
@@ -167,21 +170,27 @@ public class Game {
                         e.printStackTrace();
                     }
 
+                    //Player moves to the square that is plussed
                     gui.getSpecificField(players[i].getSquare()).setCar(gui_players[i], true);
+
+
+                    passStartField(players[i],gui_players[i]);
                 }
-
-
-                //We could also use this line below, however we choose not to
-                //gui_players[i].getCar().setPosition(gui.getSpecificField(players[i].getSquare()));
-
-
-
-
-
-
             }
         }
     }
+
+
+    public void passStartField(Player player, GUI_Player gui_players){
+
+        if(player.getSquare() >= 0){
+            gui.getInstance().showMessage(player.getName() + ", du har passeret start og modtager 4000 DKK");
+            player.getAccount().setMoney(4000);
+            gui_players.setBalance(player.getAccount().getMoney());
+        }
+
+    }
+
 
     public void optionToBuyProperty(Player player, GUI_Player gui_players){
 
