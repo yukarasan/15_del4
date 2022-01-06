@@ -174,8 +174,9 @@ public class Game {
                     gui.getSpecificField(players[i].getSquare()).setCar(gui_players[i], true);
 
 
-                    passStartField(players[i],gui_players[i]);
+
                 }
+                passStartField(players[i],gui_players[i]);
             }
         }
     }
