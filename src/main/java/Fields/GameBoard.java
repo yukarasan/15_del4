@@ -81,8 +81,6 @@ public class GameBoard {
 
     public void buyField(Player player, GUI_Player gui_player){
 
-
-
         player.getAccount();
 
     }
