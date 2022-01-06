@@ -1,6 +1,7 @@
 package Fields;
 
 import gui_fields.GUI_Field;
+import gui_fields.GUI_Shipping;
 import gui_fields.GUI_Street;
 import java.awt.*;
 
@@ -40,12 +41,14 @@ public class GameBoard {
         OwnableField ownableField = new OwnableField();
         ownableField.setFields(fields,1,1200, Color.blue, "Rødovrevej");
         ownableField.setFields(fields,3, 1200,Color.blue,"Hvidovrevej");
+        ownableField.setFerryFields(fields, 5, Color.cyan, "Scandlines", "Gedser-Rostock");
         ownableField.setFields(fields,6, 2000,Color.orange,"Roskildevej");
         ownableField.setFields(fields,8, 2000,Color.orange,"Valby Langgade");
         ownableField.setFields(fields,9, 2400,Color.orange,"Allegade");
         ownableField.setFields(fields,11, 2800,Color.yellow,"Frederiksberg Alle");
         ownableField.setFields(fields,13, 2800,Color.yellow,"Bulowsvej");
         ownableField.setFields(fields,14,3200,Color.yellow,"Gl. Kongevej");
+        ownableField.setFerryFields(fields, 15, Color.RED, "Mols-linien", "En genvej i Danmark");
         ownableField.setFields(fields,16,3600,Color.gray,"Bernstorffsvej");
         ownableField.setFields(fields,18,3600,Color.gray,"Hellerupvej");
         ownableField.setFields(fields,19,4000,Color.gray,"Strandvejen");

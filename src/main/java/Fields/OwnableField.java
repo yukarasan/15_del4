@@ -3,6 +3,8 @@ package Fields;
 import GUI_Controllor.GUI_Controller;
 import Main.Player;
 import gui_fields.GUI_Field;
+import gui_fields.GUI_Shipping;
+import gui_fields.GUI_Start;
 import gui_fields.GUI_Street;
 import java.awt.*;
 
@@ -22,6 +24,14 @@ public class OwnableField extends Field{
         field.setBackGroundColor(color);
         field.setTitle(name);
         fields[fieldNumber] = field;
+    }
+
+    public void setFerryFields(GUI_Field[] field, int fieldNumber, Color color, String name, String subName) {
+        field[fieldNumber] = new GUI_Shipping();
+        field[fieldNumber].setBackGroundColor(color);
+        field[fieldNumber].setTitle(name);
+        field[fieldNumber].setDescription(subName);
+        field[fieldNumber].setSubText("");
     }
 
 
