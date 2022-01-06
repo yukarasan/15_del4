@@ -5,9 +5,10 @@ import java.util.Scanner;
 public class TestingSimplerColor {
     private static boolean[] numberOfOption = new boolean[2];
     private static boolean chooseColorAgain;
+    private static String[] names;
 
 
-    public void colorChooser(boolean[] colorChosen,int numberOfOption, boolean chooseColorAgain, String colorString) {
+    public void colorChooser(boolean[] colorChosen,int numberOfOption, String colorString, int playerNumber) {
 
         if (colorChosen[numberOfOption]) {
             System.out.println(colorString + " is already taken");
@@ -15,11 +16,8 @@ public class TestingSimplerColor {
         } else {
             colorChosen[numberOfOption] = true;
             chooseColorAgain = false;
+            names[playerNumber] = colorString;
         }
-    }
-
-    public static void setNumberOfOption(boolean[] numberOfOption) {
-        TestingSimplerColor.numberOfOption = numberOfOption;
     }
 
     public static void main(String[] args) {
@@ -28,9 +26,9 @@ public class TestingSimplerColor {
 
         TestingSimplerColor testingSimplerColor = new TestingSimplerColor();
 
+        names = new String[2];
 
-
-        while (true) {
+        for(int i = 0; i<2; i++) {
 
             chooseColorAgain = true;
 
@@ -42,13 +40,17 @@ public class TestingSimplerColor {
 
                 switch (inputColor) {
                     case "a":
-                        testingSimplerColor.colorChooser(numberOfOption, 0, chooseColorAgain, inputColor);
+                        testingSimplerColor.colorChooser(numberOfOption, 0, inputColor, i);
                         break;
                     case "b":
-                        testingSimplerColor.colorChooser(numberOfOption, 1, chooseColorAgain, inputColor);
+                        testingSimplerColor.colorChooser(numberOfOption, 1, inputColor, i);
                         break;
                 }
             }
+        }
+        System.out.println("Names: ");
+        for(int i=0; i<2; i++){
+            System.out.print(names[i] + ", ");
         }
     }
 }

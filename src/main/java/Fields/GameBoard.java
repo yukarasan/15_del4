@@ -1,5 +1,6 @@
 package Fields;
 
+import Main.Player;
 import gui_fields.GUI_Field;
 import gui_fields.GUI_Shipping;
 import gui_fields.GUI_Street;
