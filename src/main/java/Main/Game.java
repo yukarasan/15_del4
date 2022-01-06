@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.Locale;
 
 public class Game {
-    private GUI_Controller gui = new GUI_Controller();
+    private final GUI_Controller gui = new GUI_Controller();
 
     public void startGame() {
         gui.getInstance();
@@ -50,7 +50,7 @@ public class Game {
         GUI_Car[] car = new GUI_Car[option];
 
         boolean blueTaken = false, blackTaken = false, whiteTaken = false, redTaken = false, yellowTaken = false, greenTaken = false;
-        boolean chooseColorAgain = true;
+        boolean chooseColorAgain;
 
         for (int i = 0; i < option; i++) {
             chooseColorAgain = true;
@@ -84,6 +84,9 @@ public class Game {
                 restOfName = name.substring(1);
             }
 
+            // Detecting if the rest of the name contains any upper case letters, and converting them to lowercase
+            restOfName = restOfName.toLowerCase();
+
             name = firstLetter + restOfName;
 
                 while (checkForSameName(name, i, player)) {
@@ -103,68 +106,56 @@ public class Game {
                         if (blueTaken) {
                             gui.getInstance().showMessage("Blå er allerede taget");
                             chooseColorAgain = true;
-                            break;
                         } else {
                             car[i].setPrimaryColor(Color.blue);
                             blueTaken = true;
-                            chooseColorAgain = false;
-                            break;
                         }
+                        break;
                     case "Sort":
                         if (blackTaken) {
                             gui.getInstance().showMessage("Sort er allerede taget");
                             chooseColorAgain = true;
-                            break;
                         } else {
                             car[i].setPrimaryColor(Color.black);
                             blackTaken = true;
-                            chooseColorAgain = false;
-                            break;
                         }
+                        break;
                     case "Hvid":
                         if (whiteTaken) {
                             gui.getInstance().showMessage("Hvid er allerede taget");
                             chooseColorAgain = true;
-                            break;
                         } else {
                             car[i].setPrimaryColor(Color.white);
                             whiteTaken = true;
-                            chooseColorAgain = false;
-                            break;
                         }
+                        break;
                     case "Gul":
                         if (yellowTaken) {
                             gui.getInstance().showMessage("Gul er allerede taget");
                             chooseColorAgain = true;
-                            break;
                         } else {
                             car[i].setPrimaryColor(Color.yellow);
                             yellowTaken = true;
-                            chooseColorAgain = false;
-                            break;
                         }
+                        break;
                     case "Rød":
                         if (redTaken) {
                             gui.getInstance().showMessage("Rød er allerede taget");
                             chooseColorAgain = true;
-                            break;
                         } else {
                             car[i].setPrimaryColor(Color.red);
                             redTaken = true;
-                            chooseColorAgain = false;
-                            break;
                         }
+                        break;
                     case "Grøn":
                         if (greenTaken) {
                             gui.getInstance().showMessage("Grøn er allerede taget");
                             chooseColorAgain = true;
-                            break;
                         } else {
                             car[i].setPrimaryColor(Color.green);
                             greenTaken = true;
-                            chooseColorAgain = false;
-                            break;
                         }
+                        break;
                 }
             }
             gui_player[i] = new GUI_Player(player[i].getName(), player[i].getAccount().getMoney(), car[i]);
