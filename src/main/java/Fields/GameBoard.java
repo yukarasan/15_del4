@@ -88,7 +88,7 @@ public class GameBoard {
     }
 
     public static void main(String[] args) {
-        getSpecificStreetField(player.getSquare()).getRent();
+        //getSpecificStreetField(player.getSquare()).getRent();
     }
 
 }

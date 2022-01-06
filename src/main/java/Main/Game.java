@@ -8,6 +8,7 @@ import gui_fields.GUI_Tax;
 import java.awt.*;
 import java.util.Arrays;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 
 public class Game {
@@ -146,7 +147,7 @@ public class Game {
         }
     }
 
-    private void round() {
+    private void round(){
 
         while(true) {
 
@@ -156,9 +157,19 @@ public class Game {
 
                 gui.getInstance().setDice(diceCup.die1.rollDice(), diceCup.die2.rollDice());
 
-                players[i].moveSquare(diceCup.die1.getDie(), diceCup.die2.getDie());
+                for(int j=0; j<(diceCup.die1.getDie()+diceCup.die2.getDie()); j++) {
 
-                gui.getSpecificField(players[i].getSquare()).setCar(gui_players[i],true);
+                    players[i].moveSquare(1,0);
+
+                    try {
+                        TimeUnit.MILLISECONDS.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    gui.getSpecificField(players[i].getSquare()).setCar(gui_players[i], true);
+                }
+
 
                 //We could also use this line below, however we choose not to
                 //gui_players[i].getCar().setPosition(gui.getSpecificField(players[i].getSquare()));
