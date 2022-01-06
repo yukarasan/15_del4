@@ -26,7 +26,6 @@ public class GameBoard {
         Jail jail = new Jail();
         jail.jailFields(fields);
         createOwnableField();
-
     }
 
     public GUI_Field[] getField() {
@@ -41,9 +40,9 @@ public class GameBoard {
         OwnableField ownableField = new OwnableField();
         ownableField.setFields(fields,1,1200, Color.blue, "Rødovrevej");
         ownableField.setFields(fields,3, 1200,Color.blue,"Hvidovrevej");
-        ownableField.setFields(fields,6, 2000,Color.red,"Roskildevej");
-        ownableField.setFields(fields,8, 2000,Color.red,"Valby Langgade");
-        ownableField.setFields(fields,9, 2400,Color.red,"Allegade");
+        ownableField.setFields(fields,6, 2000,Color.orange,"Roskildevej");
+        ownableField.setFields(fields,8, 2000,Color.orange,"Valby Langgade");
+        ownableField.setFields(fields,9, 2400,Color.orange,"Allegade");
         ownableField.setFields(fields,11, 2800,Color.yellow,"Frederiksberg Alle");
         ownableField.setFields(fields,13, 2800,Color.yellow,"Bulowsvej");
         ownableField.setFields(fields,14,3200,Color.yellow,"Gl. Kongevej");
