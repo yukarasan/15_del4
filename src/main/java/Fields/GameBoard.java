@@ -28,7 +28,7 @@ public class GameBoard {
         jackpot.jackPot(fields);
         Jail jail = new Jail();
         jail.jailFields(fields);
-        jail.inJail();
+
     }
 
     public GUI_Field[] getField() {

@@ -37,7 +37,6 @@ public class Jail extends UnownableField {
                     player.getAccount().setMoney(-1000);
             }
         }
-
-    }
+}
 
 
