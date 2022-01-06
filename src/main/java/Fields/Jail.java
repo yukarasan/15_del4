@@ -7,7 +7,7 @@ import gui_fields.GUI_Field;
 import gui_fields.GUI_Jail;
 import gui_fields.GUI_Player;
 
-public class Jail extends UnownableField{
+public class Jail extends UnownableField {
 
     public void jailFields(GUI_Field[] fields){
         fields[30].setSubText("Du i fængsel");
