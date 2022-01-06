@@ -18,13 +18,14 @@ public class GameBoard {
     public void allField() {
         UnownableField unownableField = new UnownableField();
         Jackpot jackpot = new Jackpot();
-
         unownableField.startField(fields);
         unownableField.chanceField(fields);
         unownableField.jailField(fields);
         unownableField.freeParking(fields);
         jackpot.jackPot(fields);
-        createOwnableField();
+        Jail jail = new Jail();
+        jail.jailFields(fields);
+
     }
 
     public GUI_Field[] getField() {
