@@ -48,7 +48,7 @@ public class GameBoard {
         OwnableField ownableField = new OwnableField();
         ownableField.setFields(fields,1,1200, Color.blue, "Rødovrevej");
         ownableField.setFields(fields,3, 1200,Color.blue,"Hvidovrevej");
-        ownableField.setFerryFields(fields, 5, Color.cyan, "Scandlines", "Gedser-Rostock");
+        ownableField.setFerryFields(fields, 5, Color.cyan, "Scandlines", "Helsingør-Helsinborg");
         ownableField.setFields(fields,6, 2000,Color.orange,"Roskildevej");
         ownableField.setFields(fields,8, 2000,Color.orange,"Valby Langgade");
         ownableField.setFields(fields,9, 2400,Color.orange,"Allegade");
@@ -62,12 +62,14 @@ public class GameBoard {
         ownableField.setFields(fields,21,4400,Color.RED,"Trianglen");
         ownableField.setFields(fields,23,4400,Color.RED,"Østerbrogade");
         ownableField.setFields(fields,24,4800,Color.RED,"Grønningen");
+        ownableField.setFerryFields(fields,25,Color.blue,"Scandlines", "Gedser-Rostock");
         ownableField.setFields(fields,26, 5200,Color.white,"Bredgade");
         ownableField.setFields(fields,27, 5200,Color.white,"Kgs.Nytorv");
         ownableField.setFields(fields,29, 5600,Color.white,"Østergade");
         ownableField.setFields(fields,31, 6000,Color.yellow,"Amagertorv");
         ownableField.setFields(fields,32, 6000,Color.yellow,"Vimmelskaffet");
         ownableField.setFields(fields,34, 6400,Color.yellow,"Nygade");
+        ownableField.setFerryFields(fields,35,Color.blue,"Scandlines", "Rødby-Puttgarden");
         ownableField.setFields(fields,37, 7000,Color.magenta,"Frederiksberg gade");
         ownableField.setFields(fields,39, 8000,Color.magenta,"Rådhuspladsen");
     }
