@@ -22,7 +22,7 @@ public class ChanceCard {
     }
 
     public void card3(GUI_Player gui_player, Player player) {
-        gui.getInstance().showMessage("Du modtager din aktieudbytte. Modtag 1000 DKK af banken");
+        gui.getInstance().showMessage("Du modtager dit aktieudbytte. Modtag 1000 DKK af banken");
         player.getAccount().setMoney(1000);
         gui_player.setBalance(player.getAccount().getMoney());
     }
