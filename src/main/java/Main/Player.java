@@ -6,6 +6,7 @@ public class Player {
     private int square = 0;
     private boolean passedStartField;
 
+
     public void setName(String name){
         this.name = name;
     }
@@ -29,6 +30,9 @@ public class Player {
             passedStartField = true;
         }
 
+
+
+
         square %= 40;
     }
 
@@ -39,6 +43,8 @@ public class Player {
     public void resetPassedStartField(){
         passedStartField = false;
     }
+
+
     public void setMoney(int money) {
         account.setMoney(money);
     }
