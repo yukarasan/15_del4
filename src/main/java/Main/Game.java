@@ -157,10 +157,11 @@ public class Game {
                 gui.getInstance().getUserButtonPressed(players[i].getName() + ", kast terningerne", "Kast");
 
                 //Dice get shown on board
-                gui.getInstance().setDice(diceCup.die1.rollDice(), diceCup.die2.rollDice());
+
+                gui.getInstance().setDice(diceCup.getDie1().rollDice(), diceCup.getDie2().rollDice());
 
                 //This is when the piece moves one square by one square up until thrown value
-                for(int j=0; j<(diceCup.die1.getDie()+diceCup.die2.getDie()); j++) {
+                for(int j=0; j<(diceCup.getDie1().getDie()+diceCup.getDie2().getDie()); j++) {
 
                     players[i].moveSquare(1,0);
 

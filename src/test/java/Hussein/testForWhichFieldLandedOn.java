@@ -1,3 +1,5 @@
+package Hussein;
+
 import Fields.GameBoard;
 
 import java.util.stream.IntStream;
