@@ -27,4 +27,7 @@ public class Player {
         square %= 40;
         return square;
     }
+    public void setMoney(int money) {
+        account.setMoney(money);
+    }
 }
