@@ -25,6 +25,7 @@ public class GameBoard {
         jackpot.jackPot(fields);
         Jail jail = new Jail();
         jail.jailFields(fields);
+        createOwnableField();
 
     }
 
