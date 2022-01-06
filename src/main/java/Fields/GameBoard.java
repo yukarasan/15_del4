@@ -62,4 +62,10 @@ public class GameBoard {
         ownableField.setFields(fields,39, 8000,Color.magenta,"Rådhuspladsen");
     }
 
+    private void createStartField() {
+        UnownableField unownableField = new UnownableField();
+        unownableField.startField(fields);
+
+    }
+
 }

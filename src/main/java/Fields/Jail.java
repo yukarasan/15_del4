@@ -4,7 +4,7 @@ import Main.Player;
 import gui_fields.GUI_Field;
 import gui_fields.GUI_Jail;
 
-public class Jail extends UnownableField{
+public class Jail extends UnownableField {
 
     public void jailFields(GUI_Field[] fields){
         GUI_Jail inJail = new GUI_Jail();
