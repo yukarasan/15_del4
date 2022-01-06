@@ -174,8 +174,9 @@ public class Game {
                     //Player moves to the square that is plussed
                     gui.getSpecificField(players[i].getSquare()).setCar(gui_players[i], true);
 
+
+                    passStartField(players[i],gui_players[i]);
                 }
-                passStartField(players[i],gui_players[i]);
             }
         }
     }
@@ -183,10 +184,11 @@ public class Game {
 
     public void passStartField(Player player, GUI_Player gui_players){
 
-        if(player.getSquare() == 0) {
+        if(player.getPassedStartField()){
             gui.getInstance().showMessage(player.getName() + ", du har passeret start og modtager 4000 DKK");
             player.getAccount().setMoney(4000);
             gui_players.setBalance(player.getAccount().getMoney());
+            player.resetPassedStartField();
         }
 
     }
