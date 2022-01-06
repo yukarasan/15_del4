@@ -4,6 +4,7 @@ public class Player {
     private Account account = new Account();
     private String name;
     private int square = 0;
+    private boolean passedStartField;
 
     public void setName(String name){
         this.name = name;
@@ -21,10 +22,21 @@ public class Player {
         return square;
     }
 
-    public int moveSquare(int die1,int die2){
-        this.square += die1+die2;
+    public void moveSquare(int die1,int die2) {
+        this.square += die1 + die2;
+
+        if(square > 39){
+            passedStartField = true;
+        }
 
         square %= 40;
-        return square;
+    }
+
+    public boolean getPassedStartField(){
+        return passedStartField;
+    }
+
+    public void resetPassedStartField(){
+        passedStartField = false;
     }
 }
