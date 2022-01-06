@@ -10,6 +10,8 @@ import java.util.Locale;
 
 public class Game {
     private final GUI_Controller gui = new GUI_Controller();
+    private static boolean[] numberOfOption = new boolean[6];
+    private static boolean chooseColorAgain;
 
     public void startGame() {
         gui.getInstance();
@@ -26,7 +28,7 @@ public class Game {
 
         boolean writeNameAgain = false;
 
-        for(int i=0; i<playerNamesYet; i++) {
+        for(int i=0; i < playerNamesYet; i++) {
             if (!name.equals(players[i].getName())) {
                 writeNameAgain = false;
             }
@@ -39,6 +41,18 @@ public class Game {
         return writeNameAgain;
     }
 
+    public void colorChooser(boolean[] colorChosen, int numberOfOption, String colorString, int playerNumber, GUI_Car car, Color color) {
+
+        if (colorChosen[numberOfOption]) {
+            gui.getInstance().showMessage("Spiller " + (playerNumber+1) + ", " + colorString + " er allerede taget");
+            chooseColorAgain = true;
+        } else {
+            colorChosen[numberOfOption] = true;
+            chooseColorAgain = false;
+            car.setPrimaryColor(color);
+        }
+    }
+
     private void createPlayer() {
         String buttonPressed = gui.getInstance().getUserButtonPressed("Hvor mange spillere ønsker I at være?", "3", "4",
                 "5", "6");
@@ -48,9 +62,6 @@ public class Game {
 
         GUI_Player[] gui_player = new GUI_Player[option];
         GUI_Car[] car = new GUI_Car[option];
-
-        boolean blueTaken = false, blackTaken = false, whiteTaken = false, redTaken = false, yellowTaken = false, greenTaken = false;
-        boolean chooseColorAgain;
 
         for (int i = 0; i < option; i++) {
             chooseColorAgain = true;
@@ -95,77 +106,37 @@ public class Game {
                 }
                 player[i].setName(name);
 
-            while (chooseColorAgain) {
+                chooseColorAgain = true;
 
+            while (chooseColorAgain) {
                 chooseColorAgain = false;
+
                 String color = gui.getInstance().getUserButtonPressed("Hvilken farve bil ønsker du?", "Blå", "Sort", "Hvid", "Gul", "Rød", "Grøn");
 
                 switch (color) {
-
                     case "Blå":
-                        if (blueTaken) {
-                            gui.getInstance().showMessage("Blå er allerede taget");
-                            chooseColorAgain = true;
-                        } else {
-                            car[i].setPrimaryColor(Color.blue);
-                            blueTaken = true;
-                        }
+                     colorChooser(numberOfOption,0,color,i,car[i], Color.blue);
                         break;
                     case "Sort":
-                        if (blackTaken) {
-                            gui.getInstance().showMessage("Sort er allerede taget");
-                            chooseColorAgain = true;
-                        } else {
-                            car[i].setPrimaryColor(Color.black);
-                            blackTaken = true;
-                        }
+                        colorChooser(numberOfOption,1,color,i,car[i], Color.black);
                         break;
                     case "Hvid":
-                        if (whiteTaken) {
-                            gui.getInstance().showMessage("Hvid er allerede taget");
-                            chooseColorAgain = true;
-                        } else {
-                            car[i].setPrimaryColor(Color.white);
-                            whiteTaken = true;
-                        }
+                        colorChooser(numberOfOption,2,color,i,car[i], Color.white);
                         break;
                     case "Gul":
-                        if (yellowTaken) {
-                            gui.getInstance().showMessage("Gul er allerede taget");
-                            chooseColorAgain = true;
-                        } else {
-                            car[i].setPrimaryColor(Color.yellow);
-                            yellowTaken = true;
-                        }
+                        colorChooser(numberOfOption,3,color,i,car[i], Color.yellow);
                         break;
                     case "Rød":
-                        if (redTaken) {
-                            gui.getInstance().showMessage("Rød er allerede taget");
-                            chooseColorAgain = true;
-                        } else {
-                            car[i].setPrimaryColor(Color.red);
-                            redTaken = true;
-                        }
+                        colorChooser(numberOfOption,4,color,i,car[i], Color.red);
                         break;
                     case "Grøn":
-                        colorChooser(Color.green,car[i],greenTaken,chooseColorAgain, "Grøn");
+                        colorChooser(numberOfOption,5,color,i,car[i], Color.green);
                         break;
                 }
             }
             gui_player[i] = new GUI_Player(player[i].getName(), player[i].getAccount().getMoney(), car[i]);
             gui.getInstance().addPlayer(gui_player[i]);
             gui.getSpecificField(0).setCar(gui_player[i], true);
-        }
-    }
-
-    public void colorChooser(Color color, GUI_Car car, boolean colorChosen, boolean chooseColorAgain, String colorString){
-
-        if (colorChosen) {
-            gui.getInstance().showMessage(colorString + " er allerede taget");
-            chooseColorAgain = true;
-        } else {
-            car.setPrimaryColor(color);
-            colorChosen = true;
         }
     }
 
