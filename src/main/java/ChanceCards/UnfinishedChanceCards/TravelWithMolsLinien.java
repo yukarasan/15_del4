@@ -9,7 +9,7 @@ public class TravelWithMolsLinien extends ChanceCardParent {
     
     GUI_Controller gui = new GUI_Controller();
 
-    public void TravelWithMolsLinien (GUI_Player gui_player, Player player) {
+    public void travelWithMolsLinien (GUI_Player gui_player, Player player) {
 
         gui.getInstance().displayChanceCard("Tag med Mols-Linien, flyt brikken frem og hvis De passerer START indkassér da kr 4000.");
     }

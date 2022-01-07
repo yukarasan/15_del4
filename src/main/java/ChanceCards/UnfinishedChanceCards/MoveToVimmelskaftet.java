@@ -7,7 +7,7 @@ import gui_fields.GUI_Player;
 
 public class MoveToVimmelskaftet extends ChanceCardParent {
     GUI_Controller gui = new GUI_Controller();
-    public void Rådhuspladsen(GUI_Player gui_player, Player player) {
+    public void moveToVimmelskaftet(GUI_Player gui_player, Player player) {
 
         gui.getInstance().displayChanceCard("Ryk frem til Vimmelskaftet, hvis de passerer start indkasser da kr 4000");
         if(player.getSquare()>32){

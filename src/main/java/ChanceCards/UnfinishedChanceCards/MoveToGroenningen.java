@@ -8,7 +8,7 @@ import gui_fields.GUI_Player;
 public class MoveToGroenningen extends ChanceCardParent {
     GUI_Controller gui = new GUI_Controller();
 
-    public void MoveToGroenningen(GUI_Player gui_player, Player player) {
+    public void moveToGroenningen(GUI_Player gui_player, Player player) {
         GUI_Controller gui = new GUI_Controller();
 
             gui.getInstance().displayChanceCard("Ryk frem til Grønningen, hvis De passerer start indkasser da kr 4000");
