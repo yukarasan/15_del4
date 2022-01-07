@@ -1,5 +1,6 @@
 package Main;
 
+import Fields.Field;
 import GUI_Controllor.GUI_Controller;
 import gui_fields.GUI_Car;
 import gui_fields.GUI_Field;
@@ -19,6 +20,7 @@ public class Game {
     private static int numberOfPlayers;
     private Player[] players = new Player[numberOfPlayers];
     private GUI_Player[] gui_players = new GUI_Player[numberOfPlayers];
+    private Field field = new Field();
 
     public void startGame() {
         gui.getInstance();
@@ -178,6 +180,11 @@ public class Game {
 
                 }
                 passStartField(players[i],gui_players[i]);
+
+                gui.getGameBoard().getJail().inJail(gui_players[i], players[i]);
+
+
+                if (players[i].setWaitInJail())
             }
         }
     }
@@ -201,7 +208,7 @@ public class Game {
 
 
 
-        if(IntStream.of(gui.getJustFields().allOwnableFields()).anyMatch(x -> x == s)){
+        if(IntStream.of(gui.getGameBoard().allOwnableFields()).anyMatch(x -> x == s)){
 
 
 

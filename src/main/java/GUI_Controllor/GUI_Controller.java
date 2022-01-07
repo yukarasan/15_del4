@@ -7,16 +7,16 @@ import java.awt.*;
 
 public final class GUI_Controller {
     private static GUI GUI_instance = null;
-    private static final GameBoard fields = new GameBoard();
+    private static final GameBoard gameBoard = new GameBoard();
 
     /*
     Creating a private constructor so that user can't create more than one instance of this singleton class
      */
 
     private GUI GUI_controller() {
-        fields.instantiatingFields();
+        gameBoard.instantiatingFields();
         Color customColor = new Color(109, 135, 0);  // Creating a custom color for the boardGame
-        return new GUI(fields.getField(), customColor);
+        return new GUI(gameBoard.getField(), customColor);
     }
 
     public GUI getInstance() {
@@ -27,13 +27,11 @@ public final class GUI_Controller {
         return GUI_instance;
     }
 
-
-
-    public GameBoard getJustFields(){
-        return fields;
+    public GameBoard getGameBoard(){
+        return gameBoard;
     }
 
     public GUI_Field getSpecificField(int specificField) {
-        return fields.getSpecificField(specificField);
+        return gameBoard.getSpecificField(specificField);
     }
 }

@@ -9,6 +9,7 @@ import java.awt.*;
 
 public class GameBoard {
     private final GUI_Field[] fields = new GUI_Field[40];
+    private Jail jail = new Jail();
 
     public void instantiatingFields(){
 
@@ -26,7 +27,6 @@ public class GameBoard {
         unownableField.jailField(fields);
         unownableField.freeParking(fields);
         jackpot.jackPot(fields);
-        Jail jail = new Jail();
         jail.jailFields(fields);
         createOwnableField();
     }
@@ -86,6 +86,10 @@ public class GameBoard {
 
     public static void main(String[] args) {
         //getSpecificStreetField(player.getSquare()).getRent();
+    }
+
+    public Jail getJail() {
+        return jail;
     }
 
 }
