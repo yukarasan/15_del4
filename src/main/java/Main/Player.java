@@ -5,6 +5,7 @@ public class Player {
     private String name;
     private int square = 0;
     private boolean passedStartField;
+    private boolean waitInJail;
 
     public void setName(String name){
         this.name = name;
@@ -45,4 +46,9 @@ public class Player {
     public void setMoney(int money) {
         account.setMoney(money);
     }
+
+    public void setWaitInJail() {
+        waitInJail = true;
+    }
+
 }
