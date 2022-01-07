@@ -1,6 +1,7 @@
 package Main;
 
 import Fields.Field;
+import Fields.MoveWithADelay;
 import GUI_Controllor.GUI_Controller;
 import gui_fields.GUI_Car;
 import gui_fields.GUI_Field;
@@ -21,6 +22,7 @@ public class Game {
     private Player[] players = new Player[numberOfPlayers];
     private GUI_Player[] gui_players = new GUI_Player[numberOfPlayers];
     private Field field = new Field();
+    private MoveWithADelay moveWithADelay = new MoveWithADelay();
 
     public void startGame() {
         gui.getInstance();
@@ -33,11 +35,11 @@ public class Game {
         gui.getInstance().showMessage("Velkommen til Matador!");
     }
 
-    public boolean checkForSameName(String name, int playerNamesYet, Player[] players){
+    public boolean checkForSameName(String name, int playerNamesYet, Player[] players) {
 
         boolean writeNameAgain = false;
 
-        for(int i=0; i < playerNamesYet; i++) {
+        for (int i = 0; i < playerNamesYet; i++) {
             if (!name.equals(players[i].getName())) {
                 writeNameAgain = false;
             }
@@ -53,7 +55,7 @@ public class Game {
     public void colorChooser(boolean[] colorChosen, int numberOfOption, String colorString, int playerNumber, GUI_Car car, Color color) {
 
         if (colorChosen[numberOfOption]) {
-            gui.getInstance().showMessage("Spiller " + (playerNumber+1) + ", " + colorString + " er allerede taget");
+            gui.getInstance().showMessage("Spiller " + (playerNumber + 1) + ", " + colorString + " er allerede taget");
             chooseColorAgain = true;
         } else {
             colorChosen[numberOfOption] = true;
@@ -84,12 +86,12 @@ public class Game {
 
             // If the name contains any numbers between 0 - 9, they will be replaced with an empty string.
             String[] numbersInName = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
-            name = name.replaceAll(Arrays.toString(numbersInName),"");
+            name = name.replaceAll(Arrays.toString(numbersInName), "");
 
             String[] otherCharacters = {"?", "´", "`", "+", "|", "~", "^", "¨", "'", "*", "_", ".", ":", ";", ","
                     + "=", ")", "(", "/", "&", "%", "¤", "#", "\"", "!", "\\", "§", "½", "<", ">"
                     + "@", "£", "$", "€", "{", "}", "[", "]"};
-            name = name.replaceAll(Arrays.toString(otherCharacters),"");
+            name = name.replaceAll(Arrays.toString(otherCharacters), "");
 
             char firstChar = name.charAt(0);  // localizing the first character at index 0
             char lastChar = name.charAt(name.length() - 1);  // localizing the last character at index "name length"
@@ -109,13 +111,13 @@ public class Game {
 
             name = firstLetter + restOfName;
 
-                while (checkForSameName(name, i, players)) {
-                    gui.getInstance().showMessage("Spiller " + (i + 1) + ", navnet er allerede taget, skriv et nyt");
-                    name = gui.getInstance().getUserString("Spiller " + (i + 1) + ", Indtast et navn");
-                }
-                players[i].setName(name);
+            while (checkForSameName(name, i, players)) {
+                gui.getInstance().showMessage("Spiller " + (i + 1) + ", navnet er allerede taget, skriv et nyt");
+                name = gui.getInstance().getUserString("Spiller " + (i + 1) + ", Indtast et navn");
+            }
+            players[i].setName(name);
 
-                chooseColorAgain = true;
+            chooseColorAgain = true;
 
             while (chooseColorAgain) {
                 chooseColorAgain = false;
@@ -124,22 +126,22 @@ public class Game {
 
                 switch (color) {
                     case "Blå":
-                     colorChooser(numberOfOption,0,color,i,car[i], Color.blue);
+                        colorChooser(numberOfOption, 0, color, i, car[i], Color.blue);
                         break;
                     case "Sort":
-                        colorChooser(numberOfOption,1,color,i,car[i], Color.black);
+                        colorChooser(numberOfOption, 1, color, i, car[i], Color.black);
                         break;
                     case "Hvid":
-                        colorChooser(numberOfOption,2,color,i,car[i], Color.white);
+                        colorChooser(numberOfOption, 2, color, i, car[i], Color.white);
                         break;
                     case "Gul":
-                        colorChooser(numberOfOption,3,color,i,car[i], Color.yellow);
+                        colorChooser(numberOfOption, 3, color, i, car[i], Color.yellow);
                         break;
                     case "Rød":
-                        colorChooser(numberOfOption,4,color,i,car[i], Color.red);
+                        colorChooser(numberOfOption, 4, color, i, car[i], Color.red);
                         break;
                     case "Grøn":
-                        colorChooser(numberOfOption,5,color,i,car[i], Color.green);
+                        colorChooser(numberOfOption, 5, color, i, car[i], Color.green);
                         break;
                 }
             }
@@ -149,43 +151,41 @@ public class Game {
         }
     }
 
-    private void round(){
+    private void round() {
 
-        while(true) {
+        while (true) {
 
             for (int i = 0; i < numberOfPlayers; i++) {
 
-                //Player throws dice
-                gui.getInstance().getUserButtonPressed(players[i].getName() + ", kast terningerne", "Kast");
+                if (!players[i].getInJail()) {
 
-                //Dice get shown on board
+                    //Player throws dice
+                    gui.getInstance().getUserButtonPressed(players[i].getName() + ", kast terningerne", "Kast");
 
-                gui.getInstance().setDice(diceCup.getDie1().rollDice(), diceCup.getDie2().rollDice());
+                    //Dice get shown on board
 
-                //This is when the piece moves one square by one square up until thrown value
-                for(int j=0; j<(diceCup.getDie1().getDie()+diceCup.getDie2().getDie()); j++) {
+                    gui.getInstance().setDice(diceCup.getDie1().rollDice(), diceCup.getDie2().rollDice());
 
-                    players[i].moveSquare(1,0);
-
-                    try {
-                        TimeUnit.MILLISECONDS.sleep(100);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-
-                    //Player moves to the square that is plussed
-                    gui.getSpecificField(players[i].getSquare()).setCar(gui_players[i], true);
-
-
-
+                    //This is when the piece moves one square by one square up until thrown value
+                    moveWithADelay.movePlayerWithADelay(gui_players[i], players[i],diceCup,gui);
                 }
-                passStartField(players[i],gui_players[i]);
 
-                gui.getGameBoard().getJail().inJail(gui_players[i], players[i]);
+                passStartField(players[i], gui_players[i]);
 
+                if (players[i].getSquare() == 30) {
+                    gui.getGameBoard().getJail().setPlayerInJail(gui_players[i], players[i]);
+                }
+
+                if (players[i].getInJail() && !players[i].getWaitATurn()) {
+                    gui.getGameBoard().getJail().outOfJail(gui_players[i], players[i], diceCup);
+
+                } else if (players[i].getInJail() && players[i].getWaitATurn()) {
+                    players[i].setWaitATurn(false);
+                }
             }
         }
     }
+
 
 
     public void passStartField(Player player, GUI_Player gui_players){

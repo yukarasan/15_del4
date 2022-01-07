@@ -18,7 +18,5 @@ public class Child extends Parent{
 
         child.setNumber();
 
-
-
     }
 }

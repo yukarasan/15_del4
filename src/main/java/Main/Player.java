@@ -5,7 +5,8 @@ public class Player {
     private String name;
     private int square = 0;
     private boolean passedStartField;
-    private boolean waitInJail;
+    private boolean inJail;
+    private boolean waitATurn;
 
     public void setName(String name){
         this.name = name;
@@ -47,12 +48,21 @@ public class Player {
         account.setMoney(money);
     }
 
-    public void setWaitInJail(boolean trueOrFalse) {
-        waitInJail = trueOrFalse;
+    public void setInJail(boolean trueOrFalse) {
+        inJail = trueOrFalse;
     }
 
-    public boolean getWaitInJail(){
-        return waitInJail;
+    public boolean getInJail(){
+        return inJail;
     }
+
+    public void setWaitATurn(boolean trueOrFalse){
+        waitATurn = trueOrFalse;
+    }
+
+    public boolean getWaitATurn(){
+        return waitATurn;
+    }
+
 
 }
