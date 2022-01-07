@@ -26,6 +26,7 @@ public class Jail extends UnownableField {
                 gui.getInstance().showMessage(gui_player.getName() + " rykkes nu til fængsel");
                 gui.getSpecificField(10).setCar(gui_player, true);
                 player.moveToHere(10);
+                player.setWaitInJail(true);
             }
 
         }
