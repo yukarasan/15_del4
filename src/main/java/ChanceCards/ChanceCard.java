@@ -35,12 +35,12 @@ public class ChanceCard {
 
         int sq = player.getSquare();
 
-        int randomCard = (int) (Math.random() * 6 + 1);
+        int randomCard = (int) (Math.random() * 1 + 1);
 
         if(IntStream.of(chanceFields).anyMatch(x -> x == sq)) {
 
             switch (randomCard) {
-                case 1 -> card1.deliveryOfSoda(gui_player, player);
+                case 1 -> card19.moveThreeFieldsForward(gui_player, player); // card1.deliveryOfSoda(gui_player, player);
                 case 2 -> card2.carInsurance(gui_player, player);
                 case 3, 4, 5 -> card3.dividend(gui_player, player);
                 case 6 -> card4.oldFurniture(gui_player, player);
@@ -58,7 +58,7 @@ public class ChanceCard {
                 case 20 -> card16.wageIncrease(gui_player, player);
                 case 21 -> card17.bonusBond(gui_player, player);
                 case 22 -> card18.utilityGarden(gui_player, player);
-                case 23 -> card19.moveThreeFieldsForward(gui_player, player);
+                // case 23 -> card19.moveThreeFieldsForward(gui_player, player);
                 case 24 -> card20.moveThreeFieldsBack(gui_player, player);
             }
         }
