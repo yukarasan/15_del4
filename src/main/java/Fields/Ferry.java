@@ -1,14 +1,16 @@
 package Fields;
 
 import Main.Player;
+import gui_fields.GUI_Player;
 
 public class Ferry extends OwnableField {
-    Ferry ferry = new Ferry();
-    int rentPrice, buyPrice;
+    private int rentPrice, buyPrice;
+    private boolean isOwned;
 
-    @Override
-    public void setOwner(Player owner) {
+    public void setOwner(Player owner, GUI_Player gui_player) {
         this.owner = owner;
+        owner.getAccount().setMoney(-4000);
+        gui_player.setBalance(owner.getAccount().getMoney());
 
         owner.setFerriesOwned(1);
 
@@ -18,5 +20,15 @@ public class Ferry extends OwnableField {
             case 3 -> rentPrice = 2000;
             case 4 -> rentPrice = 4000;
         }
+        isOwned = true;
     }
+
+    public boolean getIsFerryOwned(){
+        return isOwned;
+    }
+
+    public int getRentPrice(Player player){
+        return rentPrice;
+    }
+
 }

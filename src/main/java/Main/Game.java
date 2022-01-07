@@ -203,24 +203,15 @@ public class Game {
             gui_players.setBalance(player.getAccount().getMoney());
             player.resetPassedStartField();
         }
+    }
 
+    public void optionToBuyFerry(Player player, GUI_Player gui_player){
+        gui.getGameBoard().getFerry().buyFerry(player, gui_player);
     }
 
 
     public void optionToBuyProperty(Player player, GUI_Player gui_players){
 
-        int s = player.getSquare();
-
-
-
-        if(IntStream.of(gui.getGameBoard().allOwnableFields()).anyMatch(x -> x == s)){
-
-
-
-        }
-
-
     }
-
 
 }
