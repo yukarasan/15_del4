@@ -2,14 +2,13 @@ package Fields;
 
 import GUI_Controllor.GUI_Controller;
 import Main.Player;
-import gui_fields.GUI_Brewery;
-import gui_fields.GUI_Field;
-import gui_fields.GUI_Shipping;
-import gui_fields.GUI_Street;
+import gui_fields.*;
+
 import java.awt.*;
+import java.util.stream.IntStream;
 
 public class OwnableField extends Field{
-    private Player owner;
+    protected Player owner;
 
     //Below is the rent on various occasions of ownable fields such as properties.
     //Also below is cost of eventual upgrades and the rent if a set of one color are owned
@@ -42,7 +41,14 @@ public class OwnableField extends Field{
         field[fieldNumber].setSubText("");
     }
 
+    public void buyFerry(Player player, GUI_Player gui_player) {
+        int[] ferryFields = {5, 15, 25, 35};
+        int s = player.getSquare();
 
+        if (IntStream.of(ferryFields).anyMatch(x -> x == s)){
+            gui.getInstance().getUserButtonPressed("");
+        }
+    }
 
     public void setUpOwnableField(int rentNoHouse, int rentAllOwned, int rentOneHouse, int rentTwoHouse, int rentThreeHouse,
                                   int rentFourHouse, int rentHotel, int fieldPrice, int fieldNumber,
