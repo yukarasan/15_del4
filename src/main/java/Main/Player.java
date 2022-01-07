@@ -7,6 +7,7 @@ public class Player {
     private boolean passedStartField;
     private boolean inJail;
     private boolean waitATurn;
+    private int ferriesOwned;
 
     public void setName(String name){
         this.name = name;
@@ -64,5 +65,7 @@ public class Player {
         return waitATurn;
     }
 
-
+    public int getFerriesOwned() {
+        return ferriesOwned;
+    }
 }
