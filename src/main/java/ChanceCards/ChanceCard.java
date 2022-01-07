@@ -26,6 +26,7 @@ public class ChanceCard {
     private final BonusBond card17 = new BonusBond();
     private final UtilityGarden card18 = new UtilityGarden();
     private final MoveThreeFieldsForward card19 = new MoveThreeFieldsForward();
+    private final MoveThreeFieldsBack card20 = new MoveThreeFieldsBack();
 
 
     public void playerLandsOnChanceField(Player player, GUI_Player gui_player) {
@@ -58,6 +59,7 @@ public class ChanceCard {
                 case 21 -> card17.bonusBond(gui_player, player);
                 case 22 -> card18.utilityGarden(gui_player, player);
                 case 23 -> card19.moveThreeFieldsForward(gui_player, player);
+                case 24 -> card20.moveThreeFieldsBack(gui_player, player);
             }
         }
     }
