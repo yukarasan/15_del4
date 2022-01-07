@@ -12,6 +12,7 @@ public class GameBoard {
     private final GUI_Field[] fields = new GUI_Field[40];
     private Jail jail = new Jail();
     private ChanceCard chanceCard = new ChanceCard();
+    private Ferry ferry = new Ferry();
 
     public void instantiatingFields(){
 
@@ -93,5 +94,9 @@ public class GameBoard {
 
     public ChanceCard getChanceCard(){
         return chanceCard;
+    }
+
+    public Ferry getFerry(){
+        return ferry;
     }
 }
