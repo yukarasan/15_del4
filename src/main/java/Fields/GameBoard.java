@@ -129,29 +129,4 @@ public class GameBoard {
         return ferries;
     }
 
-    public static void main(String[] args) {
-
-
-        Ferry[] ferries = new Ferry[2];
-        ferries[0] = new Ferry();
-        ferries[1] = new Ferry();
-
-        Player player = new Player();
-        player.setName("Not null hehe");
-
-        GUI_Car car = new GUI_Car();
-
-        GUI_Player gui_player = new GUI_Player("r", 1, car);
-
-        player.moveToHere(5);
-
-        ferries[0].buyFerry(player, gui_player, ferries);
-
-        System.out.println("Price of first field before buying second field: " + ferries[0].getRentPrice());
-
-        ferries[1].buyFerry(player, gui_player, ferries);
-
-        System.out.println("Price of first field after buying second field: " + ferries[0].getRentPrice());
-
-    }
 }
