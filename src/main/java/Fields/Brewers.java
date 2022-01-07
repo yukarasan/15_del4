@@ -20,7 +20,10 @@ public class Brewers extends OwnableField {
         }
         if (player.getSquare() == 28){
 
-        }
+    int rentPrice, buyPrice;
+
+    public void buyBrewer() {
 
     }
+
 }

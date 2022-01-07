@@ -4,9 +4,7 @@ import GUI_Controllor.GUI_Controller;
 import Main.Player;
 import gui_fields.GUI_Player;
 
-public class DeliveryOfSoda {
-
-    GUI_Controller gui = new GUI_Controller();
+public class DeliveryOfSoda extends ChanceCardParent{
 
     public void deliveryOfSoda(GUI_Player gui_player, Player player) {
 
