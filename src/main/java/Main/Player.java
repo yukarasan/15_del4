@@ -48,7 +48,7 @@ public class Player {
     }
 
     public void setWaitInJail(boolean trueOrFalse) {
-        waitInJail = true;
+        waitInJail = trueOrFalse;
     }
 
     public boolean getWaitInJail(){
