@@ -68,4 +68,8 @@ public class Player {
     public int getFerriesOwned() {
         return ferriesOwned;
     }
+
+    public void setFerriesOwned(int ferriesOwned) {
+        this.ferriesOwned = ferriesOwned;
+    }
 }
