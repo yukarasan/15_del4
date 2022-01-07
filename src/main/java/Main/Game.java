@@ -26,6 +26,7 @@ public class Game {
 
     public void startGame() {
         gui.getInstance();
+        gui.getGameBoard().instantiatingFerries();
         welcomingPlayer();
         createPlayer();
         round();
@@ -180,9 +181,10 @@ public class Game {
         passStartField(player, gui_player);
 
         gui.getGameBoard().getChanceCard().playerLandsOnChanceField(player, gui_player);
-        gui.getGameBoard().getFerry().buyFerry(player, gui_player);
+        gui.getGameBoard().getFerry(player).buyFerry(player, gui_player);
 
-        gui.getGameBoard().getFerry().payOwnerOfFerry(player, gui_player);
+        gui.getGameBoard().getFerry(player).payOwnerOfFerry(player, gui_player);
+
 
         if (player.getSquare() == 30) {
             gui.getGameBoard().getJail().setPlayerInJail(gui_player, player);
@@ -209,7 +211,7 @@ public class Game {
     }
 
     public void optionToBuyFerry(Player player, GUI_Player gui_player){
-        gui.getGameBoard().getFerry().buyFerry(player, gui_player);
+        gui.getGameBoard().getFerry(player).buyFerry(player, gui_player);
     }
 
 

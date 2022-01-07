@@ -12,7 +12,8 @@ public class GameBoard {
     private final GUI_Field[] fields = new GUI_Field[40];
     private Jail jail = new Jail();
     private ChanceCard chanceCard = new ChanceCard();
-    private Ferry ferry = new Ferry();
+    private Ferry[] ferries = new Ferry[4];
+    private int intHelper;
 
     public void instantiatingFields(){
 
@@ -20,6 +21,13 @@ public class GameBoard {
             fields[i] = new GUI_Street();
         }
         allField();
+
+    }
+
+    public void instantiatingFerries() {
+        for (int i = 0; i < ferries.length; i++) {
+            ferries[i] = new Ferry();
+        }
     }
 
     public void allField() {
@@ -32,7 +40,6 @@ public class GameBoard {
         jackpot.jackPot(fields);
         jail.jailFields(fields);
         createOwnableField();
-        ferry.initializeFerries();
     }
 
     public GUI_Field[] getField() {
@@ -97,7 +104,21 @@ public class GameBoard {
         return chanceCard;
     }
 
-    public Ferry getFerry(){
-        return ferry;
+    public Ferry getFerry(Player player){
+
+        checkIfLandedFerryField(player);
+
+        return ferries[intHelper];
     }
+
+    public void checkIfLandedFerryField(Player player){
+
+        switch (player.getSquare()) {
+            case 5 -> intHelper = 0;
+            case 15 -> intHelper = 1;
+            case 25 -> intHelper = 2;
+            case 35 -> intHelper = 3;
+        }
+    }
+
 }

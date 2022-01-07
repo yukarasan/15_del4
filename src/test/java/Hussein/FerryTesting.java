@@ -11,6 +11,9 @@ public class FerryTesting {
     private int intHelper;
     private Ferry[] ferries = new Ferry[4];
     private int[] ferryFields = {5, 15, 25, 35};
+    private int getRent = 500;
+    private boolean isOwned;
+
 
     public void initializeFerries(){
         for(int i=0; i<ferries.length; i++){
@@ -19,7 +22,6 @@ public class FerryTesting {
     }
 
     public void checkIfLandedFerryField(Player player){
-        intHelper = 0;
 
         switch (player.getSquare()) {
             case 5 -> intHelper = 0;
@@ -90,6 +92,8 @@ public class FerryTesting {
         player1.moveSquare(5,0);
 
         ferryTesting.payOwnerOfFerry(player1);
+
+        System.out.println("Your money now: " + player1.getAccount().getMoney());
 
     }
 
