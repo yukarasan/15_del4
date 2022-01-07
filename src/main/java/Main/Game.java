@@ -152,11 +152,12 @@ public class Game {
     }
 
     private void round() {
+
         while (true) {
             for (int i = 0; i < numberOfPlayers; i++) {
                 playerTurn(players[i], gui_players[i]);
 
-                if (diceCup.getDie1().getDie() == diceCup.getDie2().getDie()) {
+                if (diceCup.getDie1().getDie() == diceCup.getDie2().getDie() && !players[i].getInJail()) {
                     gui.getInstance().showMessage(players[i].getName() + ", du har slået to ens terninger, slå igen");
                     playerTurn(players[i], gui_players[i]);
                 }
@@ -177,6 +178,8 @@ public class Game {
         }
 
         passStartField(player, gui_player);
+
+        gui.getGameBoard().getChanceCard().playerLandsOnChanceField(player, gui_player);
 
         if (player.getSquare() == 30) {
             gui.getGameBoard().getJail().setPlayerInJail(gui_player, player);
