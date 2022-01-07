@@ -152,36 +152,41 @@ public class Game {
     }
 
     private void round() {
-
         while (true) {
-
             for (int i = 0; i < numberOfPlayers; i++) {
+                playerTurn(players[i], gui_players[i]);
 
-                if (!players[i].getInJail()) {
-
-                    //Player throws dice
-                    gui.getInstance().getUserButtonPressed(players[i].getName() + ", kast terningerne", "Kast");
-
-                    //Dice get shown on board
-                    gui.getInstance().setDice(diceCup.getDie1().rollDice(), diceCup.getDie2().rollDice());
-
-                    //This is when the piece moves one square by one square up until thrown value
-                    moveWithADelay.movePlayerWithADelay(gui_players[i], players[i],diceCup,gui);
-                }
-
-                passStartField(players[i], gui_players[i]);
-
-                if (players[i].getSquare() == 30) {
-                    gui.getGameBoard().getJail().setPlayerInJail(gui_players[i], players[i]);
-                }
-
-                if (players[i].getInJail() && !players[i].getWaitATurn()) {
-                    gui.getGameBoard().getJail().outOfJail(gui_players[i], players[i], diceCup);
-
-                } else if (players[i].getInJail() && players[i].getWaitATurn()) {
-                    players[i].setWaitATurn(false);
+                if (diceCup.getDie1().getDie() == diceCup.getDie2().getDie()) {
+                    gui.getInstance().showMessage(players[i].getName() + ", du har slået to ens terninger, slå igen");
+                    playerTurn(players[i], gui_players[i]);
                 }
             }
+        }
+    }
+
+    public void playerTurn(Player player, GUI_Player gui_player) {
+        if (!player.getInJail()) {
+            //Player throws dice
+            gui.getInstance().getUserButtonPressed(player.getName() + ", kast terningerne", "Kast");
+
+            //Dice get shown on board
+            gui.getInstance().setDice(diceCup.getDie1().rollDice(), diceCup.getDie2().rollDice());
+
+            //This is when the piece moves one square by one square up until thrown value
+            moveWithADelay.movePlayerWithADelay(gui_player, player,diceCup,gui);
+        }
+
+        passStartField(player, gui_player);
+
+        if (player.getSquare() == 30) {
+            gui.getGameBoard().getJail().setPlayerInJail(gui_player, player);
+        }
+
+        if (player.getInJail() && !player.getWaitATurn()) {
+            gui.getGameBoard().getJail().outOfJail(gui_player, player, diceCup);
+
+        } else if (player.getInJail() && player.getWaitATurn()) {
+            player.setWaitATurn(false);
         }
     }
 
