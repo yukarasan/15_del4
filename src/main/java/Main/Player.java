@@ -47,8 +47,12 @@ public class Player {
         account.setMoney(money);
     }
 
-    public void setWaitInJail() {
+    public void setWaitInJail(boolean trueOrFalse) {
         waitInJail = true;
+    }
+
+    public boolean getWaitInJail(){
+        return waitInJail;
     }
 
 }
