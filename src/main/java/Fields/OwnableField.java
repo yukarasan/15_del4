@@ -8,7 +8,6 @@ import java.awt.*;
 import java.util.stream.IntStream;
 
 public class OwnableField extends Field{
-    protected Player owner;
     private Ferry[] ferries = new Ferry[4];
     private int[] ferryFields = {5, 15, 25, 35};
     private int intHelper;
@@ -48,6 +47,7 @@ public class OwnableField extends Field{
 
     public void checkIfLandedFerryField(Player player){
         intHelper = 0;
+
         switch (player.getSquare()) {
             case 5 -> intHelper = 0;
             case 15 -> intHelper = 1;
@@ -73,36 +73,28 @@ public class OwnableField extends Field{
 
             gui.getSpecificField(player.getSquare()).setSubText(player.getName());
 
-
-            switch (player.getSquare()) {
-                case 5:
-                    ferries[0].setOwner(player, gui_player);
-                    break;
-                case 15:
-                    ferries[1].setOwner(player, gui_player);
-                    break;
-                case 25:
-                    ferries[2].setOwner(player, gui_player);
-                    break;
-                case 35:
-                    ferries[3].setOwner(player, gui_player);
-                    break;
+            ferries[intHelper].setOwner(player, gui_player);
             }
         }
-    }
+
 
     public void payOwnerOfFerry(Player player, GUI_Player gui_player) {
 
         checkIfLandedFerryField(player);
 
-        if (true) {
+        if (IntStream.of(ferryFields).anyMatch(x -> x == player.getSquare()) && ferries[intHelper].getIsFerryOwned()) {
 
             gui.getInstance().getUserButtonPressed("Og oh.. " + player.getName() + ", du har landet på " +
-                    ferries[intHelper].owner.getName() + "'s færge: " + gui.getSpecificField(player.getSquare()).getTitle() +
+                    ferries[intHelper].getOwner().getName() + "'s færge: " + gui.getSpecificField(player.getSquare()).getTitle() +
             ". Du skal betale " + ferries[intHelper].getRentPrice() + " DKK");
 
+            //Setting the payer's money
             player.getAccount().setMoney(-ferries[intHelper].getRentPrice());
+            gui_player.setBalance(player.getAccount().getMoney());
+
+            //Setting the owner's money
             ferries[intHelper].getOwner().getAccount().setMoney(ferries[intHelper].getRentPrice());
+            ferries[intHelper].getGuiOwner().setBalance(ferries[intHelper].getOwner().getAccount().getMoney());
 
         }
     }
@@ -113,14 +105,5 @@ public class OwnableField extends Field{
         this.costOfHotel = costOfHotel;
         this.costOfOneHouse = costOfOneHouse;
         gui.getSpecificField(fieldNumber);
-    }
-
-
-    public void setOwner(Player owner) {
-        this.owner = owner;
-    }
-
-    public Player getOwner() {
-        return owner;
     }
 }

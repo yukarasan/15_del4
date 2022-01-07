@@ -181,6 +181,7 @@ public class Game {
 
         gui.getGameBoard().getChanceCard().playerLandsOnChanceField(player, gui_player);
         gui.getGameBoard().getFerry().buyFerry(player, gui_player);
+
         gui.getGameBoard().getFerry().payOwnerOfFerry(player, gui_player);
 
         if (player.getSquare() == 30) {
