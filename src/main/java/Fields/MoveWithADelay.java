@@ -39,4 +39,41 @@ public class MoveWithADelay {
             gui.getSpecificField(player.getSquare()).setCar(gui_player, true);
         }
     }
+
+    public void movePlayerWithDelayToSpecificField(Player player, GUI_Player gui_player, GUI_Controller gui, int move) {
+
+        /*do {
+            player.moveSquare(1,0);
+
+            try {
+                TimeUnit.MILLISECONDS.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            // Moves the player to the square dependent on the value of move
+            gui.getSpecificField(player.getSquare()).setCar(gui_player, true);
+        } while (player.getSquare() <= move || player.getSquare() >= move);
+
+         */
+
+        int k = player.getSquare();
+
+        for (int i = k; i != move; i++) {
+            try {
+                TimeUnit.MILLISECONDS.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            // Moves the player to the square dependent on the value of move
+            gui.getSpecificField(player.getSquare()).setCar(gui_player, true);
+
+            if (i > 39) {
+                i -= 39;
+            }
+
+        }
+
+    }
 }
