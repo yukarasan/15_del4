@@ -211,16 +211,9 @@ public class Game {
 
         int s = player.getSquare();
 
-
-
         if(IntStream.of(gui.getGameBoard().allOwnableFields()).anyMatch(x -> x == s)){
-
-
 
         }
 
-
     }
-
-
 }
