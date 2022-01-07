@@ -23,4 +23,19 @@ public class MoveWithADelay {
             gui.getSpecificField(player.getSquare()).setCar(gui_player, true);
         }
     }
+
+    public void movePlayerWithDelayInChanceCard(Player player, int move, GUI_Player gui_player, GUI_Controller gui) {
+        player.moveSquare(move,0);
+
+        for (int i = 0; i < move; i++) {
+            try {
+                TimeUnit.MILLISECONDS.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            // Moves the player to the square dependent on the value of move
+            gui.getSpecificField(move).setCar(gui_player, true);
+        }
+    }
 }
