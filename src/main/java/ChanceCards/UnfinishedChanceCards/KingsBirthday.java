@@ -1,9 +1,10 @@
-package ChanceCards;
+package ChanceCards.UnfinishedChanceCards;
 
+import ChanceCards.ChanceCardParent;
 import Main.Player;
 import gui_fields.GUI_Player;
 
-public class KingsBirthday extends ChanceCardParent  {
+public class KingsBirthday extends ChanceCardParent {
 
     public void KingsBirthday(GUI_Player gui_player, Player player) {
 

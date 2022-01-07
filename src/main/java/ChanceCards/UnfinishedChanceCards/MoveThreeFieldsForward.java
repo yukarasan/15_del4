@@ -1,9 +1,10 @@
-package ChanceCards;
+package ChanceCards.UnfinishedChanceCards;
 
+import ChanceCards.ChanceCardParent;
 import Main.Player;
 import gui_fields.GUI_Player;
 
-public class MoveThreeFieldsForward extends ChanceCardParent  {
+public class MoveThreeFieldsForward extends ChanceCardParent {
 
     public void MoveThreeFieldsForward(GUI_Player gui_player, Player player) {
 
