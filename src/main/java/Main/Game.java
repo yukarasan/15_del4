@@ -181,10 +181,8 @@ public class Game {
                 }
                 passStartField(players[i],gui_players[i]);
 
+                // if (players[i].setWaitInJail())
                 gui.getGameBoard().getJail().inJail(gui_players[i], players[i]);
-
-
-                if (players[i].setWaitInJail())
             }
         }
     }
