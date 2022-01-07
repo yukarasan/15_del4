@@ -8,7 +8,7 @@ public class MoveThreeFieldsForward extends ChanceCardParent {
             gui.getInstance().displayChanceCard("Ryk tre felter frem");
             gui.getInstance().showMessage(player.getName() + ", træk et chancekort fra bunken");
 
-            player.moveSquare(3,0);
+            moveWithADelay.movePlayerWithDelayInChanceCard(player, 3,gui_player, gui);
         }
 }
 
