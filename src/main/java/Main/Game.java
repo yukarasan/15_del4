@@ -1,17 +1,12 @@
 package Main;
 
-import Fields.Field;
 import Fields.MoveWithADelay;
 import GUI_Controllor.GUI_Controller;
 import gui_fields.GUI_Car;
-import gui_fields.GUI_Field;
 import gui_fields.GUI_Player;
-
 import java.awt.*;
 import java.util.Arrays;
 import java.util.Locale;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.IntStream;
 
 public class Game {
     private final GUI_Controller gui = new GUI_Controller();
@@ -21,7 +16,6 @@ public class Game {
     private static int numberOfPlayers;
     private Player[] players = new Player[numberOfPlayers];
     private GUI_Player[] gui_players = new GUI_Player[numberOfPlayers];
-    private Field field = new Field();
     private MoveWithADelay moveWithADelay = new MoveWithADelay();
 
     public void startGame() {
@@ -37,14 +31,8 @@ public class Game {
     }
 
     public boolean checkForSameName(String name, int playerNamesYet, Player[] players) {
-
         boolean writeNameAgain = false;
 
-        for (int i = 0; i < playerNamesYet; i++) {
-            if (!name.equals(players[i].getName())) {
-                writeNameAgain = false;
-            }
-        }
         for (int i = 0; i < playerNamesYet; i++) {
             if (name.equals(players[i].getName())) {
                 writeNameAgain = true;
@@ -126,24 +114,12 @@ public class Game {
                 String color = gui.getInstance().getUserButtonPressed("Hvilken farve bil ønsker du?", "Blå", "Sort", "Hvid", "Gul", "Rød", "Grøn");
 
                 switch (color) {
-                    case "Blå":
-                        colorChooser(numberOfOption, 0, color, i, car[i], Color.blue);
-                        break;
-                    case "Sort":
-                        colorChooser(numberOfOption, 1, color, i, car[i], Color.black);
-                        break;
-                    case "Hvid":
-                        colorChooser(numberOfOption, 2, color, i, car[i], Color.white);
-                        break;
-                    case "Gul":
-                        colorChooser(numberOfOption, 3, color, i, car[i], Color.yellow);
-                        break;
-                    case "Rød":
-                        colorChooser(numberOfOption, 4, color, i, car[i], Color.red);
-                        break;
-                    case "Grøn":
-                        colorChooser(numberOfOption, 5, color, i, car[i], Color.green);
-                        break;
+                    case "Blå" -> colorChooser(numberOfOption, 0, color, i, car[i], Color.blue);
+                    case "Sort" -> colorChooser(numberOfOption, 1, color, i, car[i], Color.black);
+                    case "Hvid" -> colorChooser(numberOfOption, 2, color, i, car[i], Color.white);
+                    case "Gul" -> colorChooser(numberOfOption, 3, color, i, car[i], Color.yellow);
+                    case "Rød" -> colorChooser(numberOfOption, 4, color, i, car[i], Color.red);
+                    case "Grøn" -> colorChooser(numberOfOption, 5, color, i, car[i], Color.green);
                 }
             }
             gui_players[i] = new GUI_Player(players[i].getName(), players[i].getAccount().getMoney(), car[i]);
@@ -197,8 +173,6 @@ public class Game {
             player.setWaitATurn(false);
         }
     }
-
-
 
     public void passStartField(Player player, GUI_Player gui_players){
 

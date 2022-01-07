@@ -28,42 +28,38 @@ public class Jail extends UnownableField {
         public void outOfJail (GUI_Player gui_player, Player player, DiceCup diceCup) {
 
             String chosenElement = gui.getInstance().getUserButtonPressed(player.getName() + ", du har to valgmuligheder", "Slå to ens terninger", "Betal 1000 DKK");
-                switch (chosenElement) {
-                    case "Slå to ens terninger":
 
-                        gui.getInstance().setDice(diceCup.getDie1().rollDice(), diceCup.getDie2().rollDice());
+            switch (chosenElement) {
+                case "Slå to ens terninger" -> {
+                    gui.getInstance().setDice(diceCup.getDie1().rollDice(), diceCup.getDie2().rollDice());
+                    if (diceCup.getDie1().getDie() == diceCup.getDie2().getDie()) {
+                        gui.getInstance().showMessage("Tilykke! Du slog to ens. Du må nu rykke ud af fængslet og slå igen.");
+                        player.moveSquare(diceCup.getDie1().getDie(), diceCup.getDie2().getDie());
+                        gui.getSpecificField(player.getSquare()).setCar(gui_player, true);
 
-                        if (diceCup.getDie1().getDie() == diceCup.getDie2().getDie()) {
-                            gui.getInstance().showMessage("Tilykke! Du slog to ens. Du må nu rykke ud af fængslet og slå igen.");
-                            player.moveSquare(diceCup.getDie1().getDie(), diceCup.getDie2().getDie());
-                            gui.getSpecificField(player.getSquare()).setCar(gui_player, true);
-
-                            gui.getInstance().getUserButtonPressed(player.getName() + ", kast terningerne", "Kast");
-                            gui.getInstance().setDice(diceCup.getDie1().rollDice(), diceCup.getDie2().rollDice());
-
-                            moveWithADelay.movePlayerWithADelay(gui_player,player,diceCup,gui);
-
-                            player.setInJail(false);
-                            player.setWaitATurn(false);
-
-                        } else {
-                            gui.getInstance().showMessage("Desværre, bedre held næste gang. Du må vente en runde.");
-                        }
-
-                        break;
-                    case "Betal 1000 DKK":
-                        player.getAccount().setMoney(-1000);
-                        gui_player.setBalance(player.getAccount().getMoney());
-
-                        gui.getInstance().showMessage("Tak for pengene. Du må nu slå igen for at komme ud.");
                         gui.getInstance().getUserButtonPressed(player.getName() + ", kast terningerne", "Kast");
                         gui.getInstance().setDice(diceCup.getDie1().rollDice(), diceCup.getDie2().rollDice());
 
-                        moveWithADelay.movePlayerWithADelay(gui_player,player,diceCup,gui);
+                        moveWithADelay.movePlayerWithADelay(gui_player, player, diceCup, gui);
 
                         player.setInJail(false);
                         player.setWaitATurn(false);
+
+                    } else {
+                        gui.getInstance().showMessage("Desværre, bedre held næste gang. Du må vente en runde.");
+                    }
                 }
+                case "Betal 1000 DKK" -> {
+                    player.getAccount().setMoney(-1000);
+                    gui_player.setBalance(player.getAccount().getMoney());
+                    gui.getInstance().showMessage("Tak for pengene. Du må nu slå igen for at komme ud.");
+                    gui.getInstance().getUserButtonPressed(player.getName() + ", kast terningerne", "Kast");
+                    gui.getInstance().setDice(diceCup.getDie1().rollDice(), diceCup.getDie2().rollDice());
+                    moveWithADelay.movePlayerWithADelay(gui_player, player, diceCup, gui);
+                    player.setInJail(false);
+                    player.setWaitATurn(false);
+                }
+            }
         }
 }
 

@@ -1,16 +1,10 @@
 package Fields;
 
 import GUI_Controllor.GUI_Controller;
-import Main.Player;
 import gui_fields.*;
-
 import java.awt.*;
-import java.util.stream.IntStream;
 
 public class OwnableField extends Field{
-    private Ferry[] ferries = new Ferry[4];
-    private int intHelper;
-
 
 
     //Below is the rent on various occasions of ownable fields such as properties.

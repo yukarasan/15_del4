@@ -1,22 +1,15 @@
 package Fields;
 
-import GUI_Controllor.GUI_Controller;
 import Main.Player;
-import gui_fields.GUI_Car;
 import gui_fields.GUI_Player;
-
-import java.awt.*;
 import java.util.stream.IntStream;
 
-import static java.awt.Color.*;
-
-public class Ferry {
-    private GUI_Controller gui = new GUI_Controller();
-    private int rentPrice, buyPrice;
+public class Ferry extends Field{
+    private int rentPrice;
     private boolean isOwned;
     private Player owner;
     private GUI_Player guiOwner;
-    private int[] ferryFields = {5, 15, 25, 35};
+    private final int[] ferryFields = {5, 15, 25, 35};
     private int ferryPrice;
 
     public void setOwner(Player player, GUI_Player gui_player) {
@@ -69,9 +62,9 @@ public class Ferry {
                     case 4 -> ferryPrice = 4000;
                 }
 
-                for (int j = 0; j < ferries.length; j++) {
-                    if(player == ferries[j].getOwner()){
-                        ferries[j].setRentPrice(ferryPrice);
+                for (Ferry ferry : ferries) {
+                    if (player == ferry.getOwner()) {
+                        ferry.setRentPrice(ferryPrice);
                     }
                 }
             }
@@ -93,7 +86,6 @@ public class Ferry {
             //Setting the owner's money
             getOwner().getAccount().setMoney(getRentPrice());
             getGuiOwner().setBalance(getOwner().getAccount().getMoney());
-
         }
     }
 }

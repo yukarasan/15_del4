@@ -1,22 +1,17 @@
 package Fields;
 
 import ChanceCards.ChanceCard;
-import GUI_Controllor.GUI_Controller;
 import Main.Player;
-import gui_fields.GUI_Car;
 import gui_fields.GUI_Field;
-import gui_fields.GUI_Player;
 import gui_fields.GUI_Street;
-
 import java.awt.*;
 
 public class GameBoard {
     private final GUI_Field[] fields = new GUI_Field[40];
-    private Jail jail = new Jail();
-    private ChanceCard chanceCard = new ChanceCard();
-    private Ferry[] ferries = new Ferry[4];
+    private final Jail jail = new Jail();
+    private final ChanceCard chanceCard = new ChanceCard();
+    private final Ferry[] ferries = new Ferry[4];
     private int intHelper;
-    private int ferryPrice;
 
     public void instantiatingFields(){
 
@@ -53,10 +48,6 @@ public class GameBoard {
         return fields[specificField];
     }
 
-    public GUI_Street getSpecificStreetField(int specificField){
-        return (GUI_Street) fields[specificField];
-    }
-
     private void createOwnableField() {
         OwnableField ownableField = new OwnableField();
         ownableField.setFields(fields,1,1200, Color.blue, "Rødovrevej");
@@ -90,15 +81,6 @@ public class GameBoard {
 
     }
 
-    public int[] allOwnableFields(){
-        int[] allOwnableFields = {1, 3, 6, 8, 9, 11, 13, 14, 16, 18, 19, 21, 23, 24, 26, 27, 29, 31, 32, 34, 37, 39};
-        return allOwnableFields;
-    }
-
-    public void buyField(Player player, GUI_Player gui_player){
-        player.getAccount();
-    }
-
     public Jail getJail() {
         return jail;
     }
@@ -110,7 +92,6 @@ public class GameBoard {
     public Ferry getFerry(Player player){
 
         checkIfLandedFerryField(player);
-
         return ferries[intHelper];
 
     }

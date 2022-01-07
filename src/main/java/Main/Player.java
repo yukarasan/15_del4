@@ -1,7 +1,7 @@
 package Main;
 
 public class Player {
-    private Account account = new Account();
+    private final Account account = new Account();
     private String name;
     private int square = 0;
     private boolean passedStartField;
@@ -30,8 +30,7 @@ public class Player {
     }
 
     public void moveSquare(int die1,int die2) {
-        //this.square += die1+die2;
-        this.square += 5;
+        this.square += die1+die2;
 
         if(square > 39){
             passedStartField = true;
