@@ -1,5 +1,6 @@
 package Fields;
 
+import ChanceCards.ChanceCard;
 import Main.Player;
 import gui_fields.GUI_Field;
 import gui_fields.GUI_Player;
@@ -10,6 +11,7 @@ import java.awt.*;
 public class GameBoard {
     private final GUI_Field[] fields = new GUI_Field[40];
     private Jail jail = new Jail();
+    private ChanceCard chanceCard = new ChanceCard();
 
     public void instantiatingFields(){
 
@@ -82,17 +84,14 @@ public class GameBoard {
     }
 
     public void buyField(Player player, GUI_Player gui_player){
-
         player.getAccount();
-
-    }
-
-    public static void main(String[] args) {
-        //getSpecificStreetField(player.getSquare()).getRent();
     }
 
     public Jail getJail() {
         return jail;
     }
 
+    public ChanceCard getChanceCard(){
+        return chanceCard;
+    }
 }
