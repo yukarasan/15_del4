@@ -181,7 +181,7 @@ public class Game {
         passStartField(player, gui_player);
 
         gui.getGameBoard().getChanceCard().playerLandsOnChanceField(player, gui_player);
-        gui.getGameBoard().getFerry(player).buyFerry(player, gui_player);
+        gui.getGameBoard().getFerry(player).buyFerry(player, gui_player, gui.getGameBoard().getFerries());
 
         gui.getGameBoard().getFerry(player).payOwnerOfFerry(player, gui_player);
 
@@ -211,7 +211,7 @@ public class Game {
     }
 
     public void optionToBuyFerry(Player player, GUI_Player gui_player){
-        gui.getGameBoard().getFerry(player).buyFerry(player, gui_player);
+        gui.getGameBoard().getFerry(player).buyFerry(player, gui_player, gui.getGameBoard().getFerries());
     }
 
 

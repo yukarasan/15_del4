@@ -27,44 +27,26 @@ public class ManualTestingGuiBuyingAndPaying {
         GUI_Car car1 = new GUI_Car();
         car1.setPrimaryColor(BLACK);
 
-
         GUI_Player gui_player = new GUI_Player(player.getName(), player.getAccount().getMoney(), car);
         GUI_Player gui_player1 = new GUI_Player(player1.getName(), player1.getAccount().getMoney(), car1);
 
-        gui.getInstance().addPlayer(gui_player);
+        /*gui.getInstance().addPlayer(gui_player);
         gui.getInstance().addPlayer(gui_player1);
+         */
 
-        gui.getInstance();
+        gui.getGameBoard().instantiatingFerries();
 
-        gui.getInstance().showMessage("Next step");
+        player.moveToHere(5);
 
-        gui.getSpecificField(0).setCar(gui_player, true);
+        gui.getInstance().showMessage("First buy");
+        gui.getGameBoard().getFerry(player).buyFerry(player,gui_player,gui.getGameBoard().getFerries());
+        System.out.println("Price of first ferry before second buy: " + gui.getGameBoard().getFerries()[0].getRentPrice());
 
-        gui.getInstance().showMessage("Next step");
+        player.moveToHere(15);
 
-        gui.getSpecificField(0).setCar(gui_player1, true);
-
-        player.moveSquare(5,0);
-        player1.moveSquare(5,0);
-
-        gui.getInstance().showMessage("Next step");
-
-        gui.getSpecificField(player.getSquare()).setCar(gui_player, true);
-
-        Ferry ferry = new Ferry();
-
-        gui.getInstance().showMessage("Next step");
-
-        ferry.buyFerry(player, gui_player);
-
-        gui.getInstance().showMessage("Next step");
-
-        gui.getSpecificField(player1.getSquare()).setCar(gui_player1, true);
-
-        gui.getInstance().showMessage("Next step");
-
-        ferry.payOwnerOfFerry(player1, gui_player1);
-
+        gui.getInstance().showMessage("Second buy");
+        gui.getGameBoard().getFerry(player).buyFerry(player, gui_player, gui.getGameBoard().getFerries());
+        System.out.println("Price of first ferry after second buy: " + gui.getGameBoard().getFerries()[1].getRentPrice());
 
     }
 

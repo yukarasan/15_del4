@@ -1,7 +1,9 @@
 package Fields;
 
 import ChanceCards.ChanceCard;
+import GUI_Controllor.GUI_Controller;
 import Main.Player;
+import gui_fields.GUI_Car;
 import gui_fields.GUI_Field;
 import gui_fields.GUI_Player;
 import gui_fields.GUI_Street;
@@ -14,6 +16,7 @@ public class GameBoard {
     private ChanceCard chanceCard = new ChanceCard();
     private Ferry[] ferries = new Ferry[4];
     private int intHelper;
+    private int ferryPrice;
 
     public void instantiatingFields(){
 
@@ -109,6 +112,7 @@ public class GameBoard {
         checkIfLandedFerryField(player);
 
         return ferries[intHelper];
+
     }
 
     public void checkIfLandedFerryField(Player player){
@@ -121,4 +125,33 @@ public class GameBoard {
         }
     }
 
+    public Ferry[] getFerries() {
+        return ferries;
+    }
+
+    public static void main(String[] args) {
+
+
+        Ferry[] ferries = new Ferry[2];
+        ferries[0] = new Ferry();
+        ferries[1] = new Ferry();
+
+        Player player = new Player();
+        player.setName("Not null hehe");
+
+        GUI_Car car = new GUI_Car();
+
+        GUI_Player gui_player = new GUI_Player("r", 1, car);
+
+        player.moveToHere(5);
+
+        ferries[0].buyFerry(player, gui_player, ferries);
+
+        System.out.println("Price of first field before buying second field: " + ferries[0].getRentPrice());
+
+        ferries[1].buyFerry(player, gui_player, ferries);
+
+        System.out.println("Price of first field after buying second field: " + ferries[0].getRentPrice());
+
+    }
 }

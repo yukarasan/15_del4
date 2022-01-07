@@ -30,7 +30,8 @@ public class Player {
     }
 
     public void moveSquare(int die1,int die2) {
-        this.square += die1+die2;
+        //this.square += die1+die2;
+        this.square += 5;
 
         if(square > 39){
             passedStartField = true;

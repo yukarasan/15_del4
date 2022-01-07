@@ -17,6 +17,7 @@ public class Ferry {
     private Player owner;
     private GUI_Player guiOwner;
     private int[] ferryFields = {5, 15, 25, 35};
+    private int ferryPrice;
 
     public void setOwner(Player player, GUI_Player gui_player) {
         this.owner = player;
@@ -27,13 +28,11 @@ public class Ferry {
 
         player.setFerriesOwned(1);
 
-        switch (player.getFerriesOwned()) {
-            case 1 -> rentPrice = 500;
-            case 2 -> rentPrice = 1000;
-            case 3 -> rentPrice = 2000;
-            case 4 -> rentPrice = 4000;
-        }
         this.isOwned = true;
+    }
+
+    public void setRentPrice(int rentPrice) {
+        this.rentPrice = rentPrice;
     }
 
     public boolean getIsFerryOwned() {
@@ -52,16 +51,30 @@ public class Ferry {
         return guiOwner;
     }
 
-    public void buyFerry(Player player, GUI_Player gui_player) {
+    public void buyFerry(Player player, GUI_Player gui_player, Ferry[] ferries) {
 
         if(IntStream.of(ferryFields).anyMatch(x -> x == player.getSquare()) && !isOwned){
-
-            gui.getInstance().getUserButtonPressed(player.getName() + ", du er landet på " + gui.getSpecificField(player.getSquare()).getTitle() +
+            String buy = gui.getInstance().getUserButtonPressed(player.getName() + ", du er landet på " +
+                    gui.getSpecificField(player.getSquare()).getTitle() +
                     ", vil du købe den for 4000 DKK?", "Ja", "Nej");
 
-            gui.getSpecificField(player.getSquare()).setSubText(player.getName());
+            if(buy.equals("Ja")) {
+                gui.getSpecificField(player.getSquare()).setSubText(player.getName());
+                setOwner(player, gui_player);
 
-            setOwner(player, gui_player);
+                switch(player.getFerriesOwned()) {
+                    case 1 -> ferryPrice = 500;
+                    case 2 -> ferryPrice = 1000;
+                    case 3 -> ferryPrice = 2000;
+                    case 4 -> ferryPrice = 4000;
+                }
+
+                for (int j = 0; j < ferries.length; j++) {
+                    if(player == ferries[j].getOwner()){
+                        ferries[j].setRentPrice(ferryPrice);
+                    }
+                }
+            }
         }
     }
 
@@ -83,5 +96,4 @@ public class Ferry {
 
         }
     }
-
 }
