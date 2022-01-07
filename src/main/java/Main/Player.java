@@ -70,6 +70,6 @@ public class Player {
     }
 
     public void setFerriesOwned(int ferriesOwned) {
-        this.ferriesOwned = ferriesOwned;
+        this.ferriesOwned += ferriesOwned;
     }
 }
