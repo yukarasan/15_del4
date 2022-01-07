@@ -2,6 +2,7 @@ package Fields;
 
 import GUI_Controllor.GUI_Controller;
 import Main.Player;
+import gui_fields.GUI_Brewery;
 import gui_fields.GUI_Field;
 import gui_fields.GUI_Shipping;
 import gui_fields.GUI_Street;
@@ -32,6 +33,15 @@ public class OwnableField extends Field{
         field[fieldNumber].setDescription(subName);
         field[fieldNumber].setSubText("");
     }
+
+    public void setBrewerFields(GUI_Field[] field, int fieldNumber, Color color, String name, String subName) {
+        field[fieldNumber] = new GUI_Brewery();
+        field[fieldNumber].setBackGroundColor(color);
+        field[fieldNumber].setTitle(name);
+        field[fieldNumber].setDescription(subName);
+        field[fieldNumber].setSubText("");
+    }
+
 
 
     public void setUpOwnableField(int rentNoHouse, int rentAllOwned, int rentOneHouse, int rentTwoHouse, int rentThreeHouse,
