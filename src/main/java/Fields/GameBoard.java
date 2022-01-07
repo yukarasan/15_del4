@@ -32,6 +32,7 @@ public class GameBoard {
         jackpot.jackPot(fields);
         jail.jailFields(fields);
         createOwnableField();
+        ferry.initializeFerries();
     }
 
     public GUI_Field[] getField() {
