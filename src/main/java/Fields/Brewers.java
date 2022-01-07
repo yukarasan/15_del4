@@ -6,10 +6,10 @@ import gui_fields.GUI_Player;
 public class Brewers extends OwnableField {
     String chosenOption;
 
-    public void buyBrewerField(Player player, GUI_Player gui_player){
-        if (player.getSquare() == 12){
-           chosenOption = gui.getInstance().getUserButtonPressed("Du er landet på .., vil du købe feltet","Ja","Nej");
-            switch (chosenOption){
+    public void buyBrewerField(Player player, GUI_Player gui_player) {
+        if (player.getSquare() == 12) {
+            chosenOption = gui.getInstance().getUserButtonPressed("Du er landet på .., vil du købe feltet", "Ja", "Nej");
+            switch (chosenOption) {
                 case "Ja":
                     gui.getInstance().showMessage("Du Skal betale 3000 DKK");
                     player.getAccount().setMoney(-3000);
@@ -18,12 +18,15 @@ public class Brewers extends OwnableField {
                     gui.getInstance().showMessage("Du skal vente til det bliver din tur");
             }
         }
-        if (player.getSquare() == 28){
+        if (player.getSquare() == 28) {
 
-    int rentPrice, buyPrice;
+            int rentPrice, buyPrice;
 
-    public void buyBrewer() {
+    /*public void buyBrewer() {
 
     }
+     */
 
+        }
+    }
 }

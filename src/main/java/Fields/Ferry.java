@@ -23,12 +23,11 @@ public class Ferry extends OwnableField {
         isOwned = true;
     }
 
-    public boolean getIsFerryOwned(){
+    public boolean getIsFerryOwned() {
         return isOwned;
     }
 
-    public int getRentPrice(Player player){
+    public int getRentPrice() {
         return rentPrice;
     }
-
 }
