@@ -93,4 +93,6 @@ public class OwnableField extends Field{
     public Player getOwner() {
         return owner;
     }
+
+
 }
