@@ -23,6 +23,8 @@ public class ChanceCard {
     private final Lottery card14 = new Lottery();
     private final Municipality card15 = new Municipality();
     private final WageIncrease card16 = new WageIncrease();
+    private final BonusBond card17 = new BonusBond();
+    private final UtilityGarden card18 = new UtilityGarden();
 
 
     public void playerLandsOnChanceField(Player player, GUI_Player gui_player) {
@@ -52,6 +54,8 @@ public class ChanceCard {
                 case 17, 18 -> card14.lottery(gui_player, player);
                 case 19 -> card15.municipality(gui_player, player);
                 case 20 -> card16.wageIncrease(gui_player, player);
+                case 21 -> card17.bonusBond(gui_player, player);
+                case 22 -> card18.utilityGarden(gui_player, player);
             }
         }
     }
