@@ -19,6 +19,9 @@ public class UnownableField extends Field {
 
     public void freeParking(GUI_Field[] fields) {
         fields[20] = new GUI_Refuge();
+        fields[20].setTitle("Parkering");
+        fields[20].setSubText(" Gratis parkering ");
+        fields[20].setDescription(" Du kan parkere gratis her");
     }
 
     public void chanceField(GUI_Field[] fields) {
