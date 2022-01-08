@@ -14,6 +14,7 @@ public class GameBoard {
     private final Brewer[] brewers = new Brewer[2];
     private int intHelper;
     private int intHelper1;
+    private Jackpot jackpot = new Jackpot();
 
     public void instantiatingFields(){
 
@@ -129,8 +130,7 @@ public class GameBoard {
         return brewers[intHelper1];
     }
 
-    public Brewer[] getBrewers(){
-        return brewers;
+    public Jackpot getJackpot() {
+        return jackpot;
     }
-
 }

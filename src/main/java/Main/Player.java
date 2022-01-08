@@ -10,6 +10,7 @@ public class Player {
     private int ferriesOwned;
     private int brewersOwned;
 
+
     public void setName(String name){
         this.name = name;
     }

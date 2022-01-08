@@ -165,6 +165,9 @@ public class Game {
         gui.getGameBoard().getBrewer(player).buyBrewerField(player, gui_player);
         gui.getGameBoard().getBrewer(player).payOwnerOfBrewer(player, gui_player, diceCup);
 
+        gui.getGameBoard().getJackpot().payToJackpot(player, gui_player);
+        gui.getGameBoard().getJackpot().receiveJackpot(player, gui_player);
+
 
         if (player.getSquare() == 30) {
             gui.getGameBoard().getJail().setPlayerInJail(gui_player, player);

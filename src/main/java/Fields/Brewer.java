@@ -2,20 +2,20 @@ package Fields;
 
 import Main.DiceCup;
 import Main.Player;
-import gui_fields.GUI_Car;
 import gui_fields.GUI_Player;
 
 import java.util.stream.IntStream;
 
 public class Brewer extends OwnableField {
-    private String chosenOption;
     private Player owner;
     private GUI_Player guiOwner;
     private int fieldPrice;
-    private int[] brewerFields = {12, 28};
+    private final int[] brewerFields = {12, 28};
     private boolean isOwned;
 
     public void buyBrewerField(Player player, GUI_Player gui_player) {
+
+        String chosenOption;
 
         if (IntStream.of(brewerFields).anyMatch(x -> x == player.getSquare()) && !isOwned) {
 
