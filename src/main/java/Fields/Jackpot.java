@@ -25,10 +25,12 @@ public class Jackpot extends UnownableField {
 
     public void payToJackpot(Player player, GUI_Player gui_player) {
         if (player.getSquare() == 4) {
-            gui.getInstance().showMessage(player.getName() + ", du er landet på Jackpot og skal betale 1000 DKK!");
+            gui.getInstance().showMessage(player.getName() + ", du er landet på Jackpot og skal betale 1000 DKK");
             player.getAccount().setMoney(-1000);
             gui_player.setBalance(player.getAccount().getMoney());
             jackpotBundle += 1000;
+
+            gui.getSpecificField(38).setSubText(jackpotBundle + " DKK");
         }
     }
 
@@ -39,6 +41,7 @@ public class Jackpot extends UnownableField {
             player.getAccount().setMoney(jackpotBundle);
             gui_player.setBalance(player.getAccount().getMoney());
             jackpotBundle = 0;
+            gui.getSpecificField(38).setSubText(jackpotBundle + " DKK");
         }
     }
 }
