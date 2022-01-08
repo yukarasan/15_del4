@@ -16,7 +16,7 @@ public class MoveHereWithDelay {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            player.moveSquare(1,0);
+            player.moveToSquare(1,0);
 
             // Moves the player to the square dependent on the value of move
             System.out.println("Field: " + player.getSquare());
@@ -28,7 +28,7 @@ public class MoveHereWithDelay {
 
         MoveHereWithDelay moveHereWithDelay = new MoveHereWithDelay();
 
-        player.moveSquare(25,0);
+        player.moveToSquare(25,0);
         moveHereWithDelay.movePlayerWithDelayToSpecificField(player, 11);
     }
 

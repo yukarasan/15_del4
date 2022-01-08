@@ -9,7 +9,7 @@ public class PassingStartFieldTest {
 
         System.out.println("Has passed start: " + player.getPassedStartField());
 
-        player.moveSquare(51,0);
+        player.moveToSquare(51,0);
 
         System.out.println("Has passed start: " + player.getPassedStartField());
 
