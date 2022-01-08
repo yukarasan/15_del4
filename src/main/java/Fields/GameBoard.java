@@ -133,4 +133,8 @@ public class GameBoard {
     public Jackpot getJackpot() {
         return jackpot;
     }
+
+    public Brewer[] getBrewers() {
+        return brewers;
+    }
 }
