@@ -16,7 +16,8 @@ import gui_fields.GUI_Player;
 
 public class MoveToFrederiksberg extends ChanceCardParent {
     public void moveToFrederiksberg(GUI_Player gui_player, Player player) {
-        gui.getInstance().displayChanceCard("Ryk frem til Frederiksberg Allé. Hvis du passerer start så modtag 4000 DKK");
+        gui.getInstance().displayChanceCard("Ryk frem til Frederiksberg Allé. Hvis du passerer start så modtag " +
+                "4000 DKK");
         gui.getInstance().showMessage(player.getName() + ", træk et chancekort fra bunken");
 
         // Creating a simple data type, which contains the location of the player before they'll be moved to
@@ -33,8 +34,11 @@ public class MoveToFrederiksberg extends ChanceCardParent {
             player.setMoney(4000);
             gui_player.setBalance(player.getAccount().getMoney());
 
-            // We've created a method that changes the boolean value of passedStartField to be false. When it is false
-            // the player won't receive 4000 DKK to times when checking in the Game class.
+            /*
+            We've created a method that changes the boolean value of passedStartField to be false. When it is false
+            the player won't receive 4000 DKK two times when checking if player has passed the start field in the
+            Game class.
+             */
             player.resetPassedStartField();
         }
     }
