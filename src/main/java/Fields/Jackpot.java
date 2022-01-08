@@ -1,7 +1,6 @@
 package Fields;
 
 import Main.Player;
-import gui_fields.GUI_Car;
 import gui_fields.GUI_Field;
 import gui_fields.GUI_Player;
 import gui_fields.GUI_Tax;

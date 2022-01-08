@@ -10,13 +10,13 @@ import java.util.Locale;
 
 public class Game {
     private final GUI_Controller gui = new GUI_Controller();
-    private static boolean[] numberOfOption = new boolean[6];
+    private static final boolean[] numberOfOption = new boolean[6];
     private static boolean chooseColorAgain;
-    private DiceCup diceCup = new DiceCup();
+    private final DiceCup diceCup = new DiceCup();
     private static int numberOfPlayers;
     private Player[] players = new Player[numberOfPlayers];
     private GUI_Player[] gui_players = new GUI_Player[numberOfPlayers];
-    private MoveWithADelay moveWithADelay = new MoveWithADelay();
+    private final MoveWithADelay moveWithADelay = new MoveWithADelay();
 
     public void startGame() {
         gui.getInstance();
@@ -34,6 +34,11 @@ public class Game {
     public boolean checkForSameName(String name, int playerNamesYet, Player[] players) {
         boolean writeNameAgain = false;
 
+        for (int i = 0; i < playerNamesYet; i++) {
+            if (!name.equals(players[i].getName())) {
+                writeNameAgain = false;
+            }
+        }
         for (int i = 0; i < playerNamesYet; i++) {
             if (name.equals(players[i].getName())) {
                 writeNameAgain = true;
@@ -189,10 +194,6 @@ public class Game {
             gui_players.setBalance(player.getAccount().getMoney());
             player.resetPassedStartField();
         }
-    }
-
-    public void optionToBuyFerry(Player player, GUI_Player gui_player){
-        gui.getGameBoard().getFerry(player).buyFerry(player, gui_player, gui.getGameBoard().getFerries());
     }
 
 
