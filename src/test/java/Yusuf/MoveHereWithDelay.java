@@ -10,9 +10,10 @@ public class MoveHereWithDelay {
 
     public void movePlayerWithDelayToSpecificField(Player player, int move) {
 
-        int k = player.getSquare();
 
-        for (int i = k; i != move; i++) {
+        while (player.getSquare() != move) {
+
+
             try {
                 TimeUnit.MILLISECONDS.sleep(100);
             } catch (InterruptedException e) {
