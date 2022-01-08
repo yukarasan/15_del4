@@ -9,10 +9,6 @@ import gui_fields.GUI_Player;
     who pulls the card, and make them pull the card by pressing OK, then lastly the player will be moved three
     fields forwards and showed on the gui. When the player moves, they will not jump to field like what happened
     in other projects. Insted they'll move with a delay, so that it'll look like a person moves the player itself.
-
-    We've chosen to make the class extend the class ChanceCardParent, so that we did not have to make an
-    instance of the GUI class in every chance card class. This way, our code adheres to the information expert
-    as a design pattern.
 */
 
 public class MoveThreeFieldsForward extends ChanceCardParent {

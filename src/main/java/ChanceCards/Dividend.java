@@ -8,10 +8,6 @@ import gui_fields.GUI_Player;
     passed they'll get used in the body of the method, which will first display what will happen to the player
     who pulls the card, and make them pull the card by pressing OK, then lastly the money will be set, and
     showed on the gui.
-
-    We've chosen to make the class extend the class ChanceCardParent, so that we did not have to make an
-    instance of the GUI class in every chance card class. This way, our code adheres to the information expert
-    as a design pattern.
 */
 
 public class Dividend extends ChanceCardParent {
