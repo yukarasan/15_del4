@@ -31,7 +31,7 @@ public class Game {
         gui.getInstance().showMessage("Velkommen til Matador!");
     }
 
-    public boolean checkForSameName(String name, int playerNamesYet, Player[] players) {
+    private boolean checkForSameName(String name, int playerNamesYet, Player[] players) {
         boolean writeNameAgain = false;
 
         for (int i = 0; i < playerNamesYet; i++) {
@@ -47,7 +47,7 @@ public class Game {
         return writeNameAgain;
     }
 
-    public void colorChooser(boolean[] colorChosen, int numberOfOption, String colorString, int playerNumber, GUI_Car car, Color color) {
+    private void colorChooser(boolean[] colorChosen, int numberOfOption, String colorString, int playerNumber, GUI_Car car, Color color) {
 
         if (colorChosen[numberOfOption]) {
             gui.getInstance().showMessage("Spiller " + (playerNumber + 1) + ", " + colorString + " er allerede taget");
@@ -90,7 +90,7 @@ public class Game {
 
             char firstChar = name.charAt(0);  // localizing the first character at index 0
             char lastChar = name.charAt(name.length() - 1);  // localizing the last character at index "name length"
-            String firstLetter = (Character.toString(firstChar)).toUpperCase(Locale.ROOT);  // Converting to a string and making
+            String firstLetter = (Character.toString(firstChar)).toUpperCase(Locale.ROOT);  // Converting to a string and making it upper case
             String restOfName = name.substring(1);  // Making a variable that separates the name at index 1
 
             // Determining if input contains " " and then trimming the string before computing the rest of the statements
@@ -148,13 +148,13 @@ public class Game {
         }
     }
 
-    public void playerTurn(Player player, GUI_Player gui_player) {
+    private void playerTurn(Player player, GUI_Player gui_player) {
         if (!player.getInJail()) {
             //Player throws dice
             gui.getInstance().getUserButtonPressed(player.getName() + ", kast terningerne", "Kast");
 
             //Dice get shown on board
-            gui.getInstance().setDice(diceCup.getDie1().rollDice(), diceCup.getDie2().rollDice());
+            gui.getInstance().setDice(diceCup.getDie1().rollDie(), diceCup.getDie2().rollDie());
 
             //This is when the piece moves one square by one square up until thrown value
             moveWithADelay.movePlayerWithADelay(gui_player, player,diceCup,gui);
@@ -186,7 +186,7 @@ public class Game {
         }
     }
 
-    public void passStartField(Player player, GUI_Player gui_players){
+    private void passStartField(Player player, GUI_Player gui_players){
 
         if(player.getPassedStartField()){
             gui.getInstance().showMessage(player.getName() + ", du har passeret start og modtager 4000 DKK");

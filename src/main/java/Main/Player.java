@@ -1,5 +1,9 @@
 package Main;
 
+/**
+ * This is the Player class. In here we have instantiated
+ */
+
 public class Player {
     private final Account account = new Account();
     private String name;
@@ -10,60 +14,61 @@ public class Player {
     private int ferriesOwned;
     private int brewersOwned;
 
-
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
 
-    public Account getAccount(){
-        return account;
-    }
-
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public int getSquare(){
+    public void setMoney(int money) {
+        account.setMoney(money);
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public int getSquare() {
         return square;
     }
 
-    public void moveToHere(int currentInt){
+    public void moveToHere(int currentInt) {
         square = currentInt;
     }
 
     public void moveSquare(int die1,int die2) {
-        this.square += die1+die2;
+        this.square += die1 + die2;
 
-        if(square > 39){
+        if(square > 39) {
             passedStartField = true;
         }
+
         square %= 40;
     }
 
-    public boolean getPassedStartField(){
+    public boolean getPassedStartField() {
         return passedStartField;
     }
 
-    public void resetPassedStartField(){
+    public void resetPassedStartField() {
         passedStartField = false;
-    }
-    public void setMoney(int money) {
-        account.setMoney(money);
     }
 
     public void setInJail(boolean trueOrFalse) {
         inJail = trueOrFalse;
     }
 
-    public boolean getInJail(){
+    public boolean getInJail() {
         return inJail;
     }
 
-    public void setWaitATurn(boolean trueOrFalse){
+    public void setWaitATurn(boolean trueOrFalse) {
         waitATurn = trueOrFalse;
     }
 
-    public boolean getWaitATurn(){
+    public boolean getWaitATurn() {
         return waitATurn;
     }
 
