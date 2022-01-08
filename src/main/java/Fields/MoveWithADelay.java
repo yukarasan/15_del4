@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 public class MoveWithADelay {
 
-    public void movePlayerWithADelay(GUI_Player gui_player, Player player, DiceCup diceCup, GUI_Controller gui){
+    public void movePlayerWithADelay(GUI_Player gui_player, Player player, DiceCup diceCup, GUI_Controller gui) {
 
         for (int i = 0; i < (diceCup.getDie1().getDie() + diceCup.getDie2().getDie()); i++) {
 
@@ -27,7 +27,7 @@ public class MoveWithADelay {
     public void movePlayerWithDelayInChanceCard(Player player, int move, GUI_Player gui_player, GUI_Controller gui) {
 
         for (int i = 0; i < move; i++) {
-            player.moveSquare(1,0);
+            player.moveSquare(1, 0);
 
             try {
                 TimeUnit.MILLISECONDS.sleep(100);
@@ -42,38 +42,20 @@ public class MoveWithADelay {
 
     public void movePlayerWithDelayToSpecificField(Player player, GUI_Player gui_player, GUI_Controller gui, int move) {
 
-        /*do {
-            player.moveSquare(1,0);
+        while (player.getSquare() != move) {
 
             try {
                 TimeUnit.MILLISECONDS.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            player.moveSquare(1, 0);
 
             // Moves the player to the square dependent on the value of move
+
             gui.getSpecificField(player.getSquare()).setCar(gui_player, true);
-        } while (player.getSquare() <= move || player.getSquare() >= move);
-
-         */
-
-        int k = player.getSquare();
-
-        for (int i = k; i != move; i++) {
-            try {
-                TimeUnit.MILLISECONDS.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            // Moves the player to the square dependent on the value of move
-            gui.getSpecificField(player.getSquare()).setCar(gui_player, true);
-
-            if (i > 39) {
-                i -= 39;
-            }
 
         }
-
     }
 }
+
