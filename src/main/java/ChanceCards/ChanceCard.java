@@ -2,7 +2,6 @@ package ChanceCards;
 
 import Main.Player;
 import gui_fields.GUI_Player;
-
 import java.util.stream.IntStream;
 
 
@@ -27,10 +26,9 @@ public class ChanceCard {
     private final UtilityGarden card18 = new UtilityGarden();
     private final MoveThreeFieldsForward card19 = new MoveThreeFieldsForward();
     private final MoveThreeFieldsBack card20 = new MoveThreeFieldsBack();
-
+    private final Tipping card21 = new Tipping();
 
     public void playerLandsOnChanceField(Player player, GUI_Player gui_player) {
-
         int[] chanceFields = {2, 7, 17, 22, 33, 36};
 
         int sq = player.getSquare();
@@ -40,7 +38,7 @@ public class ChanceCard {
         if(IntStream.of(chanceFields).anyMatch(x -> x == sq)) {
 
             switch (randomCard) {
-                case 1 -> card5.moveToFrederiksberg(gui_player, player); // card1.deliveryOfSoda(gui_player, player);
+                case 1 -> card1.deliveryOfSoda(gui_player, player);
                 case 2 -> card2.carInsurance(gui_player, player);
                 case 3, 4, 5 -> card3.dividend(gui_player, player);
                 case 6 -> card4.oldFurniture(gui_player, player);
@@ -60,6 +58,7 @@ public class ChanceCard {
                 case 22 -> card18.utilityGarden(gui_player, player);
                 case 23 -> card19.moveThreeFieldsForward(gui_player, player);
                 case 24 -> card20.moveThreeFieldsBack(gui_player, player);
+                case 25 -> card21.tipping(gui_player, player);
             }
         }
     }
