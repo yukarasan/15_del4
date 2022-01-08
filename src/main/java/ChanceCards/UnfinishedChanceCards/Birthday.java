@@ -1,5 +1,6 @@
-package ChanceCards;
+package ChanceCards.UnfinishedChanceCards;
 
+import ChanceCards.ChanceCardParent;
 import Main.Player;
 import gui_fields.GUI_Player;
 

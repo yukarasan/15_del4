@@ -22,7 +22,6 @@ public class MoveThreeFieldsForward extends ChanceCardParent {
         with a delay, so that they move 1 field forwards, until they reach their destination. This is done with
         a for-loop.
         */
-
         moveWithADelay.movePlayerWithDelayInChanceCard(player, 3,gui_player, gui);
     }
 }
