@@ -1,6 +1,5 @@
 package Fields;
 
-import Main.Player;
 import gui_fields.*;
 
 public class UnownableField extends Field {

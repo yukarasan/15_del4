@@ -1,7 +1,9 @@
 package Fields;
 
+import GUI_Controllor.GUI_Controller;
 import Main.DiceCup;
 import Main.Player;
+import gui_fields.GUI_Car;
 import gui_fields.GUI_Player;
 
 import java.util.stream.IntStream;
@@ -11,7 +13,20 @@ public class Brewer extends OwnableField {
     private GUI_Player guiOwner;
     private int fieldPrice;
     private final int[] brewerFields = {12, 28};
-    private boolean isOwned;
+    private boolean isOwned, isMortgaged;
+    private int mortgagePrice = 2000;
+
+    public void setBrewerOnMortgage(Player player){
+
+        gui.getInstance().showMessage(player.getName() + ", du har valgt at pantsætte denne brewer");
+
+        }
+
+
+
+    public void setMortgaged(boolean mortgaged) {
+        isMortgaged = mortgaged;
+    }
 
     public void buyBrewerField(Player player, GUI_Player gui_player) {
 
@@ -53,4 +68,36 @@ public class Brewer extends OwnableField {
             guiOwner.setBalance(owner.getAccount().getMoney());
         }
     }
+
+    public Player getOwner() {
+        return owner;
+    }
+
+    /*public static void main(String[] args) {
+
+        GUI_Controller gui = new GUI_Controller();
+
+        Player player = new Player();
+        player.setName("Hussein");
+        GUI_Car car = new GUI_Car();
+        GUI_Player gui_player = new GUI_Player("Hussein", player.getAccount().getMoney(), car);
+
+        Brewer brewer = new Brewer();
+
+        player.moveToHere(12);
+        brewer.buyBrewerField(player, gui_player);
+
+        System.out.println("Owner name now: " + brewer.getOwner().getName());
+
+        String chosenOption = gui.getInstance().getUserButtonPressed("Hvad ønsker du nu at gøre?",
+                "Afslut tur", "Pantsæt ejendom", "");
+
+    if(chosenOption.equals("Pantsæt ejendom")){
+
+        brewer.setMortgaged(true);
+
+        }
+    }
+
+     */
 }
