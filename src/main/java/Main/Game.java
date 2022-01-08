@@ -140,7 +140,7 @@ public class Game {
             for (int i = 0; i < numberOfPlayers; i++) {
                 playerTurn(players[i], gui_players[i]);
 
-                if (diceCup.getDie1().getDie() == diceCup.getDie2().getDie() && !players[i].getInJail()) {
+                if (diceCup.getDie1().getFaceValue() == diceCup.getDie2().getFaceValue() && !players[i].getInJail()) {
                     gui.getInstance().showMessage(players[i].getName() + ", du har slået to ens terninger, slå igen");
                     playerTurn(players[i], gui_players[i]);
                 }

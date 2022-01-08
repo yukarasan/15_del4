@@ -32,9 +32,9 @@ public class Jail extends UnownableField {
             switch (chosenElement) {
                 case "Slå to ens terninger" -> {
                     gui.getInstance().setDice(diceCup.getDie1().rollDice(), diceCup.getDie2().rollDice());
-                    if (diceCup.getDie1().getDie() == diceCup.getDie2().getDie()) {
+                    if (diceCup.getDie1().getFaceValue() == diceCup.getDie2().getFaceValue()) {
                         gui.getInstance().showMessage("Tilykke! Du slog to ens. Du må nu rykke ud af fængslet og slå igen.");
-                        player.moveSquare(diceCup.getDie1().getDie(), diceCup.getDie2().getDie());
+                        player.moveSquare(diceCup.getDie1().getFaceValue(), diceCup.getDie2().getFaceValue());
                         gui.getSpecificField(player.getSquare()).setCar(gui_player, true);
 
                         gui.getInstance().getUserButtonPressed(player.getName() + ", kast terningerne", "Kast");

@@ -1,7 +1,11 @@
 package Main;
 
-public class Die {
+/**
+ * This class represent a single die that be rolled (raffled) and give a random face value of the die.
+ * We use
+ */
 
+public class Die {
     // Creating a variable that will show the face value of the die:
     private int faceValue;
 
@@ -17,7 +21,8 @@ public class Die {
         return faceValue = (int) (Math.random() * MAX + 1);
     }
 
-    public int getDie(){
+    // Creating a method that will return the face value of the dice.
+    public int getFaceValue(){
         return faceValue;
     }
 }

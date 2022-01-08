@@ -9,7 +9,7 @@ public class MoveWithADelay {
 
     public void movePlayerWithADelay(GUI_Player gui_player, Player player, DiceCup diceCup, GUI_Controller gui) {
 
-        for (int i = 0; i < (diceCup.getDie1().getDie() + diceCup.getDie2().getDie()); i++) {
+        for (int i = 0; i < (diceCup.getDie1().getFaceValue() + diceCup.getDie2().getFaceValue()); i++) {
 
             player.moveSquare(1, 0);
 

@@ -1,5 +1,10 @@
 package Main;
 
+/**
+ * This class represent a Dice Cup witch will contain two objects which will be instantiated from the Die class.
+ * We've created two methods
+ */
+
 public class DiceCup {
     // Creating two dice objects:
     private final Die die1 = new Die();

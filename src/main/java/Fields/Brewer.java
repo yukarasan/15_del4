@@ -38,8 +38,8 @@ public class Brewer extends OwnableField {
 
         if (IntStream.of(brewerFields).anyMatch(x -> x == player.getSquare()) && isOwned && player != owner) {
             switch (owner.getBrewersOwned()) {
-                case 1 -> fieldPrice = (diceCup.getDie1().getDie() + diceCup.getDie2().getDie()) * 100;
-                case 2 -> fieldPrice = (diceCup.getDie1().getDie() + diceCup.getDie2().getDie()) * 200;
+                case 1 -> fieldPrice = (diceCup.getDie1().getFaceValue() + diceCup.getDie2().getFaceValue()) * 100;
+                case 2 -> fieldPrice = (diceCup.getDie1().getFaceValue() + diceCup.getDie2().getFaceValue()) * 200;
             }
 
             gui.getInstance().getUserButtonPressed("Oh oh.. " + player.getName() + ", du er landet på " +
