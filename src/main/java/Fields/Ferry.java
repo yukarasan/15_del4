@@ -19,7 +19,7 @@ public class Ferry extends Field{
         player.getAccount().setMoney(-4000);
         gui_player.setBalance(player.getAccount().getMoney());
 
-        player.setFerriesOwned(1);
+        player.setFerriesOwned();
 
         this.isOwned = true;
     }

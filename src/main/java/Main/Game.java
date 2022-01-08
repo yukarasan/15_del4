@@ -21,6 +21,7 @@ public class Game {
     public void startGame() {
         gui.getInstance();
         gui.getGameBoard().instantiatingFerries();
+        gui.getGameBoard().initializeBrewers();
         welcomingPlayer();
         createPlayer();
         round();
@@ -157,9 +158,15 @@ public class Game {
         passStartField(player, gui_player);
 
         gui.getGameBoard().getChanceCard().playerLandsOnChanceField(player, gui_player);
-        gui.getGameBoard().getFerry(player).buyFerry(player, gui_player, gui.getGameBoard().getFerries());
 
+        gui.getGameBoard().getFerry(player).buyFerry(player, gui_player, gui.getGameBoard().getFerries());
         gui.getGameBoard().getFerry(player).payOwnerOfFerry(player, gui_player);
+
+        gui.getGameBoard().getBrewer(player).buyBrewerField(player, gui_player);
+        gui.getGameBoard().getBrewer(player).payOwnerOfBrewer(player, gui_player, diceCup);
+
+        gui.getGameBoard().getJackpot().payToJackpot(player, gui_player);
+        gui.getGameBoard().getJackpot().receiveJackpot(player, gui_player);
 
 
         if (player.getSquare() == 30) {

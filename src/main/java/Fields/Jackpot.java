@@ -2,6 +2,7 @@ package Fields;
 
 import Main.Player;
 import gui_fields.GUI_Field;
+import gui_fields.GUI_Player;
 import gui_fields.GUI_Tax;
 import java.awt.*;
 
@@ -22,19 +23,21 @@ public class Jackpot extends UnownableField {
         field[38].setForeGroundColor(Color.GREEN);
     }
 
-    public void payToJackpot(Player player) {
+    public void payToJackpot(Player player, GUI_Player gui_player) {
         if (player.getSquare() == 4) {
             gui.getInstance().showMessage(player.getName() + ", du er landet på Jackpot og skal betale 1000 DKK!");
             player.getAccount().setMoney(-1000);
+            gui_player.setBalance(player.getAccount().getMoney());
             jackpotBundle += 1000;
         }
     }
 
-    public void receiveJackpot(Player player) {
+    public void receiveJackpot(Player player, GUI_Player gui_player) {
         if (player.getSquare() == 38 && jackpotBundle>0) {
             gui.getInstance().showMessage(player.getName() + ", du har landet på jackpot og skal modtage "
                                             + jackpotBundle + " DKK!");
             player.getAccount().setMoney(jackpotBundle);
+            gui_player.setBalance(player.getAccount().getMoney());
             jackpotBundle = 0;
         }
     }
