@@ -8,6 +8,7 @@ public class Player {
     private boolean inJail;
     private boolean waitATurn;
     private int ferriesOwned;
+    private int brewersOwned;
 
     public void setName(String name){
         this.name = name;
@@ -69,7 +70,15 @@ public class Player {
         return ferriesOwned;
     }
 
-    public void setFerriesOwned(int ferriesOwned) {
-        this.ferriesOwned += ferriesOwned;
+    public void setFerriesOwned() {
+        this.ferriesOwned += 1;
+    }
+
+    public void setBrewersOwned() {
+        this.brewersOwned += 1;
+    }
+
+    public int getBrewersOwned() {
+        return brewersOwned;
     }
 }

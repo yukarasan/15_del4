@@ -12,7 +12,6 @@ public class FerryTesting {
     private Ferry[] ferries = new Ferry[4];
     private int[] ferryFields = {5, 15, 25, 35};
     private int getRent = 500;
-    private boolean isOwned;
 
 
     public void initializeFerries(){
@@ -47,8 +46,6 @@ public class FerryTesting {
     public void payOwnerOfFerry(Player player) {
 
         checkIfLandedFerryField(player);
-
-        //IntStream.of(ferryFields).anyMatch(x -> x == player.getSquare()) &&
 
 
         if (ferries[intHelper].getIsFerryOwned()) {
@@ -93,7 +90,7 @@ public class FerryTesting {
 
         ferryTesting.payOwnerOfFerry(player1);
 
-        System.out.println("Your money now: " + player1.getAccount().getMoney());
+        System.out.println("Your money now after landing: " + player1.getAccount().getMoney());
 
     }
 

@@ -11,7 +11,9 @@ public class GameBoard {
     private final Jail jail = new Jail();
     private final ChanceCard chanceCard = new ChanceCard();
     private final Ferry[] ferries = new Ferry[4];
+    private final Brewer[] brewers = new Brewer[2];
     private int intHelper;
+    private int intHelper1;
 
     public void instantiatingFields(){
 
@@ -90,10 +92,8 @@ public class GameBoard {
     }
 
     public Ferry getFerry(Player player){
-
         checkIfLandedFerryField(player);
         return ferries[intHelper];
-
     }
 
     public void checkIfLandedFerryField(Player player){
@@ -108,6 +108,29 @@ public class GameBoard {
 
     public Ferry[] getFerries() {
         return ferries;
+    }
+
+    public void initializeBrewers(){
+        for (int i = 0; i < brewers.length; i++) {
+            brewers[i] = new Brewer();
+        }
+    }
+
+    public void checkIfLandedBrewerField(Player player){
+
+        switch (player.getSquare()) {
+            case 12 -> intHelper1 = 0;
+            case 28 -> intHelper1 = 1;
+        }
+    }
+
+    public Brewer getBrewer(Player player){
+        checkIfLandedBrewerField(player);
+        return brewers[intHelper1];
+    }
+
+    public Brewer[] getBrewers(){
+        return brewers;
     }
 
 }

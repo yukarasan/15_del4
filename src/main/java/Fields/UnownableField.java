@@ -12,14 +12,6 @@ public class UnownableField extends Field {
         fields[0].setDescription("Dette er startfeltet");
     }
 
-    public void passingStartFieldAfterRoundOne(Player player){
-        int [] pass = {};
-        if(player.getSquare() == pass[0]);
-        player.getAccount().setMoney(4000);
-        player.getAccount().getMoney();
-
-        }
-
     public void jailField(GUI_Field[] fields) {
         fields[10] = new GUI_Jail();
         fields[30] = new GUI_Jail();
