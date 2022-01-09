@@ -2,7 +2,8 @@ package Fields.Properties.BlueProperties;
 
 import Fields.Properties.Property;
 
-public class HvidovreVej extends Property {
+public class HvidovreVej extends Property{
+    private boolean allOwned;
 
     public HvidovreVej(int rentNoHouse, int rentAllOwned, int rentOneHouse, int rentTwoHouse,
                        int rentThreeHouse, int rentFourHouse, int rentHotel, int fieldPrice,

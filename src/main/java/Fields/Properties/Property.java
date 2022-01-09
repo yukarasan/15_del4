@@ -7,7 +7,7 @@ public class Property {
 
     protected int rentNoHouse, rentAllOwned, rentOneHouse, rentTwoHouse, rentThreeHouse, rentFourHouse,
             rentHotel, fieldPrice, costOfOneHouse, costOfHotel;
-    private static boolean allOwned;
+    private boolean allOwned;
 
     //For each time a property field is initiated, it will need to start with setting all this above info
     protected Property(int rentNoHouse, int rentAllOwned, int rentOneHouse, int rentTwoHouse,
