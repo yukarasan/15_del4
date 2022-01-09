@@ -15,10 +15,9 @@ public class GameBoard {
     private final ChanceCard chanceCard = new ChanceCard();
     private final Ferry[] ferries = new Ferry[4];
     private final Brewer[] brewers = new Brewer[2];
-    private int intHelper;
-    private int intHelper1;
+    private int intHelper, intHelper1, intHelper2;
     private Jackpot jackpot = new Jackpot();
-    private Property[] properties = new Property[20];
+    private Property[] properties = new Property[22];
 
     public void instantiatingFields(){
 
@@ -34,12 +33,47 @@ public class GameBoard {
         }
     }
 
-    public void createProperties(){
+    public void createPropertiesPrices(){
         properties[0] = new HvidovreVej(50, 100, 250, 750,
                 2250, 4000, 6000, 1200, 1000, 1000);
 
         properties[1] = new RoedovreVej(50, 100, 250, 750,
                 2250, 4000, 6000, 1200, 1000, 1000);
+    }
+
+    public Property getProperty(Player player){
+        checkIfLandedPropertyField(player);
+
+        return properties[intHelper2];
+    }
+
+
+    public void checkIfLandedPropertyField(Player player){
+
+        switch (player.getSquare()) {
+            case 1 -> intHelper2 = 0;
+            case 3 -> intHelper2 = 1;
+            case 6 -> intHelper2 = 2;
+            case 8 -> intHelper2 = 3;
+            case 9 -> intHelper2 = 4;
+            case 11 -> intHelper2 = 5;
+            case 13 -> intHelper2 = 6;
+            case 14 -> intHelper2 = 7;
+            case 16 -> intHelper2 = 8;
+            case 18 -> intHelper2 = 9;
+            case 19 -> intHelper2 = 10;
+            case 21 -> intHelper2 = 11;
+            case 23 -> intHelper2 = 12;
+            case 24 -> intHelper2 = 13;
+            case 26 -> intHelper2 = 14;
+            case 27 -> intHelper2 = 15;
+            case 29 -> intHelper2 = 16;
+            case 31 -> intHelper2 = 17;
+            case 32 -> intHelper2 = 18;
+            case 34 -> intHelper2 = 19;
+            case 37 -> intHelper2 = 20;
+            case 39 -> intHelper2 = 21;
+        }
     }
 
 

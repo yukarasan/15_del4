@@ -14,6 +14,7 @@ public class Player {
     private boolean waitATurn;
     private int ferriesOwned;
     private int brewersOwned;
+    private int blueOwned;
 
     /**
      * Creating a method setName that takes a name as a parameter and sets this.name (the name in this class) equal to
@@ -169,5 +170,13 @@ public class Player {
 
     public int getBrewersOwned() {
         return brewersOwned;
+    }
+
+    public void setBlueOwned() {
+        this.blueOwned += 1;
+    }
+
+    public int getBlueOwned() {
+        return blueOwned;
     }
 }
