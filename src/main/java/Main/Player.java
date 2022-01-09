@@ -9,12 +9,9 @@ public class Player {
     private final Account account = new Account();
     private String name;
     private int square = 0;
-    private boolean passedStartField;
-    private boolean inJail;
-    private boolean waitATurn;
-    private int ferriesOwned;
-    private int brewersOwned;
-    private int blueOwned;
+    private boolean passedStartField, inJail, waitATurn;
+    private int ferriesOwned, brewersOwned;
+    private int blueOwned, orangeOwned;
 
     /**
      * Creating a method setName that takes a name as a parameter and sets this.name (the name in this class) equal to
@@ -178,5 +175,13 @@ public class Player {
 
     public int getBlueOwned() {
         return blueOwned;
+    }
+
+    public int getOrangeOwned() {
+        return orangeOwned;
+    }
+
+    public void setOrangeOwned() {
+        this.orangeOwned += 1;
     }
 }

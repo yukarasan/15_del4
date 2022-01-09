@@ -1,8 +1,7 @@
 package Fields;
 
 import ChanceCards.ChanceCard;
-import Fields.Properties.BlueProperties.HvidovreVej;
-import Fields.Properties.BlueProperties.RoedovreVej;
+import Fields.Properties.PropertyField;
 import Fields.Properties.Property;
 import Main.Player;
 import gui_fields.GUI_Field;
@@ -34,11 +33,21 @@ public class GameBoard {
     }
 
     public void createPropertiesPrices(){
-        properties[0] = new HvidovreVej(50, 100, 250, 750,
+        properties[0] = new PropertyField(50, 100, 250, 750,
                 2250, 4000, 6000, 1200, 1000, 1000);
 
-        properties[1] = new RoedovreVej(50, 100, 250, 750,
+        properties[1] = new PropertyField(50, 100, 250, 750,
                 2250, 4000, 6000, 1200, 1000, 1000);
+
+        properties[2] = new PropertyField(100, 250, 600, 1800,
+                5400, 8000, 11000, 2000, 1000, 1000);
+
+        properties[3] = new PropertyField(100, 350, 600, 1800,
+                5400, 8000, 11000, 2000, 1000, 1000);
+
+        properties[4] = new PropertyField(150, 400, 800, 2000,
+                6000, 9000, 12000, 2400, 1000, 1000);
+
     }
 
     public Property getProperty(Player player){

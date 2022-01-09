@@ -1,16 +1,9 @@
 package Fields.Properties;
 
-import Fields.GameBoard;
 import GUI_Controllor.GUI_Controller;
 import Main.Player;
-import gui_fields.GUI_Car;
 import gui_fields.GUI_Player;
-
-import java.awt.*;
 import java.util.stream.IntStream;
-
-import static java.awt.Color.blue;
-import static java.awt.Color.red;
 
 public class Property {
     private GUI_Controller gui = new GUI_Controller();
@@ -23,7 +16,7 @@ public class Property {
 
     protected int rentOneOwned, rentAllOwned, rentOneHouse, rentTwoHouse, rentThreeHouse, rentFourHouse,
             rentHotel, fieldPrice, costOfOneHouse, costOfHotel, currentRentPrice;
-    protected boolean allBlueOwned, isOwned;
+    protected boolean isOwned, allBlueOwned, allOrangeOwned;
 
     //For each time a property field is initiated, it will need to start with setting all this above info
     protected Property(int rentOneOwned, int rentAllOwned, int rentOneHouse, int rentTwoHouse,
@@ -52,6 +45,19 @@ public class Property {
                     properties[0].setCurrentRentPrice(rentAllOwned);
                     properties[1].setCurrentRentPrice(rentAllOwned);
                     allBlueOwned = true;
+                }
+            }
+        }
+
+        if(!allOrangeOwned && currentRentPrice != rentAllOwned) {
+            switch (player.getOrangeOwned()) {
+                case 1, 2 -> currentRentPrice = rentOneOwned;
+                case 3 -> {
+                    currentRentPrice = rentAllOwned;
+                    properties[6].setCurrentRentPrice(rentAllOwned);
+                    properties[8].setCurrentRentPrice(rentAllOwned);
+                    properties[9].setCurrentRentPrice(rentAllOwned);
+                    allOrangeOwned = true;
                 }
             }
         }
@@ -133,8 +139,8 @@ public class Property {
 
             switch (owner.getSquare()){
                 case 1, 3 -> owner.setBlueOwned();
+                case 6, 8, 9 -> owner.setOrangeOwned();
             }
-
             setCurrentRentPriceIfOwning(player, properties);
         }
     }
