@@ -4,9 +4,9 @@ import Fields.Properties.Property;
 
 public class HvidovreVej extends Property {
 
-    HvidovreVej(int rentNoHouse, int rentAllOwned, int  rentOneHouse, int  rentTwoHouse,
-                int  rentThreeHouse, int  rentFourHouse, int rentHotel, int fieldPrice,
-                int costOfOneHouse, int  costOfHotel){
+    public HvidovreVej(int rentNoHouse, int rentAllOwned, int rentOneHouse, int rentTwoHouse,
+                       int rentThreeHouse, int rentFourHouse, int rentHotel, int fieldPrice,
+                       int costOfOneHouse, int costOfHotel){
 
         super(rentNoHouse, rentAllOwned, rentOneHouse, rentTwoHouse, rentThreeHouse,
                 rentFourHouse, rentHotel, fieldPrice, costOfOneHouse, costOfHotel);
