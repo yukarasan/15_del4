@@ -1,24 +1,35 @@
 package Fields.Properties.BlueProperties;
 
-import Fields.Properties.Properties;
-import Main.Main;
+import Fields.Properties.Property;
 
-public class HvidovreVej extends Properties {
+public class HvidovreVej extends Property {
 
-    public HvidovreVej(){
-        this.fieldPrice = 1200;
-        this.costOfOneHouse = 1000;
+    HvidovreVej(int rentNoHouse, int rentAllOwned, int  rentOneHouse, int  rentTwoHouse,
+                       int  rentThreeHouse, int  rentFourHouse, int rentHotel, int fieldPrice,
+                       int costOfOneHouse, int  costOfHotel){
+
+        super(rentNoHouse, rentAllOwned, rentOneHouse, rentTwoHouse, rentThreeHouse,
+                rentFourHouse, rentHotel, fieldPrice, costOfOneHouse, costOfHotel);
+
+        super.rentNoHouse = rentNoHouse;
+        super.rentAllOwned = rentAllOwned;
+        super.rentOneHouse = rentOneHouse;
+        super.rentTwoHouse = rentTwoHouse;
+        super.rentThreeHouse = rentThreeHouse;
+        super.rentFourHouse = rentFourHouse;
+        super.rentHotel = rentHotel;
+        super.fieldPrice = fieldPrice;
+        super.costOfOneHouse = costOfOneHouse;
+        super.costOfHotel = costOfHotel;
     }
 
     public static void main(String[] args) {
-        HvidovreVej hvidovreVej = new HvidovreVej();
 
-        System.out.println(hvidovreVej.getCostOfOneHouse());
+        HvidovreVej hvidovreVej = new HvidovreVej(1,2,3,4,
+        5, 6, 7, 8, 9, 10);
 
-        RoedovreVej roedovreVej = new RoedovreVej();
-
-
-        System.out.println(roedovreVej.getCostOfOneHouse());
+        RoedovreVej roedovreVej = new RoedovreVej(12, 13, 14, 15,
+                16, 17, 18, 19, 20, 21);
 
     }
 

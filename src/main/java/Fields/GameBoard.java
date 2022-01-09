@@ -1,6 +1,7 @@
 package Fields;
 
 import ChanceCards.ChanceCard;
+import Fields.Properties.Property;
 import Main.Player;
 import gui_fields.GUI_Field;
 import gui_fields.GUI_Street;
@@ -15,6 +16,7 @@ public class GameBoard {
     private int intHelper;
     private int intHelper1;
     private Jackpot jackpot = new Jackpot();
+    private Property[] properties = new Property[20];
 
     public void instantiatingFields(){
 
@@ -22,7 +24,6 @@ public class GameBoard {
             fields[i] = new GUI_Street();
         }
         allField();
-
     }
 
     public void instantiatingFerries() {
