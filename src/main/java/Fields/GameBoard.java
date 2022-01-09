@@ -33,12 +33,15 @@ public class GameBoard {
     }
 
     public void createPropertiesPrices(){
+
+        //Blue fields
         properties[0] = new PropertyField(50, 100, 250, 750,
                 2250, 4000, 6000, 1200, 1000, 1000);
 
         properties[1] = new PropertyField(50, 100, 250, 750,
                 2250, 4000, 6000, 1200, 1000, 1000);
 
+        //Orange fields
         properties[2] = new PropertyField(100, 250, 600, 1800,
                 5400, 8000, 11000, 2000, 1000, 1000);
 
@@ -47,6 +50,16 @@ public class GameBoard {
 
         properties[4] = new PropertyField(150, 400, 800, 2000,
                 6000, 9000, 12000, 2400, 1000, 1000);
+
+        //Dark yellow fields
+        properties[5] = new PropertyField(200, 400, 1000, 3000,
+                9000, 12500, 15000, 2800, 2000, 2000);
+
+        properties[6] = new PropertyField(200, 400, 1000, 3000,
+                9000, 12500, 15000, 2800, 2000, 2000);
+
+        properties[7] = new PropertyField(250, 450, 1250, 3750,
+                10000, 14000, 18000, 3400, 2000, 2000);
 
     }
 
@@ -118,10 +131,10 @@ public class GameBoard {
         ownableField.setFields(fields,6, 2000,Color.orange,"Roskildevej");
         ownableField.setFields(fields,8, 2000,Color.orange,"Valby Langgade");
         ownableField.setFields(fields,9, 2400,Color.orange,"Allegade");
-        ownableField.setFields(fields,11, 2800,Color.yellow,"Frederiksberg Alle");
+        ownableField.setFields(fields,11, 2800,Color.yellow.darker(),"Frederiksberg Alle");
         ownableField.setBrewerFields(fields,12,Color.red,"Squash", "Tuborg");
-        ownableField.setFields(fields,13, 2800,Color.yellow,"Bulowsvej");
-        ownableField.setFields(fields,14,3200,Color.yellow,"Gl. Kongevej");
+        ownableField.setFields(fields,13, 2800,Color.yellow.darker(),"Bulowsvej");
+        ownableField.setFields(fields,14,3200,Color.yellow.darker(),"Gl. Kongevej");
         ownableField.setFerryFields(fields, 15, Color.RED, "Mols-linien", "En genvej i Danmark");
         ownableField.setFields(fields,16,3600,Color.gray,"Bernstorffsvej");
         ownableField.setFields(fields,18,3600,Color.gray,"Hellerupvej");

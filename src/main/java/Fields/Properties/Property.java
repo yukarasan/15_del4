@@ -16,7 +16,7 @@ public class Property {
 
     protected int rentOneOwned, rentAllOwned, rentOneHouse, rentTwoHouse, rentThreeHouse, rentFourHouse,
             rentHotel, fieldPrice, costOfOneHouse, costOfHotel, currentRentPrice;
-    protected boolean isOwned, allBlueOwned, allOrangeOwned;
+    protected boolean isOwned, allBlueOwned, allOrangeOwned, allDarkYellowOwned;
 
     //For each time a property field is initiated, it will need to start with setting all this above info
     protected Property(int rentOneOwned, int rentAllOwned, int rentOneHouse, int rentTwoHouse,
@@ -54,13 +54,29 @@ public class Property {
                 case 1, 2 -> currentRentPrice = rentOneOwned;
                 case 3 -> {
                     currentRentPrice = rentAllOwned;
-                    properties[6].setCurrentRentPrice(rentAllOwned);
-                    properties[8].setCurrentRentPrice(rentAllOwned);
-                    properties[9].setCurrentRentPrice(rentAllOwned);
+                    properties[2].setCurrentRentPrice(rentAllOwned);
+                    properties[3].setCurrentRentPrice(rentAllOwned);
+                    properties[4].setCurrentRentPrice(properties[4].getRentAllOwned());
                     allOrangeOwned = true;
                 }
             }
         }
+
+        if(!allDarkYellowOwned && currentRentPrice != rentAllOwned) {
+            switch (player.getOrangeOwned()) {
+                case 1, 2 -> currentRentPrice = rentOneOwned;
+                case 3 -> {
+                    currentRentPrice = rentAllOwned;
+                    properties[5].setCurrentRentPrice(rentAllOwned);
+                    properties[6].setCurrentRentPrice(rentAllOwned);
+                    properties[7].setCurrentRentPrice(properties[7].getRentAllOwned());
+                    allOrangeOwned = true;
+                }
+            }
+        }
+
+
+
     }
 
     public void setCurrentRentPrice(int currentRentPrice) {
