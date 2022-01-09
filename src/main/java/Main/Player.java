@@ -11,7 +11,8 @@ public class Player {
     private int square = 0;
     private boolean passedStartField, inJail, waitATurn;
     private int ferriesOwned, brewersOwned;
-    private int blueOwned, orangeOwned, darkYellowOwned, greyOwned, redOwned, whiteOwned;
+    private int blueOwned, orangeOwned, darkYellowOwned, greyOwned, redOwned, whiteOwned,
+            brightYellowOwned;
 
     /**
      * Creating a method setName that takes a name as a parameter and sets this.name (the name in this class) equal to
@@ -215,5 +216,13 @@ public class Player {
 
     public int getWhiteOwned() {
         return whiteOwned;
+    }
+
+    public void setBrightYellowOwned() {
+        this.brightYellowOwned += 1;
+    }
+
+    public int getBrightYellowOwned() {
+        return brightYellowOwned;
     }
 }

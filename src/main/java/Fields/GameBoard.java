@@ -92,6 +92,17 @@ public class GameBoard {
         properties[16] = new PropertyField(500, 1100, 2400, 7200,
                 17000, 20500, 24000, 5600, 3000, 3000);
 
+        //Bright yellow fields
+        properties[17] = new PropertyField(550, 1150,2600, 7800, 18000,
+                22000, 25000, 6000, 4000, 4000);
+
+        properties[18] = new PropertyField(550, 1150,2600, 7800, 18000,
+                22000, 25000, 6000, 4000, 4000);
+
+        properties[19] = new PropertyField(600, 1250,3000, 9000, 20000,
+                24000, 28000, 6400, 4000, 4000);
+
+        //Purple fields
 
 
     }
