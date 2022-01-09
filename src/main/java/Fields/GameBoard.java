@@ -39,7 +39,7 @@ public class GameBoard {
         unownableField.chanceField(fields);
         unownableField.jailField(fields);
         unownableField.freeParking(fields);
-        jackpot.jackPot(fields);
+        jackpot.jackpotField(fields);
         jail.jailFields(fields);
         createOwnableField();
     }
@@ -135,7 +135,8 @@ public class GameBoard {
         return jackpot;
     }
 
-    public Brewer[] getBrewers() {
-        return brewers;
-    }
+    //NOTE: This method below is not used in the method in the class Brewer, buyBrewerField
+  //  public Brewer[] getBrewers() {
+  //      return brewers;
+  // }
 }

@@ -11,7 +11,7 @@ public class MoveWithADelay {
 
         for (int i = 0; i < (diceCup.getDie1().getFaceValue() + diceCup.getDie2().getFaceValue()); i++) {
 
-            player.moveSquare(1, 0);
+            player.moveOneSquare(1);
 
             try {
                 TimeUnit.MILLISECONDS.sleep(100);
@@ -27,7 +27,7 @@ public class MoveWithADelay {
     public void movePlayerWithDelayInChanceCard(Player player, int move, GUI_Player gui_player, GUI_Controller gui) {
 
         for (int i = 0; i < move; i++) {
-            player.moveSquare(1, 0);
+            player.moveOneSquare(1);
 
             try {
                 TimeUnit.MILLISECONDS.sleep(100);
@@ -49,7 +49,7 @@ public class MoveWithADelay {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            player.moveSquare(1, 0);
+            player.moveOneSquare(1);
 
             // Moves the player to the square dependent on the value of move
 

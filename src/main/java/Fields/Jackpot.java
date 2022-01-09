@@ -9,7 +9,7 @@ import java.awt.*;
 public class Jackpot extends UnownableField {
     private static int jackpotBundle;
 
-    public void jackPot(GUI_Field[] field) {
+    public void jackpotField(GUI_Field[] field) {
         field[4] = new GUI_Tax();
         field[4].setSubText("Betal 1000");
         field[4].setTitle("Jackpot?");

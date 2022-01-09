@@ -10,6 +10,6 @@ public class RoedovreVej extends Property {
     }
 
     //public RoedovreVej(){
-     //   this.costOfOneHouse = 1003300;
+    //   this.costOfOneHouse = 1003300;
     //}
 }

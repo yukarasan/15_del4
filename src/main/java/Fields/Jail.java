@@ -31,14 +31,14 @@ public class Jail extends UnownableField {
 
             switch (chosenElement) {
                 case "Slå to ens terninger" -> {
-                    gui.getInstance().setDice(diceCup.getDie1().rollDice(), diceCup.getDie2().rollDice());
+                    gui.getInstance().setDice(diceCup.getDie1().rollDie(), diceCup.getDie2().rollDie());
                     if (diceCup.getDie1().getFaceValue() == diceCup.getDie2().getFaceValue()) {
                         gui.getInstance().showMessage("Tilykke! Du slog to ens. Du må nu rykke ud af fængslet og slå igen.");
-                        player.moveSquare(diceCup.getDie1().getFaceValue(), diceCup.getDie2().getFaceValue());
+                        player.moveToSquare(diceCup.getDie1().getFaceValue(), diceCup.getDie2().getFaceValue());
                         gui.getSpecificField(player.getSquare()).setCar(gui_player, true);
 
                         gui.getInstance().getUserButtonPressed(player.getName() + ", kast terningerne", "Kast");
-                        gui.getInstance().setDice(diceCup.getDie1().rollDice(), diceCup.getDie2().rollDice());
+                        gui.getInstance().setDice(diceCup.getDie1().rollDie(), diceCup.getDie2().rollDie());
 
                         moveWithADelay.movePlayerWithADelay(gui_player, player, diceCup, gui);
 
@@ -54,7 +54,7 @@ public class Jail extends UnownableField {
                     gui_player.setBalance(player.getAccount().getMoney());
                     gui.getInstance().showMessage("Tak for pengene. Du må nu slå igen for at komme ud.");
                     gui.getInstance().getUserButtonPressed(player.getName() + ", kast terningerne", "Kast");
-                    gui.getInstance().setDice(diceCup.getDie1().rollDice(), diceCup.getDie2().rollDice());
+                    gui.getInstance().setDice(diceCup.getDie1().rollDie(), diceCup.getDie2().rollDie());
                     moveWithADelay.movePlayerWithADelay(gui_player, player, diceCup, gui);
                     player.setInJail(false);
                     player.setWaitATurn(false);

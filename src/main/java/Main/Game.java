@@ -1,5 +1,6 @@
 package Main;
 
+import Fields.Jail;
 import Fields.MoveWithADelay;
 import GUI_Controllor.GUI_Controller;
 import gui_fields.GUI_Car;
@@ -10,13 +11,14 @@ import java.util.Locale;
 
 public class Game {
     private final GUI_Controller gui = new GUI_Controller();
-    private static final boolean[] numberOfOption = new boolean[6];
+    private static final boolean[] numberOfOptions = new boolean[6];
     private static boolean chooseColorAgain;
     private final DiceCup diceCup = new DiceCup();
     private static int numberOfPlayers;
     private Player[] players = new Player[numberOfPlayers];
     private GUI_Player[] gui_players = new GUI_Player[numberOfPlayers];
     private final MoveWithADelay moveWithADelay = new MoveWithADelay();
+    private Jail jail = new Jail();
 
     public void startGame() {
         gui.getInstance();
@@ -31,7 +33,7 @@ public class Game {
         gui.getInstance().showMessage("Velkommen til Matador!");
     }
 
-    public boolean checkForSameName(String name, int playerNamesYet, Player[] players) {
+    private boolean checkForSameName(String name, int playerNamesYet, Player[] players) {
         boolean writeNameAgain = false;
 
         for (int i = 0; i < playerNamesYet; i++) {
@@ -47,7 +49,7 @@ public class Game {
         return writeNameAgain;
     }
 
-    public void colorChooser(boolean[] colorChosen, int numberOfOption, String colorString, int playerNumber, GUI_Car car, Color color) {
+    private void colorChooser(boolean[] colorChosen, int numberOfOption, String colorString, int playerNumber, GUI_Car car, Color color) {
 
         if (colorChosen[numberOfOption]) {
             gui.getInstance().showMessage("Spiller " + (playerNumber + 1) + ", " + colorString + " er allerede taget");
@@ -90,7 +92,7 @@ public class Game {
 
             char firstChar = name.charAt(0);  // localizing the first character at index 0
             char lastChar = name.charAt(name.length() - 1);  // localizing the last character at index "name length"
-            String firstLetter = (Character.toString(firstChar)).toUpperCase(Locale.ROOT);  // Converting to a string and making
+            String firstLetter = (Character.toString(firstChar)).toUpperCase(Locale.ROOT);  // Converting to a string and making it upper case
             String restOfName = name.substring(1);  // Making a variable that separates the name at index 1
 
             // Determining if input contains " " and then trimming the string before computing the rest of the statements
@@ -120,12 +122,12 @@ public class Game {
                 String color = gui.getInstance().getUserButtonPressed("Hvilken farve bil ønsker du?", "Blå", "Sort", "Hvid", "Gul", "Rød", "Grøn");
 
                 switch (color) {
-                    case "Blå" -> colorChooser(numberOfOption, 0, color, i, car[i], Color.blue);
-                    case "Sort" -> colorChooser(numberOfOption, 1, color, i, car[i], Color.black);
-                    case "Hvid" -> colorChooser(numberOfOption, 2, color, i, car[i], Color.white);
-                    case "Gul" -> colorChooser(numberOfOption, 3, color, i, car[i], Color.yellow);
-                    case "Rød" -> colorChooser(numberOfOption, 4, color, i, car[i], Color.red);
-                    case "Grøn" -> colorChooser(numberOfOption, 5, color, i, car[i], Color.green);
+                    case "Blå" -> colorChooser(numberOfOptions, 0, color, i, car[i], Color.blue);
+                    case "Sort" -> colorChooser(numberOfOptions, 1, color, i, car[i], Color.black);
+                    case "Hvid" -> colorChooser(numberOfOptions, 2, color, i, car[i], Color.white);
+                    case "Gul" -> colorChooser(numberOfOptions, 3, color, i, car[i], Color.yellow);
+                    case "Rød" -> colorChooser(numberOfOptions, 4, color, i, car[i], Color.red);
+                    case "Grøn" -> colorChooser(numberOfOptions, 5, color, i, car[i], Color.green);
                 }
             }
             gui_players[i] = new GUI_Player(players[i].getName(), players[i].getAccount().getMoney(), car[i]);
@@ -144,17 +146,28 @@ public class Game {
                     gui.getInstance().showMessage(players[i].getName() + ", du har slået to ens terninger, slå igen");
                     playerTurn(players[i], gui_players[i]);
                 }
+                if(diceCup.getDie1().getFaceValue() == diceCup.getDie2().getFaceValue() &&
+                        diceCup.getDie1().getFaceValue() == diceCup.getDie2().getFaceValue() && !players[i].getInJail()){
+                   gui.getInstance().showMessage(players[i].getName() + ", du har slået to terninger igen " +
+                           "og skal slå en sidste gang");
+                }
+                if(diceCup.getDie1().getFaceValue() == diceCup.getDie2().getFaceValue() && diceCup.getDie1().getFaceValue() ==
+                        diceCup.getDie2().getFaceValue() && diceCup.getDie1().getFaceValue() == diceCup.getDie2().getFaceValue()
+                        && !players[i].getInJail()){
+                    gui.getInstance().showMessage(players[i].getName() + ", du har slået to ens terninger for " +
+                            "tredje gang, og derfor skal du i fængsel");
+                    jail.setPlayerInJail(gui_players[i],players[i]);
+                }
             }
         }
-    }
-
-    public void playerTurn(Player player, GUI_Player gui_player) {
+   }
+    private void playerTurn(Player player, GUI_Player gui_player) {
         if (!player.getInJail()) {
             //Player throws dice
             gui.getInstance().getUserButtonPressed(player.getName() + ", kast terningerne", "Kast");
 
             //Dice get shown on board
-            gui.getInstance().setDice(diceCup.getDie1().rollDice(), diceCup.getDie2().rollDice());
+            gui.getInstance().setDice(diceCup.getDie1().rollDie(), diceCup.getDie2().rollDie());
 
             //This is when the piece moves one square by one square up until thrown value
             moveWithADelay.movePlayerWithADelay(gui_player, player,diceCup,gui);
@@ -186,7 +199,7 @@ public class Game {
         }
     }
 
-    public void passStartField(Player player, GUI_Player gui_players){
+    private void passStartField(Player player, GUI_Player gui_players){
 
         if(player.getPassedStartField()){
             gui.getInstance().showMessage(player.getName() + ", du har passeret start og modtager 4000 DKK");
@@ -203,6 +216,7 @@ public class Game {
             case "Brewer" -> gui.getGameBoard()
         }
     }*/
+
 
 
     public void optionToBuyProperty(Player player, GUI_Player gui_players){

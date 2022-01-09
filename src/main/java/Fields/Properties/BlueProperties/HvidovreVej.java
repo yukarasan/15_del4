@@ -5,8 +5,8 @@ import Fields.Properties.Property;
 public class HvidovreVej extends Property {
 
     HvidovreVej(int rentNoHouse, int rentAllOwned, int  rentOneHouse, int  rentTwoHouse,
-                       int  rentThreeHouse, int  rentFourHouse, int rentHotel, int fieldPrice,
-                       int costOfOneHouse, int  costOfHotel){
+                int  rentThreeHouse, int  rentFourHouse, int rentHotel, int fieldPrice,
+                int costOfOneHouse, int  costOfHotel){
 
         super(rentNoHouse, rentAllOwned, rentOneHouse, rentTwoHouse, rentThreeHouse,
                 rentFourHouse, rentHotel, fieldPrice, costOfOneHouse, costOfHotel);
@@ -26,7 +26,7 @@ public class HvidovreVej extends Property {
     public static void main(String[] args) {
 
         HvidovreVej hvidovreVej = new HvidovreVej(1,2,3,4,
-        5, 6, 7, 8, 9, 10);
+                5, 6, 7, 8, 9, 10);
 
         RoedovreVej roedovreVej = new RoedovreVej(12, 13, 14, 15,
                 16, 17, 18, 19, 20, 21);

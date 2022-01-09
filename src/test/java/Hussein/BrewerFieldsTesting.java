@@ -20,7 +20,7 @@ public class BrewerFieldsTesting {
         gameBoard.initializeBrewers();
 
         //Buying first brewer field
-        player.moveSquare(12,0);
+        player.moveToSquare(12,0);
         gameBoard.getBrewer(player).buyBrewerField(player, randomGuiPlayer);
 
 
@@ -28,7 +28,7 @@ public class BrewerFieldsTesting {
         player1.setName("tester");
 
         //Another player tests out the price when one is owned by the same player
-        player1.moveSquare(12,0);
+        player1.moveToSquare(12,0);
 
         DiceCup diceCup = new DiceCup();
 

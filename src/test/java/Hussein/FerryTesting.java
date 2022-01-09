@@ -75,7 +75,7 @@ public class FerryTesting {
 
         System.out.println("Money now before buy: " + player.getAccount().getMoney());
 
-        player.moveSquare(5,0);
+        player.moveToSquare(5,0);
 
         //
         GUI_Car randomCar = new GUI_Car();
@@ -86,7 +86,7 @@ public class FerryTesting {
 
         System.out.println("Money now after buy: " + player.getAccount().getMoney());
 
-        player1.moveSquare(5,0);
+        player1.moveToSquare(5,0);
 
         ferryTesting.payOwnerOfFerry(player1);
 
