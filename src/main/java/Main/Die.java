@@ -1,5 +1,9 @@
 package Main;
 
+import Fields.Jail;
+import GUI_Controllor.GUI_Controller;
+import gui_fields.GUI_Player;
+
 /**
  * This class represent a single die that be rolled (raffled) and give a random face value of the die.
  *
