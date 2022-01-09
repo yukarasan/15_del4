@@ -24,6 +24,7 @@ public class Game {
         gui.getInstance();
         gui.getGameBoard().instantiatingFerries();
         gui.getGameBoard().initializeBrewers();
+        gui.getGameBoard().createPropertiesPrices();
         welcomingPlayer();
         createPlayer();
         round();
@@ -185,6 +186,8 @@ public class Game {
 
         gui.getGameBoard().getJackpot().payToJackpot(player, gui_player);
         gui.getGameBoard().getJackpot().receiveJackpot(player, gui_player);
+
+        gui.getGameBoard().getProperty(player).landOnProperty(player, gui_player, gui.getGameBoard().getProperties());
 
 
         if (player.getSquare() == 30) {

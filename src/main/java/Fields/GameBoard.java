@@ -47,6 +47,9 @@ public class GameBoard {
         return properties[intHelper2];
     }
 
+    public Property[] getProperties() {
+        return properties;
+    }
 
     public void checkIfLandedPropertyField(Player player){
 
