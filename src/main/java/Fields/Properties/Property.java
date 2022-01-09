@@ -9,7 +9,7 @@ public class Property {
     private GUI_Controller gui = new GUI_Controller();
     private Player owner;
     private GUI_Player guiOwner;
-    private int[] propertyFieldNumbers = {1, 3, 6, 8, 9, 11, 13, 14, 16, 18, 19, 21, 23, 24, 26, 27, 29, 31, 23, 34, 37, 39};
+    private int[] propertyFieldNumbers = {1, 3, 6, 8, 9, 11, 13, 14, 16, 18, 19, 21, 23, 24, 26, 27, 29, 31, 32, 34, 37, 39};
 
     //Below is the rent on various occasions of ownable fields that'll extend Properties.
     //Also below is cost of eventual upgrades and the rent if a set of one color are owned by one player
@@ -17,7 +17,7 @@ public class Property {
     protected int rentOneOwned, rentAllOwned, rentOneHouse, rentTwoHouse, rentThreeHouse, rentFourHouse,
             rentHotel, fieldPrice, costOfOneHouse, costOfHotel, currentRentPrice;
     protected boolean isOwned, allBlueOwned, allOrangeOwned, allDarkYellowOwned, allGreyOwned, allRedOwned,
-            allWhiteOwned, allBrightYellowOwned;
+            allWhiteOwned, allBrightYellowOwned, allPurpleOwned;
 
     //For each time a property field is initiated, it will need to start with setting all this above info
     protected Property(int rentOneOwned, int rentAllOwned, int rentOneHouse, int rentTwoHouse,
@@ -128,7 +128,18 @@ public class Property {
             }
         }
 
-
+        if(!allPurpleOwned && currentRentPrice != rentAllOwned) {
+            switch (player.getPurpleOwned()) {
+                case 1, 2 -> currentRentPrice = rentOneOwned;
+                case 3 -> {
+                    currentRentPrice = rentAllOwned;
+                    properties[20].setCurrentRentPrice(rentAllOwned);
+                    properties[21].setCurrentRentPrice(rentAllOwned);
+                    properties[22].setCurrentRentPrice(properties[22].getRentAllOwned());
+                    allPurpleOwned = true;
+                }
+            }
+        }
     }
 
     public void setCurrentPriceDarkYellow(){

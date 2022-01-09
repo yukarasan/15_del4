@@ -30,7 +30,7 @@ public class BlueFieldTest {
         gui.getInstance().addPlayer(gui_player);
 
         //Moving player to a blue property and choosing to buy
-        player.moveToHere(1);
+        player.moveToHere(32);
         gui.getSpecificField(player.getSquare()).setCar(gui_player, true);
 
         gameBoard.getProperty(player).landOnProperty(player, gui_player, gameBoard.getProperties());

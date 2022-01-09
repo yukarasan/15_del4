@@ -12,7 +12,7 @@ public class Player {
     private boolean passedStartField, inJail, waitATurn;
     private int ferriesOwned, brewersOwned;
     private int blueOwned, orangeOwned, darkYellowOwned, greyOwned, redOwned, whiteOwned,
-            brightYellowOwned;
+            brightYellowOwned, purpleOwned;
 
     /**
      * Creating a method setName that takes a name as a parameter and sets this.name (the name in this class) equal to
@@ -224,5 +224,13 @@ public class Player {
 
     public int getBrightYellowOwned() {
         return brightYellowOwned;
+    }
+
+    public void setPurpleOwned() {
+        this.purpleOwned += 1;
+    }
+
+    public int getPurpleOwned() {
+        return purpleOwned;
     }
 }
