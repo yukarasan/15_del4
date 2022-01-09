@@ -215,6 +215,7 @@ public class Game {
         }
     }
 
+
     /*public void chooseWhichMortgage(Player player, GUI_Player gui_player){
         String chooseMortgage = gui.getInstance().getUserButtonPressed("Vælg hvilken type du vil sælge: " +
                 "Brewer", "Ferry");

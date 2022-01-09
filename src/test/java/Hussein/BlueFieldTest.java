@@ -30,7 +30,7 @@ public class BlueFieldTest {
         gui.getInstance().addPlayer(gui_player);
 
         //Moving player to a blue property and choosing to buy
-        player.moveToHere(32);
+        player.moveToHere(1);
         gui.getSpecificField(player.getSquare()).setCar(gui_player, true);
 
         gameBoard.getProperty(player).landOnProperty(player, gui_player, gameBoard.getProperties());
@@ -58,10 +58,9 @@ public class BlueFieldTest {
         gui.getSpecificField(player.getSquare()).setCar(gui_player, true);
         gameBoard.getProperty(player).landOnProperty(player, gui_player, gameBoard.getProperties());
 
+
         //Now checking the tester player on the same field as before, and see if the price has changed
         //since the same owner owns both blue
         gameBoard.getProperty(player1).landOnProperty(player1, gui_player1, gameBoard.getProperties());
-
     }
-
 }

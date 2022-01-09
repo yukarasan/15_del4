@@ -15,7 +15,7 @@ public class Property {
     //Also below is cost of eventual upgrades and the rent if a set of one color are owned by one player
 
     protected int rentOneOwned, rentAllOwned, rentOneHouse, rentTwoHouse, rentThreeHouse, rentFourHouse,
-            rentHotel, fieldPrice, costOfOneHouse, costOfHotel, currentRentPrice;
+            rentHotel, fieldPrice, costOfOneHouse, costOfHotel, currentRentPrice, amountOfHouses, intHelper;
     protected boolean isOwned, allBlueOwned, allOrangeOwned, allDarkYellowOwned, allGreyOwned, allRedOwned,
             allWhiteOwned, allBrightYellowOwned, allPurpleOwned;
 
@@ -142,9 +142,6 @@ public class Property {
         }
     }
 
-    public void setCurrentPriceDarkYellow(){
-
-    }
 
 
     public void setCurrentRentPrice(int currentRentPrice) {
@@ -247,4 +244,53 @@ public class Property {
 
         guiOwner.setBalance(owner.getAccount().getMoney());
     }
+
+
+    public void placeHouse(int fieldNumber, Property[] properties){
+
+        checkWhichPropertyField(fieldNumber);
+
+        owner.getAccount().setMoney(properties[intHelper].getCostOfOneHouse());
+        guiOwner.setBalance(owner.getAccount().getMoney());
+
+        amountOfHouses += 1;
+
+        switch (amountOfHouses){
+            case 1 -> properties[intHelper].setCurrentRentPrice(properties[intHelper].getRentOneHouse());
+            case 2 -> properties[intHelper].setCurrentRentPrice(properties[intHelper].getRentTwoHouse());
+            case 3 -> properties[intHelper].setCurrentRentPrice(properties[intHelper].getRentThreeHouse());
+            case 4 -> properties[intHelper].setCurrentRentPrice(properties[intHelper].getRentFourHouse());
+        }
+        gui.getGameBoard().getGuiStreet(fieldNumber).setHouses(amountOfHouses);
+    }
+
+    public void checkWhichPropertyField(int fieldNumber){
+
+        switch (fieldNumber) {
+            case 1 -> intHelper = 0;
+            case 3 -> intHelper = 1;
+            case 6 -> intHelper = 2;
+            case 8 -> intHelper = 3;
+            case 9 -> intHelper = 4;
+            case 11 -> intHelper = 5;
+            case 13 -> intHelper = 6;
+            case 14 -> intHelper = 7;
+            case 16 -> intHelper = 8;
+            case 18 -> intHelper = 9;
+            case 19 -> intHelper = 10;
+            case 21 -> intHelper = 11;
+            case 23 -> intHelper = 12;
+            case 24 -> intHelper = 13;
+            case 26 -> intHelper = 14;
+            case 27 -> intHelper = 15;
+            case 29 -> intHelper = 16;
+            case 31 -> intHelper = 17;
+            case 32 -> intHelper = 18;
+            case 34 -> intHelper = 19;
+            case 37 -> intHelper = 20;
+            case 39 -> intHelper = 21;
+        }
+    }
+
+
 }
