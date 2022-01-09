@@ -27,15 +27,21 @@ public class ChanceCard {
     private final MoveThreeFieldsForward card19 = new MoveThreeFieldsForward();
     private final MoveThreeFieldsBack card20 = new MoveThreeFieldsBack();
     private final Tipping card21 = new Tipping();
+    int counter = 1;
 
     public void playerLandsOnChanceField(Player player, GUI_Player gui_player) {
         int[] chanceFields = {2, 7, 17, 22, 33, 36};
 
         int sq = player.getSquare();
 
-        int randomCard = (int) (Math.random() * 1 + 1);
+
 
         if(IntStream.of(chanceFields).anyMatch(x -> x == sq)) {
+
+            if(counter==26){
+                counter=1;
+            }
+            int randomCard = counter;
 
             switch (randomCard) {
                 case 1 -> card1.deliveryOfSoda(gui_player, player);
@@ -60,6 +66,8 @@ public class ChanceCard {
                 case 24 -> card20.moveThreeFieldsBack(gui_player, player);
                 case 25 -> card21.tipping(gui_player, player);
             }
+            counter++;
         }
+
     }
 }
