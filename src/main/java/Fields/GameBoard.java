@@ -81,6 +81,19 @@ public class GameBoard {
         properties[13] = new PropertyField(400, 850, 2000, 6000,
                 15000, 18500, 22000, 4800, 3000, 3000);
 
+
+        //White fields
+        properties[14] = new PropertyField(450, 1000, 2200, 6600,
+                16000, 19500, 23000, 5200, 3000, 3000);
+
+        properties[15] = new PropertyField(450, 1000, 2200, 6600,
+                16000, 19500, 23000, 5200, 3000, 3000);
+
+        properties[16] = new PropertyField(500, 1100, 2400, 7200,
+                17000, 20500, 24000, 5600, 3000, 3000);
+
+
+
     }
 
     public Property getProperty(Player player){
