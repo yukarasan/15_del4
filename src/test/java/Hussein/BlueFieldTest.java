@@ -58,6 +58,8 @@ public class BlueFieldTest {
         gui.getSpecificField(player.getSquare()).setCar(gui_player, true);
         gameBoard.getProperty(player).landOnProperty(player, gui_player, gameBoard.getProperties());
 
+        gameBoard.getProperty(player).optionsWhenOwningAllFields(gameBoard.getProperties(), player);
+
 
         //Now checking the tester player on the same field as before, and see if the price has changed
         //since the same owner owns both blue

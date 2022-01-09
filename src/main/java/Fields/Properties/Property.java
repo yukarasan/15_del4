@@ -1,7 +1,9 @@
 package Fields.Properties;
 
+import Fields.GameBoard;
 import GUI_Controllor.GUI_Controller;
 import Main.Player;
+import gui_fields.GUI_Car;
 import gui_fields.GUI_Player;
 import java.util.stream.IntStream;
 
@@ -16,6 +18,7 @@ public class Property {
 
     protected int rentOneOwned, rentAllOwned, rentOneHouse, rentTwoHouse, rentThreeHouse, rentFourHouse,
             rentHotel, fieldPrice, costOfOneHouse, costOfHotel, currentRentPrice, amountOfHouses, intHelper;
+
     protected boolean isOwned, allBlueOwned, allOrangeOwned, allDarkYellowOwned, allGreyOwned, allRedOwned,
             allWhiteOwned, allBrightYellowOwned, allPurpleOwned;
 
@@ -290,6 +293,80 @@ public class Property {
             case 37 -> intHelper = 20;
             case 39 -> intHelper = 21;
         }
+    }
+
+    public void optionsWhenOwningAllFields(Property[] properties, Player player){
+
+        boolean chooseAgain = true;
+        while(chooseAgain) {
+            chooseAgain = false;
+
+            String colorPressed = gui.getInstance().getUserButtonPressed(player.getName() + ", vælg hvor du vil bygge", "Blå",
+                    "Orange", "Mørkegul", "Grå", "Rød", "Hvid", "Lysegul", "Lilla");
+
+            switch (colorPressed) {
+
+                case "Blå" -> {
+
+                    if(allBlueOwned && player == properties[1].getOwner()){
+                        String buttonPressed = gui.getInstance().getUserButtonPressed(player.getName() +
+                                ", du ejer alle blå, vil du købe huse her?", "Ja", "Nej");
+
+                        if(buttonPressed.equals("Ja")){
+                            String secondButton = gui.getInstance().getUserButtonPressed("Vælg hvilket felt du ønsker at bygge på",
+                                    gui.getSpecificField(1).getTitle(), gui.getSpecificField(3).getTitle(),
+                                    "ingen af husene, jeg vil ikke købe i blå");
+
+                            if(secondButton.equals(gui.getSpecificField(1).getTitle())){
+                                placeHouse(1, properties);
+
+                            }else if(secondButton.equals(gui.getSpecificField(3).getTitle())){
+                                placeHouse(3, properties);
+                            }
+                        }
+                    }else{
+                        gui.getInstance().showMessage("Du ejer ikke alle blå, vælg en anden");
+                        chooseAgain = true;
+                    }
+                }
+
+
+            }
+        }
+
+
+
+
+
+    }
+
+    public static void main(String[] args) {
+
+        GUI_Controller gui = new GUI_Controller();
+        GameBoard gameBoard = new GameBoard();
+        gameBoard.createPropertiesPrices();
+
+        Player player = new Player();
+        player.setName("Huss");
+        GUI_Car car = new GUI_Car();
+        GUI_Player gui_player = new GUI_Player(player.getName(), player.getAccount().getMoney(), car);
+
+        gui.getInstance().addPlayer(gui_player);
+        gui.getSpecificField(player.getSquare()).setCar(gui_player, true);
+
+        player.moveToHere(1);
+        gameBoard.getProperty(player).landOnProperty(player, gui_player, gameBoard.getProperties());
+
+        player.moveToHere(3);
+        gameBoard.getProperty(player).landOnProperty(player, gui_player, gameBoard.getProperties());
+
+
+
+
+
+
+
+
     }
 
 
