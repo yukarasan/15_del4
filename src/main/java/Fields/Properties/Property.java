@@ -63,7 +63,7 @@ public class Property {
         }
 
         if(!allDarkYellowOwned && currentRentPrice != rentAllOwned) {
-            switch (player.getOrangeOwned()) {
+            switch (player.getDarkYellowOwned()) {
                 case 1, 2 -> currentRentPrice = rentOneOwned;
                 case 3 -> {
                     currentRentPrice = rentAllOwned;
@@ -156,6 +156,7 @@ public class Property {
             switch (owner.getSquare()){
                 case 1, 3 -> owner.setBlueOwned();
                 case 6, 8, 9 -> owner.setOrangeOwned();
+                case 11, 13, 14 -> owner.setDarkYellowOwned();
             }
             setCurrentRentPriceIfOwning(player, properties);
         }
