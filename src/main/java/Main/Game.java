@@ -1,5 +1,6 @@
 package Main;
 
+import Fields.Jail;
 import Fields.MoveWithADelay;
 import GUI_Controllor.GUI_Controller;
 import gui_fields.GUI_Car;
@@ -17,6 +18,7 @@ public class Game {
     private Player[] players = new Player[numberOfPlayers];
     private GUI_Player[] gui_players = new GUI_Player[numberOfPlayers];
     private final MoveWithADelay moveWithADelay = new MoveWithADelay();
+    private Jail jail = new Jail();
 
     public void startGame() {
         gui.getInstance();
@@ -144,9 +146,13 @@ public class Game {
                     gui.getInstance().showMessage(players[i].getName() + ", du har slået to ens terninger, slå igen");
                     playerTurn(players[i], gui_players[i]);
                 }
+              //  if(diceCup.getDie1().getFaceValue() == diceCup.getDie2().getFaceValue() && diceCup.getDie1().getFaceValue() == diceCup.getDie2().getFaceValue() && !players[i].getInJail()){
+                  //  gui.getInstance().showMessage(players[i].getName() + ", du har slået to ens terninger igen og derfor skal du i fængsel");
+                 //   jail.setPlayerInJail(gui_players[i],players[i]);
+                }
             }
         }
-    }
+  //  }
 
     private void playerTurn(Player player, GUI_Player gui_player) {
         if (!player.getInJail()) {
@@ -203,6 +209,7 @@ public class Game {
             case "Brewer" -> gui.getGameBoard()
         }
     }*/
+
 
 
     public void optionToBuyProperty(Player player, GUI_Player gui_players){
