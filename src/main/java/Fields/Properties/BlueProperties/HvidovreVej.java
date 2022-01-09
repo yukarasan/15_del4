@@ -1,9 +1,9 @@
-package Fields.Properties.BlueProperties;
+//package Fields.Properties.BlueProperties;
 
 import Fields.Properties.Properties;
 import Main.Main;
 
-public class HvidovreVej extends Properties {
+/*public class HvidovreVej extends Properties {
 
     public HvidovreVej(){
         this.fieldPrice = 1200;
@@ -17,9 +17,8 @@ public class HvidovreVej extends Properties {
 
         RoedovreVej roedovreVej = new RoedovreVej();
 
-
         System.out.println(roedovreVej.getCostOfOneHouse());
 
     }
 
-}
+}*/

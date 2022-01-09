@@ -3,14 +3,13 @@ package Sabirin;
 import Fields.GameBoard;
 import Fields.Jail;
 import GUI_Controllor.GUI_Controller;
-import Main.DiceCup;
 import Main.Die;
 import Main.Game;
 import Main.Player;
 import gui_fields.GUI_Car;
 import gui_fields.GUI_Player;
 
-public class SameDiceTwiceGoToJail {
+public class SameDiceValueThirdTime {
     private static int dice;
 
     private void setDice(int die1, int die2) {
@@ -37,7 +36,6 @@ public class SameDiceTwiceGoToJail {
 
 
         Die die = new Die();
-        DiceCup diceCup = new DiceCup();
 
         gui.getInstance().showMessage(player.getName() + ", du må slå med terningerne");
 
@@ -49,9 +47,15 @@ public class SameDiceTwiceGoToJail {
         gui.getInstance().setDice(5, 5);
 
         if (getDice() == getDice() && getDice() == getDice() && getDice() == getDice() && getDice() == getDice() && !player.getInJail()) {
-            gui.getInstance().showMessage(player.getName() + ", du har slået det samme igen igen, du må derfor få i fængsel");
-            jail.setPlayerInJail(gui_player, player);
-
+            gui.getInstance().showMessage(player.getName() +
+                    ", du har slået det samme igen igen, du må slå en sidste gang");
+        }
+        gui.getInstance().setDice(5, 5);
+        if(getDice() == getDice() && getDice() == getDice() && getDice() == getDice() && getDice() == getDice()
+                && getDice() == getDice() && getDice() == getDice() && !player.getInJail()){
+            gui.getInstance().showMessage(player.getName() + ", du har slået det samme tre gange " +
+                    "og derfor skal i fængsel");
+            jail.setPlayerInJail(gui_player,player);
         }
     }
 }
