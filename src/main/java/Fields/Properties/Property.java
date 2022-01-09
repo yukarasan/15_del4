@@ -16,7 +16,7 @@ public class Property {
 
     protected int rentOneOwned, rentAllOwned, rentOneHouse, rentTwoHouse, rentThreeHouse, rentFourHouse,
             rentHotel, fieldPrice, costOfOneHouse, costOfHotel, currentRentPrice;
-    protected boolean isOwned, allBlueOwned, allOrangeOwned, allDarkYellowOwned, allGreyOwned;
+    protected boolean isOwned, allBlueOwned, allOrangeOwned, allDarkYellowOwned, allGreyOwned, allRedOwned;
 
     //For each time a property field is initiated, it will need to start with setting all this above info
     protected Property(int rentOneOwned, int rentAllOwned, int rentOneHouse, int rentTwoHouse,
@@ -70,7 +70,7 @@ public class Property {
                     properties[5].setCurrentRentPrice(rentAllOwned);
                     properties[6].setCurrentRentPrice(rentAllOwned);
                     properties[7].setCurrentRentPrice(properties[7].getRentAllOwned());
-                    allOrangeOwned = true;
+                    allDarkYellowOwned = true;
                 }
             }
         }
@@ -83,7 +83,20 @@ public class Property {
                     properties[8].setCurrentRentPrice(rentAllOwned);
                     properties[9].setCurrentRentPrice(rentAllOwned);
                     properties[10].setCurrentRentPrice(properties[7].getRentAllOwned());
-                    allOrangeOwned = true;
+                    allGreyOwned = true;
+                }
+            }
+        }
+
+        if(!allRedOwned && currentRentPrice != rentAllOwned) {
+            switch (player.getRedOwned()) {
+                case 1, 2 -> currentRentPrice = rentOneOwned;
+                case 3 -> {
+                    currentRentPrice = rentAllOwned;
+                    properties[8].setCurrentRentPrice(rentAllOwned);
+                    properties[9].setCurrentRentPrice(rentAllOwned);
+                    properties[10].setCurrentRentPrice(properties[7].getRentAllOwned());
+                    allRedOwned = true;
                 }
             }
         }
@@ -175,6 +188,7 @@ public class Property {
                 case 6, 8, 9 -> owner.setOrangeOwned();
                 case 11, 13, 14 -> owner.setDarkYellowOwned();
                 case 16, 18, 19 -> owner.setGreyOwned();
+                case 21, 23, 34 -> owner.setRedOwned();
             }
             setCurrentRentPriceIfOwning(player, properties);
         }

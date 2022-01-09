@@ -71,7 +71,15 @@ public class GameBoard {
         properties[10] = new PropertyField(350, 700, 1600, 4400,
                 12000, 16000, 20000, 4000, 2000, 2000);
 
+        //Red fields
+        properties[11] = new PropertyField(350, 750, 1800, 5000,
+                14000, 17500, 21000, 4400, 3000, 3000);
 
+        properties[12] = new PropertyField(350, 750, 1800, 5000,
+                14000, 17500, 21000, 4400, 3000, 3000);
+
+        properties[13] = new PropertyField(400, 850, 2000, 6000,
+                15000, 18500, 22000, 4800, 3000, 3000);
 
     }
 
@@ -112,8 +120,6 @@ public class GameBoard {
             case 39 -> intHelper2 = 21;
         }
     }
-
-
 
     public void allField() {
         UnownableField unownableField = new UnownableField();
