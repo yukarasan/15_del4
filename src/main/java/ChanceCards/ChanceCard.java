@@ -41,9 +41,9 @@ public class ChanceCard {
             if(counter==26){
                 counter=1;
             }
-            int randomCard = counter;
+            int pileOfCards = counter;
 
-            switch (randomCard) {
+            switch (pileOfCards) {
                 case 1 -> card1.deliveryOfSoda(gui_player, player);
                 case 2 -> card2.carInsurance(gui_player, player);
                 case 3, 4, 5 -> card3.dividend(gui_player, player);
