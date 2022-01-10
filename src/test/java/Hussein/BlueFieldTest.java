@@ -52,7 +52,7 @@ public class BlueFieldTest {
         gameBoard.getProperty(player1).landOnProperty(player1, gui_player1, gameBoard.getProperties());
 
         //Moving the owner to the other blue field to make the same owner of two blue fields
-        //To check of the price changes from 50 to 100
+        //to check if the price changes from 50 to 100
 
         player.moveToHere(3);
         gui.getSpecificField(player.getSquare()).setCar(gui_player, true);
