@@ -1,5 +1,6 @@
 package Main;
 
+import Fields.GameBoard;
 import Fields.Jail;
 import Fields.MoveWithADelay;
 import GUI_Controllor.GUI_Controller;
@@ -8,6 +9,8 @@ import gui_fields.GUI_Player;
 import java.awt.*;
 import java.util.Arrays;
 import java.util.Locale;
+
+import static java.awt.Color.blue;
 
 public class Game {
     private final GUI_Controller gui = new GUI_Controller();
@@ -19,6 +22,7 @@ public class Game {
     private GUI_Player[] gui_players = new GUI_Player[numberOfPlayers];
     private final MoveWithADelay moveWithADelay = new MoveWithADelay();
     private Jail jail = new Jail();
+    private int intHelper;
 
     public void startGame() {
         gui.getInstance();
@@ -156,8 +160,6 @@ public class Game {
                             "tredje gang, og derfor skal du i fængsel");
                     setPlayerInJail(gui_players[i],players[i]);
                 }
-
-
             }
         }
    }
@@ -293,4 +295,117 @@ public class Game {
 
     }
 
+    /**
+     * Checks whether a player wins or loses. This is done with an if-statement. If a player has less than 0 or
+     * equal to 0, then a message gets printed out saying that they have gone bankrupt.
+     * Then the player will be set out of the game, using the setter in the player class.
+     *
+     */
+
+    public void makeIntHelper(Player player) {
+
+        switch (player.getSquare()) {
+            case 1 -> intHelper = 0;
+            case 3 -> intHelper = 1;
+            case 6 -> intHelper = 2;
+            case 8 -> intHelper = 3;
+            case 9 -> intHelper = 4;
+            case 11 -> intHelper = 5;
+            case 13 -> intHelper = 6;
+            case 14 -> intHelper = 7;
+            case 16 -> intHelper = 8;
+            case 18 -> intHelper = 9;
+            case 19 -> intHelper = 10;
+            case 21 -> intHelper = 11;
+            case 23 -> intHelper = 12;
+            case 24 -> intHelper = 13;
+            case 26 -> intHelper = 14;
+            case 27 -> intHelper = 15;
+            case 29 -> intHelper = 16;
+            case 31 -> intHelper = 17;
+            case 32 -> intHelper = 18;
+            case 34 -> intHelper = 19;
+            case 37 -> intHelper = 20;
+            case 39 -> intHelper = 21;
+        }
+    }
+
+    public void checkIfPlayerLooses(Player player, GUI_Player gui_player) {
+        if (player.getAccount().getMoney() <= 0) {
+            gui.getInstance().showMessage(player.getName() + " er gået bankerot");
+            player.setPlayerOutOfGame(true);
+            gui.getSpecificField(player.getSquare()).setCar(gui_player, false);
+
+            for (int i = 0; i < gui.getGameBoard().getProperties().length; i++) {
+                if(player == gui.getGameBoard().getProperty(i).getOwner()){
+                    gui.getGameBoard().getProperties()[i].resetProperty(i);
+                }
+            }
+
+            for (int i = 0; i < gui.getGameBoard().getFerries().length; i++) {
+                if(player == gui.getGameBoard().getFerries()[i].getOwner()){
+                    gui.getGameBoard().getFerries()[i].resetFerry(i);
+                }
+            }
+
+            for (int i = 0; i < gui.getGameBoard().getBrewers().length; i++) {
+                if(player == gui.getGameBoard().getBrewers()[i].getOwner()){
+                    gui.getGameBoard().getBrewers()[i].resetBrewer(i);
+                }
+            }
+            gui.getInstance().showMessage("Alle " + player.getName() + "'s felter er nu tilgængelige for køb.");
+        }
+    }
+
+    public static void main(String[] args) {
+
+        GUI_Controller gui = new GUI_Controller();
+
+        gui.getInstance();
+        gui.getGameBoard().instantiatingFerries();
+        gui.getGameBoard().initializeBrewers();
+        gui.getGameBoard().createPropertiesPrices();
+
+        Game game = new Game();
+
+        Player player = new Player();
+        player.setName("tester");
+
+        GUI_Car car = new GUI_Car();
+        car.setPrimaryColor(blue);
+        GUI_Player gui_player = new GUI_Player(player.getName(), player.getAccount().getMoney(), car);
+
+        gui.getInstance().addPlayer(gui_player);
+
+        //Moving player to a blue property and choosing to buy
+        player.moveToHere(1);
+        gui.getSpecificField(player.getSquare()).setCar(gui_player, true);
+
+        gui.getGameBoard().getProperty(player).landOnProperty(player, gui_player, gui.getGameBoard().getProperties());
+
+        player.getAccount().setMoney(-31000);
+
+        game.checkIfPlayerLooses(player, gui_player);
+
+        Player player1 = new Player();
+        player1.setName("Hej");
+        GUI_Car car1 = new GUI_Car();
+        GUI_Player gui_player1 = new GUI_Player("hej", player1.getAccount().getMoney(), car1);
+
+        gui.getInstance().addPlayer(gui_player1);
+
+        player1.moveToHere(1);
+
+        gui.getSpecificField(player1.getSquare()).setCar(gui_player1, true);
+        gui.getGameBoard().getProperty(player1).landOnProperty(player1, gui_player1, gui.getGameBoard().getProperties());
+
+    }
+
+
+    /*public void gameOver(Player player) {
+        if (endGameForPlayer && endGameForPlayer) {
+            gui.getInstance().showMessage(player.getName() + " har vundet spillet!");
+        }
+    }
+     */
 }

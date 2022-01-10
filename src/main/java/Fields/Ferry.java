@@ -17,7 +17,7 @@ public class Ferry extends OwnableField {
     private Player owner;
     private GUI_Player guiOwner;
     private final int[] ferryFields = {5, 15, 25, 35};
-    private int ferryPrice;
+    private int ferryPrice, intHelper;
 
     public void setRentPrice(int rentPrice) {
         this.rentPrice = rentPrice;
@@ -117,5 +117,27 @@ public class Ferry extends OwnableField {
             getOwner().getAccount().setMoney(getRentPrice());
             getGuiOwner().setBalance(getOwner().getAccount().getMoney());
         }
+    }
+
+    public void checkForFieldNumber(int ferryNumber){
+        switch (ferryNumber) {
+            case 0 -> intHelper = 5;
+            case 1 -> intHelper = 15;
+            case 2 -> intHelper = 25;
+            case 3 -> intHelper = 35;
+        }
+    }
+
+    public void resetFerry(int ferryNumber){
+
+        checkForFieldNumber(ferryNumber);
+
+        int price = Integer.parseInt(gui.getGameBoard().getGuiStreet(intHelper).getRent());
+        gui.getSpecificField(intHelper).setSubText("Pris: " + price);
+
+        this.owner = null;
+        this.guiOwner = null;
+        this.isOwned = false;
+        this.ferryPrice = 0;
     }
 }

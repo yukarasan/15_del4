@@ -9,7 +9,7 @@ import gui_fields.GUI_Player;
 import static java.awt.Color.blue;
 import static java.awt.Color.red;
 
-public class BlueFieldTest {
+public class OrangeFieldTest {
 
     public static void main(String[] args) {
         //Testing out landOnProperty method from Property class
@@ -19,7 +19,7 @@ public class BlueFieldTest {
         gameBoard.createPropertiesPrices();
 
         Player player = new Player();
-        player.setName("tester");
+        player.setName("Hussein");
 
         GUI_Car car = new GUI_Car();
         car.setPrimaryColor(blue);
@@ -30,7 +30,7 @@ public class BlueFieldTest {
         gui.getInstance().addPlayer(gui_player);
 
         //Moving player to a blue property and choosing to buy
-        player.moveToHere(1);
+        player.moveToHere(6);
         gui.getSpecificField(player.getSquare()).setCar(gui_player, true);
 
         gameBoard.getProperty(player).landOnProperty(player, gui_player, gameBoard.getProperties());
@@ -46,7 +46,7 @@ public class BlueFieldTest {
         gui.getInstance().addPlayer(gui_player1);
 
         //Now moving the new player
-        player1.moveToHere(1);
+        player1.moveToHere(6);
         gui.getSpecificField(player1.getSquare()).setCar(gui_player1, true);
 
         gameBoard.getProperty(player1).landOnProperty(player1, gui_player1, gameBoard.getProperties());
@@ -54,7 +54,11 @@ public class BlueFieldTest {
         //Moving the owner to the other blue field to make the same owner of two blue fields
         //to check if the price changes from 50 to 100
 
-        player.moveToHere(3);
+        player.moveToHere(8);
+        gui.getSpecificField(player.getSquare()).setCar(gui_player, true);
+        gameBoard.getProperty(player).landOnProperty(player, gui_player, gameBoard.getProperties());
+
+        player.moveToHere(9);
         gui.getSpecificField(player.getSquare()).setCar(gui_player, true);
         gameBoard.getProperty(player).landOnProperty(player, gui_player, gameBoard.getProperties());
 
