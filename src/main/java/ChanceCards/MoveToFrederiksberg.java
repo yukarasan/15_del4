@@ -3,7 +3,7 @@ package ChanceCards;
 import Main.Player;
 import gui_fields.GUI_Player;
 
-/*
+/**
     In this class we've created a method that takes in a gui_player and player as arguments. When the arguments are
     passed they'll get used in the body of the method, which will first display what will happen to the player
     who pulls the card, and make them pull the card by pressing OK, then lastly the player will be moved to
@@ -30,7 +30,7 @@ public class MoveToFrederiksberg extends ChanceCardParent {
             player.setMoney(4000);
             gui_player.setBalance(player.getAccount().getMoney());
 
-            /*
+            /**
             We've created a method that changes the boolean value of passedStartField to be false. When it is false
             the player won't receive 4000 DKK two times when checking if player has passed the start field in the
             Game class.

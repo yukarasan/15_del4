@@ -4,6 +4,11 @@ import Main.Player;
 import gui_fields.GUI_Player;
 import java.util.stream.IntStream;
 
+/**
+ * This class works as our deck of chance card. Here we've decided to shuffle the deck of cards for the player.
+ * We've made sure that the cards that appear more than once, won't be picked one after another.
+ * And once the card on the top has been picked, it will be placed on the button of deck.
+ */
 
 public class ChanceCard {
     private final DeliveryOfSoda card1 = new DeliveryOfSoda();
@@ -27,18 +32,25 @@ public class ChanceCard {
     private final MoveThreeFieldsForward card19 = new MoveThreeFieldsForward();
     private final MoveThreeFieldsBack card20 = new MoveThreeFieldsBack();
     private final Tipping card21 = new Tipping();
-    int counter = 1;
-
+    private int counter = 1;
 
     public void playerLandsOnChanceField(Player player, GUI_Player gui_player) {
+        // Declaring the positions of each chance card field:
         int[] chanceFields = {2, 7, 17, 22, 33, 36};
-        int sq = player.getSquare();
+        // Declaring the position of the player:
+        int square = player.getSquare();
 
-        if(IntStream.of(chanceFields).anyMatch(x -> x == sq)) {
-
-            if(counter==26){
-                counter=1;
+        // If the players positions matches any of the positions of the fields, then a card will be picked:
+        if(IntStream.of(chanceFields).anyMatch(x -> x == square)) {
+            // if the counter equals 26, then the counter will be reset to 1.
+            if(counter == 26){
+                counter = 1;
             }
+
+            /*
+            Making a switch statement that goes through each card. When the 25th card has been picked, the counter
+            will be reset.
+             */
             int pileOfCards = counter;
 
             switch (pileOfCards) {
@@ -70,6 +82,5 @@ public class ChanceCard {
             }
             counter++;
         }
-
     }
 }
