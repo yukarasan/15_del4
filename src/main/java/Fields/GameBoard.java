@@ -264,6 +264,11 @@ public class GameBoard {
         return brewers[intHelper1];
     }
 
+    public Brewer[] getBrewers(){
+        return brewers;
+    }
+
+
     public Jackpot getJackpot() {
         return jackpot;
     }

@@ -12,7 +12,7 @@ import java.util.stream.IntStream;
 public class Brewer extends OwnableField {
     private Player owner;
     private GUI_Player guiOwner;
-    private int fieldPrice;
+    private int fieldPrice, intHelper;
     private final int[] brewerFields = {12, 28};
     private boolean isOwned;
 
@@ -52,5 +52,29 @@ public class Brewer extends OwnableField {
             owner.getAccount().setMoney(fieldPrice);
             guiOwner.setBalance(owner.getAccount().getMoney());
         }
+    }
+
+    public void checkForFieldNumber(int brewerNumber){
+        switch (brewerNumber) {
+            case 0 -> intHelper = 12;
+            case 1 -> intHelper = 28;
+        }
+    }
+
+    public void resetBrewer(int brewerNumber){
+
+        checkForFieldNumber(brewerNumber);
+
+        int price = Integer.parseInt(gui.getGameBoard().getGuiStreet(intHelper).getRent());
+        gui.getSpecificField(intHelper).setSubText("Pris: " + price);
+
+        this.owner = null;
+        this.guiOwner = null;
+        this.isOwned = false;
+        this.fieldPrice = 0;
+    }
+
+    public Player getOwner() {
+        return owner;
     }
 }

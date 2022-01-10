@@ -19,7 +19,7 @@ public class BlueFieldTest {
         gameBoard.createPropertiesPrices();
 
         Player player = new Player();
-        player.setName("Hussein");
+        player.setName("tester");
 
         GUI_Car car = new GUI_Car();
         car.setPrimaryColor(blue);
