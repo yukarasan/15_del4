@@ -3,6 +3,8 @@ package Fields.Properties;
 import GUI_Controllor.GUI_Controller;
 import Main.Player;
 import gui_fields.GUI_Player;
+import org.apache.commons.compress.compressors.zstandard.ZstdCompressorOutputStream;
+
 import java.util.stream.IntStream;
 
 public class Property {
@@ -16,7 +18,7 @@ public class Property {
 
     protected int rentOneOwned, rentAllOwned, rentOneHouse, rentTwoHouse, rentThreeHouse, rentFourHouse,
             rentHotel, fieldPrice, costOfOneHouse, costOfHotel, currentRentPrice, amountOfHouses, intHelper,
-            currentPriceOfBuilding;
+            currentPriceOfBuilding, guiFieldNumber;
 
     protected boolean isOwned, allBlueOwned, allOrangeOwned, allDarkYellowOwned, allGreyOwned, allRedOwned,
             allWhiteOwned, allBrightYellowOwned, allPurpleOwned;
@@ -408,6 +410,51 @@ public class Property {
             case 39 -> intHelper = 21;
         }
     }
+
+    private void checkGuiFieldNumberFromPropertyNumber(int propertyNumber){
+        switch (propertyNumber){
+            case 0 -> guiFieldNumber = 1;
+            case 1 -> guiFieldNumber = 3;
+            case 2 -> guiFieldNumber = 6;
+            case 3 -> guiFieldNumber = 8;
+            case 4 -> guiFieldNumber = 9;
+            case 5 -> guiFieldNumber = 11;
+            case 6 -> guiFieldNumber = 13;
+            case 7 -> guiFieldNumber = 14;
+            case 8 -> guiFieldNumber = 16;
+            case 9 -> guiFieldNumber = 18;
+            case 10 -> guiFieldNumber = 19;
+            case 11 -> guiFieldNumber = 21;
+            case 12 -> guiFieldNumber = 23;
+            case 13 -> guiFieldNumber = 24;
+            case 14 -> guiFieldNumber = 26;
+            case 15 -> guiFieldNumber = 27;
+            case 16 -> guiFieldNumber = 29;
+            case 17 -> guiFieldNumber = 31;
+            case 18 -> guiFieldNumber = 32;
+            case 19 -> guiFieldNumber = 34;
+            case 20 -> guiFieldNumber = 37;
+            case 21 -> guiFieldNumber = 39;
+        }
+    }
+
+    public void resetProperty(int propertyNumber){
+
+        checkGuiFieldNumberFromPropertyNumber(propertyNumber);
+
+        int price = Integer.parseInt(gui.getGameBoard().getGuiStreet(guiFieldNumber).getRent());
+
+        gui.getSpecificField(guiFieldNumber).setSubText("Pris: " + price);
+
+        this.owner = null;
+        this.guiOwner = null;
+        this.isOwned = false;
+        this.currentRentPrice = rentOneOwned;
+
+        gui.getGameBoard().getGuiStreet(guiFieldNumber).setHouses(0);
+        gui.getGameBoard().getGuiStreet(guiFieldNumber).setHotel(false);
+    }
+
 
     public void optionsWhenOwningAllFields(Property[] properties, Player player){
 

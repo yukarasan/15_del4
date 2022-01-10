@@ -121,6 +121,11 @@ public class GameBoard {
         return properties[intHelper2];
     }
 
+    public Property getProperty(int fieldNumber){
+        return properties[fieldNumber];
+    }
+
+
     public Property[] getProperties() {
         return properties;
     }
@@ -128,7 +133,6 @@ public class GameBoard {
     public void checkIfLandedPropertyField(Player player){
 
         switch (player.getSquare()) {
-
             case 1 -> intHelper2 = 0;
             case 3 -> intHelper2 = 1;
             case 6 -> intHelper2 = 2;

@@ -19,8 +19,7 @@ public class Game {
     private GUI_Player[] gui_players = new GUI_Player[numberOfPlayers];
     private final MoveWithADelay moveWithADelay = new MoveWithADelay();
     private Jail jail = new Jail();
-    private boolean endGameForPlayer;
-    private boolean endGame;
+    private int intHelper;
 
     public void startGame() {
         gui.getInstance();
@@ -158,8 +157,6 @@ public class Game {
                             "tredje gang, og derfor skal du i fængsel");
                     setPlayerInJail(gui_players[i],players[i]);
                 }
-
-
             }
         }
    }
@@ -302,26 +299,65 @@ public class Game {
      *
      */
 
+    public void makeIntHelper(Player player) {
+
+        switch (player.getSquare()) {
+            case 1 -> intHelper = 0;
+            case 3 -> intHelper = 1;
+            case 6 -> intHelper = 2;
+            case 8 -> intHelper = 3;
+            case 9 -> intHelper = 4;
+            case 11 -> intHelper = 5;
+            case 13 -> intHelper = 6;
+            case 14 -> intHelper = 7;
+            case 16 -> intHelper = 8;
+            case 18 -> intHelper = 9;
+            case 19 -> intHelper = 10;
+            case 21 -> intHelper = 11;
+            case 23 -> intHelper = 12;
+            case 24 -> intHelper = 13;
+            case 26 -> intHelper = 14;
+            case 27 -> intHelper = 15;
+            case 29 -> intHelper = 16;
+            case 31 -> intHelper = 17;
+            case 32 -> intHelper = 18;
+            case 34 -> intHelper = 19;
+            case 37 -> intHelper = 20;
+            case 39 -> intHelper = 21;
+        }
+    }
+
     public void checkIfPlayerLooses(Player player) {
         if (player.getAccount().getMoney() <= 0) {
             gui.getInstance().showMessage(player.getName() + " er gået bankerot");
             player.setPlayerOutOfGame(true);
 
+            for (int i = 0; i < gui.getGameBoard().getProperties().length; i++) {
+                if(player == gui.getGameBoard().getProperty(i).getOwner()){
+
+
+
+                }
+            }
+
+
             for (int i = 0; i < gui.getGameBoard().getField().length; i++) {
                 if (player == gui.getGameBoard().getFerry(player).getOwner() ||
-                        player == gui.getGameBoard().) {
-                    endGameForPlayer = true;
+                        player == gui.getGameBoard().getProperties()[i].getOwner()) {
                     break;
                 }
             }
+
+             */
 
             gui.getInstance().showMessage("Alle " + player.getName() + "'s felter er nu tilgængelig for køb.");
         }
     }
 
-    public void gameOver(Player player) {
+    /*public void gameOver(Player player) {
         if (endGameForPlayer && endGameForPlayer) {
             gui.getInstance().showMessage(player.getName() + " har vundet spillet!");
         }
     }
+     */
 }
