@@ -254,9 +254,4 @@ public class GameBoard {
     public Jackpot getJackpot() {
         return jackpot;
     }
-
-    //NOTE: This method below is not used in the method in the class Brewer, buyBrewerField
-  //  public Brewer[] getBrewers() {
-  //      return brewers;
-  // }
 }
