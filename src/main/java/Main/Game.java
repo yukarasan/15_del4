@@ -165,7 +165,7 @@ public class Game {
    }
 
     private void playerTurn(Player player, GUI_Player gui_player) {
-        if (!player.getInJail()) {
+        if (!player.getInJail() && !player.getPlayerOutOfGame()) {
 
             //If player owns a set of colors, player gets asked what to do with their turn
             optionsIfOwningSetOfColors(player);
