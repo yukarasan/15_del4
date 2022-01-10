@@ -176,8 +176,7 @@ public class GameBoard {
 
     private void createOwnableField() {
         OwnableField ownableField = new OwnableField();
-        ownableField.setFields(fields,1,1200, Color.blue, "Rødovrevej", "Navn:Rødovrevej,pris:1200 DKK, pris per hus: 1.000 DKK,Pris per hotel: 1.000 DKK + 4 huse,leje af grund: " +
-                "50 DKK,Med 1 hus:250 DKK,med 2 huse 750 DKK, med 3 huse:2.250 DKK, med 4 huse: 4.000 DKK, med 1 hotel: 6.000 DKK,Pantsætningsværdi: 600 DKK");
+        ownableField.setFields(fields,1,1200, Color.blue, "Rødovrevej", "Navn:Rødovrevej,pris:1200 DKK, pris per hus: 1.000 DKK,Pris per hotel: 1.000 DKK + 4 huse,leje af grund: " + "50 DKK,Med 1 hus:250 DKK,med 2 huse 750 DKK, med 3 huse:2.250 DKK, med 4 huse: 4.000 DKK, med 1 hotel: 6.000 DKK,Pantsætningsværdi: 600 DKK");
         ownableField.setFields(fields,3, 1200,Color.blue,"Hvidovrevej","Navn:Hvidorevej, pris: 1200 DKK, pris per hus: 1.000 DKK,Pris per hotel: 1.000 DKK + 4 huse,leje af grund: 50 DKK,Med 1 hus:250 DKK,med 2 huse 750 DKK, med 3 huse:2.250 DKK, med 4 huse: 4.000 DKK, med 1 hotel: 6.000 DKK, Pantsætning: 600 DKK");
         ownableField.setFerryFields(fields, 5, Color.cyan, "Scandlines", "Helsingør-Helsinborg","Leje:500 DKK, med 2 rederier: 1.000 DKK, med 3 rederier: 2.000 DKK,med 4 rederier: 4.000 DKK, Pantsætningværdi: 2.000 DKK");
         ownableField.setFields(fields,6, 2000,Color.orange,"Roskildevej","Navn: Roskildevej, pris: 2000 DKK, pris per hus:1.000 DKK, pris per hotel: 1.000 DKK+4 huse,leje af grund:100 DKK, med 1 hus:600 DKK,med 2 huse:1.800,med 3 huse:5.400 DKK,med 4 huse:8.000 DKK,med 1 hotel: 11.000 DKK,pantsætningsværdi: 1.000 DKK ");
