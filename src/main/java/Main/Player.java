@@ -109,7 +109,7 @@ public class Player {
     }
 
     /**
-     * The method setInJail sets the boolen value of inJail to be equal to trueOrFalse
+     * The method setInJail sets the boolean value of inJail to be equal to trueOrFalse
      *
      * The method getInJail simply returns this boolean value.
      */
@@ -123,7 +123,10 @@ public class Player {
     }
 
     /**
+     * The method setWaitATurn is used if a player has to wait a turn, by passing either a true or false statement
+     * as its parameters.
      *
+     * The method getWaitATurn below simply returns this value.
      */
 
     public void setWaitATurn(boolean trueOrFalse) {
@@ -131,40 +134,28 @@ public class Player {
     }
 
     /**
+     * ATTENTIVE:
      *
+     * Now that we've explained a lot of the setters and getters, we believe that the rest of the methods are
+     * self-explanatory and therefore need no further explaining, since the names of the methods also describe
+     * what they do as well.
      */
 
     public boolean getWaitATurn() {
         return waitATurn;
     }
 
-    /**
-     *
-     */
-
     public int getFerriesOwned() {
         return ferriesOwned;
     }
-
-    /**
-     *
-     */
 
     public void setFerriesOwned() {
         this.ferriesOwned += 1;
     }
 
-    /**
-     *
-     */
-
     public void setBrewersOwned() {
         this.brewersOwned += 1;
     }
-
-    /**
-     *
-     */
 
     public int getBrewersOwned() {
         return brewersOwned;
