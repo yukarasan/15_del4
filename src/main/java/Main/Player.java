@@ -9,7 +9,7 @@ public class Player {
     private final Account account = new Account();
     private String name;
     private int square = 0;
-    private boolean passedStartField, inJail, waitATurn;
+    private boolean passedStartField, inJail, waitATurn, ownsAPropertySet;
     private int ferriesOwned, brewersOwned;
     private int blueOwned, orangeOwned, darkYellowOwned, greyOwned, redOwned, whiteOwned,
             brightYellowOwned, purpleOwned;
@@ -223,5 +223,13 @@ public class Player {
 
     public int getPurpleOwned() {
         return purpleOwned;
+    }
+
+    public void setOwnsAPropertySet(boolean ownsAPropertySet) {
+        this.ownsAPropertySet = ownsAPropertySet;
+    }
+
+    public boolean getOwnsAPropertySet() {
+        return ownsAPropertySet;
     }
 }

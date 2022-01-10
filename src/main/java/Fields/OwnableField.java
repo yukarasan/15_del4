@@ -4,9 +4,14 @@ import GUI_Controllor.GUI_Controller;
 import gui_fields.*;
 import java.awt.*;
 
-public class OwnableField extends Field{
+/**
+ * In this class we made different methods for each field that the player is able to own.
+ * This was done for our own sake, to have a better overview of our project.
+ *
+ * The methods themselves have been used in the gameBoard class to create each field.
+ */
 
-
+public class OwnableField extends Field {
     //Below is the rent on various occasions of ownable fields such as properties.
     //Also below is cost of eventual upgrades and the rent if a set of one color are owned
     private int rentNoHouse, rentAllOwned, rentOneHouse, rentTwoHouse, rentThreeHouse, rentFourHouse,
@@ -41,9 +46,13 @@ public class OwnableField extends Field{
         field[fieldNumber].setSubText("");
     }
 
+    /**
+     * The method setUpOwnableField
+     */
+
     public void setUpOwnableField(int rentNoHouse, int rentAllOwned, int rentOneHouse, int rentTwoHouse, int rentThreeHouse,
                                   int rentFourHouse, int rentHotel, int fieldPrice, int fieldNumber,
-                                  int costOfOneHouse, int costOfHotel, GUI_Controller gui){
+                                  int costOfOneHouse, int costOfHotel, GUI_Controller gui) {
         this.costOfHotel = costOfHotel;
         this.costOfOneHouse = costOfOneHouse;
         gui.getSpecificField(fieldNumber);

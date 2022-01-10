@@ -17,7 +17,12 @@ public class MoveToJail extends ChanceCardParent {
 
         player.moveToHere(10);
 
-        gui.getGameBoard().getJail().setPlayerInJail(gui_player, player);
+        gui.getInstance().showMessage(gui_player.getName() + " rykkes nu til fængsel");
+        gui.getSpecificField(player.getSquare()).setCar(gui_player, true);
+        player.moveToHere(10);
+        player.setInJail(true);
+        player.setWaitATurn(true);
+
         gui.getSpecificField(10).setCar(gui_player, true);
     }
 }

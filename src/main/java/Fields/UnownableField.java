@@ -2,8 +2,14 @@ package Fields;
 
 import gui_fields.*;
 
-public class UnownableField extends Field {
+/**
+ * In this class we made different methods for each field that the player is not able to own.
+ * This was done for our own sake, to have a better overview of our project.
+ *
+ * The methods themselves have been used in the gameBoard class to create each field.
+ */
 
+public class UnownableField extends Field {
     public void startField(GUI_Field[] fields) {
         fields[0] = new GUI_Start();
         fields[0].setTitle("Start");
