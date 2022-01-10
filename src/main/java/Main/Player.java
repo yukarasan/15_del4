@@ -9,7 +9,7 @@ public class Player {
     private final Account account = new Account();
     private String name;
     private int square = 0;
-    private boolean passedStartField, inJail, waitATurn, ownsAPropertySet;
+    private boolean passedStartField, inJail, waitATurn, ownsAPropertySet, outOfGame;
     private int ferriesOwned, brewersOwned;
     private int blueOwned, orangeOwned, darkYellowOwned, greyOwned, redOwned, whiteOwned,
             brightYellowOwned, purpleOwned;
@@ -231,5 +231,13 @@ public class Player {
 
     public boolean getOwnsAPropertySet() {
         return ownsAPropertySet;
+    }
+
+    public void setPlayerOutOfGame(boolean outOfGame) {
+        this.outOfGame = outOfGame;
+    }
+
+    public boolean getPlayerOutOfGame() {
+        return outOfGame;
     }
 }

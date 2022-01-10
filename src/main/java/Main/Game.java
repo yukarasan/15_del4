@@ -19,6 +19,8 @@ public class Game {
     private GUI_Player[] gui_players = new GUI_Player[numberOfPlayers];
     private final MoveWithADelay moveWithADelay = new MoveWithADelay();
     private Jail jail = new Jail();
+    private boolean endGameForPlayer;
+    private boolean endGame;
 
     public void startGame() {
         gui.getInstance();
@@ -229,4 +231,33 @@ public class Game {
 
     }
 
+    /**
+     * Checks whether a player wins or loses. This is done with an if-statement. If a player has less than 0 or
+     * equal to 0, then a message gets printed out saying that they have gone bankrupt.
+     * Then the player will be set out of the game, using the setter in the player class.
+     *
+     */
+
+    public void checkIfPlayerLooses(Player player) {
+        if (player.getAccount().getMoney() <= 0) {
+            gui.getInstance().showMessage(player.getName() + " er gået bankerot");
+            player.setPlayerOutOfGame(true);
+
+            for (int i = 0; i < gui.getGameBoard().getField().length; i++) {
+                if (player == gui.getGameBoard().getFerry(player).getOwner() ||
+                        player == gui.getGameBoard().) {
+                    endGameForPlayer = true;
+                    break;
+                }
+            }
+
+            gui.getInstance().showMessage("Alle " + player.getName() + "'s felter er nu tilgængelig for køb.");
+        }
+    }
+
+    public void gameOver(Player player) {
+        if (endGameForPlayer && endGameForPlayer) {
+            gui.getInstance().showMessage(player.getName() + " har vundet spillet!");
+        }
+    }
 }
