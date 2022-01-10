@@ -19,7 +19,7 @@ public class OwnableField extends Field{
         field.setSubText("Pris: " + price);
         field.setBackGroundColor(color);
         field.setTitle(name);
-        field.setDescription(description;
+        field.setDescription(description);
         fields[fieldNumber] = field;
     }
 
