@@ -11,6 +11,7 @@ import gui_fields.GUI_Player;
 
 public class SameDiceValueThirdTime {
     private static int dice;
+    private Game game = new Game();
 
     private void setDice(int die1, int die2) {
         this.dice = die1 + die2;
@@ -55,7 +56,7 @@ public class SameDiceValueThirdTime {
         if(getDice() == getDice() && !player.getInJail()){
             gui.getInstance().showMessage(player.getName() + ", du har slået det samme tre gange " +
                     "og derfor skal du i fængsel");
-            jail.setPlayerInJail(gui_player,player);
+            game.setPlayerInJail(gui_player,player);
         }
     }
 

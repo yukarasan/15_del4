@@ -275,12 +275,23 @@ public class Property {
         properties[intHelper].setPlusOneAmountOfHouses();
 
         switch (properties[intHelper].getAmountOfHouses()){
-            case 1 -> properties[intHelper].setCurrentRentPrice(properties[intHelper].getRentOneHouse());
-            case 2 -> properties[intHelper].setCurrentRentPrice(properties[intHelper].getRentTwoHouse());
-            case 3 -> properties[intHelper].setCurrentRentPrice(properties[intHelper].getRentThreeHouse());
-            case 4 -> properties[intHelper].setCurrentRentPrice(properties[intHelper].getRentFourHouse());
+            case 1 ->{properties[intHelper].setCurrentRentPrice(properties[intHelper].getRentOneHouse());
+                gui.getGameBoard().getGuiStreet(fieldNumber).setHouses(properties[intHelper].getAmountOfHouses());}
+
+            case 2 -> {properties[intHelper].setCurrentRentPrice(properties[intHelper].getRentTwoHouse());
+                gui.getGameBoard().getGuiStreet(fieldNumber).setHouses(properties[intHelper].getAmountOfHouses());}
+
+            case 3 -> {properties[intHelper].setCurrentRentPrice(properties[intHelper].getRentThreeHouse());
+                gui.getGameBoard().getGuiStreet(fieldNumber).setHouses(properties[intHelper].getAmountOfHouses());}
+
+            case 4 -> {properties[intHelper].setCurrentRentPrice(properties[intHelper].getRentFourHouse());
+                gui.getGameBoard().getGuiStreet(fieldNumber).setHouses(properties[intHelper].getAmountOfHouses());}
+
+            case 5 -> {properties[intHelper].setCurrentRentPrice(properties[intHelper].getRentHotel());
+                gui.getGameBoard().getGuiStreet(fieldNumber).setHouses(0);
+                gui.getGameBoard().getGuiStreet(fieldNumber).setHotel(true);}
         }
-        gui.getGameBoard().getGuiStreet(fieldNumber).setHouses(properties[intHelper].getAmountOfHouses());
+
     }
 
     public void placeTwoEvenHouses(int chosenFieldToBuildOn, int fieldOne, int fieldTwo, Property[] properties){

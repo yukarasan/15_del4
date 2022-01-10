@@ -154,7 +154,7 @@ public class Game {
                 if(diceCup.getDie1().getFaceValue() == diceCup.getDie2().getFaceValue() && !players[i].getInJail()){
                     gui.getInstance().showMessage(players[i].getName() + ", du har slået to ens terninger for " +
                             "tredje gang, og derfor skal du i fængsel");
-                    jail.setPlayerInJail(gui_players[i],players[i]);
+                    setPlayerInJail(gui_players[i],players[i]);
                 }
 
 
@@ -164,6 +164,10 @@ public class Game {
 
     private void playerTurn(Player player, GUI_Player gui_player) {
         if (!player.getInJail()) {
+
+            //If player owns a set of colors, player gets asked what to do with their turn
+            optionsIfOwningSetOfColors(player);
+
             //Player throws dice
             gui.getInstance().getUserButtonPressed(player.getName() + ", kast terningerne", "Kast");
 
@@ -171,9 +175,13 @@ public class Game {
             gui.getInstance().setDice(diceCup.getDie1().rollDie(), diceCup.getDie2().rollDie());
 
             //This is when the piece moves one square by one square up until thrown value
-            moveWithADelay.movePlayerWithADelay(gui_player, player,diceCup,gui);
+            moveWithADelay.movePlayerWithADelay(gui_player, player, diceCup, gui);
         }
 
+        playerLandsAnywhere(player, gui_player);
+    }
+
+    public void playerLandsAnywhere(Player player, GUI_Player gui_player){
         passStartField(player, gui_player);
 
         gui.getGameBoard().getChanceCard().playerLandsOnChanceField(player, gui_player);
@@ -189,16 +197,29 @@ public class Game {
 
         gui.getGameBoard().getProperty(player).landOnProperty(player, gui_player, gui.getGameBoard().getProperties());
 
-
         if (player.getSquare() == 30) {
-            gui.getGameBoard().getJail().setPlayerInJail(gui_player, player);
+            setPlayerInJail(gui_player, player);
         }
 
         if (player.getInJail() && !player.getWaitATurn()) {
-            gui.getGameBoard().getJail().outOfJail(gui_player, player, diceCup);
+            outOfJail(gui_player, player, diceCup);
 
         } else if (player.getInJail() && player.getWaitATurn()) {
             player.setWaitATurn(false);
+        }
+    }
+
+
+    public void optionsIfOwningSetOfColors(Player player){
+
+        if(player.getOwnsAPropertySet()){
+
+            String option = gui.getInstance().getUserButtonPressed(player.getName() + ", vælg hvad du ønsker med din tur",
+                    "kast", "Køb bygninger");
+
+            if(option.equals("Køb bygninger")){
+                gui.getGameBoard().getProperty(player).optionsWhenOwningAllFields(gui.getGameBoard().getProperties(), player);
+            }
         }
     }
 
@@ -212,16 +233,59 @@ public class Game {
         }
     }
 
+    public void setPlayerInJail(GUI_Player gui_player, Player player) {
+        gui.getInstance().showMessage(gui_player.getName() + " rykkes nu til fængsel");
+        gui.getSpecificField(10).setCar(gui_player, true);
+        player.moveToHere(10);
+        player.setInJail(true);
+        player.setWaitATurn(true);
+    }
 
+    public void outOfJail (GUI_Player gui_player, Player player, DiceCup diceCup) {
 
+        String chosenElement = gui.getInstance().getUserButtonPressed(player.getName() + ", du har to valgmuligheder", "Slå to ens terninger", "Betal 1000 DKK");
 
-    /*public void chooseWhichMortgage(Player player, GUI_Player gui_player){
-        String chooseMortgage = gui.getInstance().getUserButtonPressed("Vælg hvilken type du vil sælge: " +
-                "Brewer", "Ferry");
-        switch (chooseMortgage){
-            case "Brewer" -> gui.getGameBoard()
+        switch (chosenElement) {
+            case "Slå to ens terninger" -> {
+                gui.getInstance().setDice(diceCup.getDie1().rollDie(), diceCup.getDie2().rollDie());
+
+                if (diceCup.getDie1().getFaceValue() == diceCup.getDie2().getFaceValue()) {
+                    gui.getInstance().showMessage("Tillykke! Du slog to ens. Du må nu rykke ud af fængslet og slå igen.");
+                    player.moveToSquare(diceCup.getDie1().getFaceValue(), diceCup.getDie2().getFaceValue());
+                    gui.getSpecificField(player.getSquare()).setCar(gui_player, true);
+
+                    playerLandsAnywhere(player, gui_player);
+
+                    gui.getInstance().getUserButtonPressed(player.getName() + ", kast terningerne", "Kast");
+                    gui.getInstance().setDice(diceCup.getDie1().rollDie(), diceCup.getDie2().rollDie());
+
+                    moveWithADelay.movePlayerWithADelay(gui_player, player, diceCup, gui);
+
+                    player.setInJail(false);
+                    player.setWaitATurn(false);
+
+                    playerLandsAnywhere(player, gui_player);
+
+                } else {
+                    gui.getInstance().showMessage("Desværre, bedre held næste gang. Du må vente en runde.");
+                }
+            }
+            case "Betal 1000 DKK" -> {
+                player.getAccount().setMoney(-1000);
+                gui_player.setBalance(player.getAccount().getMoney());
+                gui.getInstance().showMessage("Tak for pengene. Du må nu slå igen for at komme ud.");
+                gui.getInstance().getUserButtonPressed(player.getName() + ", kast terningerne", "Kast");
+
+                gui.getInstance().setDice(diceCup.getDie1().rollDie(), diceCup.getDie2().rollDie());
+                moveWithADelay.movePlayerWithADelay(gui_player, player, diceCup, gui);
+
+                player.setInJail(false);
+                player.setWaitATurn(false);
+
+                playerLandsAnywhere(player, gui_player);
+            }
         }
-    }*/
+    }
 
 
 
