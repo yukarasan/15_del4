@@ -5,25 +5,24 @@ import GUI_Controllor.GUI_Controller;
 import Main.Player;
 import gui_fields.GUI_Car;
 import gui_fields.GUI_Player;
-
-import java.awt.*;
 import java.util.stream.IntStream;
-
-import static java.awt.Color.blue;
-import static java.awt.Color.red;
 
 public class Property {
     private GUI_Controller gui = new GUI_Controller();
     private Player owner;
     private GUI_Player guiOwner;
-    private int[] propertyFieldNumbers = {1, 3, 6, 8, 9, 11, 13, 14, 16, 18, 19, 21, 23, 24, 26, 27, 29, 31, 23, 34, 37, 39};
+    private int[] propertyFieldNumbers = {1, 3, 6, 8, 9, 11, 13, 14, 16, 18, 19, 21, 23, 24, 26, 27, 29, 31, 32, 34, 37, 39};
 
     //Below is the rent on various occasions of ownable fields that'll extend Properties.
     //Also below is cost of eventual upgrades and the rent if a set of one color are owned by one player
 
     protected int rentOneOwned, rentAllOwned, rentOneHouse, rentTwoHouse, rentThreeHouse, rentFourHouse,
-            rentHotel, fieldPrice, costOfOneHouse, costOfHotel, currentRentPrice;
-    protected boolean allBlueOwned, isOwned;
+            rentHotel, fieldPrice, costOfOneHouse, costOfHotel, currentRentPrice, amountOfHouses, intHelper;
+
+    protected boolean isOwned, allBlueOwned, allOrangeOwned, allDarkYellowOwned, allGreyOwned, allRedOwned,
+            allWhiteOwned, allBrightYellowOwned, allPurpleOwned;
+
+    private boolean chooseToBuildAgain;
 
     //For each time a property field is initiated, it will need to start with setting all this above info
     protected Property(int rentOneOwned, int rentAllOwned, int rentOneHouse, int rentTwoHouse,
@@ -55,7 +54,100 @@ public class Property {
                 }
             }
         }
+
+        if(!allOrangeOwned && currentRentPrice != rentAllOwned) {
+            switch (player.getOrangeOwned()) {
+                case 1, 2 -> currentRentPrice = rentOneOwned;
+                case 3 -> {
+                    currentRentPrice = rentAllOwned;
+                    properties[2].setCurrentRentPrice(rentAllOwned);
+                    properties[3].setCurrentRentPrice(rentAllOwned);
+                    properties[4].setCurrentRentPrice(properties[4].getRentAllOwned());
+                    allOrangeOwned = true;
+                }
+            }
+        }
+
+        if(!allDarkYellowOwned && currentRentPrice != rentAllOwned) {
+            switch (player.getDarkYellowOwned()) {
+                case 1, 2 -> currentRentPrice = rentOneOwned;
+                case 3 -> {
+                    currentRentPrice = rentAllOwned;
+                    properties[5].setCurrentRentPrice(rentAllOwned);
+                    properties[6].setCurrentRentPrice(rentAllOwned);
+                    properties[7].setCurrentRentPrice(properties[7].getRentAllOwned());
+                    allDarkYellowOwned = true;
+                }
+            }
+        }
+
+        if(!allGreyOwned && currentRentPrice != rentAllOwned) {
+            switch (player.getGreyOwned()) {
+                case 1, 2 -> currentRentPrice = rentOneOwned;
+                case 3 -> {
+                    currentRentPrice = rentAllOwned;
+                    properties[8].setCurrentRentPrice(rentAllOwned);
+                    properties[9].setCurrentRentPrice(rentAllOwned);
+                    properties[10].setCurrentRentPrice(properties[10].getRentAllOwned());
+                    allGreyOwned = true;
+                }
+            }
+        }
+
+        if(!allRedOwned && currentRentPrice != rentAllOwned) {
+            switch (player.getRedOwned()) {
+                case 1, 2 -> currentRentPrice = rentOneOwned;
+                case 3 -> {
+                    currentRentPrice = rentAllOwned;
+                    properties[11].setCurrentRentPrice(rentAllOwned);
+                    properties[12].setCurrentRentPrice(rentAllOwned);
+                    properties[13].setCurrentRentPrice(properties[13].getRentAllOwned());
+                    allRedOwned = true;
+                }
+            }
+        }
+
+        if(!allWhiteOwned && currentRentPrice != rentAllOwned) {
+            switch (player.getWhiteOwned()) {
+                case 1, 2 -> currentRentPrice = rentOneOwned;
+                case 3 -> {
+                    currentRentPrice = rentAllOwned;
+                    properties[14].setCurrentRentPrice(rentAllOwned);
+                    properties[15].setCurrentRentPrice(rentAllOwned);
+                    properties[16].setCurrentRentPrice(properties[16].getRentAllOwned());
+                    allWhiteOwned = true;
+                }
+            }
+        }
+
+        if(!allBrightYellowOwned && currentRentPrice != rentAllOwned) {
+            switch (player.getBrightYellowOwned()) {
+                case 1, 2 -> currentRentPrice = rentOneOwned;
+                case 3 -> {
+                    currentRentPrice = rentAllOwned;
+                    properties[17].setCurrentRentPrice(rentAllOwned);
+                    properties[18].setCurrentRentPrice(rentAllOwned);
+                    properties[19].setCurrentRentPrice(properties[19].getRentAllOwned());
+                    allBrightYellowOwned = true;
+                }
+            }
+        }
+
+        if(!allPurpleOwned && currentRentPrice != rentAllOwned) {
+            switch (player.getPurpleOwned()) {
+                case 1, 2 -> currentRentPrice = rentOneOwned;
+                case 3 -> {
+                    currentRentPrice = rentAllOwned;
+                    properties[20].setCurrentRentPrice(rentAllOwned);
+                    properties[21].setCurrentRentPrice(rentAllOwned);
+                    properties[22].setCurrentRentPrice(properties[22].getRentAllOwned());
+                    allPurpleOwned = true;
+                }
+            }
+        }
     }
+
+
 
     public void setCurrentRentPrice(int currentRentPrice) {
         this.currentRentPrice = currentRentPrice;
@@ -133,8 +225,13 @@ public class Property {
 
             switch (owner.getSquare()){
                 case 1, 3 -> owner.setBlueOwned();
+                case 6, 8, 9 -> owner.setOrangeOwned();
+                case 11, 13, 14 -> owner.setDarkYellowOwned();
+                case 16, 18, 19 -> owner.setGreyOwned();
+                case 21, 23, 24 -> owner.setRedOwned();
+                case 26, 27, 29 -> owner.setWhiteOwned();
+                case 31, 32, 34 -> owner.setBrightYellowOwned();
             }
-
             setCurrentRentPriceIfOwning(player, properties);
         }
     }
@@ -152,4 +249,164 @@ public class Property {
 
         guiOwner.setBalance(owner.getAccount().getMoney());
     }
+
+    public int getAmountOfHouses() {
+        return amountOfHouses;
+    }
+
+    public void placeHouse(int fieldNumber, Property[] properties){
+
+        checkWhichPropertyField(fieldNumber);
+
+        owner.getAccount().setMoney(properties[intHelper].getCostOfOneHouse());
+        guiOwner.setBalance(owner.getAccount().getMoney());
+
+        amountOfHouses += 1;
+
+        switch (amountOfHouses){
+            case 1 -> properties[intHelper].setCurrentRentPrice(properties[intHelper].getRentOneHouse());
+            case 2 -> properties[intHelper].setCurrentRentPrice(properties[intHelper].getRentTwoHouse());
+            case 3 -> properties[intHelper].setCurrentRentPrice(properties[intHelper].getRentThreeHouse());
+            case 4 -> properties[intHelper].setCurrentRentPrice(properties[intHelper].getRentFourHouse());
+        }
+        gui.getGameBoard().getGuiStreet(fieldNumber).setHouses(amountOfHouses);
+    }
+
+    public void placeTwoEvenHouses(int chosenFieldToBuildOn, int fieldOne, int fieldTwo, Property[] properties){
+
+        if((chosenFieldToBuildOn == fieldOne) &&
+        properties[fieldOne].getAmountOfHouses() <= properties[fieldTwo].getAmountOfHouses()){
+
+            placeHouse(chosenFieldToBuildOn, properties);
+        }
+        if(chosenFieldToBuildOn == fieldTwo &&
+        properties[fieldTwo].getAmountOfHouses() <= properties[fieldTwo].getAmountOfHouses()){
+            placeHouse(chosenFieldToBuildOn, properties);
+        }
+        else if((chosenFieldToBuildOn == fieldOne) &&
+                properties[fieldOne].getAmountOfHouses() >= (properties[fieldTwo].getAmountOfHouses()+1)){
+            gui.getInstance().showMessage("Du har for mange bygninger her, vælg et andet sted at bygge");
+        }
+        else if((chosenFieldToBuildOn == fieldTwo) &&
+                properties[fieldOne].getAmountOfHouses() >= (properties[fieldOne].getAmountOfHouses()+1)){
+            gui.getInstance().showMessage("Du har for mange bygninger her, vælg et andet sted at bygge");
+        }
+        chooseToBuildAgain = true;
+    }
+
+
+    public void checkWhichPropertyField(int fieldNumber){
+
+        switch (fieldNumber) {
+            case 1 -> intHelper = 0;
+            case 3 -> intHelper = 1;
+            case 6 -> intHelper = 2;
+            case 8 -> intHelper = 3;
+            case 9 -> intHelper = 4;
+            case 11 -> intHelper = 5;
+            case 13 -> intHelper = 6;
+            case 14 -> intHelper = 7;
+            case 16 -> intHelper = 8;
+            case 18 -> intHelper = 9;
+            case 19 -> intHelper = 10;
+            case 21 -> intHelper = 11;
+            case 23 -> intHelper = 12;
+            case 24 -> intHelper = 13;
+            case 26 -> intHelper = 14;
+            case 27 -> intHelper = 15;
+            case 29 -> intHelper = 16;
+            case 31 -> intHelper = 17;
+            case 32 -> intHelper = 18;
+            case 34 -> intHelper = 19;
+            case 37 -> intHelper = 20;
+            case 39 -> intHelper = 21;
+        }
+    }
+
+    public void optionsWhenOwningAllFields(Property[] properties, Player player){
+
+        boolean chooseAgain = true;
+        while(chooseAgain) {
+            chooseAgain = false;
+
+            String colorPressed = gui.getInstance().getUserButtonPressed(player.getName() + ", vælg hvor du vil bygge", "Blå",
+                    "Orange", "Mørkegul", "Grå", "Rød", "Hvid", "Lysegul", "Lilla");
+
+            switch (colorPressed) {
+
+                case "Blå" -> {
+
+                    if(allBlueOwned && player == properties[1].getOwner()){
+                        String buttonPressed = gui.getInstance().getUserButtonPressed(player.getName() +
+                                ", du ejer alle blå, vil du købe huse her?", "Ja", "Nej");
+
+                        if(buttonPressed.equals("Ja")) {
+
+                            chooseToBuildAgain = true;
+                            while (true) {
+                                chooseToBuildAgain = false;
+
+                            String secondButton = gui.getInstance().getUserButtonPressed("Vælg hvilket felt du ønsker at bygge på",
+                                    gui.getSpecificField(1).getTitle(), gui.getSpecificField(3).getTitle(),
+                                    "ingen af husene, jeg vil ikke købe i blå");
+
+
+
+                                if (secondButton.equals(gui.getSpecificField(1).getTitle())) {
+                                    placeTwoEvenHouses(1, 1, 3, properties);
+
+                                } else if (secondButton.equals(gui.getSpecificField(3).getTitle())) {
+                                    placeTwoEvenHouses(3, 1, 3, properties);
+
+                                } else if (secondButton.equals("ingen af husene, jeg vil ikke købe i blå")) {
+                                    chooseAgain = true;
+                                }
+                            }
+                        }
+                    }else{
+                        gui.getInstance().showMessage("Du ejer ikke alle blå, vælg en anden");
+                        chooseAgain = true;
+                    }
+                }
+
+
+            }
+        }
+
+
+
+
+
+    }
+
+    public static void main(String[] args) {
+
+        GUI_Controller gui = new GUI_Controller();
+        GameBoard gameBoard = new GameBoard();
+        gameBoard.createPropertiesPrices();
+
+        Player player = new Player();
+        player.setName("Huss");
+        GUI_Car car = new GUI_Car();
+        GUI_Player gui_player = new GUI_Player(player.getName(), player.getAccount().getMoney(), car);
+
+        gui.getInstance().addPlayer(gui_player);
+        gui.getSpecificField(player.getSquare()).setCar(gui_player, true);
+
+        player.moveToHere(1);
+        gameBoard.getProperty(player).landOnProperty(player, gui_player, gameBoard.getProperties());
+
+        player.moveToHere(3);
+        gameBoard.getProperty(player).landOnProperty(player, gui_player, gameBoard.getProperties());
+
+
+
+
+
+
+
+
+    }
+
+
 }

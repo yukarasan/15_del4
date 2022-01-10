@@ -1,8 +1,7 @@
 package Fields;
 
 import ChanceCards.ChanceCard;
-import Fields.Properties.BlueProperties.HvidovreVej;
-import Fields.Properties.BlueProperties.RoedovreVej;
+import Fields.Properties.PropertyField;
 import Fields.Properties.Property;
 import Main.Player;
 import gui_fields.GUI_Field;
@@ -33,12 +32,86 @@ public class GameBoard {
         }
     }
 
+    public GUI_Street getGuiStreet(int fieldNumber){
+        return (GUI_Street) fields[fieldNumber];
+    }
+
     public void createPropertiesPrices(){
-        properties[0] = new HvidovreVej(50, 100, 250, 750,
+
+        //Blue fields
+        properties[0] = new PropertyField(50, 100, 250, 750,
                 2250, 4000, 6000, 1200, 1000, 1000);
 
-        properties[1] = new RoedovreVej(50, 100, 250, 750,
+        properties[1] = new PropertyField(50, 100, 250, 750,
                 2250, 4000, 6000, 1200, 1000, 1000);
+
+        //Orange fields
+        properties[2] = new PropertyField(100, 250, 600, 1800,
+                5400, 8000, 11000, 2000, 1000, 1000);
+
+        properties[3] = new PropertyField(100, 350, 600, 1800,
+                5400, 8000, 11000, 2000, 1000, 1000);
+
+        properties[4] = new PropertyField(150, 400, 800, 2000,
+                6000, 9000, 12000, 2400, 1000, 1000);
+
+        //Dark yellow fields
+        properties[5] = new PropertyField(200, 400, 1000, 3000,
+                9000, 12500, 15000, 2800, 2000, 2000);
+
+        properties[6] = new PropertyField(200, 400, 1000, 3000,
+                9000, 12500, 15000, 2800, 2000, 2000);
+
+        properties[7] = new PropertyField(250, 450, 1250, 3750,
+                10000, 14000, 18000, 3400, 2000, 2000);
+
+        //Grey fields
+        properties[8] = new PropertyField(300, 600, 1400, 4000,
+                11000, 15000, 19000, 3600, 2000, 2000);
+
+        properties[9] = new PropertyField(300, 600, 1400, 4000,
+                11000, 15000, 19000, 3600, 2000, 2000);
+
+        properties[10] = new PropertyField(350, 700, 1600, 4400,
+                12000, 16000, 20000, 4000, 2000, 2000);
+
+        //Red fields
+        properties[11] = new PropertyField(350, 750, 1800, 5000,
+                14000, 17500, 21000, 4400, 3000, 3000);
+
+        properties[12] = new PropertyField(350, 750, 1800, 5000,
+                14000, 17500, 21000, 4400, 3000, 3000);
+
+        properties[13] = new PropertyField(400, 850, 2000, 6000,
+                15000, 18500, 22000, 4800, 3000, 3000);
+
+
+        //White fields
+        properties[14] = new PropertyField(450, 1000, 2200, 6600,
+                16000, 19500, 23000, 5200, 3000, 3000);
+
+        properties[15] = new PropertyField(450, 1000, 2200, 6600,
+                16000, 19500, 23000, 5200, 3000, 3000);
+
+        properties[16] = new PropertyField(500, 1100, 2400, 7200,
+                17000, 20500, 24000, 5600, 3000, 3000);
+
+        //Bright yellow fields
+        properties[17] = new PropertyField(550, 1150,2600, 7800, 18000,
+                22000, 25000, 6000, 4000, 4000);
+
+        properties[18] = new PropertyField(550, 1150,2600, 7800, 18000,
+                22000, 25000, 6000, 4000, 4000);
+
+        properties[19] = new PropertyField(600, 1250,3000, 9000, 20000,
+                24000, 28000, 6400, 4000, 4000);
+
+        //Purple fields
+        properties[20] = new PropertyField(700, 2250, 3500, 10000,
+                22000, 26000, 30000, 7000, 3500, 3500);
+
+        properties[21] = new PropertyField(1000, 2500, 4000, 12000,
+                28000, 34000, 40000, 8000, 4000, 4000);
     }
 
     public Property getProperty(Player player){
@@ -79,8 +152,6 @@ public class GameBoard {
         }
     }
 
-
-
     public void allField() {
         UnownableField unownableField = new UnownableField();
         Jackpot jackpot = new Jackpot();
@@ -109,10 +180,10 @@ public class GameBoard {
         ownableField.setFields(fields,6, 2000,Color.orange,"Roskildevej");
         ownableField.setFields(fields,8, 2000,Color.orange,"Valby Langgade");
         ownableField.setFields(fields,9, 2400,Color.orange,"Allegade");
-        ownableField.setFields(fields,11, 2800,Color.yellow,"Frederiksberg Alle");
+        ownableField.setFields(fields,11, 2800,Color.yellow.darker(),"Frederiksberg Alle");
         ownableField.setBrewerFields(fields,12,Color.red,"Squash", "Tuborg");
-        ownableField.setFields(fields,13, 2800,Color.yellow,"Bulowsvej");
-        ownableField.setFields(fields,14,3200,Color.yellow,"Gl. Kongevej");
+        ownableField.setFields(fields,13, 2800,Color.yellow.darker(),"Bulowsvej");
+        ownableField.setFields(fields,14,3200,Color.yellow.darker(),"Gl. Kongevej");
         ownableField.setFerryFields(fields, 15, Color.RED, "Mols-linien", "En genvej i Danmark");
         ownableField.setFields(fields,16,3600,Color.gray,"Bernstorffsvej");
         ownableField.setFields(fields,18,3600,Color.gray,"Hellerupvej");

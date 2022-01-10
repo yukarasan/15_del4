@@ -9,12 +9,10 @@ public class Player {
     private final Account account = new Account();
     private String name;
     private int square = 0;
-    private boolean passedStartField;
-    private boolean inJail;
-    private boolean waitATurn;
-    private int ferriesOwned;
-    private int brewersOwned;
-    private int blueOwned;
+    private boolean passedStartField, inJail, waitATurn;
+    private int ferriesOwned, brewersOwned;
+    private int blueOwned, orangeOwned, darkYellowOwned, greyOwned, redOwned, whiteOwned,
+            brightYellowOwned, purpleOwned;
 
     /**
      * Creating a method setName that takes a name as a parameter and sets this.name (the name in this class) equal to
@@ -178,5 +176,61 @@ public class Player {
 
     public int getBlueOwned() {
         return blueOwned;
+    }
+
+    public int getOrangeOwned() {
+        return orangeOwned;
+    }
+
+    public void setOrangeOwned() {
+        this.orangeOwned += 1;
+    }
+
+    public void setDarkYellowOwned() {
+        this.darkYellowOwned += 1;
+    }
+
+    public int getDarkYellowOwned() {
+        return darkYellowOwned;
+    }
+
+    public void setGreyOwned() {
+        this.greyOwned += 1;
+    }
+
+    public int getGreyOwned() {
+        return greyOwned;
+    }
+
+    public void setRedOwned() {
+        this.redOwned += 1;
+    }
+
+    public int getRedOwned() {
+        return redOwned;
+    }
+
+    public void setWhiteOwned() {
+        this.whiteOwned += 1;
+    }
+
+    public int getWhiteOwned() {
+        return whiteOwned;
+    }
+
+    public void setBrightYellowOwned() {
+        this.brightYellowOwned += 1;
+    }
+
+    public int getBrightYellowOwned() {
+        return brightYellowOwned;
+    }
+
+    public void setPurpleOwned() {
+        this.purpleOwned += 1;
+    }
+
+    public int getPurpleOwned() {
+        return purpleOwned;
     }
 }
