@@ -32,6 +32,10 @@ public class GameBoard {
         }
     }
 
+    public GUI_Street getGuiStreet(int fieldNumber){
+        return (GUI_Street) fields[fieldNumber];
+    }
+
     public void createPropertiesPrices(){
 
         //Blue fields
@@ -103,8 +107,11 @@ public class GameBoard {
                 24000, 28000, 6400, 4000, 4000);
 
         //Purple fields
+        properties[20] = new PropertyField(700, 2250, 3500, 10000,
+                22000, 26000, 30000, 7000, 3500, 3500);
 
-
+        properties[21] = new PropertyField(1000, 2500, 4000, 12000,
+                28000, 34000, 40000, 8000, 4000, 4000);
     }
 
     public Property getProperty(Player player){
