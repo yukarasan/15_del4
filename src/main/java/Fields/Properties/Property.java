@@ -254,44 +254,57 @@ public class Property {
         return amountOfHouses;
     }
 
+    public void setPlusOneAmountOfHouses() {
+        this.amountOfHouses += 1;
+    }
+
     public void placeHouse(int fieldNumber, Property[] properties){
 
-        checkWhichPropertyField(fieldNumber);
 
-        owner.getAccount().setMoney(properties[intHelper].getCostOfOneHouse());
+        owner.getAccount().setMoney(-properties[intHelper].getCostOfOneHouse());
         guiOwner.setBalance(owner.getAccount().getMoney());
 
-        amountOfHouses += 1;
+        properties[intHelper].setPlusOneAmountOfHouses();
 
-        switch (amountOfHouses){
+        switch (properties[intHelper].getAmountOfHouses()){
             case 1 -> properties[intHelper].setCurrentRentPrice(properties[intHelper].getRentOneHouse());
             case 2 -> properties[intHelper].setCurrentRentPrice(properties[intHelper].getRentTwoHouse());
             case 3 -> properties[intHelper].setCurrentRentPrice(properties[intHelper].getRentThreeHouse());
             case 4 -> properties[intHelper].setCurrentRentPrice(properties[intHelper].getRentFourHouse());
         }
-        gui.getGameBoard().getGuiStreet(fieldNumber).setHouses(amountOfHouses);
+        gui.getGameBoard().getGuiStreet(fieldNumber).setHouses(properties[intHelper].getAmountOfHouses());
     }
 
     public void placeTwoEvenHouses(int chosenFieldToBuildOn, int fieldOne, int fieldTwo, Property[] properties){
 
-        if((chosenFieldToBuildOn == fieldOne) &&
-        properties[fieldOne].getAmountOfHouses() <= properties[fieldTwo].getAmountOfHouses()){
+        boolean firstTrue = false, secondTrue = false;
+
+        checkWhichPropertyField(chosenFieldToBuildOn);
+
+        if((intHelper == fieldOne) &&
+                properties[fieldOne].getAmountOfHouses() <= properties[fieldTwo].getAmountOfHouses()){
 
             placeHouse(chosenFieldToBuildOn, properties);
+            firstTrue = true;
         }
-        if(chosenFieldToBuildOn == fieldTwo &&
+
+        if(intHelper == fieldTwo &&
         properties[fieldTwo].getAmountOfHouses() <= properties[fieldTwo].getAmountOfHouses()){
+
             placeHouse(chosenFieldToBuildOn, properties);
+            secondTrue = true;
+
         }
-        else if((chosenFieldToBuildOn == fieldOne) &&
+        else if((intHelper == fieldOne) && !firstTrue &&
                 properties[fieldOne].getAmountOfHouses() >= (properties[fieldTwo].getAmountOfHouses()+1)){
             gui.getInstance().showMessage("Du har for mange bygninger her, vælg et andet sted at bygge");
         }
-        else if((chosenFieldToBuildOn == fieldTwo) &&
+        else if((intHelper == fieldTwo) && !secondTrue &&
                 properties[fieldOne].getAmountOfHouses() >= (properties[fieldOne].getAmountOfHouses()+1)){
             gui.getInstance().showMessage("Du har for mange bygninger her, vælg et andet sted at bygge");
+            chooseToBuildAgain = true;
         }
-        chooseToBuildAgain = true;
+
     }
 
 
@@ -326,6 +339,7 @@ public class Property {
     public void optionsWhenOwningAllFields(Property[] properties, Player player){
 
         boolean chooseAgain = true;
+
         while(chooseAgain) {
             chooseAgain = false;
 
@@ -337,33 +351,29 @@ public class Property {
                 case "Blå" -> {
 
                     if(allBlueOwned && player == properties[1].getOwner()){
-                        String buttonPressed = gui.getInstance().getUserButtonPressed(player.getName() +
-                                ", du ejer alle blå, vil du købe huse her?", "Ja", "Nej");
 
-                        if(buttonPressed.equals("Ja")) {
-
-                            chooseToBuildAgain = true;
-                            while (true) {
-                                chooseToBuildAgain = false;
+                        chooseToBuildAgain = true;
+                        while (chooseToBuildAgain) {
+                            chooseToBuildAgain = false;
 
                             String secondButton = gui.getInstance().getUserButtonPressed("Vælg hvilket felt du ønsker at bygge på",
                                     gui.getSpecificField(1).getTitle(), gui.getSpecificField(3).getTitle(),
                                     "ingen af husene, jeg vil ikke købe i blå");
 
+                            if (secondButton.equals(gui.getSpecificField(1).getTitle())) {
+                                placeTwoEvenHouses(1, 0, 1, properties);
+                                chooseAgain = true;
 
+                            } else if (secondButton.equals(gui.getSpecificField(3).getTitle())) {
+                                placeTwoEvenHouses(3, 1, 0, properties);
+                                chooseAgain = true;
 
-                                if (secondButton.equals(gui.getSpecificField(1).getTitle())) {
-                                    placeTwoEvenHouses(1, 1, 3, properties);
-
-                                } else if (secondButton.equals(gui.getSpecificField(3).getTitle())) {
-                                    placeTwoEvenHouses(3, 1, 3, properties);
-
-                                } else if (secondButton.equals("ingen af husene, jeg vil ikke købe i blå")) {
-                                    chooseAgain = true;
-                                }
+                            } else if (secondButton.equals("ingen af husene, jeg vil ikke købe i blå")) {
+                                chooseAgain = true;
                             }
                         }
-                    }else{
+
+                    }else if(allBlueOwned && player != properties[1].getOwner()){
                         gui.getInstance().showMessage("Du ejer ikke alle blå, vælg en anden");
                         chooseAgain = true;
                     }
