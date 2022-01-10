@@ -163,18 +163,12 @@ public class Property {
         return currentPriceOfBuilding;
     }
 
-
-
     public void setCurrentRentPrice(int currentRentPrice) {
         this.currentRentPrice = currentRentPrice;
     }
 
     public Player getOwner() {
         return owner;
-    }
-
-    public int getRentOneOwned() {
-        return rentOneOwned;
     }
 
     public int getRentAllOwned() {
@@ -199,18 +193,6 @@ public class Property {
 
     public int getRentHotel() {
         return rentHotel;
-    }
-
-    public int getFieldPrice() {
-        return fieldPrice;
-    }
-
-    public int getCostOfOneHouse() {
-        return costOfOneHouse;
-    }
-
-    public int getCostOfHotel() {
-        return costOfHotel;
     }
 
     public void landOnProperty(Player player, GUI_Player gui_player, Property[] properties){
@@ -299,7 +281,6 @@ public class Property {
                 gui.getGameBoard().getGuiStreet(fieldNumber).setHouses(0);
                 gui.getGameBoard().getGuiStreet(fieldNumber).setHotel(true);}
         }
-
     }
 
     public void placeTwoEvenHouses(int chosenFieldToBuildOn, int fieldOne, int fieldTwo, Property[] properties){
@@ -308,14 +289,14 @@ public class Property {
 
         checkWhichPropertyField(chosenFieldToBuildOn);
 
-        if((intHelper == fieldOne) &&
+        if((intHelper == fieldOne) && properties[fieldOne].getAmountOfHouses() < 5 &&
                 properties[fieldOne].getAmountOfHouses() <= properties[fieldTwo].getAmountOfHouses()){
 
             placeHouse(chosenFieldToBuildOn, properties);
             firstTrue = true;
         }
 
-        if(intHelper == fieldTwo &&
+        if(intHelper == fieldTwo && properties[fieldTwo].getAmountOfHouses() < 5 &&
         properties[fieldTwo].getAmountOfHouses() <= properties[fieldTwo].getAmountOfHouses()){
 
             placeHouse(chosenFieldToBuildOn, properties);
@@ -340,7 +321,7 @@ public class Property {
 
         checkWhichPropertyField(chosenFieldToBuildOn);
 
-        if ((intHelper == fieldOne) &&
+        if ((intHelper == fieldOne) && properties[fieldOne].getAmountOfHouses() < 5 &&
                 (properties[fieldOne].getAmountOfHouses() <= properties[fieldTwo].getAmountOfHouses()
                         && properties[fieldOne].getAmountOfHouses() <= properties[fieldThree].getAmountOfHouses())) {
 
@@ -348,7 +329,7 @@ public class Property {
             firstTrue = true;
         }
 
-        if (intHelper == fieldTwo &&
+        if (intHelper == fieldTwo && properties[fieldTwo].getAmountOfHouses() < 5 &&
                 (properties[fieldTwo].getAmountOfHouses() <= properties[fieldOne].getAmountOfHouses()
                         && properties[fieldTwo].getAmountOfHouses() <= properties[fieldThree].getAmountOfHouses())) {
 
@@ -356,7 +337,8 @@ public class Property {
             secondTrue = true;
         }
 
-        if(intHelper == fieldThree && (properties[fieldThree].getAmountOfHouses() <= properties[fieldTwo].getAmountOfHouses()
+        if(intHelper == fieldThree && properties[fieldThree].getAmountOfHouses() < 5 &&
+                (properties[fieldThree].getAmountOfHouses() <= properties[fieldTwo].getAmountOfHouses()
         && properties[fieldThree].getAmountOfHouses() <= properties[fieldOne].getAmountOfHouses())){
 
             placeHouse(chosenFieldToBuildOn, properties);
@@ -382,6 +364,10 @@ public class Property {
                         || properties[fieldThree].getAmountOfHouses() >= (properties[fieldOne].getAmountOfHouses() + 1))) {
             gui.getInstance().showMessage("3333 Du har for mange bygninger her, vælg et andet sted at bygge");
             chooseToBuildAgain = true;
+        }
+
+        if(properties[intHelper].getAmountOfHouses()==5){
+            gui.getInstance().showMessage("Du kan ikke købe mere på her! Du har hotel");
         }
     }
 
