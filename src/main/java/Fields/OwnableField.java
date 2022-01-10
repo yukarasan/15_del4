@@ -12,28 +12,31 @@ public class OwnableField extends Field{
     private int rentNoHouse, rentAllOwned, rentOneHouse, rentTwoHouse, rentThreeHouse, rentFourHouse,
     rentHotel, fieldPrice, costOfOneHouse, costOfHotel;
 
-    public void setFields(GUI_Field[] fields, int fieldNumber, int price, Color color, String name) {
+    public void setFields(GUI_Field[] fields, int fieldNumber, int price, Color color, String name, String description) {
         GUI_Street field = new GUI_Street();
         field.setDescription(" ");
         field.setRent(String.valueOf(price));
         field.setSubText("Pris: " + price);
         field.setBackGroundColor(color);
         field.setTitle(name);
+        field.setDescription(description;
         fields[fieldNumber] = field;
     }
 
-    public void setFerryFields(GUI_Field[] field, int fieldNumber, Color color, String name, String subName) {
+    public void setFerryFields(GUI_Field[] field, int fieldNumber, Color color, String name, String subName, String description) {
         field[fieldNumber] = new GUI_Shipping();
         field[fieldNumber].setBackGroundColor(color);
         field[fieldNumber].setTitle(name);
         field[fieldNumber].setDescription(subName);
+        field[fieldNumber].setDescription(description);
         field[fieldNumber].setSubText("");
     }
 
-    public void setBrewerFields(GUI_Field[] field, int fieldNumber, Color color, String name, String subName) {
+    public void setBrewerFields(GUI_Field[] field, int fieldNumber, Color color, String name, String subName, String description) {
         field[fieldNumber] = new GUI_Brewery();
         field[fieldNumber].setBackGroundColor(color);
         field[fieldNumber].setTitle(name);
+        field[fieldNumber].setDescription(description);
         field[fieldNumber].setDescription(subName);
         field[fieldNumber].setSubText("");
     }

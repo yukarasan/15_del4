@@ -6,6 +6,8 @@ import Fields.Properties.Property;
 import Main.Player;
 import gui_fields.GUI_Field;
 import gui_fields.GUI_Street;
+
+import javax.swing.*;
 import java.awt.*;
 
 public class GameBoard {
@@ -174,34 +176,38 @@ public class GameBoard {
 
     private void createOwnableField() {
         OwnableField ownableField = new OwnableField();
-        ownableField.setFields(fields,1,1200, Color.blue, "Rødovrevej");
-        ownableField.setFields(fields,3, 1200,Color.blue,"Hvidovrevej");
-        ownableField.setFerryFields(fields, 5, Color.cyan, "Scandlines", "Helsingør-Helsinborg");
-        ownableField.setFields(fields,6, 2000,Color.orange,"Roskildevej");
-        ownableField.setFields(fields,8, 2000,Color.orange,"Valby Langgade");
-        ownableField.setFields(fields,9, 2400,Color.orange,"Allegade");
+        ownableField.setFields(fields,1,1200, Color.blue, "Rødovrevej", "Navn:Rødovrevej,pris:1200 DKK, pris per hus: 1.000 DKK,Pris per hotel: 1.000 DKK + 4 huse,leje af grund: " +
+                "50 DKK,Med 1 hus:250 DKK,med 2 huse 750 DKK, med 3 huse:2.250 DKK, med 4 huse: 4.000 DKK, med 1 hotel: 6.000 DKK,Pantsætningsværdi: 600 DKK");
+        ownableField.setFields(fields,3, 1200,Color.blue,"Hvidovrevej","Navn:Hvidorevej, pris: 1200 DKK, pris per hus: 1.000 DKK,Pris per hotel: 1.000 DKK + 4 huse,leje af grund: 50 DKK,Med 1 hus:250 DKK,med 2 huse 750 DKK, med 3 huse:2.250 DKK, med 4 huse: 4.000 DKK, med 1 hotel: 6.000 DKK, Pantsætning: 600 DKK");
+        ownableField.setFerryFields(fields, 5, Color.cyan, "Scandlines", "Helsingør-Helsinborg","Leje:500 DKK, med 2 rederier: 1.000 DKK, med 3 rederier: 2.000 DKK,med 4 rederier: 4.000 DKK, Pantsætningværdi: 2.000 DKK");
+        ownableField.setFields(fields,6, 2000,Color.orange,"Roskildevej","Navn: Roskildevej, pris: 2000 DKK, pris per hus:1.000 DKK, pris per hotel: 1.000 DKK+4 huse,leje af grund:100 DKK, med 1 hus:600 DKK,med 2 huse:1.800,med 3 huse:5.400 DKK,med 4 huse:8.000 DKK,med 1 hotel: 11.000 DKK,pantsætningsværdi: 1.000 DKK ");
+        ownableField.setFields(fields,8, 2000,Color.orange,"Valby Langgade","Navn: Valby Langgade, Pris 2.000,pris per hus:1.000 DKK,pris per hotel: pris per hotel: 1.000 DKK+ 4 huse, leje af grund: 100 DKK, med 1 hus:600 DKK,med 2 huse:1.800,med 3 huse:5.400 DKK,med 4 huse:8.000 DKK,med 1 hotel: 11.000 DKK,pantsætningsværdi: 1.000 DKK");
+        ownableField.setFields(fields,9, 2400,Color.orange,"Allegade","Navn:Allegade,pris:2400, pris per hus:1.000, pris per hotel:1.000 DKK+4 huse, leje af grund:150 DKK, med 1 hus:800, med 2 huse: 2.000 DKK, med 3 huse: 6.000 DKK, med 4 huse: 9.000 DKK,med 1 hotel: 12.000 DKK, pantsætningsværdi: 1.200 DKK ");
         ownableField.setFields(fields,11, 2800,Color.yellow.darker(),"Frederiksberg Alle");
-        ownableField.setBrewerFields(fields,12,Color.red,"Squash", "Tuborg");
+        ownableField.setBrewerFields(fields,12,Color.red,"Squash", "Tuborg","Hvis 1 virksomehed ejes, betales 100 gange så meget,som øjnene viser. Hvis både Coca Cola og Squash ejes betales 200 gange så meget som øjnene viser , pantsætningsærdi: 1.500 DKK");
         ownableField.setFields(fields,13, 2800,Color.yellow.darker(),"Bulowsvej");
         ownableField.setFields(fields,14,3200,Color.yellow.darker(),"Gl. Kongevej");
-        ownableField.setFerryFields(fields, 15, Color.RED, "Mols-linien", "En genvej i Danmark");
+        ownableField.setFerryFields(fields, 15, Color.RED, "Mols-linien", "En genvej i Danmark","Leje:500 DKK, med 2 rederier: 1.000 DKK, med 3 rederier: 2.000 DKK,med 4 rederier: 4.000 DKK, Pantsætningværdi: 2.000 DKK");
         ownableField.setFields(fields,16,3600,Color.gray,"Bernstorffsvej");
         ownableField.setFields(fields,18,3600,Color.gray,"Hellerupvej");
         ownableField.setFields(fields,19,4000,Color.gray,"Strandvejen");
         ownableField.setFields(fields,21,4400,Color.RED,"Trianglen");
         ownableField.setFields(fields,23,4400,Color.RED,"Østerbrogade");
         ownableField.setFields(fields,24,4800,Color.RED,"Grønningen");
-        ownableField.setFerryFields(fields,25,Color.blue,"Scandlines", "Gedser-Rostock");
+        ownableField.setFerryFields(fields,25,Color.blue,"Scandlines", "Gedser-Rostock","Leje:500 DKK, med 2 rederier: 1.000 DKK, med 3 rederier: 2.000 DKK,med 4 rederier: 4.000 DKK, Pantsætningværdi: 2.000 DKK");
         ownableField.setFields(fields,26, 5200,Color.white,"Bredgade");
         ownableField.setFields(fields,27, 5200,Color.white,"Kgs.Nytorv");
-        ownableField.setBrewerFields(fields,28,Color.red,"Coca Cola", " ");
+        ownableField.setBrewerFields(fields,28,Color.red,"Coca Cola", " ","Hvis 1 virksomehed ejes, betales 100 gange så meget,som øjnene viser. Hvis både Coca Cola og Squash ejes betales 200 gange så meget som øjnene viser , pantsætningsærdi: 1.500 DKK");
         ownableField.setFields(fields,29, 5600,Color.white,"Østergade");
         ownableField.setFields(fields,31, 6000,Color.yellow,"Amagertorv");
         ownableField.setFields(fields,32, 6000,Color.yellow,"Vimmelskaffet");
         ownableField.setFields(fields,34, 6400,Color.yellow,"Nygade");
-        ownableField.setFerryFields(fields,35,Color.blue,"Scandlines", "Rødby-Puttgarden");
+        ownableField.setFerryFields(fields,35,Color.blue,"Scandlines", "Rødby-Puttgarden","Leje:500 DKK, med 2 rederier: 1.000 DKK, med 3 rederier: 2.000 DKK,med 4 rederier: 4.000 DKK, Pantsætningværdi: 2.000 DKK");
         ownableField.setFields(fields,37, 7000,Color.magenta,"Frederiksberg gade");
         ownableField.setFields(fields,39, 8000,Color.magenta,"Rådhuspladsen");
+
+    }
+
 
     }
 
