@@ -152,8 +152,8 @@ public class Game {
                     playerTurn(players[i], gui_players[i]);
                 }
                 if(diceCup.getDie1().getFaceValue() == diceCup.getDie2().getFaceValue() && !players[i].getInJail()){
-                   gui.getInstance().showMessage(players[i].getName() + ", du har slået to terninger igen " +
-                           "og skal slå en sidste gang");
+                    gui.getInstance().showMessage(players[i].getName() + ", du har slået to terninger igen " +
+                            "og skal slå en sidste gang");
                 }
                 if(diceCup.getDie1().getFaceValue() == diceCup.getDie2().getFaceValue() && !players[i].getInJail()){
                     gui.getInstance().showMessage(players[i].getName() + ", du har slået to ens terninger for " +
@@ -162,7 +162,7 @@ public class Game {
                 }
             }
         }
-   }
+    }
 
     private void playerTurn(Player player, GUI_Player gui_player) {
         if (!player.getInJail() && !player.getPlayerOutOfGame()) {

@@ -36,23 +36,22 @@ public class SameDiceValueThirdTime {
         Player player = new Player();
         player.setName("Tester");
 
-
         Die die = new Die();
 
         gui.getInstance().showMessage(player.getName() + ", du må slå med terningerne");
 
-        gui.getInstance().setDice(5, 5);
+        gui.getInstance().setDice(4, 5);
 
-        if (getDice() == getDice() && getDice() == getDice() && !player.getInJail()) {
+        if (getDice() == getDice() && !player.getInJail()) {
             gui.getInstance().showMessage(player.getName() + ", du har slået det samme, du må derfor slå igen");
         }
-        gui.getInstance().setDice(5, 5);
+        gui.getInstance().setDice(4, 5);
 
         if (getDice() == getDice() && !player.getInJail()) {
             gui.getInstance().showMessage(player.getName() +
                     ", du har slået det samme igen igen, du må slå en sidste gang");
         }
-        gui.getInstance().setDice(5, 5);
+        gui.getInstance().setDice(4, 5);
         if(getDice() == getDice() && !player.getInJail()){
             gui.getInstance().showMessage(player.getName() + ", du har slået det samme tre gange " +
                     "og derfor skal du i fængsel");
