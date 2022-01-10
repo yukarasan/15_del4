@@ -290,25 +290,29 @@ public class Property {
         checkWhichPropertyField(chosenFieldToBuildOn);
 
         if((intHelper == fieldOne) && properties[fieldOne].getAmountOfHouses() < 5 &&
-                properties[fieldOne].getAmountOfHouses() <= properties[fieldTwo].getAmountOfHouses()){
+                properties[fieldOne].getAmountOfHouses() <= properties[fieldTwo].getAmountOfHouses()
+        && properties[intHelper].getAmountOfHouses() != 5){
 
             placeHouse(chosenFieldToBuildOn, properties);
             firstTrue = true;
         }
 
         if(intHelper == fieldTwo && properties[fieldTwo].getAmountOfHouses() < 5 &&
-        properties[fieldTwo].getAmountOfHouses() <= properties[fieldTwo].getAmountOfHouses()){
+        properties[fieldTwo].getAmountOfHouses() <= properties[fieldTwo].getAmountOfHouses()
+        && properties[intHelper].getAmountOfHouses() != 5){
 
             placeHouse(chosenFieldToBuildOn, properties);
             secondTrue = true;
 
         }
         else if((intHelper == fieldOne) && !firstTrue &&
-                properties[fieldOne].getAmountOfHouses() >= (properties[fieldTwo].getAmountOfHouses()+1)){
+                properties[fieldOne].getAmountOfHouses() >= (properties[fieldTwo].getAmountOfHouses()+1)
+        && properties[intHelper].getAmountOfHouses() != 5){
             gui.getInstance().showMessage("Du har for mange bygninger her, vælg et andet sted at bygge");
         }
         else if((intHelper == fieldTwo) && !secondTrue &&
-                properties[fieldOne].getAmountOfHouses() >= (properties[fieldOne].getAmountOfHouses()+1)){
+                properties[fieldOne].getAmountOfHouses() >= (properties[fieldOne].getAmountOfHouses()+1)
+        && properties[intHelper].getAmountOfHouses() != 5){
             gui.getInstance().showMessage("Du har for mange bygninger her, vælg et andet sted at bygge");
             chooseToBuildAgain = true;
         }
@@ -323,7 +327,8 @@ public class Property {
 
         if ((intHelper == fieldOne) && properties[fieldOne].getAmountOfHouses() < 5 &&
                 (properties[fieldOne].getAmountOfHouses() <= properties[fieldTwo].getAmountOfHouses()
-                        && properties[fieldOne].getAmountOfHouses() <= properties[fieldThree].getAmountOfHouses())) {
+                        && properties[fieldOne].getAmountOfHouses() <= properties[fieldThree].getAmountOfHouses())
+        && properties[intHelper].getAmountOfHouses() != 5) {
 
             placeHouse(chosenFieldToBuildOn, properties);
             firstTrue = true;
@@ -331,7 +336,8 @@ public class Property {
 
         if (intHelper == fieldTwo && properties[fieldTwo].getAmountOfHouses() < 5 &&
                 (properties[fieldTwo].getAmountOfHouses() <= properties[fieldOne].getAmountOfHouses()
-                        && properties[fieldTwo].getAmountOfHouses() <= properties[fieldThree].getAmountOfHouses())) {
+                        && properties[fieldTwo].getAmountOfHouses() <= properties[fieldThree].getAmountOfHouses())
+        && properties[intHelper].getAmountOfHouses() != 5) {
 
             placeHouse(chosenFieldToBuildOn, properties);
             secondTrue = true;
@@ -339,7 +345,8 @@ public class Property {
 
         if(intHelper == fieldThree && properties[fieldThree].getAmountOfHouses() < 5 &&
                 (properties[fieldThree].getAmountOfHouses() <= properties[fieldTwo].getAmountOfHouses()
-        && properties[fieldThree].getAmountOfHouses() <= properties[fieldOne].getAmountOfHouses())){
+        && properties[fieldThree].getAmountOfHouses() <= properties[fieldOne].getAmountOfHouses())
+        && properties[intHelper].getAmountOfHouses() != 5){
 
             placeHouse(chosenFieldToBuildOn, properties);
             thirdTrue = true;
@@ -347,30 +354,32 @@ public class Property {
 
         else if ((intHelper == fieldOne) && !firstTrue && !secondTrue && !thirdTrue &&
                 (properties[fieldOne].getAmountOfHouses() >= (properties[fieldTwo].getAmountOfHouses() + 1)
-                        || properties[fieldOne].getAmountOfHouses() >= (properties[fieldThree].getAmountOfHouses() + 1))) {
+                        || properties[fieldOne].getAmountOfHouses() >= (properties[fieldThree].getAmountOfHouses() + 1))
+        && properties[intHelper].getAmountOfHouses() != 5) {
             gui.getInstance().showMessage("Du har for mange bygninger her, vælg et andet sted at bygge");
             chooseToBuildAgain = true;
         }
 
         else if ((intHelper == fieldTwo) && !firstTrue && !secondTrue && !thirdTrue &&
                 (properties[fieldTwo].getAmountOfHouses() >= (properties[fieldOne].getAmountOfHouses() + 1)
-                        || properties[fieldTwo].getAmountOfHouses() >= (properties[fieldThree].getAmountOfHouses() + 1))) {
+                        || properties[fieldTwo].getAmountOfHouses() >= (properties[fieldThree].getAmountOfHouses() + 1))
+        && properties[intHelper].getAmountOfHouses() != 5) {
             gui.getInstance().showMessage("Du har for mange bygninger her, vælg et andet sted at bygge");
             chooseToBuildAgain = true;
 
 
         } else if ((intHelper == fieldThree) && !thirdTrue && !firstTrue && !secondTrue &&
                 (properties[fieldThree].getAmountOfHouses() >= (properties[fieldTwo].getAmountOfHouses() + 1)
-                        || properties[fieldThree].getAmountOfHouses() >= (properties[fieldOne].getAmountOfHouses() + 1))) {
+                        || properties[fieldThree].getAmountOfHouses() >= (properties[fieldOne].getAmountOfHouses() + 1))
+        && properties[intHelper].getAmountOfHouses() != 5) {
             gui.getInstance().showMessage("3333 Du har for mange bygninger her, vælg et andet sted at bygge");
             chooseToBuildAgain = true;
         }
 
-        if(properties[intHelper].getAmountOfHouses()==5){
+        if(properties[intHelper].getAmountOfHouses() == 5){
             gui.getInstance().showMessage("Du kan ikke købe mere på her! Du har hotel");
         }
     }
-
 
     public void checkWhichPropertyField(int fieldNumber){
 
