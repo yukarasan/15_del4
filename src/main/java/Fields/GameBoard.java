@@ -7,7 +7,6 @@ import Main.Player;
 import gui_fields.GUI_Field;
 import gui_fields.GUI_Street;
 
-import javax.swing.*;
 import java.awt.*;
 
 public class GameBoard {
@@ -17,8 +16,8 @@ public class GameBoard {
     private final Ferry[] ferries = new Ferry[4];
     private final Brewer[] brewers = new Brewer[2];
     private int intHelper, intHelper1, intHelper2;
-    private Jackpot jackpot = new Jackpot();
-    private Property[] properties = new Property[22];
+    private final Jackpot jackpot = new Jackpot();
+    private final Property[] properties = new Property[22];
 
     public void instantiatingFields(){
 
