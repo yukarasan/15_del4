@@ -334,21 +334,15 @@ public class Game {
 
             for (int i = 0; i < gui.getGameBoard().getProperties().length; i++) {
                 if(player == gui.getGameBoard().getProperty(i).getOwner()){
-
-
-
+                    gui.getGameBoard().getProperties()[i].resetProperty(i);
                 }
             }
 
-
-            for (int i = 0; i < gui.getGameBoard().getField().length; i++) {
-                if (player == gui.getGameBoard().getFerry(player).getOwner() ||
-                        player == gui.getGameBoard().getProperties()[i].getOwner()) {
-                    break;
+            for (int i = 0; i < gui.getGameBoard().getFerries().length; i++) {
+                if(player == gui.getGameBoard().getFerries()[i].getOwner()){
+                    gui.getGameBoard().getFerries()[i].resetFerry(i);
                 }
             }
-
-             */
 
             gui.getInstance().showMessage("Alle " + player.getName() + "'s felter er nu tilgængelig for køb.");
         }
