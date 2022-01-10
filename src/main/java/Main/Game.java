@@ -147,20 +147,17 @@ public class Game {
                     gui.getInstance().showMessage(players[i].getName() + ", du har slået to ens terninger, slå igen");
                     playerTurn(players[i], gui_players[i]);
                 }
-                /*if(diceCup.getDie1().getFaceValue() == diceCup.getDie2().getFaceValue() &&
-                        diceCup.getDie1().getFaceValue() == diceCup.getDie2().getFaceValue() && !players[i].getInJail()){
+                if(diceCup.getDie1().getFaceValue() == diceCup.getDie2().getFaceValue() && !players[i].getInJail()){
                    gui.getInstance().showMessage(players[i].getName() + ", du har slået to terninger igen " +
                            "og skal slå en sidste gang");
                 }
-                if(diceCup.getDie1().getFaceValue() == diceCup.getDie2().getFaceValue() && diceCup.getDie1().getFaceValue() ==
-                        diceCup.getDie2().getFaceValue() && diceCup.getDie1().getFaceValue() == diceCup.getDie2().getFaceValue()
-                        && !players[i].getInJail()){
+                if(diceCup.getDie1().getFaceValue() == diceCup.getDie2().getFaceValue() && !players[i].getInJail()){
                     gui.getInstance().showMessage(players[i].getName() + ", du har slået to ens terninger for " +
                             "tredje gang, og derfor skal du i fængsel");
                     jail.setPlayerInJail(gui_players[i],players[i]);
                 }
 
-                 */
+
             }
         }
    }

@@ -10,24 +10,6 @@ import gui_fields.GUI_Car;
 import gui_fields.GUI_Player;
 
 public class SameDiceValueThirdTime {
-   /*  public static void throwingSameDiceValue(Player player, GUI_Player gui_player, GUI_Controller gui, Jail jail) {
-       if(getDice() == getDice() && getDice() == getDice() && !player.getInJail()) {
-           gui.getInstance().showMessage(player.getName() + ", du har slået det samme, du må derfor slå igen");
-
-
-       }
-       if(getDice() == getDice() && getDice() == getDice() && getDice() == getDice() && getDice() == getDice()
-               && !player.getInJail()){
-           gui.getInstance().showMessage(player.getName() + ", du har slået det samme igen igen slå igen");
-           gui.getInstance().setDice(5,5);
-       }
-       if (getDice() == getDice() && getDice() == getDice() && getDice() == getDice() && getDice() == getDice() &&
-               getDice() == getDice() && getDice() == getDice() && !player.getInJail()) {
-           gui.getInstance().showMessage(player.getName() + ", du har slået det samme igen igen igen, " +
-                   "du må derfor gå i fængsel");
-           jail.setPlayerInJail(gui_player, player);
-       }
-   }*/
     private static int dice;
 
     private void setDice(int die1, int die2) {
@@ -65,18 +47,16 @@ public class SameDiceValueThirdTime {
         }
         gui.getInstance().setDice(5, 5);
 
-        if (getDice() == getDice() && getDice() == getDice() && getDice() == getDice() && getDice() == getDice() && !player.getInJail()) {
+        if (getDice() == getDice() && !player.getInJail()) {
             gui.getInstance().showMessage(player.getName() +
                     ", du har slået det samme igen igen, du må slå en sidste gang");
         }
         gui.getInstance().setDice(5, 5);
-        if(getDice() == getDice() && getDice() == getDice() && getDice() == getDice() && getDice() == getDice()
-                && getDice() == getDice() && getDice() == getDice() && !player.getInJail()){
+        if(getDice() == getDice() && !player.getInJail()){
             gui.getInstance().showMessage(player.getName() + ", du har slået det samme tre gange " +
                     "og derfor skal du i fængsel");
             jail.setPlayerInJail(gui_player,player);
         }
-       // throwingSameDiceValue(player,gui_player,gui,jail);
     }
 
 }

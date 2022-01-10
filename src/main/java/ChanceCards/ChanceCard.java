@@ -29,6 +29,7 @@ public class ChanceCard {
     private final Tipping card21 = new Tipping();
     int counter = 1;
 
+
     public void playerLandsOnChanceField(Player player, GUI_Player gui_player) {
         int[] chanceFields = {2, 7, 17, 22, 33, 36};
         int sq = player.getSquare();
