@@ -62,6 +62,7 @@ public class Brewer extends OwnableField {
         brewers[brewerNumber].setOwner(player);
         brewers[brewerNumber].setGuiOwner(gui_player);
         brewers[brewerNumber].setIsOwned(true);
+        brewers[brewerNumber].setJustBought(true);
     }
 
     public void buyBrewer(Player player, Brewer[] brewers, Player[] players, GUI_Player[] gui_players) {
