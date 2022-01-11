@@ -24,7 +24,7 @@ public class Ferry extends OwnableField {
     private Player owner;
     private GUI_Player guiOwner;
     private final int[] ferryFields = {5, 15, 25, 35};
-    private int ferryPrice, intHelper, ferryNumber, guiField, buyPrice = 4000;
+    private static int ferryPrice, intHelper, ferryNumber, guiField, buyPrice = 4000;
     boolean justBought;
 
     public void setRentPrice(int rentPrice) {
@@ -112,7 +112,6 @@ public class Ferry extends OwnableField {
         }
     }
     public void checkIfLandedFerryField(int guiField){
-        guiField = guiField;
 
         switch (guiField) {
             case 5 -> ferryNumber = 0;
@@ -229,6 +228,8 @@ public class Ferry extends OwnableField {
 
         player.getAccount().setMoney(-4000);
         gui_player.setBalance(player.getAccount().getMoney());
+
+        checkForFieldNumber(ferryNumber);
         gui.getSpecificField(guiField).setSubText(player.getName());
 
         ferries[intHelper].setJustBought(true);
