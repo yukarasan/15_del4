@@ -26,8 +26,8 @@ public class GetOutOfJailThirdTime {
         Jail jail = new Jail();
         GUI_Car car1 = new GUI_Car();
 
-
         Player player = new Player();
+
         player.setName("Tester");
         GUI_Player gui_player = new GUI_Player(player.getName(), player.getAccount().getMoney(), car1);
         gui.getInstance().addPlayer(gui_player);
