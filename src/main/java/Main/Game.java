@@ -201,7 +201,7 @@ public class Game {
 
         //If player lands on ferries
         gui.getGameBoard().getFerry(player).buyFerry(player, gui_player, gui.getGameBoard().getFerries(), players, gui_players);
-        gui.getGameBoard().getFerry(player).payOwnerOfFerry(player, gui_player);
+        gui.getGameBoard().getFerry(player).payOwnerOfFerry(player, gui_player, gui.getGameBoard().getFerries());
 
         //If player lands on brewers
         gui.getGameBoard().getBrewer(player).buyBrewerField(player, gui_player);

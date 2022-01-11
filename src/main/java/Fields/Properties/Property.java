@@ -170,10 +170,20 @@ public class Property {
 
     public void optionBuyProperty(Player player, GUI_Player gui_player, Property[] properties, Player[] players, GUI_Player[] gui_players) {
 //////////IKKE HVIS HAN IKKE HAR RÅD FIX DET
+
+        String buttonPressed = null;
+
         if (player.getAccount().getMoney() > fieldPrice) {
-            String buttonPressed = gui.getInstance().getUserButtonPressed(player.getName() + ", du er landet på " +
-                    gui.getSpecificField(player.getSquare()).getTitle() + ", vil du købe denne for " + fieldPrice + " DKK?", "Ja",
+            buttonPressed = gui.getInstance().getUserButtonPressed(player.getName() + ", du er landet på " +
+                            gui.getSpecificField(player.getSquare()).getTitle() + ", vil du købe denne for " + fieldPrice + " DKK?", "Ja",
                     "Nej, sæt feltet på auktion");
+        }
+
+        if (player.getAccount().getMoney() < fieldPrice) {
+            buttonPressed = gui.getInstance().getUserButtonPressed(player.getName() + ", du er landet på " +
+                            gui.getSpecificField(player.getSquare()).getTitle() + ", den koster " + fieldPrice + " DKK, men du har" +
+                            " ikke råd. Du bliver nødt til at sætte den på auktion",
+                    "Sæt feltet på auktion");
 
             if (buttonPressed.equals("Ja")) {
                 this.guiOwner = gui_player;
@@ -206,7 +216,7 @@ public class Property {
                             allPurpleOwned, 20, 21, "purple");}
                 }
             }
-            if(buttonPressed.equals("Nej, sæt feltet på auktion")){
+            if(buttonPressed.equals("Nej, sæt feltet på auktion") || buttonPressed.equals("Sæt feltet på auktion")){
                 setPropertyOnAuction(player, players, properties, gui_players);
             }
         }
@@ -237,7 +247,7 @@ public class Property {
             for (int i = 0; i < players.length; i++) {
 
                 bidAgain = true;
-//IF spiller ik har råd, sæt ham ud automatisk af auktionen
+
                 if (players[i] != isOutOfAuction[i] && !bought
                         && players[i].getAccount().getMoney() > (currentBid + 100) && !players[i].getPlayerOutOfGame()) {
                     while (bidAgain && players[i].getAccount().getMoney() > (currentBid + 50) && players[i] != isOutOfAuction[i]
