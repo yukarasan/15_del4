@@ -205,7 +205,7 @@ public class Game {
 
         //If player lands on brewers
         gui.getGameBoard().getBrewer(player).buyBrewerField(player, gui_player);
-        gui.getGameBoard().getBrewer(player).payOwnerOfBrewer(player, gui_player, diceCup);
+        gui.getGameBoard().getBrewer(player).payOwnerOfBrewer(player, gui_player, diceCup, gui.getGameBoard().getBrewers());
 
         //If player lands on jackpot
         gui.getGameBoard().getJackpot().payToJackpot(player, gui_player);

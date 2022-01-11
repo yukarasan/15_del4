@@ -1,5 +1,6 @@
 package Hussein;
 
+import Fields.Brewer;
 import Fields.GameBoard;
 import Main.DiceCup;
 import Main.Player;
@@ -32,7 +33,8 @@ public class BrewerFieldsTesting {
 
         DiceCup diceCup = new DiceCup();
 
-        gameBoard.getBrewer(player).payOwnerOfBrewer(player1, randomGuiPlayer1, diceCup);
+        Brewer[] brewers = new Brewer[2];
+        gameBoard.getBrewer(player).payOwnerOfBrewer(player1, randomGuiPlayer1, diceCup, brewers);
 
         //Buying second brewer field to same player
         player.moveToHere(28);
@@ -42,6 +44,6 @@ public class BrewerFieldsTesting {
         //Another player tests out the price when two is owned by the same player
         player1.moveToHere(28);
 
-        gameBoard.getBrewer(player).payOwnerOfBrewer(player1, randomGuiPlayer1, diceCup);
+        gameBoard.getBrewer(player).payOwnerOfBrewer(player1, randomGuiPlayer1, diceCup, brewers);
     }
 }

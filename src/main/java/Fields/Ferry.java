@@ -204,7 +204,6 @@ public class Ferry extends OwnableField {
             }
             ferries[intHelper].setRentPrice(ferryPrice);
         }
-        System.out.println(ferries[intHelper].getRentPrice());
     }
 
     public void setGuiOwner(GUI_Player guiOwner) {
@@ -234,7 +233,7 @@ public class Ferry extends OwnableField {
         ferries[intHelper].setGuiOwner(gui_player);
         ferries[intHelper].setOwner(player);
 
-        player.getAccount().setMoney(-4000);
+        player.getAccount().setMoney(-currentBid);
         gui_player.setBalance(player.getAccount().getMoney());
 
         checkForFieldNumber(ferryNumber);
