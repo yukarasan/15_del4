@@ -20,6 +20,7 @@ public class BlueFieldTest {
 
         Player player = new Player();
         player.setName("tester");
+        player.getAccount().setMoney(-25000);
 
         GUI_Car car = new GUI_Car();
         car.setPrimaryColor(blue);
@@ -30,7 +31,7 @@ public class BlueFieldTest {
         gui.getInstance().addPlayer(gui_player);
 
         //Moving player to a blue property and choosing to buy
-        player.moveToHere(11);
+        player.moveToHere(1);
         gui.getSpecificField(player.getSquare()).setCar(gui_player, true);
 
         Player[] players = new Player[1];
@@ -51,7 +52,7 @@ public class BlueFieldTest {
         gui.getInstance().addPlayer(gui_player1);
 
         //Now moving the new player
-        player1.moveToHere(11);
+        player1.moveToHere(1);
         gui.getSpecificField(player1.getSquare()).setCar(gui_player1, true);
 
         gameBoard.getProperty(player1).landOnProperty(player1, gui_player1, gameBoard.getProperties(), players, gui_players);

@@ -20,6 +20,7 @@ public class OrangeFieldTest {
 
         Player player = new Player();
         player.setName("Hussein");
+        player.getAccount().setMoney(-20000);
 
         GUI_Car car = new GUI_Car();
         car.setPrimaryColor(blue);

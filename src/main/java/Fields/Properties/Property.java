@@ -174,6 +174,7 @@ public class Property {
                 guiOwner.setBalance(owner.getAccount().getMoney());
 
                 gui.getSpecificField(owner.getSquare()).setSubText(owner.getName());
+                gui.getGameBoard().getGuiStreet(owner.getSquare()).setBorder(guiOwner.getCar().getPrimaryColor());
 
                 switch (player.getSquare()) {
                     case 1, 3 -> {player.setBlueOwned(); setCurrentRentPriceIfOwningTwo(player, properties,
@@ -226,7 +227,9 @@ public class Property {
             for (int i = 0; i < players.length; i++) {
 
                 bidAgain = true;
-                if (players[i] != isOutOfAuction[i] && !bought) {
+
+                if (players[i] != isOutOfAuction[i] && !bought
+                        && players[i].getAccount().getMoney() > (currentBid + 100) && !players[i].getPlayerOutOfGame()) {
                     while (bidAgain && players[i].getAccount().getMoney() > (currentBid + 50) && players[i] != isOutOfAuction[i]
                             && currentBid < richestAmount ) {
                         bidAgain = false;
@@ -641,17 +644,17 @@ public class Property {
                             + " DKK", "ingen, jeg vil ikke købe i " + colorString);
 
             if (secondButton.equals(gui.getSpecificField(guiField1).getTitle() + " " + properties[propertyField1].getCurrentPriceOfBuilding()
-                    + " DKK")) {
+                    + " DKK") && properties[propertyField1].getCurrentPriceOfBuilding() < player.getAccount().getMoney()) {
                 placeThreeEvenHouses(guiField1, propertyField1, propertyField2, propertyField3, properties);
                 chooseAgain = true;
 
             } else if (secondButton.equals(gui.getSpecificField(guiField2).getTitle() + " " + properties[propertyField2].getCurrentPriceOfBuilding()
-                    + " DKK")) {
+                    + " DKK") && properties[propertyField2].getCurrentPriceOfBuilding() < player.getAccount().getMoney()) {
                 placeThreeEvenHouses(guiField2, propertyField1, propertyField2, propertyField3, properties);
                 chooseAgain = true;
 
             } else if (secondButton.equals(gui.getSpecificField(guiField3).getTitle() + " " + properties[propertyField3].getCurrentPriceOfBuilding()
-                    + " DKK")) {
+                    + " DKK") && properties[propertyField3].getCurrentPriceOfBuilding() < player.getAccount().getMoney()) {
                 placeThreeEvenHouses(guiField3, propertyField1, propertyField2, propertyField3, properties);
                 chooseAgain = true;
 
@@ -663,6 +666,16 @@ public class Property {
         } else if (player != properties[propertyField1].getOwner() || player != properties[propertyField2].getOwner()
                 || player != properties[propertyField3].getOwner()) {
             gui.getInstance().showMessage("Du ejer ikke alle i " + colorString + ", vælg en anden");
+            chooseAgain = true;
+            chooseToBuildAgain = false;
+        }
+        int buildingField1 = properties[propertyField1].getCurrentPriceOfBuilding();
+        int buildingField2 = properties[propertyField2].getCurrentPriceOfBuilding();
+        int buildingField3 = properties[propertyField3].getCurrentPriceOfBuilding();
+        int playerBal = player.getAccount().getMoney();
+
+        if(playerBal < buildingField1 || playerBal < buildingField2 || playerBal < buildingField3){
+            gui.getInstance().getUserButtonPressed("Du har ikke råd til at bygge her", "Okay");
             chooseAgain = true;
             chooseToBuildAgain = false;
         }
