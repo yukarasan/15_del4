@@ -155,6 +155,8 @@ public class Game {
                 if(diceCup.getDie1().getFaceValue() == diceCup.getDie2().getFaceValue() && !players[i].getInJail()){
                     gui.getInstance().showMessage(players[i].getName() + ", du har slået to terninger igen " +
                             "og skal slå en sidste gang");
+                    gui.getInstance().getUserButtonPressed(players[i].getName() + ", kast terningerne", "Kast");
+                    gui.getInstance().setDice(diceCup.getDie1().rollDie(), diceCup.getDie2().rollDie());
                 }
                 if(diceCup.getDie1().getFaceValue() == diceCup.getDie2().getFaceValue() && !players[i].getInJail()){
                     gui.getInstance().showMessage(players[i].getName() + ", du har slået to ens terninger for " +
