@@ -1,19 +1,20 @@
 package Hussein;
 
 import GUI_Controllor.GUI_Controller;
+import Main.DiceCup;
 import Main.Player;
 import gui_fields.GUI_Car;
 import gui_fields.GUI_Player;
 
 import static java.awt.Color.blue;
 
-public class FerryOnAuctionTest {
+public class BrewerOnAuctionTest {
 
     public static void main(String[] args) {
 
         GUI_Controller gui = new GUI_Controller();
         gui.getGameBoard().createPropertiesPrices();
-        gui.getGameBoard().instantiatingFerries();
+        gui.getGameBoard().initializeBrewers();
 
         Player[] players = new Player[2];
 
@@ -36,14 +37,17 @@ public class FerryOnAuctionTest {
         gui.getInstance().addPlayer(gui_players[1]);
 
         //Moving player to a blue property and choosing to buy
-        players[0].moveToHere(25);
+        players[0].moveToHere(12);
         gui.getSpecificField(players[0].getSquare()).setCar(gui_players[0], true);
 
-        gui.getGameBoard().getFerry(players[0]).buyFerry(players[0], gui_players[0], gui.getGameBoard().getFerries(), players, gui_players);
+        DiceCup diceCup = new DiceCup();
+        gui.getGameBoard().getBrewer(players[0]).buyBrewer(players[0], gui.getGameBoard().getBrewers(), players, gui_players);
 
-        gui.getGameBoard().getFerry(players[0]).payOwnerOfFerry(players[0], gui_players[0], gui.getGameBoard().getFerries());
 
-        System.out.println(gui.getGameBoard().getFerry(players[0]).getOwner().getName());
-        gui.getGameBoard().getFerry(players[0]).payOwnerOfFerry(players[0], gui_players[0], gui.getGameBoard().getFerries());
+        gui.getGameBoard().getBrewer(players[0]).payOwnerOfBrewer(players[0], gui_players[0], diceCup, gui.getGameBoard().getBrewers());
+
+
+        gui.getGameBoard().getBrewer(players[0]).payOwnerOfBrewer(players[0], gui_players[0], diceCup, gui.getGameBoard().getBrewers());
     }
+
 }
