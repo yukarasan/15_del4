@@ -28,13 +28,13 @@ public class ManualTestingGuiBuyingAndPaying {
         player.moveToHere(5);
 
         gui.getInstance().showMessage("First buy");
-        gui.getGameBoard().getFerry(player).buyFerry(player,gui_player,gui.getGameBoard().getFerries());
+        //gui.getGameBoard().getFerry(player).buyFerry(player,gui_player,gui.getGameBoard().getFerries());
         System.out.println("Price of first ferry before second buy: " + gui.getGameBoard().getFerries()[0].getRentPrice());
 
         player.moveToHere(15);
 
         gui.getInstance().showMessage("Second buy");
-        gui.getGameBoard().getFerry(player).buyFerry(player, gui_player, gui.getGameBoard().getFerries());
+        //gui.getGameBoard().getFerry(player).buyFerry(player, gui_player, gui.getGameBoard().getFerries());
         System.out.println("Price of first ferry after second buy: " + gui.getGameBoard().getFerries()[1].getRentPrice());
     }
 }

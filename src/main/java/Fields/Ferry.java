@@ -18,7 +18,7 @@ public class Ferry extends OwnableField {
     private Player owner;
     private GUI_Player guiOwner;
     private final int[] ferryFields = {5, 15, 25, 35};
-    private int ferryPrice, intHelper, ferryNumber, guiField;
+    private int ferryPrice, intHelper, ferryNumber, guiField, buyPrice = 4000;
 
     public void setRentPrice(int rentPrice) {
         this.rentPrice = rentPrice;
@@ -65,7 +65,7 @@ public class Ferry extends OwnableField {
      * a specific rent price will be chosen in the switch-statement.
      */
 
-    public void buyFerry(Player player, GUI_Player gui_player, Ferry[] ferries) {
+    public void buyFerry(Player player, GUI_Player gui_player, Ferry[] ferries, Player[] players, GUI_Player[] gui_players) {
         if(IntStream.of(ferryFields).anyMatch(x -> x == player.getSquare()) && !isOwned){
             String buy = gui.getInstance().getUserButtonPressed(player.getName() + ", du er landet på " +
                     gui.getSpecificField(player.getSquare()).getTitle() +
@@ -94,7 +94,9 @@ public class Ferry extends OwnableField {
                         ferry.setRentPrice(ferryPrice);
                     }
                 }
-            }if(buy.equals("Nej, sæt færge på auktion")){}
+            }if(buy.equals("Nej, sæt færge på auktion")){
+                setFerryOnAuction(player, players, ferries, gui_players);
+            }
         }
     }
     public void checkIfLandedFerryField(int guiField){
@@ -107,8 +109,11 @@ public class Ferry extends OwnableField {
         }
     }
 
+    public int getFerryPrice() {
+        return ferryPrice;
+    }
 
-    public void setFerryOnAuction(Player player, Player[] players, Property[] properties, GUI_Player[] gui_players){
+    public void setFerryOnAuction(Player player, Player[] players, Ferry[] ferries, GUI_Player[] gui_players){
 
         checkIfLandedFerryField(player.getSquare());
 
@@ -139,7 +144,7 @@ public class Ferry extends OwnableField {
                             && currentBid < richestAmount ) {
                         bidAgain = false;
                         String bid = gui.getInstance().getUserButtonPressed(players[i].getName() + ", du kan byde på feltet "
-                                        + gui.getSpecificField(player.getSquare()).getTitle() + ". (Oprindelig pris: " + properties[ferryNumber].getFieldPrice()
+                                        + gui.getSpecificField(player.getSquare()).getTitle() + ". (Oprindelig pris: " + 4000
                                         + "). Det nuværende bud er " + currentBid + ". Hvad vil du byde med mere",
                                 "50", "100", "500", "1000", "2000", "5000", "Ønsker ikke at byde");
 
@@ -165,10 +170,36 @@ public class Ferry extends OwnableField {
                 if(players[i] != isOutOfAuction[i]) {
                     gui.getInstance().showMessage("Tillykke " + players[i].getName() + ", du har købt feltet " +
                             gui.getSpecificField(player.getSquare()).getTitle() + " for " + currentBid);
-                    properties[intHelper].boughtFieldFromAuction(gui_players[i], players[i], properties);
+                    ferries[intHelper].boughtFerryFromAuction(gui_players[i], players[i], ferries);
                 }
             }
         }
+    }
+
+    public void setGuiOwner(GUI_Player guiOwner) {
+        this.guiOwner = guiOwner;
+    }
+
+    public void setOwner(Player owner) {
+        this.owner = owner;
+    }
+
+    public void trueIsOwned() {
+        isOwned = true;
+    }
+
+    public void boughtFerryFromAuction(GUI_Player gui_player, Player player, Ferry[] ferries){
+
+        ferries[intHelper].setGuiOwner(gui_player);
+        ferries[intHelper].setOwner(player);
+
+        player.getAccount().setMoney(-4000);
+        gui_player.setBalance(player.getAccount().getMoney());
+
+        player.setFerriesOwned();
+
+        ferries[intHelper].trueIsOwned();
+
     }
 
     private void placeBit(Player player, int bid, Player highestBidder){

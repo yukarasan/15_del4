@@ -1,5 +1,6 @@
 package Main;
 
+import Fields.Ferry;
 import Fields.GameBoard;
 import Fields.Jail;
 import Fields.MoveWithADelay;
@@ -165,6 +166,7 @@ public class Game {
     }
 
     private void playerTurn(Player player, GUI_Player gui_player) {
+
         if (!player.getInJail() && !player.getPlayerOutOfGame()) {
 
             //If player owns a set of colors, player gets asked what to do with their turn
@@ -188,7 +190,7 @@ public class Game {
 
         gui.getGameBoard().getChanceCard().playerLandsOnChanceField(player, gui_player);
 
-        gui.getGameBoard().getFerry(player).buyFerry(player, gui_player, gui.getGameBoard().getFerries());
+        gui.getGameBoard().getFerry(player).buyFerry(player, gui_player, gui.getGameBoard().getFerries(), players, gui_players);
         gui.getGameBoard().getFerry(player).payOwnerOfFerry(player, gui_player);
 
         gui.getGameBoard().getBrewer(player).buyBrewerField(player, gui_player);
