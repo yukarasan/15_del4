@@ -13,6 +13,7 @@ public class Player {
     private int ferriesOwned, brewersOwned;
     private int blueOwned, orangeOwned, darkYellowOwned, greyOwned, redOwned, whiteOwned,
             brightYellowOwned, purpleOwned;
+    private int turnNumberInJail;
 
     /**
      * Creating a method setName that takes a name as a parameter and sets this.name (the name in this class) equal to
@@ -239,5 +240,17 @@ public class Player {
 
     public boolean getPlayerOutOfGame() {
         return outOfGame;
+    }
+
+    public void setTurnNumberInJail() {
+        this.turnNumberInJail += 1;
+    }
+
+    public int getTurnNumberInJail() {
+        return turnNumberInJail;
+    }
+
+    public void resetNumberInJail(){
+        turnNumberInJail = 0;
     }
 }
