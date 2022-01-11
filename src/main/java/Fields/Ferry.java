@@ -78,7 +78,6 @@ public class Ferry extends OwnableField {
 
         if(IntStream.of(ferryFields).anyMatch(x -> x == player.getSquare()) && !isOwned){
 
-            //If han har råd her
             String buy = null;
             if(player.getAccount().getMoney() < 4000){
                 buy = gui.getInstance().getUserButtonPressed(player.getName() + ", du er landet på " +
@@ -120,6 +119,7 @@ public class Ferry extends OwnableField {
             }
         }
     }
+
     public void checkIfLandedFerryField(int guiField){
 
         switch (guiField) {

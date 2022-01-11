@@ -184,6 +184,7 @@ public class Property {
                             gui.getSpecificField(player.getSquare()).getTitle() + ", den koster " + fieldPrice + " DKK, men du har" +
                             " ikke råd. Du bliver nødt til at sætte den på auktion",
                     "Sæt feltet på auktion");
+        }
 
             if (buttonPressed.equals("Ja")) {
                 this.guiOwner = gui_player;
@@ -220,7 +221,6 @@ public class Property {
                 setPropertyOnAuction(player, players, properties, gui_players);
             }
         }
-    }
 
     public void setPropertyOnAuction(Player player, Player[] players, Property[] properties, GUI_Player[] gui_players){
 

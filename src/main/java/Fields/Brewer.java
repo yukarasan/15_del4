@@ -16,6 +16,7 @@ public class Brewer extends OwnableField {
     private final int[] brewerFields = {12, 28};
     private boolean isOwned;
     private boolean justBought;
+    private int brewerPrice;
 
     public void buyBrewerField(Player player, GUI_Player gui_player) {
         String chosenOption;
@@ -35,6 +36,40 @@ public class Brewer extends OwnableField {
             }
         }
     }
+
+    public void setOwner(Player owner) {
+        this.owner = owner;
+    }
+
+    public void setGuiOwner(GUI_Player guiOwner) {
+        this.guiOwner = guiOwner;
+    }
+
+    public void buyBrewer(Player player, GUI_Player gui_player, Brewer[] brewers, Player[] players, GUI_Player[] gui_players) {
+
+        if (IntStream.of(brewerFields).anyMatch(x -> x == player.getSquare()) && !isOwned) {
+
+            String buy = null;
+            if (player.getAccount().getMoney() < 3000) {
+                buy = gui.getInstance().getUserButtonPressed(player.getName() + ", du er landet på " +
+                        gui.getSpecificField(player.getSquare()).getTitle() +
+                        ", vil du købe den for 3000 DKK?", "Ja", "Sæt færge på auktion");
+            }
+
+            if (player.getAccount().getMoney() > 3000) {
+                buy = gui.getInstance().getUserButtonPressed(player.getName() + ", du er landet på " +
+                        gui.getSpecificField(player.getSquare()).getTitle() +
+                        ", vil du købe den for 3000 DKK?", "Ja", "Nej, sæt færge på auktion");
+            }
+
+            if (buy.equals("Ja")) {
+                gui.getSpecificField(player.getSquare()).setSubText(player.getName());
+
+            }
+        }
+    }
+
+
 
     public void payOwnerOfBrewer(Player player, GUI_Player gui_player, DiceCup diceCup) {
         if (IntStream.of(brewerFields).anyMatch(x -> x == player.getSquare()) && isOwned && player != owner) {
