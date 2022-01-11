@@ -468,32 +468,6 @@ public class Game {
         }
     }
 
-    public static void main(String[] args) {
-
-        Game game = new Game();
-        GUI_Controller gui = new GUI_Controller();
-
-        Player player = new Player();
-        player.setName("Huss");
-        GUI_Car car = new GUI_Car();
-        GUI_Player gui_player = new GUI_Player(player.getName(), player.getAccount().getMoney(), car);
-        gui.getInstance().addPlayer(gui_player);
-
-        player.moveToHere(30);
-        player.getAccount().setMoney(-29000);
-
-        gui.getSpecificField(player.getSquare()).setCar(gui_player, true);
-        game.setPlayerInJail(gui_player, player);
-        player.setWaitATurn(false);
-
-        while(true) {
-            game.outOfJail(player, gui_player, game.diceCup);
-        }
-
-
-
-    }
-
 
     /*public void gameOver(Player player) {
         if (endGameForPlayer && endGameForPlayer) {
