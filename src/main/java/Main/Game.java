@@ -209,6 +209,8 @@ public class Game {
         } else if (player.getInJail() && player.getWaitATurn()) {
             player.setWaitATurn(false);
         }
+
+        checkIfPlayerLooses(player, gui_player);
     }
 
 
