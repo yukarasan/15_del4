@@ -169,7 +169,7 @@ public class Property {
     }
 
     public void optionBuyProperty(Player player, GUI_Player gui_player, Property[] properties, Player[] players, GUI_Player[] gui_players) {
-
+//////////IKKE HVIS HAN IKKE HAR RÅD FIX DET
         if (player.getAccount().getMoney() > fieldPrice) {
             String buttonPressed = gui.getInstance().getUserButtonPressed(player.getName() + ", du er landet på " +
                     gui.getSpecificField(player.getSquare()).getTitle() + ", vil du købe denne for " + fieldPrice + " DKK?", "Ja",
@@ -237,7 +237,7 @@ public class Property {
             for (int i = 0; i < players.length; i++) {
 
                 bidAgain = true;
-
+//IF spiller ik har råd, sæt ham ud automatisk af auktionen
                 if (players[i] != isOutOfAuction[i] && !bought
                         && players[i].getAccount().getMoney() > (currentBid + 100) && !players[i].getPlayerOutOfGame()) {
                     while (bidAgain && players[i].getAccount().getMoney() > (currentBid + 50) && players[i] != isOutOfAuction[i]
@@ -251,7 +251,7 @@ public class Property {
                         switch (bid) {
                             case "50", "100", "500", "1000", "2000", "5000" -> placeBit(player, Integer.parseInt(bid) + currentBid, highestBidder);
                             case "Ønsker ikke at byde" -> {
-                                players[i] = isOutOfAuction[i];
+                                isOutOfAuction[i] = players[i];
                                 isOut++;
                             }
                         }
