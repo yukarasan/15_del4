@@ -151,6 +151,7 @@ public class Property {
     public void landOnProperty(Player player, GUI_Player gui_player, Property[] properties, Player[] players, GUI_Player[] gui_players){
         if(IntStream.of(propertyFieldNumbers).anyMatch(x -> x == player.getSquare()) && !isOwned){
             optionBuyProperty(player, gui_player, properties, players, gui_players);
+            System.out.println(currentRentPrice);
         }
 
         if(IntStream.of(propertyFieldNumbers).anyMatch(x -> x == player.getSquare()) && isOwned && player != owner && !justBought){
