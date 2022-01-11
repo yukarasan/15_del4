@@ -191,7 +191,6 @@ public class Game {
         } else if (player.getInJail() && player.getWaitATurn()) {
             player.setWaitATurn(false);
         }
-
     }
 
     public void playerLandsAnywhere(Player player, GUI_Player gui_player){
@@ -219,7 +218,6 @@ public class Game {
         if (player.getSquare() == 30) {
             setPlayerInJail(gui_player, player);
         }
-
         //Checking if player has any money left
         checkIfPlayerLooses(player, gui_player);
     }
