@@ -398,12 +398,6 @@ public class Game {
         }
     }
 
-
-
-    public void optionToBuyProperty(Player player, GUI_Player gui_players){
-
-    }
-
     /**
      * Checks whether a player wins or loses. This is done with an if-statement. If a player has less than 0 or
      * equal to 0, then a message gets printed out saying that they have gone bankrupt.

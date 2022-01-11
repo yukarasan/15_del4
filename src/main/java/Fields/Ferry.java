@@ -19,12 +19,12 @@ import static java.awt.Color.red;
  */
 
 public class Ferry extends OwnableField {
-    private int rentPrice, currentBid;
+    private int rentPrice;
     private boolean isOwned, bidAgain;
-    private Player owner;
+    private Player owner, theOneWhoAuctioned;
     private GUI_Player guiOwner;
     private final int[] ferryFields = {5, 15, 25, 35};
-    private static int ferryPrice, intHelper, ferryNumber, guiField, buyPrice = 4000;
+    private static int ferryPrice, intHelper, ferryNumber, guiField, buyPrice = 4000, currentBid;
     boolean justBought;
 
     public void setRentPrice(int rentPrice) {
@@ -136,6 +136,7 @@ public class Ferry extends OwnableField {
 
     public void setFerryOnAuction(Player player, Player[] players, Ferry[] ferries, GUI_Player[] gui_players){
 
+        theOneWhoAuctioned = player;
         checkIfLandedFerryField(player.getSquare());
 
         gui.getInstance().showMessage("Færgen " + gui.getSpecificField(player.getSquare()).getTitle() + " er sat på auktion" +
@@ -162,7 +163,7 @@ public class Ferry extends OwnableField {
                 bidAgain = true;
                 if (players[i] != isOutOfAuction[i] && !bought) {
                     while (bidAgain && players[i].getAccount().getMoney() > (currentBid + 50) && players[i] != isOutOfAuction[i]
-                            && currentBid < richestAmount ) {
+                            && currentBid < richestAmount && !players[i].getPlayerOutOfGame()) {
                         bidAgain = false;
                         String bid = gui.getInstance().getUserButtonPressed(players[i].getName() + ", du kan byde på feltet "
                                         + gui.getSpecificField(player.getSquare()).getTitle() + ". (Oprindelig pris: " + 4000
@@ -222,26 +223,27 @@ public class Ferry extends OwnableField {
         justBought = trueOrNot;
     }
 
-    public boolean getJustBought(){
-        return justBought;
-    }
-
     public void boughtFerryFromAuction(GUI_Player gui_player, Player player, Ferry[] ferries){
+        checkForFieldNumber(ferryNumber);
+        checkIfLandedFerryField(guiField);
 
         player.setFerriesOwned();
 
+        this.owner = player;
         ferries[intHelper].setGuiOwner(gui_player);
+        this.guiOwner = gui_player;
         ferries[intHelper].setOwner(player);
 
         player.getAccount().setMoney(-currentBid);
         gui_player.setBalance(player.getAccount().getMoney());
 
-        checkForFieldNumber(ferryNumber);
+
         gui.getSpecificField(guiField).setSubText(player.getName());
 
         ferries[intHelper].setJustBought(true);
 
         ferries[intHelper].trueIsOwned();
+        this.isOwned = true;
 
     }
 
@@ -271,8 +273,8 @@ public class Ferry extends OwnableField {
 
         checkIfLandedFerryField(player.getSquare());
 
-        if (IntStream.of(ferryFields).anyMatch(x -> x == player.getSquare()) && isOwned && player != owner
-                && !justBought) {
+        if (IntStream.of(ferryFields).anyMatch(x -> x == player.getSquare()) && ferries[ferryNumber].getIsFerryOwned()
+                && player != ferries[ferryNumber].getOwner() && player != theOneWhoAuctioned) {
             gui.getInstance().getUserButtonPressed("Oh oh.. " + player.getName() + ", du har landet på " +
                     getOwner().getName() + "'s færge: " + gui.getSpecificField(player.getSquare()).getTitle() +
                     ". Du skal betale " + getRentPrice() + " DKK", "Betal");
@@ -285,8 +287,8 @@ public class Ferry extends OwnableField {
             getOwner().getAccount().setMoney(getRentPrice());
             getGuiOwner().setBalance(getOwner().getAccount().getMoney());
         }
-        if(ferries[intHelper].getJustBought()){
-            ferries[intHelper].setJustBought(false);
+        if(player == theOneWhoAuctioned){
+            theOneWhoAuctioned = null;
         }
     }
 
@@ -309,6 +311,5 @@ public class Ferry extends OwnableField {
         this.owner = null;
         this.guiOwner = null;
         this.isOwned = false;
-        this.ferryPrice = 0;
     }
 }

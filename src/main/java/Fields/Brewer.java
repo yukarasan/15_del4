@@ -132,7 +132,7 @@ public class Brewer extends OwnableField {
                 bidAgain = true;
                 if (players[i] != isOutOfAuction[i] && !bought) {
                     while (bidAgain && players[i].getAccount().getMoney() > (currentBid + 50) && players[i] != isOutOfAuction[i]
-                            && currentBid < richestAmount) {
+                            && currentBid < richestAmount && !players[i].getPlayerOutOfGame()) {
                         bidAgain = false;
                         String bid = gui.getInstance().getUserButtonPressed(players[i].getName() + ", du kan byde på feltet "
                                         + gui.getSpecificField(player.getSquare()).getTitle() + ". (Oprindelig pris: " + 4000

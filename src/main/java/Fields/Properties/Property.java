@@ -12,7 +12,7 @@ import static java.awt.Color.red;
 
 public class Property {
     private GUI_Controller gui = new GUI_Controller();
-    private Player owner;
+    private Player owner, theOneWhoAuctioned;
     private GUI_Player guiOwner;
     private int[] propertyFieldNumbers = {1, 3, 6, 8, 9, 11, 13, 14, 16, 18, 19, 21, 23, 24, 26, 27, 29, 31, 32, 34, 37, 39};
     private int currentBid;
@@ -158,14 +158,13 @@ public class Property {
             optionBuyProperty(player, gui_player, properties, players, gui_players);
         }
 
-        if(IntStream.of(propertyFieldNumbers).anyMatch(x -> x == player.getSquare()) && isOwned && player != owner && !justBought){
+        if(IntStream.of(propertyFieldNumbers).anyMatch(x -> x == player.getSquare()) && isOwned && player != owner && player != theOneWhoAuctioned){
             payOwner(player, gui_player);
         }
 
-        if(justBought){
-            justBought = false;
+        if(player == theOneWhoAuctioned){
+            theOneWhoAuctioned = null;
         }
-
     }
 
     public void optionBuyProperty(Player player, GUI_Player gui_player, Property[] properties, Player[] players, GUI_Player[] gui_players) {
@@ -223,7 +222,7 @@ public class Property {
         }
 
     public void setPropertyOnAuction(Player player, Player[] players, Property[] properties, GUI_Player[] gui_players){
-
+        theOneWhoAuctioned = player;
         checkWhichPropertyField(player.getSquare());
         gui.getInstance().showMessage("Feltet " + gui.getSpecificField(player.getSquare()).getTitle() + " er sat på auktion" +
                 ", andre spillere kan nu byde på denne");
