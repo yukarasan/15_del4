@@ -79,9 +79,18 @@ public class Ferry extends OwnableField {
         if(IntStream.of(ferryFields).anyMatch(x -> x == player.getSquare()) && !isOwned){
 
             //If han har råd her
-            String buy = gui.getInstance().getUserButtonPressed(player.getName() + ", du er landet på " +
-                    gui.getSpecificField(player.getSquare()).getTitle() +
-                    ", vil du købe den for 4000 DKK?", "Ja", "Nej, sæt færge på auktion");
+            String buy = null;
+            if(player.getAccount().getMoney() < 4000){
+                buy = gui.getInstance().getUserButtonPressed(player.getName() + ", du er landet på " +
+                        gui.getSpecificField(player.getSquare()).getTitle() +
+                        ", vil du købe den for 4000 DKK?", "Ja", "Sæt færge på auktion");
+            }
+
+            if(player.getAccount().getMoney() > 4000) {
+                buy = gui.getInstance().getUserButtonPressed(player.getName() + ", du er landet på " +
+                        gui.getSpecificField(player.getSquare()).getTitle() +
+                        ", vil du købe den for 4000 DKK?", "Ja", "Nej, sæt færge på auktion");
+            }
 
             if(buy.equals("Ja")) {
                 gui.getSpecificField(player.getSquare()).setSubText(player.getName());
@@ -106,7 +115,7 @@ public class Ferry extends OwnableField {
                         ferry.setRentPrice(ferryPrice);
                     }
                 }
-            }if(buy.equals("Nej, sæt færge på auktion")){
+            }if(buy.equals("Nej, sæt færge på auktion") || buy.equals("Sæt færge på auktion")){
                 setFerryOnAuction(player, players, ferries, gui_players);
             }
         }
@@ -219,7 +228,6 @@ public class Ferry extends OwnableField {
     }
 
     public void boughtFerryFromAuction(GUI_Player gui_player, Player player, Ferry[] ferries){
-
 
         player.setFerriesOwned();
 

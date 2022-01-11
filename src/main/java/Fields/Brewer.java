@@ -15,6 +15,7 @@ public class Brewer extends OwnableField {
     private int fieldPrice, intHelper;
     private final int[] brewerFields = {12, 28};
     private boolean isOwned;
+    private boolean justBought;
 
     public void buyBrewerField(Player player, GUI_Player gui_player) {
         String chosenOption;
