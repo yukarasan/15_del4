@@ -3,8 +3,6 @@ package Fields.Properties;
 import GUI_Controllor.GUI_Controller;
 import Main.Player;
 import gui_fields.GUI_Player;
-import org.apache.commons.compress.compressors.zstandard.ZstdCompressorOutputStream;
-
 import java.util.stream.IntStream;
 
 public class Property {
@@ -48,10 +46,23 @@ public class Property {
 
 
     public void setCurrentRentPriceIfOwningTwo(Player player, Property[] properties, boolean whichAllColor,
-                                               int propertyNumberOne, int propertyNumberTwo){
+                                               int propertyNumberOne, int propertyNumberTwo, String color){
+
+        int amountOfSpecificColorOwned = 0;
+
+        switch(color){
+            case "red" -> amountOfSpecificColorOwned = player.getRedOwned();
+            case "brightYellow" -> amountOfSpecificColorOwned = player.getBrightYellowOwned();
+            case "purple" -> amountOfSpecificColorOwned = player.getPurpleOwned();
+            case "darkYellow" -> amountOfSpecificColorOwned = player.getDarkYellowOwned();
+            case "blue" -> amountOfSpecificColorOwned = player.getBlueOwned();
+            case "orange" -> amountOfSpecificColorOwned = player.getOrangeOwned();
+            case "white" -> amountOfSpecificColorOwned = player.getWhiteOwned();
+            case "grey" -> amountOfSpecificColorOwned = player.getGreyOwned();
+        }
 
         if(!whichAllColor && properties[propertyNumberOne].getCurrentRentPrice() != properties[propertyNumberOne].getRentAllOwned()) {
-            switch (player.getBlueOwned()) {
+            switch (amountOfSpecificColorOwned) {
                 case 1 -> currentRentPrice = rentOneOwned;
                 case 2 -> {
                     owner.setOwnsAPropertySet(true);
@@ -66,10 +77,23 @@ public class Property {
 
 
     public void setCurrentRentPriceIfOwningThree(Player player, Property[] properties, boolean whichAllColor, int fieldOne,
-                                                 int fieldTwo, int fieldThree){
+                                                 int fieldTwo, int fieldThree, String color){
+
+        int amountOfSpecificColorOwned = 0;
+
+        switch(color){
+            case "red" -> amountOfSpecificColorOwned = player.getRedOwned();
+            case "brightYellow" -> amountOfSpecificColorOwned = player.getBrightYellowOwned();
+            case "purple" -> amountOfSpecificColorOwned = player.getPurpleOwned();
+            case "darkYellow" -> amountOfSpecificColorOwned = player.getDarkYellowOwned();
+            case "blue" -> amountOfSpecificColorOwned = player.getBlueOwned();
+            case "orange" -> amountOfSpecificColorOwned = player.getOrangeOwned();
+            case "white" -> amountOfSpecificColorOwned = player.getWhiteOwned();
+            case "grey" -> amountOfSpecificColorOwned = player.getGreyOwned();
+        }
 
         if(!whichAllColor && currentRentPrice != rentAllOwned) {
-            switch (player.getOrangeOwned()) {
+            switch (amountOfSpecificColorOwned) {
                 case 1, 2 -> currentRentPrice = rentOneOwned;
                 case 3 -> {
                     owner.setOwnsAPropertySet(true);
@@ -151,18 +175,27 @@ public class Property {
 
                 gui.getSpecificField(owner.getSquare()).setSubText(owner.getName());
 
-                switch (owner.getSquare()) {
-                    case 1, 3 -> {owner.setBlueOwned(); setCurrentRentPriceIfOwningTwo(player, properties,
-                            allBlueOwned, 0, 1);}
-                    case 6, 8, 9 -> {owner.setOrangeOwned(); setCurrentRentPriceIfOwningThree(player, properties,
-                            allOrangeOwned, 2,3,4);}
-                    case 11, 13, 14 -> owner.setDarkYellowOwned();
-                    case 16, 18, 19 -> owner.setGreyOwned();
-                    case 21, 23, 24 -> owner.setRedOwned();
-                    case 26, 27, 29 -> owner.setWhiteOwned();
-                    case 31, 32, 34 -> owner.setBrightYellowOwned();
+                switch (player.getSquare()) {
+                    case 1, 3 -> {player.setBlueOwned(); setCurrentRentPriceIfOwningTwo(player, properties,
+                            allBlueOwned, 0, 1, "blue");}
+                    case 6, 8, 9 -> {player.setOrangeOwned(); setCurrentRentPriceIfOwningThree(player, properties,
+                            allOrangeOwned, 2,3,4, "orange");}
+                    case 11, 13, 14 -> {player.setDarkYellowOwned(); setCurrentRentPriceIfOwningThree(player, properties,
+                            allDarkYellowOwned, 5, 6, 7, "darkYellow");}
+                    case 16, 18, 19 -> {player.setGreyOwned(); setCurrentRentPriceIfOwningThree(player, properties,
+                            allGreyOwned, 8, 9, 10, "grey");}
+                    case 21, 23, 24 -> {player.setRedOwned(); setCurrentRentPriceIfOwningThree(player, properties,
+                            allRedOwned, 11, 12, 13, "red");
+                    }
+                    case 26, 27, 29 -> {player.setWhiteOwned(); setCurrentRentPriceIfOwningThree(player, properties,
+                            allWhiteOwned, 14, 15, 16, "white");}
+                    case 31, 32, 34 -> {player.setBrightYellowOwned(); setCurrentRentPriceIfOwningThree(player, properties,
+                            allBrightYellowOwned, 17, 18, 19, "brightYellow");}
+                    case 37, 39 -> {player.setPurpleOwned(); setCurrentRentPriceIfOwningTwo(player, properties,
+                            allPurpleOwned, 20, 21, "purple");}
                 }
-            }if(buttonPressed.equals("Nej, sæt feltet på auktion")){
+            }
+            if(buttonPressed.equals("Nej, sæt feltet på auktion")){
                 setPropertyOnAuction(player, players, properties, gui_players);
             }
         }
@@ -259,16 +292,24 @@ public class Property {
         gui.getSpecificField(guiFieldNumber).setSubText(player.getName());
 
         switch (guiFieldNumber) {
-            case 1, 3 -> player.setBlueOwned();
-            case 6, 8, 9 -> player.setOrangeOwned();
-            case 11, 13, 14 -> player.setDarkYellowOwned();
-            case 16, 18, 19 -> player.setGreyOwned();
-            case 21, 23, 24 -> player.setRedOwned();
-            case 26, 27, 29 -> player.setWhiteOwned();
-            case 31, 32, 34 -> player.setBrightYellowOwned();
+            case 1, 3 -> {player.setBlueOwned(); setCurrentRentPriceIfOwningTwo(player, properties,
+                    allBlueOwned, 0, 1, "blue");}
+            case 6, 8, 9 -> {player.setOrangeOwned(); setCurrentRentPriceIfOwningThree(player, properties,
+                    allOrangeOwned, 2,3,4, "orange");}
+            case 11, 13, 14 -> {player.setDarkYellowOwned(); setCurrentRentPriceIfOwningThree(player, properties,
+                    allDarkYellowOwned, 5, 6, 7, "darkYellow");}
+            case 16, 18, 19 -> {player.setGreyOwned(); setCurrentRentPriceIfOwningThree(player, properties,
+                    allGreyOwned, 8, 9, 10, "grey");}
+            case 21, 23, 24 -> {player.setRedOwned(); setCurrentRentPriceIfOwningThree(player, properties,
+                    allRedOwned, 11, 12, 13, "red");
+            }
+            case 26, 27, 29 -> {player.setWhiteOwned(); setCurrentRentPriceIfOwningThree(player, properties,
+                    allWhiteOwned, 14, 15, 16, "white");}
+            case 31, 32, 34 -> {player.setBrightYellowOwned(); setCurrentRentPriceIfOwningThree(player, properties,
+                    allBrightYellowOwned, 17, 18, 19, "brightYellow");}
+            case 37, 39 -> {player.setPurpleOwned(); setCurrentRentPriceIfOwningTwo(player, properties,
+                    allPurpleOwned, 20, 21, "purple");}
         }
-        //setCurrentRentPriceIfOwning(player, properties);
-//////////////////HUSKS SHSHSHSUSSJSJSJS
     }
 
     public void setOwner(Player owner) {
