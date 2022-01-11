@@ -33,7 +33,11 @@ public class OrangeFieldTest {
         player.moveToHere(6);
         gui.getSpecificField(player.getSquare()).setCar(gui_player, true);
 
-        gameBoard.getProperty(player).landOnProperty(player, gui_player, gameBoard.getProperties());
+        Player[] players = new Player[2];
+        players[0] = new Player();
+        players[1] = new Player();
+        GUI_Player[] gui_players = new GUI_Player[2];
+        gameBoard.getProperty(player).landOnProperty(player, gui_player, gameBoard.getProperties(), players, gui_players);
 
         //Creating a new player and makes the new player land on the now owned blue property
         Player player1 = new Player();
@@ -49,24 +53,25 @@ public class OrangeFieldTest {
         player1.moveToHere(6);
         gui.getSpecificField(player1.getSquare()).setCar(gui_player1, true);
 
-        gameBoard.getProperty(player1).landOnProperty(player1, gui_player1, gameBoard.getProperties());
+
+        gameBoard.getProperty(player1).landOnProperty(player1, gui_player1, gameBoard.getProperties(), players, gui_players);
 
         //Moving the owner to the other blue field to make the same owner of two blue fields
         //to check if the price changes from 50 to 100
 
         player.moveToHere(8);
         gui.getSpecificField(player.getSquare()).setCar(gui_player, true);
-        gameBoard.getProperty(player).landOnProperty(player, gui_player, gameBoard.getProperties());
+        gameBoard.getProperty(player).landOnProperty(player, gui_player, gameBoard.getProperties(), players, gui_players);
 
         player.moveToHere(9);
         gui.getSpecificField(player.getSquare()).setCar(gui_player, true);
-        gameBoard.getProperty(player).landOnProperty(player, gui_player, gameBoard.getProperties());
+        gameBoard.getProperty(player).landOnProperty(player, gui_player, gameBoard.getProperties(), players, gui_players);
 
         gameBoard.getProperty(player).optionsWhenOwningAllFields(gameBoard.getProperties(), player);
 
 
         //Now checking the tester player on the same field as before, and see if the price has changed
         //since the same owner owns both blue
-        gameBoard.getProperty(player1).landOnProperty(player1, gui_player1, gameBoard.getProperties());
+        gameBoard.getProperty(player1).landOnProperty(player1, gui_player1, gameBoard.getProperties(), players, gui_players);
     }
 }

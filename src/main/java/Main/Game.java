@@ -197,7 +197,7 @@ public class Game {
         gui.getGameBoard().getJackpot().payToJackpot(player, gui_player);
         gui.getGameBoard().getJackpot().receiveJackpot(player, gui_player);
 
-        gui.getGameBoard().getProperty(player).landOnProperty(player, gui_player, gui.getGameBoard().getProperties());
+        gui.getGameBoard().getProperty(player).landOnProperty(player, gui_player, gui.getGameBoard().getProperties(), players, gui_players);
 
         if (player.getSquare() == 30) {
             setPlayerInJail(gui_player, player);
@@ -383,7 +383,12 @@ public class Game {
         player.moveToHere(1);
         gui.getSpecificField(player.getSquare()).setCar(gui_player, true);
 
-        gui.getGameBoard().getProperty(player).landOnProperty(player, gui_player, gui.getGameBoard().getProperties());
+        Player[] players = new Player[1];
+        players[0] = new Player();
+
+        GUI_Player[] gui_players = new GUI_Player[2];
+
+        gui.getGameBoard().getProperty(player).landOnProperty(player, gui_player, gui.getGameBoard().getProperties(), players, gui_players);
 
         player.getAccount().setMoney(-31000);
 
@@ -399,7 +404,7 @@ public class Game {
         player1.moveToHere(1);
 
         gui.getSpecificField(player1.getSquare()).setCar(gui_player1, true);
-        gui.getGameBoard().getProperty(player1).landOnProperty(player1, gui_player1, gui.getGameBoard().getProperties());
+        gui.getGameBoard().getProperty(player1).landOnProperty(player1, gui_player1, gui.getGameBoard().getProperties(), players, gui_players);
 
     }
 
