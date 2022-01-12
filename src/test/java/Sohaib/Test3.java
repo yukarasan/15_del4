@@ -1,10 +1,10 @@
 package Sohaib;
 
-import Main.DiceCup;
+
 import Main.Player;
 import junit.framework.TestCase;
 
-public class PlayerTest extends TestCase {
+public class Test3 extends TestCase {
 
     public void testMoveToSquare() {
         Player player2 = new Player();
