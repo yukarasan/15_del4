@@ -1,6 +1,5 @@
 package Hussein;
 
-import Fields.Ferry;
 import GUI_Controllor.GUI_Controller;
 import Main.Player;
 import gui_fields.GUI_Car;
@@ -40,7 +39,7 @@ public class FerryOnAuctionTest {
         players[0].moveToHere(35);
         gui.getSpecificField(players[0].getSquare()).setCar(gui_players[0], true);
 
-        gui.getGameBoard().getFerries()[3].buyFerry(players[0], gui.getGameBoard().getFerries(), players, gui_players);
+        gui.getGameBoard().getFerry(players[0]).buyFerry(players[0], gui.getGameBoard().getFerries(), players, gui_players);
 
         gui.getGameBoard().getFerry(players[0]).payOwnerOfFerry(players[0], gui_players[0], gui.getGameBoard().getFerries());
 
