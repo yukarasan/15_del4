@@ -114,7 +114,7 @@ public class Ferry extends OwnableField {
             if (player.getAccount().getMoney() < 4000) {
                 buy = gui.getInstance().getUserButtonPressed(player.getName() + ", du er landet på " +
                         gui.getSpecificField(player.getSquare()).getTitle() +
-                        ", vil du købe den for 4000 DKK?", "Ja", "Sæt færge på auktion");
+                        ", vil du købe den for 4000 DKK?", "Sæt færge på auktion");
             }
 
             if (player.getAccount().getMoney() > 4000) {

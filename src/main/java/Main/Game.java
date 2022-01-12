@@ -20,7 +20,7 @@ public class Game {
     private final MoveWithADelay moveWithADelay = new MoveWithADelay();
     private Jail jail = new Jail();
     private int intHelper;
-    boolean wait, notEnoughMoney;
+    boolean wait, notEnoughMoney, gameOver;
 
     public void startGame() {
         gui.getInstance();
@@ -141,23 +141,31 @@ public class Game {
 
     private void round() {
 
-        while (true) {
-            for (int i = 0; i < numberOfPlayers; i++) {
-                playerTurn(players[i], gui_players[i]);
+        while (!gameOver) {
 
-                if (diceCup.getDie1().getFaceValue() == diceCup.getDie2().getFaceValue() && !players[i].getInJail()) {
-                    gui.getInstance().showMessage(players[i].getName() + ", du har slået to ens terninger, slå igen");
+            for (int i = 0; i < numberOfPlayers; i++) {
+
+                if (!players[i].getPlayerOutOfGame() && !gameOver) {
+
                     playerTurn(players[i], gui_players[i]);
-                }
-                if(diceCup.getDie1().getFaceValue() == diceCup.getDie2().getFaceValue() && !players[i].getInJail()){
-                    gui.getInstance().showMessage(players[i].getName() + ", du har slået to terninger igen " +
-                            "og skal slå en sidste gang");
-                    playerTurn(players[i], gui_players[i]);
-                }
-                if(diceCup.getDie1().getFaceValue() == diceCup.getDie2().getFaceValue() && !players[i].getInJail()){
-                    gui.getInstance().showMessage(players[i].getName() + ", du har slået to ens terninger for " +
-                            "tredje gang, og derfor skal du i fængsel");
-                    setPlayerInJail(gui_players[i],players[i]);
+
+                    if (diceCup.getDie1().getFaceValue() == diceCup.getDie2().getFaceValue() && !players[i].getInJail()
+                    && !players[i].getPlayerOutOfGame()) {
+                        gui.getInstance().showMessage(players[i].getName() + ", du har slået to ens terninger, slå igen");
+                        playerTurn(players[i], gui_players[i]);
+                    }
+                    if (diceCup.getDie1().getFaceValue() == diceCup.getDie2().getFaceValue() && !players[i].getInJail()
+                    && !players[i].getPlayerOutOfGame()) {
+                        gui.getInstance().showMessage(players[i].getName() + ", du har slået to terninger igen " +
+                                "og skal slå en sidste gang");
+                        playerTurn(players[i], gui_players[i]);
+                    }
+                    if (diceCup.getDie1().getFaceValue() == diceCup.getDie2().getFaceValue() && !players[i].getInJail()
+                    && !players[i].getPlayerOutOfGame()) {
+                        gui.getInstance().showMessage(players[i].getName() + ", du har slået to ens terninger for " +
+                                "tredje gang, og derfor skal du i fængsel");
+                        setPlayerInJail(gui_players[i], players[i]);
+                    }
                 }
             }
         }
@@ -191,7 +199,7 @@ public class Game {
         }
     }
 
-    public void playerLandsAnywhere(Player player, GUI_Player gui_player){
+    public void playerLandsAnywhere(Player player, GUI_Player gui_player) {
         passStartField(player, gui_player);
 
         //If player lands on chancecard
@@ -200,20 +208,20 @@ public class Game {
         //If player lands on ferries
         gui.getGameBoard().getFerry(player).buyFerry(player, gui.getGameBoard().getFerries(), players, gui_players);
 
-        if(!gui.getGameBoard().getFerry(player).isJustBought()){
+        if (!gui.getGameBoard().getFerry(player).isJustBought()) {
 
             gui.getGameBoard().getFerry(player).payOwnerOfFerry(player, gui_player, gui.getGameBoard().getFerries());
 
-        }else{
+        } else {
             gui.getGameBoard().getFerry(player).setJustBought(false);
         }
 
         //If player lands on brewers
         gui.getGameBoard().getBrewer(player).buyBrewer(player, gui.getGameBoard().getBrewers(), players, gui_players);
 
-        if(!gui.getGameBoard().getBrewer(player).getUsJustBought()){
+        if (!gui.getGameBoard().getBrewer(player).getUsJustBought()) {
             gui.getGameBoard().getBrewer(player).payOwnerOfBrewer(player, gui_player, diceCup, gui.getGameBoard().getBrewers());
-        }else{
+        } else {
             gui.getGameBoard().getBrewer(player).setJustBought(false);
         }
 
@@ -224,9 +232,9 @@ public class Game {
         //If player lands on properties
         gui.getGameBoard().getProperty(player).landOnProperty(player, gui_player, gui.getGameBoard().getProperties(), players, gui_players);
 
-        if(!gui.getGameBoard().getProperty(player).getJustBought()){
+        if (!gui.getGameBoard().getProperty(player).getJustBought()) {
             gui.getGameBoard().getProperty(player).payOwner(player, gui_player);
-        }else{
+        } else {
             gui.getGameBoard().getBrewer(player).setJustBought(false);
         }
 
@@ -239,22 +247,22 @@ public class Game {
     }
 
 
-    public void optionsIfOwningSetOfColors(Player player){
+    public void optionsIfOwningSetOfColors(Player player) {
 
-        if(player.getOwnsAPropertySet()){
+        if (player.getOwnsAPropertySet()) {
 
             String option = gui.getInstance().getUserButtonPressed(player.getName() + ", vælg hvad du ønsker med din tur",
                     "kast", "Køb bygninger");
 
-            if(option.equals("Køb bygninger")){
+            if (option.equals("Køb bygninger")) {
                 gui.getGameBoard().getProperty(player).optionsWhenOwningAllFields(gui.getGameBoard().getProperties(), player);
             }
         }
     }
 
-    private void passStartField(Player player, GUI_Player gui_players){
+    private void passStartField(Player player, GUI_Player gui_players) {
 
-        if(player.getPassedStartField()){
+        if (player.getPassedStartField()) {
             gui.getInstance().showMessage(player.getName() + ", du har passeret start og modtager 4000 DKK");
             player.getAccount().setMoney(4000);
             gui_players.setBalance(player.getAccount().getMoney());
@@ -420,7 +428,6 @@ public class Game {
      * Checks whether a player wins or loses. This is done with an if-statement. If a player has less than 0 or
      * equal to 0, then a message gets printed out saying that they have gone bankrupt.
      * Then the player will be set out of the game, using the setter in the player class.
-     *
      */
 
     public void makeIntHelper(Player player) {
@@ -458,31 +465,50 @@ public class Game {
             gui.getSpecificField(player.getSquare()).setCar(gui_player, false);
 
             for (int i = 0; i < gui.getGameBoard().getProperties().length; i++) {
-                if(player == gui.getGameBoard().getProperty(i).getOwner()){
+                if (player == gui.getGameBoard().getProperty(i).getOwner()) {
                     gui.getGameBoard().getProperties()[i].resetProperty(i);
                 }
             }
 
             for (int i = 0; i < gui.getGameBoard().getFerries().length; i++) {
-                if(player == gui.getGameBoard().getFerries()[i].getOwner()){
+                if (player == gui.getGameBoard().getFerries()[i].getOwner()) {
                     gui.getGameBoard().getFerries()[i].resetFerry(i);
                 }
             }
 
             for (int i = 0; i < gui.getGameBoard().getBrewers().length; i++) {
-                if(player == gui.getGameBoard().getBrewers()[i].getOwner()){
+                if (player == gui.getGameBoard().getBrewers()[i].getOwner()) {
                     gui.getGameBoard().getBrewers()[i].resetBrewer(i);
                 }
             }
-            gui.getInstance().showMessage("Alle " + player.getName() + "'s felter er nu tilgængelige for køb.");
+            gameOver();
+
+            if(!gameOver) {
+                gui.getInstance().showMessage("Alle " + player.getName() + "'s felter er nu tilgængelige for køb.");
+            }
         }
     }
 
 
-    /*public void gameOver(Player player) {
-        if (endGameForPlayer && endGameForPlayer) {
-            gui.getInstance().showMessage(player.getName() + " har vundet spillet!");
+    public void gameOver() {
+
+        int isOut = 0;
+
+        for (int i = 0; i < numberOfPlayers; i++) {
+
+            if (players[i].getPlayerOutOfGame()) {
+                isOut++;
+            }
+        }
+
+        if (isOut == numberOfPlayers - 1) {
+            gameOver = true;
+
+            for (int i = 0; i < numberOfPlayers; i++) {
+                if (!players[i].getPlayerOutOfGame()) {
+                    gui.getInstance().showMessage(players[i].getName() + " har vundet spillet!");
+                }
+            }
         }
     }
-     */
 }

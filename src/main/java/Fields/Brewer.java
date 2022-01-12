@@ -55,7 +55,7 @@ public class Brewer extends OwnableField {
             if (player.getAccount().getMoney() < 3000) {
                 buy = gui.getInstance().getUserButtonPressed(player.getName() + ", du er landet på " +
                         gui.getSpecificField(player.getSquare()).getTitle() +
-                        ", vil du købe den for 3000 DKK?", "Ja", "Sæt brygger på auktion");
+                        ", vil du købe den for 3000 DKK?", "Sæt brygger på auktion");
             }
 
             if (player.getAccount().getMoney() > 3000) {

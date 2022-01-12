@@ -11,7 +11,7 @@ import static java.awt.Color.blue;
 
 public class Property {
     private GUI_Controller gui = new GUI_Controller();
-    private Player owner, theOneWhoAuctioned;
+    private Player owner, theOneWhoAuctioned, highestBidder;
     private GUI_Player guiOwner;
     private int[] propertyFieldNumbers = {1, 3, 6, 8, 9, 11, 13, 14, 16, 18, 19, 21, 23, 24, 26, 27, 29, 31, 32, 34, 37, 39};
     private int currentBid;
@@ -156,10 +156,6 @@ public class Property {
         if(IntStream.of(propertyFieldNumbers).anyMatch(x -> x == player.getSquare()) && !isOwned){
             optionBuyProperty(player, gui_player, properties, players, gui_players);
         }
-
-        if(player == theOneWhoAuctioned){
-            theOneWhoAuctioned = null;
-        }
     }
 
 
@@ -253,7 +249,7 @@ public class Property {
                                 "50", "100", "500", "1000", "2000", "5000", "Ønsker ikke at byde");
 
                         switch (bid) {
-                            case "50", "100", "500", "1000", "2000", "5000" -> placeBit(player, Integer.parseInt(bid) + currentBid, highestBidder);
+                            case "50", "100", "500", "1000", "2000", "5000" -> placeBit(player, Integer.parseInt(bid) + currentBid);
                             case "Ønsker ikke at byde" -> {
                                 isOutOfAuction[i] = players[i];
                                 isOut++;
@@ -269,22 +265,39 @@ public class Property {
 
         if(bought){
 
-            for (int i = 0; i < players.length; i++) {
+            if(currentBid >= richestAmount - 101){
 
-                if(players[i] != isOutOfAuction[i]) {
-                    checkGuiFieldNumberFromPropertyNumber(intHelper);
-                    gui.getInstance().showMessage("Tillykke " + players[i].getName() + ", du har købt feltet " +
-                            gui.getSpecificField(guiFieldNumber).getTitle() + " for " + currentBid);
-                    properties[intHelper].boughtFieldFromAuction(gui_players[i], players[i], properties);
+                for (int i = 0; i < players.length; i++) {
+                    if(players[i] == highestBidder) {
+
+                        checkGuiFieldNumberFromPropertyNumber(intHelper);
+                        gui.getInstance().showMessage("Tillykke " + highestBidder.getName() + ", du har købt feltet " +
+                                gui.getSpecificField(guiFieldNumber).getTitle() + " for " + currentBid);
+
+                        properties[intHelper].boughtFieldFromAuction(gui_players[i], players[i], properties);
+                    }
+                }
+            }
+
+            if (isOut == (isOutOfAuction.length - 1)) {
+
+                for (int i = 0; i < players.length; i++) {
+
+                    if (players[i] != isOutOfAuction[i]) {
+                        checkGuiFieldNumberFromPropertyNumber(intHelper);
+                        gui.getInstance().showMessage("Tillykke " + players[i].getName() + ", du har købt feltet " +
+                                gui.getSpecificField(guiFieldNumber).getTitle() + " for " + currentBid);
+                        properties[intHelper].boughtFieldFromAuction(gui_players[i], players[i], properties);
+                    }
                 }
             }
         }
     }
 
-    private void placeBit(Player player, int bid, Player highestBidder){
+    private void placeBit(Player player, int bid){
 
         if(bid >= player.getAccount().getMoney()){
-            gui.getInstance().showMessage(player.getName() + ", du kan ikke byde højere end det du har, byd en anden værdi");
+            gui.getInstance().showMessage(player.getName() + ", du kan ikke så højere end det du har, byd en anden værdi");
         }else{
             currentBid = bid;
             highestBidder = player;
