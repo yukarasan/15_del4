@@ -55,7 +55,7 @@ public class ChanceCard {
 
             switch (pileOfCards) {
                 case 1 -> card1.deliveryOfSoda(gui_player, player);
-                case 2 -> card2.makePayment(gui_player, player);
+                case 2 -> card2.carInsurance(gui_player, player);
                 case 3 -> card3.dividend(gui_player, player);
                 case 4 -> card4.oldFurniture(gui_player, player);
                 case 5 -> card6.moveToJail(gui_player, player);
@@ -64,14 +64,14 @@ public class ChanceCard {
                 case 8 -> card8.carWash(gui_player, player);
                 case 9 -> card7.runRedLight(gui_player, player);
                 case 10 -> card3.dividend(gui_player, player);
-                case 11 -> card9.makePayment(gui_player, player);
+                case 11 -> card9.carRepair(gui_player, player);
                 case 12 -> card11.parkingFee(gui_player, player);
                 case 13 -> card10.newTires(gui_player, player);
-                case 14 -> card9.makePayment(gui_player, player);
+                case 14 -> card9.carRepair(gui_player, player);
                 case 15 -> card12.cigarettes(gui_player, player);
                 case 16 -> card13.dentist(gui_player, player);
                 case 17 -> card14.lottery(gui_player, player);
-                case 18 -> card17.acceptPayment(gui_player, player);
+                case 18 -> card17.bonusBond(gui_player, player);
                 case 19 -> card15.municipality(gui_player, player);
                 case 20 -> card16.wageIncrease(gui_player, player);
                 case 21 -> card14.lottery(gui_player, player);
