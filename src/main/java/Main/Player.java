@@ -74,7 +74,6 @@ public class Player {
         if (square > 39) {
             passedStartField = true;
         }
-
         square %= 40;
     }
 

@@ -226,6 +226,12 @@ public class Game {
         //If player lands on properties
         gui.getGameBoard().getProperty(player).landOnProperty(player, gui_player, gui.getGameBoard().getProperties(), players, gui_players);
 
+        if(!gui.getGameBoard().getProperty(player).getJustBought()){
+            gui.getGameBoard().getProperty(player).payOwner(player, gui_player);
+        }else{
+            gui.getGameBoard().getBrewer(player).setJustBought(false);
+        }
+
         //if player lands on
         if (player.getSquare() == 30) {
             setPlayerInJail(gui_player, player);

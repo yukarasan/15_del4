@@ -158,17 +158,13 @@ public class Property {
             optionBuyProperty(player, gui_player, properties, players, gui_players);
         }
 
-        if(IntStream.of(propertyFieldNumbers).anyMatch(x -> x == player.getSquare()) && isOwned && player != owner && player != theOneWhoAuctioned){
-            payOwner(player, gui_player);
-        }
-
         if(player == theOneWhoAuctioned){
             theOneWhoAuctioned = null;
         }
     }
 
-    public void optionBuyProperty(Player player, GUI_Player gui_player, Property[] properties, Player[] players, GUI_Player[] gui_players) {
-//////////IKKE HVIS HAN IKKE HAR RÅD FIX DET
+
+    private void optionBuyProperty(Player player, GUI_Player gui_player, Property[] properties, Player[] players, GUI_Player[] gui_players) {
 
         String buttonPressed = null;
 
@@ -294,7 +290,10 @@ public class Property {
             currentBid = bid;
             highestBidder = player;
         }
+    }
 
+    public void setJustBought(boolean trueOrFalse){
+        justBought = trueOrFalse;
     }
 
     public boolean setIsOwned(boolean isOwned) {
@@ -318,7 +317,7 @@ public class Property {
         gui.getSpecificField(guiFieldNumber).setSubText(player.getName());
         gui.getGameBoard().getGuiStreet(guiFieldNumber).setBorder(gui_player.getCar().getPrimaryColor());
 
-        justBought = true;
+        properties[intHelper].setJustBought(true);
 
         switch (guiFieldNumber) {
             case 1, 3 -> {player.setBlueOwned(); setCurrentRentPriceIfOwningTwo(player, properties,
