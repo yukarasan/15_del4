@@ -184,7 +184,7 @@ public class Game {
             //Dice get shown on board
             gui.getInstance().setDice(diceCup.getDie1().rollDie(), diceCup.getDie2().rollDie());
 
-            if (diceCup.getDie1().getFaceValue() != diceCup.getDie1().getFaceValue()) {
+            if (diceCup.getDie1().getFaceValue() != diceCup.getDie2().getFaceValue()) {
 
                 //This is when the piece moves one square by one square up until thrown value
                 moveWithADelay.movePlayerWithADelay(gui_player, player, diceCup, gui);
@@ -542,4 +542,42 @@ public class Game {
             }
         }
     }
+
+    public static void main(String[] args) {
+
+        GUI_Controller gui = new GUI_Controller();
+        gui.getGameBoard().createPropertiesPrices();
+
+
+        Player[] players = new Player[2];
+        players[0] = new Player();
+        players[0].setName("hej111");
+        players[1] = new Player();
+        players[1].setName("hej222");
+        GUI_Car car = new GUI_Car();
+        GUI_Car car1 = new GUI_Car();
+
+        GUI_Player[] gui_players = new GUI_Player[2];
+
+        gui_players[0] = new GUI_Player("hej111", players[0].getAccount().getMoney(), car);
+        gui_players[1] = new GUI_Player("hej222", players[1].getAccount().getMoney(), car1);
+
+        gui.getInstance().addPlayer(gui_players[0]);
+        gui.getInstance().addPlayer(gui_players[1]);
+
+        players[0].moveToHere(1);
+        gui.getSpecificField(1).setCar(gui_players[0], true);
+
+
+        gui.getGameBoard().getProperty(players[0]).landOnProperty(players[0], gui_players[0], gui.getGameBoard().getProperties(), players, gui_players);
+
+        players[1].moveToHere(1);
+        gui.getSpecificField(1).setCar(gui_players[1], true);
+        gui.getGameBoard().getProperty(players[1]).landOnProperty(players[1], gui_players[1], gui.getGameBoard().getProperties(), players, gui_players);
+
+
+
+    }
+
+
 }

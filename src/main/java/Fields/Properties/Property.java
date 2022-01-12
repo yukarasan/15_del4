@@ -19,8 +19,9 @@ public class Property {
     //Below is the rent on various occasions of ownable fields that'll extend Properties.
     //Also below is cost of eventual upgrades and the rent if a set of one color are owned by one player
     protected int rentOneOwned, rentAllOwned, rentOneHouse, rentTwoHouse, rentThreeHouse, rentFourHouse,
-            rentHotel, fieldPrice, costOfOneHouse, costOfHotel, currentRentPrice, amountOfHouses, intHelper,
+            rentHotel, fieldPrice, costOfOneHouse, costOfHotel, currentRentPrice, amountOfHouses,
             currentPriceOfBuilding, guiFieldNumber;
+    private static int intHelper;
 
     protected static boolean allBlueOwned, allOrangeOwned, allDarkYellowOwned, allGreyOwned, allRedOwned,
             allWhiteOwned, allBrightYellowOwned, allPurpleOwned;
@@ -153,11 +154,18 @@ public class Property {
     }
 
     public void landOnProperty(Player player, GUI_Player gui_player, Property[] properties, Player[] players, GUI_Player[] gui_players){
-        if(IntStream.of(propertyFieldNumbers).anyMatch(x -> x == player.getSquare()) && !isOwned){
+
+        checkWhichPropertyField(player.getSquare());
+
+        if(IntStream.of(propertyFieldNumbers).anyMatch(x -> x == player.getSquare()) && !isOwned && player != owner
+        && !properties[intHelper].getIsOwned()){
             optionBuyProperty(player, gui_player, properties, players, gui_players);
         }
     }
 
+    public boolean getIsOwned() {
+        return isOwned;
+    }
 
     private void optionBuyProperty(Player player, GUI_Player gui_player, Property[] properties, Player[] players, GUI_Player[] gui_players) {
 
@@ -214,7 +222,6 @@ public class Property {
 
     public void setPropertyOnAuction(Player player, Player[] players, Property[] properties, GUI_Player[] gui_players){
         theOneWhoAuctioned = player;
-        checkWhichPropertyField(player.getSquare());
         gui.getInstance().showMessage("Feltet " + gui.getSpecificField(player.getSquare()).getTitle() + " er sat på auktion" +
                 ", andre spillere kan nu byde på denne");
 

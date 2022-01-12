@@ -108,7 +108,7 @@ public class Ferry extends OwnableField {
         checkIfLandedFerryField(player.getSquare());
         guiField = player.getSquare();
 
-        if (IntStream.of(ferryFields).anyMatch(x -> x == player.getSquare()) && !isOwned) {
+        if (IntStream.of(ferryFields).anyMatch(x -> x == player.getSquare()) && !isOwned && player != owner) {
 
             String buy = null;
             if (player.getAccount().getMoney() < 4000) {

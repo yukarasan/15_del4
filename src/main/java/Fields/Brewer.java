@@ -49,7 +49,7 @@ public class Brewer extends OwnableField {
         checkIfLandedBrewerField(player);
         guiFieldNumber = player.getSquare();
 
-        if (IntStream.of(brewerFields).anyMatch(x -> x == player.getSquare()) && !isOwned) {
+        if (IntStream.of(brewerFields).anyMatch(x -> x == player.getSquare()) && !isOwned && player != owner) {
 
             String buy = null;
             if (player.getAccount().getMoney() < 3000) {
