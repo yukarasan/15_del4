@@ -54,12 +54,12 @@ public class ChanceCard {
             int pileOfCards = counter;
 
             switch (pileOfCards) {
-                case 1 -> card6.moveToJail(gui_player, player);
-                case 2 -> card1.deliveryOfSoda(gui_player, player);
-                case 3 -> card3.dividend(gui_player, player);
-                case 4 -> card4.oldFurniture(gui_player, player);
+                case 1 -> card1.deliveryOfSoda(gui_player, player);
+                case 2 -> card3.dividend(gui_player, player);
+                case 3 -> card4.oldFurniture(gui_player, player);
+                case 4 -> card3.dividend(gui_player, player);
                 case 5 -> card2.carInsurance(gui_player, player);
-                case 6 -> card3.dividend(gui_player, player);
+                case 6 -> card6.moveToJail(gui_player, player);
                 case 7 -> card5.moveToFrederiksberg(gui_player, player);
                 case 8 -> card8.carWash(gui_player, player);
                 case 9 -> card7.runRedLight(gui_player, player);
