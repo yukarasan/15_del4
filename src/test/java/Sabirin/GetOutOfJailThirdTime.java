@@ -39,7 +39,7 @@ public class GetOutOfJailThirdTime {
         gui.getInstance().setDice(3,4);
 
         if(diceCup.getDie1()!= diceCup.getDie2() && player.getInJail()){
-            gui.getInstance().showMessage("DI HAR IKKE SLÅET DET SAMME OG DERVED SKAL DU STAIDG I FÆNGSEL");
+            gui.getInstance().showMessage("DU HAR IKKE SLÅET DET SAMME OG DERVED SKAL DU STAIDG I FÆNGSEL");
             player.setInJail(true);
             player.getWaitATurn();
             gui.getSpecificField(10).setCar(gui_player, true);
