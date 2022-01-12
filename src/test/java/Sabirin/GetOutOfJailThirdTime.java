@@ -49,7 +49,7 @@ public class GetOutOfJailThirdTime {
         gui.getInstance().showMessage("du må kaste med terningerne igen");
 
         if(diceCup.getDie1()!= diceCup.getDie2()&& player.getInJail()){
-            gui.getInstance().showMessage("DU HAR IKKE SLÅET DET SAMME OG DERVED SKAL DU STADITherefore, we have worked with an in-depth analysis of the customer's needs to create a Use case and a variety of other diagrams that explain how we'd build and construct our system.G I FÆNGSEL");
+            gui.getInstance().showMessage("DU HAR IKKE SLÅET DET SAMME OG DERVED SKAL DU STADIG I FÆNGSEL");
             player.setInJail(true);
             player.getWaitATurn();
             gui.getSpecificField(10).setCar(gui_player, true);
