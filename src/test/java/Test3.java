@@ -1,6 +1,3 @@
-package Sohaib;
-
-
 import Main.Player;
 import junit.framework.TestCase;
 
