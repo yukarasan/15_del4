@@ -27,8 +27,15 @@ public class Ferry extends OwnableField {
     private static int ferryPrice, intHelper, ferryNumber, guiField, buyPrice = 4000, currentBid;
     boolean justBought;
 
-    public void setRentPrice(int rentPrice) {
-        this.rentPrice = rentPrice;
+    public void setRentPrice(Player player) {
+
+        switch (player.getFerriesOwned()){
+            case 1 -> rentPrice = 500;
+            case 2 -> rentPrice = 1000;
+            case 3 -> rentPrice = 2000;
+            case 4 -> rentPrice = 4000;
+        }
+
     }
 
     public boolean getIsFerryOwned() {
@@ -52,7 +59,7 @@ public class Ferry extends OwnableField {
      * method buyFerry.
      */
 
-    public void setOwner(Player player, GUI_Player gui_player) {
+    public void setOwner(Player player, GUI_Player gui_player, Ferry[] ferries) {
         this.owner = player;
         this.guiOwner = gui_player;
 
@@ -62,7 +69,15 @@ public class Ferry extends OwnableField {
         player.setFerriesOwned();
 
         this.isOwned = true;
+
+        for (Ferry ferry : ferries) {
+            if (player == ferry.getOwner()) {
+                ferry.setRentPrice(player);
+            }
+        }
     }
+
+
 
     /**
      * The method buyFerry is a method that checks if a player has landed on any of the 4 ferry fields.
@@ -77,13 +92,20 @@ public class Ferry extends OwnableField {
         player.getAccount().setMoney(-currentBid);
         gui_player.setBalance(player.getAccount().getMoney());
         gui.getSpecificField(guiField).setSubText(player.getName());
-        player.setBrewersOwned();
+        player.setFerriesOwned();
 
         ferries[ferryNumber].setOwner(player);
         ferries[ferryNumber].setGuiOwner(gui_player);
         ferries[ferryNumber].setIsOwned(true);
         ferries[ferryNumber].setJustBought(true);
+
+        for (Ferry ferry : ferries) {
+            if (player == ferry.getOwner()) {
+                ferry.setRentPrice(player);
+            }
+        }
     }
+
 
     public boolean isOwned() {
         return isOwned;
@@ -105,13 +127,13 @@ public class Ferry extends OwnableField {
             if (player.getAccount().getMoney() < 4000) {
                 buy = gui.getInstance().getUserButtonPressed(player.getName() + ", du er landet på " +
                         gui.getSpecificField(player.getSquare()).getTitle() +
-                        ", vil du købe den for 3000 DKK?", "Ja", "Sæt færge på auktion");
+                        ", vil du købe den for 4000 DKK?", "Ja", "Sæt færge på auktion");
             }
 
             if (player.getAccount().getMoney() > 4000) {
                 buy = gui.getInstance().getUserButtonPressed(player.getName() + ", du er landet på " +
                         gui.getSpecificField(player.getSquare()).getTitle() +
-                        ", vil du købe den for 3000 DKK?", "Ja", "Nej, sæt færge på auktion");
+                        ", vil du købe den for 4000 DKK?", "Ja", "Nej, sæt færge på auktion");
             }
 
             if (buy.equals("Ja")) {
