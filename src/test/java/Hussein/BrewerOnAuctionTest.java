@@ -37,7 +37,7 @@ public class BrewerOnAuctionTest {
         gui.getInstance().addPlayer(gui_players[1]);
 
         //Moving player to a blue property and choosing to buy
-        players[0].moveToHere(12);
+        players[0].moveToHere(28);
         gui.getSpecificField(players[0].getSquare()).setCar(gui_players[0], true);
 
         DiceCup diceCup = new DiceCup();

@@ -1,9 +1,6 @@
 package Main;
 
-import Fields.Ferry;
-import Fields.GameBoard;
-import Fields.Jail;
-import Fields.MoveWithADelay;
+import Fields.*;
 import GUI_Controllor.GUI_Controller;
 import gui_fields.GUI_Car;
 import gui_fields.GUI_Player;
@@ -200,11 +197,26 @@ public class Game {
         gui.getGameBoard().getChanceCard().playerLandsOnChanceField(player, gui_player);
 
         //If player lands on ferries
-        gui.getGameBoard().getFerry(player).buyFerry(player, gui_player, gui.getGameBoard().getFerries(), players, gui_players);
         gui.getGameBoard().getFerry(player).payOwnerOfFerry(player, gui_player, gui.getGameBoard().getFerries());
 
+        if(!gui.getGameBoard().getFerry(player).isJustBought()){
+
+            gui.getGameBoard().getFerry(player).payOwnerOfFerry(player, gui_player, gui.getGameBoard().getFerries());
+
+        }else{
+            gui.getGameBoard().getFerry(player).setJustBought(false);
+        }
+
+
         //If player lands on brewers
-        gui.getGameBoard().getBrewer(player).buyBrewerField(player, gui_player);
+        gui.getGameBoard().getBrewer(player).buyBrewer(player, gui.getGameBoard().getBrewers(), players, gui_players);
+
+        if(!gui.getGameBoard().getBrewer(player).getUsJustBought()){
+            gui.getGameBoard().getBrewer(player).payOwnerOfBrewer(player, gui_player, diceCup, gui.getGameBoard().getBrewers());
+        }else{
+            gui.getGameBoard().getBrewer(player).setJustBought(false);
+        }
+
         gui.getGameBoard().getBrewer(player).payOwnerOfBrewer(player, gui_player, diceCup, gui.getGameBoard().getBrewers());
 
         //If player lands on jackpot
