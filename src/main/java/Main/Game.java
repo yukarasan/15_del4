@@ -275,6 +275,10 @@ public class Game {
 
         String chosenElement = null;
 
+        if (player.getAccount().getMoney() < 1000) {
+            notEnoughMoney = true;
+        }
+
         if (player.getTurnNumberInJail() < 2 || notEnoughMoney) {
 
             if (player.getAccount().getMoney() > 1000) {
@@ -409,9 +413,7 @@ public class Game {
         }
         wait = false;
 
-        if (diceCup.getDie1().getFaceValue() != diceCup.getDie2().getFaceValue() && player.getAccount().getMoney() < 1000) {
-            notEnoughMoney = true;
-        }
+
     }
 
     /**
