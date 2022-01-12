@@ -153,6 +153,12 @@ public class Ferry extends OwnableField {
             }
         }
 
+        for (int i = 0; i < players.length; i++) {
+            if(players[i].getPlayerOutOfGame()){
+                isOutOfAuction[i] = players[i];
+            }
+        }
+
         while (!bought) {
 
             for (int i = 0; i < players.length; i++) {

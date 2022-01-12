@@ -232,6 +232,12 @@ public class Property {
             }
         }
 
+        for (int i = 0; i < players.length; i++) {
+            if(players[i].getPlayerOutOfGame()){
+                isOutOfAuction[i] = players[i];
+            }
+        }
+
         while(!bought) {
 
             for (int i = 0; i < players.length; i++) {
@@ -239,7 +245,7 @@ public class Property {
                 bidAgain = true;
 
                 if (players[i] != isOutOfAuction[i] && !bought
-                        && players[i].getAccount().getMoney() > (currentBid + 100) && !players[i].getPlayerOutOfGame()) {
+                        && players[i].getAccount().getMoney() > (currentBid + 101) && !players[i].getPlayerOutOfGame()) {
                     while (bidAgain && players[i].getAccount().getMoney() > (currentBid + 50) && players[i] != isOutOfAuction[i]
                             && currentBid < richestAmount ) {
                         bidAgain = false;

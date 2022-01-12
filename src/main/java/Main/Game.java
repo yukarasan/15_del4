@@ -156,9 +156,9 @@ public class Game {
                     }
                     if (diceCup.getDie1().getFaceValue() == diceCup.getDie2().getFaceValue() && !players[i].getInJail()
                     && !players[i].getPlayerOutOfGame()) {
-                        gui.getInstance().showMessage(players[i].getName() + ", du har slået to terninger igen " +
-                                "og skal slå en sidste gang");
-                        playerTurn(players[i], gui_players[i]);
+                        gui.getInstance().showMessage(players[i].getName() + ", du har slået to ens terninger igen " +
+                                "og kan slå en sidste gang");
+                        playerLastTurn(players[i], gui_players[i], diceCup);
                     }
                     if (diceCup.getDie1().getFaceValue() == diceCup.getDie2().getFaceValue() && !players[i].getInJail()
                     && !players[i].getPlayerOutOfGame()) {
@@ -166,6 +166,37 @@ public class Game {
                                 "tredje gang, og derfor skal du i fængsel");
                         setPlayerInJail(gui_players[i], players[i]);
                     }
+                }
+            }
+        }
+    }
+
+    public void playerLastTurn(Player player, GUI_Player gui_player, DiceCup diceCup) {
+
+        if (!player.getInJail() && !player.getPlayerOutOfGame()) {
+
+            //If player owns a set of colors, player gets asked what to do with their turn
+            optionsIfOwningSetOfColors(player);
+
+            //Player throws dice
+            gui.getInstance().getUserButtonPressed(player.getName() + ", kast terningerne", "Kast");
+
+            //Dice get shown on board
+            gui.getInstance().setDice(diceCup.getDie1().rollDie(), diceCup.getDie2().rollDie());
+
+            if (diceCup.getDie1().getFaceValue() != diceCup.getDie1().getFaceValue()) {
+
+                //This is when the piece moves one square by one square up until thrown value
+                moveWithADelay.movePlayerWithADelay(gui_player, player, diceCup, gui);
+
+                playerLandsAnywhere(player, gui_player);
+
+                if (player.getInJail() && !player.getWaitATurn()) {
+                    outOfJail(player, gui_player, diceCup);
+                    notEnoughMoney = false;
+
+                } else if (player.getInJail() && player.getWaitATurn()) {
+                    player.setWaitATurn(false);
                 }
             }
         }
