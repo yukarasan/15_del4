@@ -2,6 +2,7 @@ package Hussein;
 
 import Fields.Brewer;
 import Fields.GameBoard;
+import GUI_Controllor.GUI_Controller;
 import Main.DiceCup;
 import Main.Player;
 import gui_fields.GUI_Car;
@@ -9,6 +10,7 @@ import gui_fields.GUI_Player;
 
 public class BrewerFieldsTesting {
     public static void main(String[] args) {
+        GUI_Controller gui = new GUI_Controller();
         GUI_Car car = new GUI_Car();
         GUI_Player randomGuiPlayer = new GUI_Player("hej", 1, car);
         GUI_Car car1 = new GUI_Car();
@@ -22,7 +24,7 @@ public class BrewerFieldsTesting {
 
         //Buying first brewer field
         player.moveToSquare(12,0);
-        gameBoard.getBrewer(player).buyBrewerField(player, randomGuiPlayer);
+        //gameBoard.getBrewer(player).buyBrewer(player, gui.getga);
 
 
         Player player1 = new Player();
@@ -38,7 +40,7 @@ public class BrewerFieldsTesting {
 
         //Buying second brewer field to same player
         player.moveToHere(28);
-        gameBoard.getBrewer(player).buyBrewerField(player, randomGuiPlayer);
+        //gameBoard.getBrewer(player).buyBrewerField(player, randomGuiPlayer);
 
 
         //Another player tests out the price when two is owned by the same player

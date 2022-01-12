@@ -32,27 +32,6 @@ public class Brewer extends OwnableField {
         this.guiOwner = guiOwner;
     }
 
-
-    public void buyBrewerField(Player player, GUI_Player gui_player) {
-
-        String chosenOption = null;
-        if (IntStream.of(brewerFields).anyMatch(x -> x == player.getSquare()) && !isOwned) {
-            chosenOption = gui.getInstance().getUserButtonPressed(player.getName() + ", du er landet på " +
-                    gui.getSpecificField(player.getSquare()).getTitle() + ", vil du købe feltet for 3000 DKK?", "Ja", "Nej");
-
-            if (chosenOption.equals("Ja")) {
-                player.getAccount().setMoney(-3000);
-                gui_player.setBalance(player.getAccount().getMoney());
-                gui.getSpecificField(player.getSquare()).setSubText(player.getName());
-                player.setBrewersOwned();
-                this.owner = player;
-                this.guiOwner = gui_player;
-                isOwned = true;
-            }
-        }
-    }
-
-
     private void boughtBrewerFromAuction(Player player, GUI_Player gui_player, Brewer[] brewers){
         player.getAccount().setMoney(-currentBid);
         gui_player.setBalance(player.getAccount().getMoney());

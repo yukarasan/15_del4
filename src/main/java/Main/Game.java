@@ -200,11 +200,11 @@ public class Game {
         gui.getGameBoard().getChanceCard().playerLandsOnChanceField(player, gui_player);
 
         //If player lands on ferries
-        gui.getGameBoard().getFerry(player).buyFerry(player, gui_player, gui.getGameBoard().getFerries(), players, gui_players);
+        //gui.getGameBoard().getFerry(player).buyFerry(player, gui_player, gui.getGameBoard().getFerries(), players, gui_players);
         gui.getGameBoard().getFerry(player).payOwnerOfFerry(player, gui_player, gui.getGameBoard().getFerries());
 
         //If player lands on brewers
-        gui.getGameBoard().getBrewer(player).buyBrewerField(player, gui_player);
+        ////////////////gui.getGameBoard().getBrewer(player).buyBrewerField(player, gui_player);
         gui.getGameBoard().getBrewer(player).payOwnerOfBrewer(player, gui_player, diceCup, gui.getGameBoard().getBrewers());
 
         //If player lands on jackpot
