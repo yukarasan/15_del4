@@ -66,10 +66,12 @@ public class Player {
      * check whether a player has passed the start field every time he or she moves past the start field.
      */
 
+
     public void moveToSquare(int die1, int die2) {
+
         this.square += die1 + die2;
 
-        if(square > 39) {
+        if (square > 39) {
             passedStartField = true;
         }
 
