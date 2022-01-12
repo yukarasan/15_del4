@@ -11,10 +11,16 @@ import gui_fields.GUI_Player;
 */
 
 public class CarInsurance extends ChanceCardParent {
-    public void carInsurance(GUI_Player gui_player, Player player) {
+    @Override
+    public void makePayment(GUI_Player gui_player, Player player) {
         gui.getInstance().displayChanceCard("Betal din bilforsikring for 1000 DKK");
         gui.getInstance().showMessage(player.getName() + ", træk et chancekort fra bunken");
         player.getAccount().setMoney(-1000);
         gui_player.setBalance(player.getAccount().getMoney());
+    }
+
+    @Override
+    public void acceptPayment(GUI_Player gui_player, Player player) {
+
     }
 }
