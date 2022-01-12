@@ -1,6 +1,6 @@
 import Main.Player;
 import junit.framework.TestCase;
-//This JUnit testes the method setMoney. So if we know set money to -100, then the players
+//This JUnit tests the method setMoney. So if we know set money to -100, then the players
 // account should be 29_900.
 public class Test1 extends TestCase {
 
