@@ -184,6 +184,7 @@ public class Game {
 
         if (player.getInJail() && !player.getWaitATurn()) {
             outOfJail(player, gui_player, diceCup);
+            notEnoughMoney = false;
 
         } else if (player.getInJail() && player.getWaitATurn()) {
             player.setWaitATurn(false);
