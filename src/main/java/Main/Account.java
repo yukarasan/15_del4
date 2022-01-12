@@ -7,7 +7,8 @@ package Main;
  */
 
 public class Account {
-    private int money = 30_000;
+    //private int money = 30_000;
+    private int money = 200;
 
     /**
      * The first method takes an int value as its parameter, and then sets the variable money in this class
