@@ -186,7 +186,7 @@ public class Brewer extends OwnableField {
         justBought = trueOrFalse;
     }
 
-    public boolean getUsJustBought(){
+    public boolean getIsJustBought(){
         return justBought;
     }
 

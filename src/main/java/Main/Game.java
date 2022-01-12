@@ -250,7 +250,7 @@ public class Game {
         //If player lands on brewers
         gui.getGameBoard().getBrewer(player).buyBrewer(player, gui.getGameBoard().getBrewers(), players, gui_players);
 
-        if (!gui.getGameBoard().getBrewer(player).getUsJustBought()) {
+        if (!gui.getGameBoard().getBrewer(player).getIsJustBought()) {
             gui.getGameBoard().getBrewer(player).payOwnerOfBrewer(player, gui_player, diceCup, gui.getGameBoard().getBrewers());
         } else {
             gui.getGameBoard().getBrewer(player).setJustBought(false);
