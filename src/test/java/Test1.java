@@ -1,13 +1,15 @@
 import Main.Player;
+import junit.framework.TestCase;
+//This JUnit testes the method setMoney. So if we know set money to -100, then the players
+// account should be 29_900.
+public class Test1 extends TestCase {
 
-import static junit.framework.Assert.assertEquals;
-
-public class Test1 {
-    public void testGetMoney() {
+    public void testSetMoney() {
         Player player = new Player();
+        player.setName("Tester");
 
-        player.setMoney(-1000);
-        assertEquals(29_000, player.getAccount().getMoney());
-
+        player.setMoney(-100);
+        assertEquals(29_900, player.getAccount().getMoney());
+        System.out.println(player.getName() + " Du har nu " + player.getAccount().getMoney() + " DKK tilbage");
     }
 }
