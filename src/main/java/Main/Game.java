@@ -184,6 +184,7 @@ public class Game {
 
         if (player.getInJail() && !player.getWaitATurn()) {
             outOfJail(player, gui_player, diceCup);
+            notEnoughMoney = false;
 
         } else if (player.getInJail() && player.getWaitATurn()) {
             player.setWaitATurn(false);
@@ -197,7 +198,7 @@ public class Game {
         gui.getGameBoard().getChanceCard().playerLandsOnChanceField(player, gui_player);
 
         //If player lands on ferries
-        gui.getGameBoard().getFerry(player).payOwnerOfFerry(player, gui_player, gui.getGameBoard().getFerries());
+        gui.getGameBoard().getFerry(player).buyFerry(player, gui.getGameBoard().getFerries(), players, gui_players);
 
         if(!gui.getGameBoard().getFerry(player).isJustBought()){
 
@@ -207,7 +208,6 @@ public class Game {
             gui.getGameBoard().getFerry(player).setJustBought(false);
         }
 
-
         //If player lands on brewers
         gui.getGameBoard().getBrewer(player).buyBrewer(player, gui.getGameBoard().getBrewers(), players, gui_players);
 
@@ -216,8 +216,6 @@ public class Game {
         }else{
             gui.getGameBoard().getBrewer(player).setJustBought(false);
         }
-
-        gui.getGameBoard().getBrewer(player).payOwnerOfBrewer(player, gui_player, diceCup, gui.getGameBoard().getBrewers());
 
         //If player lands on jackpot
         gui.getGameBoard().getJackpot().payToJackpot(player, gui_player);
@@ -276,6 +274,10 @@ public class Game {
     public void outOfJail(Player player, GUI_Player gui_player, DiceCup diceCup) {
 
         String chosenElement = null;
+
+        if (player.getAccount().getMoney() < 1000) {
+            notEnoughMoney = true;
+        }
 
         if (player.getTurnNumberInJail() < 2 || notEnoughMoney) {
 
@@ -342,7 +344,6 @@ public class Game {
 
         if (!wait && player.getTurnNumberInJail() > 1 && player.getInJail()) {
 
-
             if (player.getAccount().getMoney() > 1000) {
                 chosenElement = gui.getInstance().getUserButtonPressed(player.getName() + ", sidste chance, " +
                         "du har to valgmuligheder", "Slå to ens terninger", "Betal 1000 DKK");
@@ -406,14 +407,13 @@ public class Game {
                     player.setInJail(false);
                     player.setWaitATurn(false);
                     playerLandsAnywhere(player, gui_player);
+                    player.resetNumberInJail();
                 }
             }
         }
         wait = false;
 
-        if (diceCup.getDie1().getFaceValue() != diceCup.getDie2().getFaceValue() && player.getAccount().getMoney() < 1000) {
-            notEnoughMoney = true;
-        }
+
     }
 
     /**

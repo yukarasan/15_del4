@@ -247,15 +247,11 @@ public class Ferry extends OwnableField {
         }
     }
 
-
-
     /**
      * This method is for when a player lands on a ferry field. The method will go through an if statement
      * which will only be true if a player has landed on the field, and the ferry field is already owned,
      * and the player who lands on the field is not an owner as well.
      */
-
-
 
     public void payOwnerOfFerry(Player player, GUI_Player gui_player, Ferry[] ferries) {
 
@@ -274,9 +270,6 @@ public class Ferry extends OwnableField {
             //Setting the owner's money
             getOwner().getAccount().setMoney(getRentPrice());
             getGuiOwner().setBalance(getOwner().getAccount().getMoney());
-        }
-        if(player == theOneWhoAuctioned){
-            theOneWhoAuctioned = null;
         }
     }
 

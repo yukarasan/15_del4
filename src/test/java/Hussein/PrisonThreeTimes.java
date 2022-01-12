@@ -21,7 +21,7 @@ public class PrisonThreeTimes {
         gui.getInstance().addPlayer(gui_player);
 
         player.moveToHere(30);
-        player.getAccount().setMoney(-28000);
+        player.getAccount().setMoney(-29000);
 
         gui.getSpecificField(player.getSquare()).setCar(gui_player, true);
         game.setPlayerInJail(gui_player, player);
