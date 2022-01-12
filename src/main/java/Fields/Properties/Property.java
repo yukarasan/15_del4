@@ -331,9 +331,9 @@ public class Property {
 
     public void boughtFieldFromAuction(GUI_Player gui_player, Player player, Property[] properties){
 
-        properties[intHelper].setGuiOwner(gui_player);
-        properties[intHelper].setOwner(player);
-        properties[intHelper].setIsOwned(true);
+        this.isOwned = true;
+        this.guiOwner = gui_player;
+        this.owner = player;
 
         player.getAccount().setMoney(-currentBid);
         gui_player.setBalance(player.getAccount().getMoney());

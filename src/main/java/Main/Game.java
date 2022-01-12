@@ -261,13 +261,10 @@ public class Game {
         gui.getGameBoard().getJackpot().receiveJackpot(player, gui_player);
 
         //If player lands on properties
+        gui.getGameBoard().getProperty(player).payOwner(player, gui_player);
+
         gui.getGameBoard().getProperty(player).landOnProperty(player, gui_player, gui.getGameBoard().getProperties(), players, gui_players);
 
-        if (!gui.getGameBoard().getProperty(player).getJustBought()) {
-            gui.getGameBoard().getProperty(player).payOwner(player, gui_player);
-        } else {
-            gui.getGameBoard().getBrewer(player).setJustBought(false);
-        }
 
         //if player lands on
         if (player.getSquare() == 30) {
@@ -573,8 +570,8 @@ public class Game {
 
         players[1].moveToHere(1);
         gui.getSpecificField(1).setCar(gui_players[1], true);
-        gui.getGameBoard().getProperty(players[1]).landOnProperty(players[1], gui_players[1], gui.getGameBoard().getProperties(), players, gui_players);
-
+        //gui.getGameBoard().getProperty(players[1]).landOnProperty(players[1], gui_players[1], gui.getGameBoard().getProperties(), players, gui_players);
+        gui.getGameBoard().getProperty(players[1]).payOwner(players[1], gui_players[1]);
 
 
     }
