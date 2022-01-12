@@ -38,7 +38,7 @@ public class FerryTesting {
 
             System.out.println(player.getName() + ", du er landet på en færge, vil du købe den for 4000 DKK?");
 
-            ferries[intHelper].setOwner(player, randomGuiPlayer);
+            ferries[intHelper].setOwner(player, randomGuiPlayer, ferries);
 
         }
     }

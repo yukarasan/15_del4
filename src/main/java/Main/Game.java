@@ -1,9 +1,6 @@
 package Main;
 
-import Fields.Ferry;
-import Fields.GameBoard;
-import Fields.Jail;
-import Fields.MoveWithADelay;
+import Fields.*;
 import GUI_Controllor.GUI_Controller;
 import gui_fields.GUI_Car;
 import gui_fields.GUI_Player;
@@ -187,6 +184,7 @@ public class Game {
 
         if (player.getInJail() && !player.getWaitATurn()) {
             outOfJail(player, gui_player, diceCup);
+            notEnoughMoney = false;
 
         } else if (player.getInJail() && player.getWaitATurn()) {
             player.setWaitATurn(false);
@@ -200,12 +198,24 @@ public class Game {
         gui.getGameBoard().getChanceCard().playerLandsOnChanceField(player, gui_player);
 
         //If player lands on ferries
-        //gui.getGameBoard().getFerry(player).buyFerry(player, gui_player, gui.getGameBoard().getFerries(), players, gui_players);
-        gui.getGameBoard().getFerry(player).payOwnerOfFerry(player, gui_player, gui.getGameBoard().getFerries());
+        gui.getGameBoard().getFerry(player).buyFerry(player, gui.getGameBoard().getFerries(), players, gui_players);
+
+        if(!gui.getGameBoard().getFerry(player).isJustBought()){
+
+            gui.getGameBoard().getFerry(player).payOwnerOfFerry(player, gui_player, gui.getGameBoard().getFerries());
+
+        }else{
+            gui.getGameBoard().getFerry(player).setJustBought(false);
+        }
 
         //If player lands on brewers
-        ////////////////gui.getGameBoard().getBrewer(player).buyBrewerField(player, gui_player);
-        gui.getGameBoard().getBrewer(player).payOwnerOfBrewer(player, gui_player, diceCup, gui.getGameBoard().getBrewers());
+        gui.getGameBoard().getBrewer(player).buyBrewer(player, gui.getGameBoard().getBrewers(), players, gui_players);
+
+        if(!gui.getGameBoard().getBrewer(player).getUsJustBought()){
+            gui.getGameBoard().getBrewer(player).payOwnerOfBrewer(player, gui_player, diceCup, gui.getGameBoard().getBrewers());
+        }else{
+            gui.getGameBoard().getBrewer(player).setJustBought(false);
+        }
 
         //If player lands on jackpot
         gui.getGameBoard().getJackpot().payToJackpot(player, gui_player);
@@ -213,6 +223,12 @@ public class Game {
 
         //If player lands on properties
         gui.getGameBoard().getProperty(player).landOnProperty(player, gui_player, gui.getGameBoard().getProperties(), players, gui_players);
+
+        if(!gui.getGameBoard().getProperty(player).getJustBought()){
+            gui.getGameBoard().getProperty(player).payOwner(player, gui_player);
+        }else{
+            gui.getGameBoard().getBrewer(player).setJustBought(false);
+        }
 
         //if player lands on
         if (player.getSquare() == 30) {
@@ -258,6 +274,10 @@ public class Game {
     public void outOfJail(Player player, GUI_Player gui_player, DiceCup diceCup) {
 
         String chosenElement = null;
+
+        if (player.getAccount().getMoney() < 1000) {
+            notEnoughMoney = true;
+        }
 
         if (player.getTurnNumberInJail() < 2 || notEnoughMoney) {
 
@@ -324,7 +344,6 @@ public class Game {
 
         if (!wait && player.getTurnNumberInJail() > 1 && player.getInJail()) {
 
-
             if (player.getAccount().getMoney() > 1000) {
                 chosenElement = gui.getInstance().getUserButtonPressed(player.getName() + ", sidste chance, " +
                         "du har to valgmuligheder", "Slå to ens terninger", "Betal 1000 DKK");
@@ -388,14 +407,13 @@ public class Game {
                     player.setInJail(false);
                     player.setWaitATurn(false);
                     playerLandsAnywhere(player, gui_player);
+                    player.resetNumberInJail();
                 }
             }
         }
         wait = false;
 
-        if (diceCup.getDie1().getFaceValue() != diceCup.getDie2().getFaceValue() && player.getAccount().getMoney() < 1000) {
-            notEnoughMoney = true;
-        }
+
     }
 
     /**

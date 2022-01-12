@@ -8,7 +8,6 @@ import gui_fields.GUI_Player;
 import java.util.stream.IntStream;
 
 import static java.awt.Color.blue;
-import static java.awt.Color.red;
 
 public class Property {
     private GUI_Controller gui = new GUI_Controller();
@@ -158,21 +157,17 @@ public class Property {
             optionBuyProperty(player, gui_player, properties, players, gui_players);
         }
 
-        if(IntStream.of(propertyFieldNumbers).anyMatch(x -> x == player.getSquare()) && isOwned && player != owner && player != theOneWhoAuctioned){
-            payOwner(player, gui_player);
-        }
-
         if(player == theOneWhoAuctioned){
             theOneWhoAuctioned = null;
         }
     }
 
-    public void optionBuyProperty(Player player, GUI_Player gui_player, Property[] properties, Player[] players, GUI_Player[] gui_players) {
-//////////IKKE HVIS HAN IKKE HAR RÅD FIX DET
+
+    private void optionBuyProperty(Player player, GUI_Player gui_player, Property[] properties, Player[] players, GUI_Player[] gui_players) {
 
         String buttonPressed = null;
 
-        if (player.getAccount().getMoney() > fieldPrice) {
+        if (player.getAccount().getMoney() > fieldPrice && player != owner) {
             buttonPressed = gui.getInstance().getUserButtonPressed(player.getName() + ", du er landet på " +
                             gui.getSpecificField(player.getSquare()).getTitle() + ", vil du købe denne for " + fieldPrice + " DKK?", "Ja",
                     "Nej, sæt feltet på auktion");
@@ -294,7 +289,10 @@ public class Property {
             currentBid = bid;
             highestBidder = player;
         }
+    }
 
+    public void setJustBought(boolean trueOrFalse){
+        justBought = trueOrFalse;
     }
 
     public boolean setIsOwned(boolean isOwned) {
@@ -318,7 +316,7 @@ public class Property {
         gui.getSpecificField(guiFieldNumber).setSubText(player.getName());
         gui.getGameBoard().getGuiStreet(guiFieldNumber).setBorder(gui_player.getCar().getPrimaryColor());
 
-        justBought = true;
+        properties[intHelper].setJustBought(true);
 
         switch (guiFieldNumber) {
             case 1, 3 -> {player.setBlueOwned(); setCurrentRentPriceIfOwningTwo(player, properties,
@@ -352,18 +350,21 @@ public class Property {
         return fieldPrice;
     }
 
-    public void payOwner(Player player, GUI_Player gui_player){
+    public void payOwner(Player player, GUI_Player gui_player) {
 
-        gui.getInstance().getUserButtonPressed("Oh oh, " + player.getName() + ", du er landet på " + owner.getName() +
-                "'s felt: " + gui.getSpecificField(player.getSquare()).getTitle() +
-                ", du skal af med " + currentRentPrice + " DKK", "Betal");
+        if (IntStream.of(propertyFieldNumbers).anyMatch(x -> x == player.getSquare()) && isOwned
+                && player != owner) {
+            gui.getInstance().getUserButtonPressed("Oh oh, " + player.getName() + ", du er landet på " + owner.getName() +
+                    "'s felt: " + gui.getSpecificField(player.getSquare()).getTitle() +
+                    ", du skal af med " + currentRentPrice + " DKK", "Betal");
 
-        player.getAccount().setMoney(-currentRentPrice);
-        gui_player.setBalance(player.getAccount().getMoney());
+            player.getAccount().setMoney(-currentRentPrice);
+            gui_player.setBalance(player.getAccount().getMoney());
 
-        owner.getAccount().setMoney(currentRentPrice);
+            owner.getAccount().setMoney(currentRentPrice);
 
-        guiOwner.setBalance(owner.getAccount().getMoney());
+            guiOwner.setBalance(owner.getAccount().getMoney());
+        }
     }
 
     public int getAmountOfHouses() {
@@ -754,7 +755,6 @@ public class Property {
         gameBoard.getProperty(players[0]).landOnProperty(players[0], gui_players[0], gameBoard.getProperties(), players, gui_players);
 
         System.out.println("Testing: " + players[0].getName());
-        //Creating a new player and makes the new player land on the now owned blue property
 
     }
 }

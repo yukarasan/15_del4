@@ -174,10 +174,6 @@ public class Brewer extends OwnableField {
             owner.getAccount().setMoney(fieldPrice);
             guiOwner.setBalance(owner.getAccount().getMoney());
         }
-
-        if(brewers[brewerNumber].getUsJustBought()){
-            brewers[brewerNumber].setJustBought(false);
-        }
     }
 
     public void setJustBought(boolean trueOrFalse){
