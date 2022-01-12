@@ -22,7 +22,7 @@ public final class GUI_Controller {
     then method will simply return the already created object gui_instance
      */
 
-    public static GUI getInstance() {
+    public GUI getInstance() {
         if (GUI_instance == null) {
             GUI_Controller gui = new GUI_Controller();
             GUI_instance = gui.GUI_controller();
