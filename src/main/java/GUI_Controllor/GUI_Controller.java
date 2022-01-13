@@ -47,7 +47,7 @@ public final class GUI_Controller {
      * game board class.
      */
 
-    public GameBoard getGameBoard() {
+    public static GameBoard getGameBoard() {
         return gameBoard;
     }
 
@@ -56,7 +56,7 @@ public final class GUI_Controller {
      * gui.getGameBoard.getSpecificField we can now instead write gui.getSpecificField.
      */
 
-    public GUI_Field getSpecificField(int specificField) {
+    public static GUI_Field getSpecificField(int specificField) {
         return gameBoard.getSpecificField(specificField);
     }
 }
