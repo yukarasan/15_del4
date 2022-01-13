@@ -215,13 +215,6 @@ public class GameBoard {
 
     }
 
-
-
-
-    public Jail getJail() {
-        return jail;
-    }
-
     public ChanceCard getChanceCard(){
         return chanceCard;
     }

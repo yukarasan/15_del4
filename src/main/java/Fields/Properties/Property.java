@@ -10,7 +10,6 @@ import java.util.stream.IntStream;
 import static java.awt.Color.blue;
 
 public class Property {
-    private GUI_Controller gui = new GUI_Controller();
     private Player owner, theOneWhoAuctioned, highestBidder;
     private GUI_Player guiOwner;
     private int[] propertyFieldNumbers = {1, 3, 6, 8, 9, 11, 13, 14, 16, 18, 19, 21, 23, 24, 26, 27, 29, 31, 32, 34, 37, 39};
@@ -172,14 +171,14 @@ public class Property {
         String buttonPressed = null;
 
         if (player.getAccount().getMoney() > fieldPrice && player != owner) {
-            buttonPressed = gui.getInstance().getUserButtonPressed(player.getName() + ", du er landet på " +
-                            gui.getSpecificField(player.getSquare()).getTitle() + ", vil du købe denne for " + fieldPrice + " DKK?", "Ja",
+            buttonPressed = GUI_Controller.getInstance().getUserButtonPressed(player.getName() + ", du er landet på " +
+                            GUI_Controller.getSpecificField(player.getSquare()).getTitle() + ", vil du købe denne for " + fieldPrice + " DKK?", "Ja",
                     "Nej, sæt feltet på auktion");
         }
 
         if (player.getAccount().getMoney() < fieldPrice) {
-            buttonPressed = gui.getInstance().getUserButtonPressed(player.getName() + ", du er landet på " +
-                            gui.getSpecificField(player.getSquare()).getTitle() + ", den koster " + fieldPrice + " DKK, men du har" +
+            buttonPressed = GUI_Controller.getInstance().getUserButtonPressed(player.getName() + ", du er landet på " +
+                            GUI_Controller.getSpecificField(player.getSquare()).getTitle() + ", den koster " + fieldPrice + " DKK, men du har" +
                             " ikke råd. Du bliver nødt til at sætte den på auktion",
                     "Sæt feltet på auktion");
         }
@@ -192,8 +191,8 @@ public class Property {
                 owner.getAccount().setMoney(-fieldPrice);
                 guiOwner.setBalance(owner.getAccount().getMoney());
 
-                gui.getSpecificField(owner.getSquare()).setSubText(owner.getName());
-                gui.getGameBoard().getGuiStreet(owner.getSquare()).setBorder(guiOwner.getCar().getPrimaryColor());
+                GUI_Controller.getSpecificField(owner.getSquare()).setSubText(owner.getName());
+                GUI_Controller.getGameBoard().getGuiStreet(owner.getSquare()).setBorder(guiOwner.getCar().getPrimaryColor());
 
                 switch (player.getSquare()) {
                     case 1, 3 -> {player.setBlueOwned(); setCurrentRentPriceIfOwningTwo(player, properties,
@@ -222,10 +221,10 @@ public class Property {
 
     public void setPropertyOnAuction(Player player, Player[] players, Property[] properties, GUI_Player[] gui_players){
         theOneWhoAuctioned = player;
-        gui.getInstance().showMessage("Feltet " + gui.getSpecificField(player.getSquare()).getTitle() + " er sat på auktion" +
+        GUI_Controller.getInstance().showMessage("Feltet " + GUI_Controller.getSpecificField(player.getSquare()).getTitle() + " er sat på auktion" +
                 ", andre spillere kan nu byde på denne");
 
-        Player isOutOfAuction[] = new Player[players.length];
+        Player[] isOutOfAuction = new Player[players.length];
         Player highestBidder = null;
 
         boolean bought = false;
@@ -256,8 +255,8 @@ public class Property {
                     while (bidAgain && players[i].getAccount().getMoney() > (currentBid + 50) && players[i] != isOutOfAuction[i]
                             && currentBid < richestAmount ) {
                         bidAgain = false;
-                        String bid = gui.getInstance().getUserButtonPressed(players[i].getName() + ", du kan byde på feltet "
-                                        + gui.getSpecificField(player.getSquare()).getTitle() + ". (Oprindelig pris: " + properties[intHelper].getFieldPrice()
+                        String bid = GUI_Controller.getInstance().getUserButtonPressed(players[i].getName() + ", du kan byde på feltet "
+                                        + GUI_Controller.getSpecificField(player.getSquare()).getTitle() + ". (Oprindelig pris: " + properties[intHelper].getFieldPrice()
                                         + "). Det nuværende bud er " + currentBid + ". Hvad vil du byde med mere",
                                 "50", "100", "500", "1000", "2000", "5000", "Ønsker ikke at byde");
 
@@ -284,8 +283,8 @@ public class Property {
                     if(players[i] == highestBidder) {
 
                         checkGuiFieldNumberFromPropertyNumber(intHelper);
-                        gui.getInstance().showMessage("Tillykke " + highestBidder.getName() + ", du har købt feltet " +
-                                gui.getSpecificField(guiFieldNumber).getTitle() + " for " + currentBid);
+                        GUI_Controller.getInstance().showMessage("Tillykke " + highestBidder.getName() + ", du har købt feltet " +
+                                GUI_Controller.getSpecificField(guiFieldNumber).getTitle() + " for " + currentBid);
 
                         properties[intHelper].boughtFieldFromAuction(gui_players[i], players[i], properties);
                     }
@@ -298,8 +297,8 @@ public class Property {
 
                     if (players[i] != isOutOfAuction[i]) {
                         checkGuiFieldNumberFromPropertyNumber(intHelper);
-                        gui.getInstance().showMessage("Tillykke " + players[i].getName() + ", du har købt feltet " +
-                                gui.getSpecificField(guiFieldNumber).getTitle() + " for " + currentBid);
+                        GUI_Controller.getInstance().showMessage("Tillykke " + players[i].getName() + ", du har købt feltet " +
+                                GUI_Controller.getSpecificField(guiFieldNumber).getTitle() + " for " + currentBid);
                         properties[intHelper].boughtFieldFromAuction(gui_players[i], players[i], properties);
                     }
                 }
@@ -310,7 +309,7 @@ public class Property {
     private void placeBit(Player player, int bid){
 
         if(bid >= player.getAccount().getMoney()){
-            gui.getInstance().showMessage(player.getName() + ", du kan ikke så højere end det du har, byd en anden værdi");
+            GUI_Controller.getInstance().showMessage(player.getName() + ", du kan ikke så højere end det du har, byd en anden værdi");
         }else{
             currentBid = bid;
             highestBidder = player;
@@ -339,8 +338,8 @@ public class Property {
         gui_player.setBalance(player.getAccount().getMoney());
 
         checkGuiFieldNumberFromPropertyNumber(intHelper);
-        gui.getSpecificField(guiFieldNumber).setSubText(player.getName());
-        gui.getGameBoard().getGuiStreet(guiFieldNumber).setBorder(gui_player.getCar().getPrimaryColor());
+        GUI_Controller.getSpecificField(guiFieldNumber).setSubText(player.getName());
+        GUI_Controller.getGameBoard().getGuiStreet(guiFieldNumber).setBorder(gui_player.getCar().getPrimaryColor());
 
         properties[intHelper].setJustBought(true);
 
@@ -380,8 +379,8 @@ public class Property {
 
         if (IntStream.of(propertyFieldNumbers).anyMatch(x -> x == player.getSquare()) && isOwned
                 && player != owner) {
-            gui.getInstance().getUserButtonPressed("Oh oh, " + player.getName() + ", du er landet på " + owner.getName() +
-                    "'s felt: " + gui.getSpecificField(player.getSquare()).getTitle() +
+            GUI_Controller.getInstance().getUserButtonPressed("Oh oh, " + player.getName() + ", du er landet på " + owner.getName() +
+                    "'s felt: " + GUI_Controller.getSpecificField(player.getSquare()).getTitle() +
                     ", du skal af med " + currentRentPrice + " DKK", "Betal");
 
             player.getAccount().setMoney(-currentRentPrice);
@@ -411,20 +410,20 @@ public class Property {
         switch (properties[intHelper].getAmountOfHouses()){
 
             case 1 ->{properties[intHelper].setCurrentRentPrice(properties[intHelper].getRentOneHouse());
-                gui.getGameBoard().getGuiStreet(fieldNumber).setHouses(properties[intHelper].getAmountOfHouses());}
+                GUI_Controller.getGameBoard().getGuiStreet(fieldNumber).setHouses(properties[intHelper].getAmountOfHouses());}
 
             case 2 -> {properties[intHelper].setCurrentRentPrice(properties[intHelper].getRentTwoHouse());
-                gui.getGameBoard().getGuiStreet(fieldNumber).setHouses(properties[intHelper].getAmountOfHouses());}
+                GUI_Controller.getGameBoard().getGuiStreet(fieldNumber).setHouses(properties[intHelper].getAmountOfHouses());}
 
             case 3 -> {properties[intHelper].setCurrentRentPrice(properties[intHelper].getRentThreeHouse());
-                gui.getGameBoard().getGuiStreet(fieldNumber).setHouses(properties[intHelper].getAmountOfHouses());}
+                GUI_Controller.getGameBoard().getGuiStreet(fieldNumber).setHouses(properties[intHelper].getAmountOfHouses());}
 
             case 4 -> {properties[intHelper].setCurrentRentPrice(properties[intHelper].getRentFourHouse());
-                gui.getGameBoard().getGuiStreet(fieldNumber).setHouses(properties[intHelper].getAmountOfHouses());}
+                GUI_Controller.getGameBoard().getGuiStreet(fieldNumber).setHouses(properties[intHelper].getAmountOfHouses());}
 
             case 5 -> {properties[intHelper].setCurrentRentPrice(properties[intHelper].getRentHotel());
-                gui.getGameBoard().getGuiStreet(fieldNumber).setHouses(0);
-                gui.getGameBoard().getGuiStreet(fieldNumber).setHotel(true);}
+                GUI_Controller.getGameBoard().getGuiStreet(fieldNumber).setHouses(0);
+                GUI_Controller.getGameBoard().getGuiStreet(fieldNumber).setHotel(true);}
         }
     }
 
@@ -455,19 +454,19 @@ public class Property {
         else if ((intHelper == fieldOne) && !firstTrue && !secondTrue &&
                 (properties[fieldOne].getAmountOfHouses() >= (properties[fieldTwo].getAmountOfHouses() + 1))
                 && properties[intHelper].getAmountOfHouses() != 5) {
-            gui.getInstance().showMessage("Du har for mange bygninger her, vælg et andet sted at bygge");
+            GUI_Controller.getInstance().showMessage("Du har for mange bygninger her, vælg et andet sted at bygge");
             chooseToBuildAgain = true;
         }
 
         else if ((intHelper == fieldTwo) && !firstTrue && !secondTrue &&
                 (properties[fieldTwo].getAmountOfHouses() >= (properties[fieldOne].getAmountOfHouses() + 1))
                 && properties[intHelper].getAmountOfHouses() != 5) {
-            gui.getInstance().showMessage("Du har for mange bygninger her, vælg et andet sted at bygge");
+            GUI_Controller.getInstance().showMessage("Du har for mange bygninger her, vælg et andet sted at bygge");
             chooseToBuildAgain = true;
         }
 
         if(properties[intHelper].getAmountOfHouses() == 5){
-            gui.getInstance().showMessage("Du kan ikke købe mere på her! Du har hotel");
+            GUI_Controller.getInstance().showMessage("Du kan ikke købe mere på her! Du har hotel");
             chooseToBuildAgain = true;
             chooseAgain = true;
         }
@@ -510,7 +509,7 @@ public class Property {
                 (properties[fieldOne].getAmountOfHouses() >= (properties[fieldTwo].getAmountOfHouses() + 1)
                         || properties[fieldOne].getAmountOfHouses() >= (properties[fieldThree].getAmountOfHouses() + 1))
         && properties[intHelper].getAmountOfHouses() != 5) {
-            gui.getInstance().showMessage("Du har for mange bygninger her, vælg et andet sted at bygge");
+            GUI_Controller.getInstance().showMessage("Du har for mange bygninger her, vælg et andet sted at bygge");
             chooseToBuildAgain = true;
         }
 
@@ -518,7 +517,7 @@ public class Property {
                 (properties[fieldTwo].getAmountOfHouses() >= (properties[fieldOne].getAmountOfHouses() + 1)
                         || properties[fieldTwo].getAmountOfHouses() >= (properties[fieldThree].getAmountOfHouses() + 1))
         && properties[intHelper].getAmountOfHouses() != 5) {
-            gui.getInstance().showMessage("Du har for mange bygninger her, vælg et andet sted at bygge");
+            GUI_Controller.getInstance().showMessage("Du har for mange bygninger her, vælg et andet sted at bygge");
             chooseToBuildAgain = true;
 
 
@@ -526,12 +525,12 @@ public class Property {
                 (properties[fieldThree].getAmountOfHouses() >= (properties[fieldTwo].getAmountOfHouses() + 1)
                         || properties[fieldThree].getAmountOfHouses() >= (properties[fieldOne].getAmountOfHouses() + 1))
         && properties[intHelper].getAmountOfHouses() != 5) {
-            gui.getInstance().showMessage("3333 Du har for mange bygninger her, vælg et andet sted at bygge");
+            GUI_Controller.getInstance().showMessage("3333 Du har for mange bygninger her, vælg et andet sted at bygge");
             chooseToBuildAgain = true;
         }
 
         if(properties[intHelper].getAmountOfHouses() == 5){
-            gui.getInstance().showMessage("Du kan ikke købe mere på her! Du har hotel");
+            GUI_Controller.getInstance().showMessage("Du kan ikke købe mere på her! Du har hotel");
         }
     }
 
@@ -594,17 +593,17 @@ public class Property {
 
         checkGuiFieldNumberFromPropertyNumber(propertyNumber);
 
-        int price = Integer.parseInt(gui.getGameBoard().getGuiStreet(guiFieldNumber).getRent());
+        int price = Integer.parseInt(GUI_Controller.getGameBoard().getGuiStreet(guiFieldNumber).getRent());
 
-        gui.getSpecificField(guiFieldNumber).setSubText("Pris: " + price);
+        GUI_Controller.getSpecificField(guiFieldNumber).setSubText("Pris: " + price);
 
         this.owner = null;
         this.guiOwner = null;
         this.isOwned = false;
         this.currentRentPrice = rentOneOwned;
 
-        gui.getGameBoard().getGuiStreet(guiFieldNumber).setHouses(0);
-        gui.getGameBoard().getGuiStreet(guiFieldNumber).setHotel(false);
+        GUI_Controller.getGameBoard().getGuiStreet(guiFieldNumber).setHouses(0);
+        GUI_Controller.getGameBoard().getGuiStreet(guiFieldNumber).setHotel(false);
     }
 
 
@@ -615,7 +614,7 @@ public class Property {
         while(chooseAgain) {
             chooseAgain = false;
 
-            String colorPressed = gui.getInstance().getUserButtonPressed(player.getName() + ", vælg hvor du vil bygge", "Blå",
+            String colorPressed = GUI_Controller.getInstance().getUserButtonPressed(player.getName() + ", vælg hvor du vil bygge", "Blå",
                     "Orange", "Mørkegul", "Grå", "Rød", "Hvid", "Lysegul", "Lilla", "Ingen");
 
             chooseToBuildAgain = true;
@@ -658,17 +657,17 @@ public class Property {
 
                 chooseToBuildAgain = false;
 
-                String secondButton = gui.getInstance().getUserButtonPressed("Vælg hvilket felt du ønsker at bygge på",
-                        gui.getSpecificField(guiField1).getTitle() + " " + properties[propertyField1].getCurrentPriceOfBuilding() + " DKK",
-                        gui.getSpecificField(guiField2).getTitle() + " " + properties[propertyField2].getCurrentPriceOfBuilding() + " DKK",
+                String secondButton = GUI_Controller.getInstance().getUserButtonPressed("Vælg hvilket felt du ønsker at bygge på",
+                        GUI_Controller.getSpecificField(guiField1).getTitle() + " " + properties[propertyField1].getCurrentPriceOfBuilding() + " DKK",
+                        GUI_Controller.getSpecificField(guiField2).getTitle() + " " + properties[propertyField2].getCurrentPriceOfBuilding() + " DKK",
                         "ingen, jeg vil ikke bygge i " + colorString);
 
-                if (secondButton.equals(gui.getSpecificField(guiField1).getTitle() + " " + properties[propertyField1].getCurrentPriceOfBuilding() + " DKK"
+                if (secondButton.equals(GUI_Controller.getSpecificField(guiField1).getTitle() + " " + properties[propertyField1].getCurrentPriceOfBuilding() + " DKK"
                 ) && player.getAccount().getMoney() > properties[propertyField1].getCurrentPriceOfBuilding()) {
                     placeTwoEvenHouses(guiField1, propertyField1, propertyField2, properties);
                     chooseAgain = true;
                 }
-                if (secondButton.equals(gui.getSpecificField(guiField2).getTitle() + " " + properties[propertyField2].getCurrentPriceOfBuilding() + " DKK"
+                if (secondButton.equals(GUI_Controller.getSpecificField(guiField2).getTitle() + " " + properties[propertyField2].getCurrentPriceOfBuilding() + " DKK"
                 ) && player.getAccount().getMoney() > properties[propertyField2].getCurrentPriceOfBuilding()) {
                     placeTwoEvenHouses(guiField2, propertyField1, propertyField2, properties);
                     chooseAgain = true;
@@ -679,7 +678,7 @@ public class Property {
             }
 
         }else if(player != properties[propertyField1].getOwner() || player != properties[propertyField2].getOwner()){
-            gui.getInstance().showMessage("Du ejer ikke alle i " + colorString + ", vælg en anden farve");
+            GUI_Controller.getInstance().showMessage("Du ejer ikke alle i " + colorString + ", vælg en anden farve");
             chooseAgain = true;
             chooseToBuildAgain = false;
         }
@@ -689,7 +688,7 @@ public class Property {
         int playerBal = player.getAccount().getMoney();
 
         if(playerBal < buildingField1 || playerBal < buildingField2){
-            gui.getInstance().getUserButtonPressed("Du har ikke råd til at bygge her", "Okay");
+            GUI_Controller.getInstance().getUserButtonPressed("Du har ikke råd til at bygge her", "Okay");
             chooseAgain = true;
             chooseToBuildAgain = false;
         }
@@ -703,23 +702,23 @@ public class Property {
         if (player == properties[propertyField1].getOwner() && player == properties[propertyField1].getOwner()
         && player == properties[propertyField3].getOwner()) {
 
-            String secondButton = gui.getInstance().getUserButtonPressed("Vælg hvilket felt du ønsker at bygge på",
-                    gui.getSpecificField(guiField1).getTitle() + " " + properties[propertyField1].getCurrentPriceOfBuilding()
-                            + " DKK", gui.getSpecificField(guiField2).getTitle() + " " + properties[propertyField2].getCurrentPriceOfBuilding()
-                            + " DKK", gui.getSpecificField(guiField3).getTitle() + " " + properties[propertyField3].getCurrentPriceOfBuilding()
+            String secondButton = GUI_Controller.getInstance().getUserButtonPressed("Vælg hvilket felt du ønsker at bygge på",
+                    GUI_Controller.getSpecificField(guiField1).getTitle() + " " + properties[propertyField1].getCurrentPriceOfBuilding()
+                            + " DKK", GUI_Controller.getSpecificField(guiField2).getTitle() + " " + properties[propertyField2].getCurrentPriceOfBuilding()
+                            + " DKK", GUI_Controller.getSpecificField(guiField3).getTitle() + " " + properties[propertyField3].getCurrentPriceOfBuilding()
                             + " DKK", "ingen, jeg vil ikke købe i " + colorString);
 
-            if (secondButton.equals(gui.getSpecificField(guiField1).getTitle() + " " + properties[propertyField1].getCurrentPriceOfBuilding()
+            if (secondButton.equals(GUI_Controller.getSpecificField(guiField1).getTitle() + " " + properties[propertyField1].getCurrentPriceOfBuilding()
                     + " DKK") && properties[propertyField1].getCurrentPriceOfBuilding() < player.getAccount().getMoney()) {
                 placeThreeEvenHouses(guiField1, propertyField1, propertyField2, propertyField3, properties);
                 chooseAgain = true;
 
-            } else if (secondButton.equals(gui.getSpecificField(guiField2).getTitle() + " " + properties[propertyField2].getCurrentPriceOfBuilding()
+            } else if (secondButton.equals(GUI_Controller.getSpecificField(guiField2).getTitle() + " " + properties[propertyField2].getCurrentPriceOfBuilding()
                     + " DKK") && properties[propertyField2].getCurrentPriceOfBuilding() < player.getAccount().getMoney()) {
                 placeThreeEvenHouses(guiField2, propertyField1, propertyField2, propertyField3, properties);
                 chooseAgain = true;
 
-            } else if (secondButton.equals(gui.getSpecificField(guiField3).getTitle() + " " + properties[propertyField3].getCurrentPriceOfBuilding()
+            } else if (secondButton.equals(GUI_Controller.getSpecificField(guiField3).getTitle() + " " + properties[propertyField3].getCurrentPriceOfBuilding()
                     + " DKK") && properties[propertyField3].getCurrentPriceOfBuilding() < player.getAccount().getMoney()) {
                 placeThreeEvenHouses(guiField3, propertyField1, propertyField2, propertyField3, properties);
                 chooseAgain = true;
@@ -731,7 +730,7 @@ public class Property {
 
         } else if (player != properties[propertyField1].getOwner() || player != properties[propertyField2].getOwner()
                 || player != properties[propertyField3].getOwner()) {
-            gui.getInstance().showMessage("Du ejer ikke alle i " + colorString + ", vælg en anden");
+            GUI_Controller.getInstance().showMessage("Du ejer ikke alle i " + colorString + ", vælg en anden");
             chooseAgain = true;
             chooseToBuildAgain = false;
         }
@@ -741,7 +740,7 @@ public class Property {
         int playerBal = player.getAccount().getMoney();
 
         if(playerBal < buildingField1 || playerBal < buildingField2 || playerBal < buildingField3){
-            gui.getInstance().getUserButtonPressed("Du har ikke råd til at bygge her", "Okay");
+            GUI_Controller.getInstance().getUserButtonPressed("Du har ikke råd til at bygge her", "Okay");
             chooseAgain = true;
             chooseToBuildAgain = false;
         }
@@ -768,14 +767,12 @@ public class Property {
         GUI_Car car1 = new GUI_Car();
         gui_players[1] = new GUI_Player(players[1].getName(), players[1].getAccount().getMoney(), car1);
 
-        GUI_Controller gui = new GUI_Controller();
-
-        gui.getInstance().addPlayer(gui_players[0]);
-        gui.getInstance().addPlayer(gui_players[1]);
+        GUI_Controller.getInstance().addPlayer(gui_players[0]);
+        GUI_Controller.getInstance().addPlayer(gui_players[1]);
 
         //Moving player to a blue property and choosing to buy
         players[0].moveToHere(1);
-        gui.getSpecificField(players[0].getSquare()).setCar(gui_players[0], true);
+        GUI_Controller.getSpecificField(players[0].getSquare()).setCar(gui_players[0], true);
 
 
         gameBoard.getProperty(players[0]).landOnProperty(players[0], gui_players[0], gameBoard.getProperties(), players, gui_players);

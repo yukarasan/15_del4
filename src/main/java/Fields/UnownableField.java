@@ -9,7 +9,7 @@ import gui_fields.*;
  * The methods themselves have been used in the gameBoard class to create each field.
  */
 
-public class UnownableField extends Field {
+public class UnownableField {
     public void startField(GUI_Field[] fields) {
         fields[0] = new GUI_Start();
         fields[0].setTitle("Start");

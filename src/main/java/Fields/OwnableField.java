@@ -11,7 +11,7 @@ import java.awt.*;
  * The methods themselves have been used in the gameBoard class to create each field.
  */
 
-public class OwnableField extends Field {
+public class OwnableField {
     //Below is the rent on various occasions of ownable fields such as properties.
     //Also below is cost of eventual upgrades and the rent if a set of one color are owned
     private int rentNoHouse, rentAllOwned, rentOneHouse, rentTwoHouse, rentThreeHouse, rentFourHouse,

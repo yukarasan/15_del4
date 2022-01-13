@@ -1,5 +1,6 @@
 package Fields;
 
+import GUI_Controllor.GUI_Controller;
 import Main.Player;
 import gui_fields.GUI_Field;
 import gui_fields.GUI_Player;
@@ -25,23 +26,23 @@ public class Jackpot extends UnownableField {
 
     public void payToJackpot(Player player, GUI_Player gui_player) {
         if (player.getSquare() == 4) {
-            gui.getInstance().showMessage(player.getName() + ", du er landet på Jackpot og skal betale 1000 DKK");
+            GUI_Controller.getInstance().showMessage(player.getName() + ", du er landet på Jackpot og skal betale 1000 DKK");
             player.getAccount().setMoney(-1000);
             gui_player.setBalance(player.getAccount().getMoney());
             jackpotBundle += 1000;
 
-            gui.getSpecificField(38).setSubText(jackpotBundle + " DKK");
+            GUI_Controller.getSpecificField(38).setSubText(jackpotBundle + " DKK");
         }
     }
 
     public void receiveJackpot(Player player, GUI_Player gui_player) {
         if (player.getSquare() == 38 && jackpotBundle>0) {
-            gui.getInstance().showMessage(player.getName() + ", du har landet på jackpot og skal modtage "
+            GUI_Controller.getInstance().showMessage(player.getName() + ", du har landet på jackpot og skal modtage "
                                             + jackpotBundle + " DKK!");
             player.getAccount().setMoney(jackpotBundle);
             gui_player.setBalance(player.getAccount().getMoney());
             jackpotBundle = 0;
-            gui.getSpecificField(38).setSubText(jackpotBundle + " DKK");
+            GUI_Controller.getSpecificField(38).setSubText(jackpotBundle + " DKK");
         }
     }
 }
