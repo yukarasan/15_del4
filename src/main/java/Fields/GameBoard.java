@@ -6,8 +6,12 @@ import Fields.Properties.Property;
 import Main.Player;
 import gui_fields.GUI_Field;
 import gui_fields.GUI_Street;
-
 import java.awt.*;
+
+/**This is the GameBoard. Here all fields are initiated, all guifields, jail, chancecards
+ * , brewers, ferries and jackpot. This is later created in GUI_Controller
+ *  so that there is onlu one instance it. It is best to do it this way becayse
+ *   the GUI needs the GUI_FIELDS that are made in here.*/
 
 public class GameBoard {
     private final GUI_Field[] fields = new GUI_Field[40];
@@ -36,6 +40,7 @@ public class GameBoard {
     public GUI_Street getGuiStreet(int fieldNumber){
         return (GUI_Street) fields[fieldNumber];
     }
+
 
     public void createPropertiesPrices(){
 
