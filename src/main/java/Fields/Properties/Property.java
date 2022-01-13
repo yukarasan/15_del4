@@ -9,6 +9,13 @@ import java.util.stream.IntStream;
 
 import static java.awt.Color.blue;
 
+/** We made the class called Property to give the players the ability to buy properties and build houses there.
+ * It is an ownable field that has various methods such as paying the owner and setting the fields on auction.
+ * It has a constructor in which when it is initiated, each field must be initiated by itself with own values
+ * of rent on various occasions. Also, it has the following attributes: Cost of eventual upgrades and the
+ * rent associated with that. If a set of one color is owned by one player, the rent price gets higher.
+ * Rent price based on the number of buildings, building prices and finally the field price.*/
+
 public class Property {
     private Player owner, theOneWhoAuctioned, highestBidder;
     private GUI_Player guiOwner;
@@ -27,7 +34,7 @@ public class Property {
 
     private boolean isOwned, chooseToBuildAgain, chooseAgain, bidAgain, justBought;
 
-    //For each time a property field is initiated, it will need to start with setting all this above info
+    /**For each time a property field is initiated, it will need to start with setting all this info below*/
     protected Property(int rentOneOwned, int rentAllOwned, int rentOneHouse, int rentTwoHouse,
                        int rentThreeHouse, int rentFourHouse, int rentHotel, int fieldPrice,
                        int costOfOneHouse, int costOfHotel){
@@ -49,6 +56,12 @@ public class Property {
     }
 
 
+    /** The method below takes in different forms of parameters, it takes in player,
+     * and it uses the property array, which is initiated in class GameBoard.
+     * As an important parameter, the string color will be told.
+     * So, whenever this method is used, it must tell which color is bought,
+     * so that the code decides in the switch,
+     * which number of specific colors are owned by that player. */
     public void setCurrentRentPriceIfOwningTwo(Player player, Property[] properties, boolean whichAllColor,
                                                int propertyNumberOne, int propertyNumberTwo, String color){
 
@@ -80,6 +93,8 @@ public class Property {
     }
 
 
+    /** This works as setCurrentRentPriceIfOwningTwo, just with three cases because orange are for
+     * example three fields and not two*/
     public void setCurrentRentPriceIfOwningThree(Player player, Property[] properties, boolean whichAllColor, int fieldOne,
                                                  int fieldTwo, int fieldThree, String color){
 
@@ -111,6 +126,9 @@ public class Property {
         }
     }
 
+    /**This returns the current price of the building, if the player reaches hotels, the
+     * price has to obviously pay for the hotel price when setting it
+     */
     public int getCurrentPriceOfBuilding(){
 
         switch (amountOfHouses){
@@ -166,6 +184,10 @@ public class Property {
         return isOwned;
     }
 
+    /**it asks if the player has enough money to be able to press
+     * “ja” (yes) to buy the field, if the player presses the button, the player
+     * pays for the field. If the player does not have enough money, the field is auctioned
+     * . If the player simply does not want to buy, the method setPropertyOnAuction is used:*/
     private void optionBuyProperty(Player player, GUI_Player gui_player, Property[] properties, Player[] players, GUI_Player[] gui_players) {
 
         String buttonPressed = null;
@@ -219,6 +241,14 @@ public class Property {
             }
         }
 
+        /**This method starts to see which amount is the richest amount out of players balances,
+         * in a for loop. If the player is not in the game
+         * (the player has gone bankrupt and is out of the game), they can of course not bid in the auction.
+         * The method then starts a while loop; while the field is not bought yet.
+         * It then gives a player in the for loop a chance to bid the current amount of bid,
+         * then increases it with the banknotes that are in the real-life matador game, so it resembles it.
+         * If the player presses that they do not wish to bid, they are out of auction and
+         * amount of isOut increases by one. If there is all except one out of the auction here::*/
     public void setPropertyOnAuction(Player player, Player[] players, Property[] properties, GUI_Player[] gui_players){
         theOneWhoAuctioned = player;
         GUI_Controller.getInstance().showMessage("Feltet " + GUI_Controller.getSpecificField(player.getSquare()).getTitle() + " er sat på auktion" +
