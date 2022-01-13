@@ -248,7 +248,8 @@ public class Property {
          * It then gives a player in the for loop a chance to bid the current amount of bid,
          * then increases it with the banknotes that are in the real-life matador game, so it resembles it.
          * If the player presses that they do not wish to bid, they are out of auction and
-         * amount of isOut increases by one. If there is all except one out of the auction here::*/
+         * amount of isOut increases by one. If there is all except one out of the auction here, the last standing
+         *  bidder will be given the field for their currentBid price*/
     public void setPropertyOnAuction(Player player, Player[] players, Property[] properties, GUI_Player[] gui_players){
         theOneWhoAuctioned = player;
         GUI_Controller.getInstance().showMessage("Feltet " + GUI_Controller.getSpecificField(player.getSquare()).getTitle() + " er sat på auktion" +
@@ -336,6 +337,8 @@ public class Property {
         }
     }
 
+    /**If the player has enough money, the player is now the highest bidder. If the player does not have enough money,
+     * they will be asked to bid again*/
     private void placeBit(Player player, int bid){
 
         if(bid >= player.getAccount().getMoney()){
@@ -358,6 +361,8 @@ public class Property {
         return justBought;
     }
 
+    /** This functions just as when pressing "ja" (yes) in optionBuyField, this should just subtract the bid instead of the
+     * field price.*/
     public void boughtFieldFromAuction(GUI_Player gui_player, Player player, Property[] properties){
 
         this.isOwned = true;
@@ -405,6 +410,7 @@ public class Property {
         return fieldPrice;
     }
 
+    /**If the place is owned, the lander has to pay the owner*/
     public void payOwner(Player player, GUI_Player gui_player) {
 
         if (IntStream.of(propertyFieldNumbers).anyMatch(x -> x == player.getSquare()) && isOwned
@@ -430,6 +436,8 @@ public class Property {
         this.amountOfHouses += 1;
     }
 
+   /** This method places a house somewhere on the board itself (gui), increases the amount of
+    * houses, and sets the fields price to the specific price for that field*/
     public void placeHouse(int fieldNumber, Property[] properties){
 
         owner.getAccount().setMoney(-properties[intHelper].getCurrentPriceOfBuilding());
@@ -457,6 +465,8 @@ public class Property {
         }
     }
 
+    /** There is a test on this called placeThreeHouses or placeTwoHouses. It makes the player not able to
+     * buy uneven amount of houses in one place rather than the other on the same color*/
     public void placeTwoEvenHouses(int chosenFieldToBuildOn, int fieldOne, int fieldTwo, Property[] properties){
 
         boolean firstTrue = false, secondTrue = false;
@@ -502,6 +512,8 @@ public class Property {
         }
     }
 
+    /**There is a test on this called placeThreeHouses or placeTwoHouses. It makes the player not able to
+     * buy uneven amount of houses in one place rather than the other on the same color*/
     public void placeThreeEvenHouses(int chosenFieldToBuildOn, int fieldOne, int fieldTwo, int fieldThree, Property[] properties) {
 
         boolean firstTrue = false, secondTrue = false, thirdTrue = false;
@@ -619,6 +631,7 @@ public class Property {
         }
     }
 
+    /**If the player is out of the game, the property has to be reset so that other players can buy it*/
     public void resetProperty(int propertyNumber){
 
         checkGuiFieldNumberFromPropertyNumber(propertyNumber);
@@ -637,6 +650,8 @@ public class Property {
     }
 
 
+    /**If the player owns a set of fields, this method will ask the player if they want to build somewhere on any color they own
+     *  a set of*/
     public void optionsWhenOwningAllFields(Property[] properties, Player player){
 
         chooseAgain = true;
@@ -680,6 +695,8 @@ public class Property {
         }
     }
 
+    /** This method checks if the player owns the two fields they want to build on. If yes
+     * , the fields name get shown as buttons, if no, the player gets to choose another color*/
     public void caseTwoColorsChosen(Player player, Property[] properties, int guiField1, int guiField2, int propertyField1,
                                     int propertyField2, String colorString){
 
@@ -722,10 +739,10 @@ public class Property {
             chooseAgain = true;
             chooseToBuildAgain = false;
         }
-
-
     }
 
+    /** This method checks if the player owns the three fields they want to build on. If yes
+     * , the fields name get shown as buttons, if no, the player gets to choose another color*/
     public void caseThreeColorsChosen(Player player, Property[] properties, int guiField1, int guiField2,
                                       int guiField3, int propertyField1, int propertyField2, int propertyField3, String colorString) {
 
@@ -774,40 +791,5 @@ public class Property {
             chooseAgain = true;
             chooseToBuildAgain = false;
         }
-    }
-
-    public static void main(String[] args) {
-        GameBoard gameBoard = new GameBoard();
-
-        gameBoard.createPropertiesPrices();
-
-        Player[] players = new Player[2];
-        players[0] = new Player();
-        players[0].setName("tester");
-        players[0].getAccount().setMoney(-25000);
-
-        GUI_Car car = new GUI_Car();
-        car.setPrimaryColor(blue);
-
-        GUI_Player[] gui_players = new GUI_Player[2];
-        gui_players[0] = new GUI_Player(players[0].getName(), players[0].getAccount().getMoney(), car);
-
-        players[1] = new Player();
-        players[1].setName("hussein");
-        GUI_Car car1 = new GUI_Car();
-        gui_players[1] = new GUI_Player(players[1].getName(), players[1].getAccount().getMoney(), car1);
-
-        GUI_Controller.getInstance().addPlayer(gui_players[0]);
-        GUI_Controller.getInstance().addPlayer(gui_players[1]);
-
-        //Moving player to a blue property and choosing to buy
-        players[0].moveToHere(1);
-        GUI_Controller.getSpecificField(players[0].getSquare()).setCar(gui_players[0], true);
-
-
-        gameBoard.getProperty(players[0]).landOnProperty(players[0], gui_players[0], gameBoard.getProperties(), players, gui_players);
-
-        System.out.println("Testing: " + players[0].getName());
-
     }
 }

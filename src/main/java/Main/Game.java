@@ -4,8 +4,6 @@ import Fields.*;
 import GUI_Controllor.GUI_Controller;
 import gui_fields.GUI_Car;
 import gui_fields.GUI_Player;
-import gui_main.GUI;
-
 import java.awt.*;
 import java.util.Arrays;
 import java.util.Locale;
