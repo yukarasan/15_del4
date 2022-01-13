@@ -6,8 +6,11 @@ import Main.Player;
 import gui_fields.GUI_Player;
 import java.util.stream.IntStream;
 
+
 /**
- *
+ * This works as the Property and Ferry class and has the same methods, just not all of them.
+ * With this class, players have the ability to buy brewers and the price increases with each ownership
+ * by the same person.
  */
 
 public class Brewer extends OwnableField {

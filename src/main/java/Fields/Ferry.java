@@ -9,8 +9,9 @@ import java.util.stream.IntStream;
 /**
  * This is the ferry field. In this class we've created setters and getters that will keep track of what the
  * rent price is, how many ferries is owned, and who owns them.
- *
  * Furthermore, we've created methods that allow for at player to buy a ferry field and
+ * if the same player owns the same ferry x amount of times, the price of rent
+ *  will eventually change.
  */
 
 public class Ferry extends OwnableField {
