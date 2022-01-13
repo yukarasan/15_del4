@@ -4,13 +4,14 @@ import Fields.*;
 import GUI_Controllor.GUI_Controller;
 import gui_fields.GUI_Car;
 import gui_fields.GUI_Player;
+import gui_main.GUI;
+
 import java.awt.*;
 import java.util.Arrays;
 import java.util.Locale;
 
 
 public class Game {
-    private final GUI_Controller gui = new GUI_Controller();
     private static final boolean[] numberOfOptions = new boolean[6];
     private static boolean chooseColorAgain;
     private final DiceCup diceCup = new DiceCup();
@@ -187,7 +188,7 @@ public class Game {
             if (diceCup.getDie1().getFaceValue() != diceCup.getDie2().getFaceValue()) {
 
                 //This is when the piece moves one square by one square up until thrown value
-                moveWithADelay.movePlayerWithADelay(gui_player, player, diceCup, gui);
+                moveWithADelay.movePlayerWithADelay(gui_player, player, diceCup);
 
                 playerLandsAnywhere(player, gui_player);
 
@@ -216,7 +217,7 @@ public class Game {
             GUI_Controller.getInstance().setDice(diceCup.getDie1().rollDie(), diceCup.getDie2().rollDie());
 
             //This is when the piece moves one square by one square up until thrown value
-            moveWithADelay.movePlayerWithADelay(gui_player, player, diceCup, gui);
+            moveWithADelay.movePlayerWithADelay(gui_player, player, diceCup);
 
             playerLandsAnywhere(player, gui_player);
         }
@@ -339,7 +340,7 @@ public class Game {
 
                         GUI_Controller.getInstance().showMessage("Tillykke! Du slog to ens. Du må nu rykke ud af fængslet og slå igen.");
 
-                        moveWithADelay.movePlayerWithADelay(gui_player, player, diceCup, gui);
+                        moveWithADelay.movePlayerWithADelay(gui_player, player, diceCup);
 
                         GUI_Controller.getSpecificField(player.getSquare()).setCar(gui_player, true);
 
@@ -348,7 +349,7 @@ public class Game {
                         GUI_Controller.getInstance().getUserButtonPressed(player.getName() + ", kast terningerne", "Kast");
                         GUI_Controller.getInstance().setDice(diceCup.getDie1().rollDie(), diceCup.getDie2().rollDie());
 
-                        moveWithADelay.movePlayerWithADelay(gui_player, player, diceCup, gui);
+                        moveWithADelay.movePlayerWithADelay(gui_player, player, diceCup);
 
                         playerLandsAnywhere(player, gui_player);
                         player.resetNumberInJail();
@@ -366,7 +367,7 @@ public class Game {
                     GUI_Controller.getInstance().getUserButtonPressed(player.getName() + ", kast terningerne", "Kast");
 
                     GUI_Controller.getInstance().setDice(diceCup.getDie1().rollDie(), diceCup.getDie2().rollDie());
-                    moveWithADelay.movePlayerWithADelay(gui_player, player, diceCup, gui);
+                    moveWithADelay.movePlayerWithADelay(gui_player, player, diceCup);
 
                     player.setInJail(false);
                     player.setWaitATurn(false);
@@ -397,7 +398,7 @@ public class Game {
                 if (diceCup.getDie1().getFaceValue() == diceCup.getDie2().getFaceValue()) {
                     GUI_Controller.getInstance().showMessage("Tillykke! Du slog to ens. Du må nu rykke ud af fængslet og slå igen.");
 
-                    moveWithADelay.movePlayerWithADelay(gui_player, player, diceCup, gui);
+                    moveWithADelay.movePlayerWithADelay(gui_player, player, diceCup);
 
                     GUI_Controller.getSpecificField(player.getSquare()).setCar(gui_player, true);
 
@@ -406,7 +407,7 @@ public class Game {
                     GUI_Controller.getInstance().getUserButtonPressed(player.getName() + ", kast terningerne", "Kast");
                     GUI_Controller.getInstance().setDice(diceCup.getDie1().rollDie(), diceCup.getDie2().rollDie());
 
-                    moveWithADelay.movePlayerWithADelay(gui_player, player, diceCup, gui);
+                    moveWithADelay.movePlayerWithADelay(gui_player, player, diceCup);
 
                     player.setInJail(false);
                     player.setWaitATurn(false);
@@ -422,7 +423,7 @@ public class Game {
                     GUI_Controller.getInstance().getUserButtonPressed(player.getName() + ", kast terningerne", "Kast");
 
                     GUI_Controller.getInstance().setDice(diceCup.getDie1().rollDie(), diceCup.getDie2().rollDie());
-                    moveWithADelay.movePlayerWithADelay(gui_player, player, diceCup, gui);
+                    moveWithADelay.movePlayerWithADelay(gui_player, player, diceCup);
 
                     player.setInJail(false);
                     player.setWaitATurn(false);
@@ -439,7 +440,7 @@ public class Game {
                     GUI_Controller.getInstance().getUserButtonPressed(player.getName() + ", kast terningerne", "Kast");
                     GUI_Controller.getInstance().setDice(diceCup.getDie1().rollDie(), diceCup.getDie2().rollDie());
 
-                    moveWithADelay.movePlayerWithADelay(gui_player, player, diceCup, gui);
+                    moveWithADelay.movePlayerWithADelay(gui_player, player, diceCup);
                     player.setInJail(false);
                     player.setWaitATurn(false);
                     playerLandsAnywhere(player, gui_player);

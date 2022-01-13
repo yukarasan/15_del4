@@ -55,6 +55,6 @@ public class OwnableField extends Field {
                                   int costOfOneHouse, int costOfHotel, GUI_Controller gui) {
         this.costOfHotel = costOfHotel;
         this.costOfOneHouse = costOfOneHouse;
-        gui.getSpecificField(fieldNumber);
+        GUI_Controller.getSpecificField(fieldNumber);
     }
 }

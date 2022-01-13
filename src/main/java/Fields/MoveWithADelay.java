@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
  */
 
 public class MoveWithADelay {
-    public void movePlayerWithADelay(GUI_Player gui_player, Player player, DiceCup diceCup, GUI_Controller gui) {
+    public void movePlayerWithADelay(GUI_Player gui_player, Player player, DiceCup diceCup) {
         for (int i = 0; i < (diceCup.getDie1().getFaceValue() + diceCup.getDie2().getFaceValue()); i++) {
             player.moveOneSquare(1);
 
@@ -22,11 +22,11 @@ public class MoveWithADelay {
             }
 
             //Player moves to the square that is added
-            gui.getSpecificField(player.getSquare()).setCar(gui_player, true);
+            GUI_Controller.getSpecificField(player.getSquare()).setCar(gui_player, true);
         }
     }
 
-    public void movePlayerWithDelayInChanceCard(Player player, int move, GUI_Player gui_player, GUI_Controller gui) {
+    public void movePlayerWithDelayInChanceCard(Player player, int move, GUI_Player gui_player) {
         for (int i = 0; i < move; i++) {
             player.moveOneSquare(1);
 
@@ -37,11 +37,11 @@ public class MoveWithADelay {
             }
 
             // Moves the player to the square dependent on the value of move
-            gui.getSpecificField(player.getSquare()).setCar(gui_player, true);
+            GUI_Controller.getSpecificField(player.getSquare()).setCar(gui_player, true);
         }
     }
 
-    public void movePlayerWithDelayToSpecificField(Player player, GUI_Player gui_player, GUI_Controller gui, int move) {
+    public void movePlayerWithDelayToSpecificField(Player player, GUI_Player gui_player, int move) {
         while (player.getSquare() != move) {
             try {
                 TimeUnit.MILLISECONDS.sleep(100);
@@ -52,7 +52,7 @@ public class MoveWithADelay {
             player.moveOneSquare(1);
 
             // Moves the player to the square dependent on the value of move
-            gui.getSpecificField(player.getSquare()).setCar(gui_player, true);
+            GUI_Controller.getSpecificField(player.getSquare()).setCar(gui_player, true);
         }
     }
 }

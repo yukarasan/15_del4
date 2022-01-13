@@ -6,8 +6,6 @@ import gui_fields.GUI_Field;
 import gui_fields.GUI_Player;
 
 public class Jail extends UnownableField {
-    MoveWithADelay moveWithADelay = new MoveWithADelay();
-
 
     public void jailFields(GUI_Field[] fields) {
         fields[30].setSubText("Gå i fængsel");

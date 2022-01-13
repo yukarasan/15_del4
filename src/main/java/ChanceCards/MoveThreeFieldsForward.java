@@ -1,5 +1,6 @@
 package ChanceCards;
 
+import GUI_Controllor.GUI_Controller;
 import Main.Player;
 import gui_fields.GUI_Player;
 
@@ -13,8 +14,8 @@ import gui_fields.GUI_Player;
 
 public class MoveThreeFieldsForward extends ChanceCardParent {
     public void moveThreeFieldsForward(GUI_Player gui_player, Player player) {
-        gui.getInstance().displayChanceCard("Ryk tre felter frem");
-        gui.getInstance().showMessage(player.getName() + ", træk et chancekort fra bunken");
+        GUI_Controller.getInstance().displayChanceCard("Ryk tre felter frem");
+        GUI_Controller.getInstance().showMessage(player.getName() + ", træk et chancekort fra bunken");
 
         /**
         Here we are using the moveWithADelay object and its method movePlayerWithDelayInChanceCard which have been
@@ -22,7 +23,7 @@ public class MoveThreeFieldsForward extends ChanceCardParent {
         with a delay, so that they move 1 field forwards, until they reach their destination. This is done with
         a for-loop.
         */
-        moveWithADelay.movePlayerWithDelayInChanceCard(player, 3,gui_player, gui);
+        moveWithADelay.movePlayerWithDelayInChanceCard(player, 3,gui_player);
     }
 }
 

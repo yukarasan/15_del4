@@ -1,5 +1,6 @@
 package ChanceCards;
 
+import GUI_Controllor.GUI_Controller;
 import Main.Player;
 import gui_fields.GUI_Player;
 
@@ -12,21 +13,21 @@ import gui_fields.GUI_Player;
 
 public class MoveToFrederiksberg extends ChanceCardParent {
     public void moveToFrederiksberg(GUI_Player gui_player, Player player) {
-        gui.getInstance().displayChanceCard("Ryk frem til Frederiksberg Allé. Hvis du passerer start så modtag " +
+        GUI_Controller.getInstance().displayChanceCard("Ryk frem til Frederiksberg Allé. Hvis du passerer start så modtag " +
                 "4000 DKK");
-        gui.getInstance().showMessage(player.getName() + ", træk et chancekort fra bunken");
+        GUI_Controller.getInstance().showMessage(player.getName() + ", træk et chancekort fra bunken");
 
         // Creating a simple data type, which contains the location of the player before they'll be moved to
         // Frederiksberg Allé.
         int beforeMoving = player.getSquare();
 
         // Moving the player
-        moveWithADelay.movePlayerWithDelayToSpecificField(player, gui_player, gui, 11);
+        moveWithADelay.movePlayerWithDelayToSpecificField(player, gui_player, 11);
 
         // Checking if the location of the player before they move exceeds 11. If this is true, then the player
         // must pass the start field in order to get to Frederiksberg Allé.
         if (beforeMoving > 11) {
-            gui.getInstance().showMessage("Du modtager 4000 DKK for at passere start");
+            GUI_Controller.getInstance().showMessage("Du modtager 4000 DKK for at passere start");
             player.setMoney(4000);
             gui_player.setBalance(player.getAccount().getMoney());
 
