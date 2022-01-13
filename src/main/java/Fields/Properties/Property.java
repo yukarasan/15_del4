@@ -342,7 +342,7 @@ public class Property {
     private void placeBit(Player player, int bid){
 
         if(bid >= player.getAccount().getMoney()){
-            GUI_Controller.getInstance().showMessage(player.getName() + ", du kan ikke så højere end det du har, byd en anden værdi");
+            GUI_Controller.getInstance().showMessage(player.getName() + ", du kan ikke byde højere end det du har, byd en anden værdi");
         }else{
             currentBid = bid;
             highestBidder = player;
