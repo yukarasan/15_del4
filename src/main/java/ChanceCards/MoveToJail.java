@@ -1,5 +1,6 @@
 package ChanceCards;
 
+import GUI_Controllor.GUI_Controller;
 import Main.Player;
 import gui_fields.GUI_Player;
 
@@ -12,17 +13,17 @@ import gui_fields.GUI_Player;
 
 public class MoveToJail extends ChanceCardParent {
     public void moveToJail(GUI_Player gui_player, Player player) {
-        gui.getInstance().displayChanceCard("Gå i fængsel. Du modtager ikke 4000 DKK for at passere start");
-        gui.getInstance().showMessage(player.getName() + ", træk et chancekort fra bunken");
+        GUI_Controller.getInstance().displayChanceCard("Gå i fængsel. Du modtager ikke 4000 DKK for at passere start");
+        GUI_Controller.getInstance().showMessage(player.getName() + ", træk et chancekort fra bunken");
 
         player.moveToHere(10);
 
-        gui.getInstance().showMessage(gui_player.getName() + " rykkes nu til fængsel");
-        gui.getSpecificField(player.getSquare()).setCar(gui_player, true);
+        GUI_Controller.getInstance().showMessage(gui_player.getName() + " rykkes nu til fængsel");
+        GUI_Controller.getSpecificField(player.getSquare()).setCar(gui_player, true);
         player.moveToHere(10);
         player.setInJail(true);
         player.setWaitATurn(true);
 
-        gui.getSpecificField(10).setCar(gui_player, true);
+        GUI_Controller.getSpecificField(10).setCar(gui_player, true);
     }
 }
