@@ -50,11 +50,4 @@ public class OwnableField {
      * The method setUpOwnableField
      */
 
-    public void setUpOwnableField(int rentNoHouse, int rentAllOwned, int rentOneHouse, int rentTwoHouse, int rentThreeHouse,
-                                  int rentFourHouse, int rentHotel, int fieldPrice, int fieldNumber,
-                                  int costOfOneHouse, int costOfHotel, GUI_Controller gui) {
-        this.costOfHotel = costOfHotel;
-        this.costOfOneHouse = costOfOneHouse;
-        GUI_Controller.getSpecificField(fieldNumber);
-    }
 }
