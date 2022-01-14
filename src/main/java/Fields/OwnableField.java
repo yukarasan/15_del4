@@ -15,7 +15,7 @@ public class OwnableField {
     //Below is the rent on various occasions of ownable fields such as properties.
     //Also below is cost of eventual upgrades and the rent if a set of one color are owned
     private int rentNoHouse, rentAllOwned, rentOneHouse, rentTwoHouse, rentThreeHouse, rentFourHouse,
-    rentHotel, fieldPrice, costOfOneHouse, costOfHotel;
+            rentHotel, fieldPrice, costOfOneHouse, costOfHotel;
 
     public void setFields(GUI_Field[] fields, int fieldNumber, int price, Color color, String name, String description) {
         GUI_Street field = new GUI_Street();
@@ -45,9 +45,4 @@ public class OwnableField {
         field[fieldNumber].setDescription(subName);
         field[fieldNumber].setSubText("");
     }
-
-    /**
-     * The method setUpOwnableField
-     */
-
 }
