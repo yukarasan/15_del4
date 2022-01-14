@@ -236,7 +236,7 @@ public class Game {
         GUI_Controller.getGameBoard().getChanceCard().playerLandsOnChanceField(player, gui_player);
 
         //If player lands on ferries
-        GUI_Controller.getGameBoard().getFerry(player).buyFerry(player, GUI_Controller.getGameBoard().getFerries(), players, gui_players);
+        GUI_Controller.getGameBoard().getFerry(player).buyFerry(player, gui_player, GUI_Controller.getGameBoard().getFerries(), players, gui_players);
 
         if (!GUI_Controller.getGameBoard().getFerry(player).isJustBought()) {
 

@@ -105,7 +105,7 @@ public class Ferry extends OwnableField {
     }
 
 
-    public void buyFerry(Player player, Ferry[] ferries, Player[] players, GUI_Player[] gui_players) {
+    public void buyFerry(Player player, GUI_Player gui_player, Ferry[] ferries, Player[] players, GUI_Player[] gui_players) {
 
         checkIfLandedFerryField(player.getSquare());
         guiField = player.getSquare();
@@ -127,6 +127,7 @@ public class Ferry extends OwnableField {
 
             if (buy.equals("Ja")) {
                 GUI_Controller.getSpecificField(player.getSquare()).setSubText(player.getName());
+                setOwner(player, gui_player, ferries);
             }
 
             if(buy.equals("Sæt færge på auktion") || buy.equals("Nej, sæt færge på auktion")){

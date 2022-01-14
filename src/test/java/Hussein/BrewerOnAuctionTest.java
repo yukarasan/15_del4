@@ -20,7 +20,6 @@ public class BrewerOnAuctionTest {
 
         players[0] = new Player();
         players[0].setName("tester");
-        players[0].getAccount().setMoney(-25000);
 
         GUI_Car car = new GUI_Car();
         car.setPrimaryColor(blue);
@@ -36,18 +35,18 @@ public class BrewerOnAuctionTest {
         gui.getInstance().addPlayer(gui_players[0]);
         gui.getInstance().addPlayer(gui_players[1]);
 
-        //Moving player to a blue property and choosing to buy
+        //Moving player to a brewer and choosing to buy
         players[0].moveToHere(28);
         gui.getSpecificField(players[0].getSquare()).setCar(gui_players[0], true);
 
         DiceCup diceCup = new DiceCup();
+
+        //Getting the opportunity to auction method from here
         gui.getGameBoard().getBrewer(players[0]).buyBrewer(players[0], gui_players[0], gui.getGameBoard().getBrewers(), players, gui_players);
 
-
+        //It should make the player pay the other here
         gui.getGameBoard().getBrewer(players[0]).payOwnerOfBrewer(players[0], gui_players[0], diceCup, gui.getGameBoard().getBrewers());
 
-
-        gui.getGameBoard().getBrewer(players[0]).payOwnerOfBrewer(players[0], gui_players[0], diceCup, gui.getGameBoard().getBrewers());
     }
 
 }

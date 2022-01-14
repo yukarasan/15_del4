@@ -35,13 +35,11 @@ public class FerryOnAuctionTest {
         gui.getInstance().addPlayer(gui_players[0]);
         gui.getInstance().addPlayer(gui_players[1]);
 
-        //Moving player to a blue property and choosing to buy
+        //Moving player to a ferry and choosing to auction
         players[0].moveToHere(35);
         gui.getSpecificField(players[0].getSquare()).setCar(gui_players[0], true);
 
-        gui.getGameBoard().getFerry(players[0]).buyFerry(players[0], gui.getGameBoard().getFerries(), players, gui_players);
-
-        gui.getGameBoard().getFerry(players[0]).payOwnerOfFerry(players[0], gui_players[0], gui.getGameBoard().getFerries());
+        gui.getGameBoard().getFerry(players[0]).buyFerry(players[0], gui_players[0], gui.getGameBoard().getFerries(), players, gui_players);
 
         System.out.println(gui.getGameBoard().getFerry(players[0]).getOwner().getName());
         gui.getGameBoard().getFerry(players[0]).payOwnerOfFerry(players[0], gui_players[0], gui.getGameBoard().getFerries());
