@@ -82,7 +82,7 @@ public class Ferry extends OwnableField {
      */
 
 
-    private void boughtBrewerFromAuction(Player player, GUI_Player gui_player, Ferry[] ferries){
+    private void boughtFerryFromAuction(Player player, GUI_Player gui_player, Ferry[] ferries){
         player.getAccount().setMoney(-currentBid);
         gui_player.setBalance(player.getAccount().getMoney());
         GUI_Controller.getSpecificField(guiField).setSubText(player.getName());
@@ -197,7 +197,7 @@ public class Ferry extends OwnableField {
                 if (players[i] != isOutOfAuction[i]) {
                     GUI_Controller.getInstance().showMessage("Tillykke " + players[i].getName() + ", du har købt feltet " +
                             GUI_Controller.getSpecificField(player.getSquare()).getTitle() + " for " + currentBid);
-                    ferries[ferryNumber].boughtBrewerFromAuction(players[i], gui_players[i], ferries);
+                    ferries[ferryNumber].boughtFerryFromAuction(players[i], gui_players[i], ferries);
                 }
             }
         }
