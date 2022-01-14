@@ -176,7 +176,7 @@ public class Brewer extends OwnableField {
         }
     }
 
-    public void payOwnerOfBrewer(Player player, GUI_Player gui_player, DiceCup diceCup, Brewer[] brewers) {
+    public void payOwnerOfBrewer(Player player, GUI_Player gui_player, DiceCup diceCup) {
         if (IntStream.of(brewerFields).anyMatch(x -> x == player.getSquare()) && isOwned && player != owner
                 && !justBought) {
             switch (owner.getBrewersOwned()) {

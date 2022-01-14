@@ -320,7 +320,7 @@ public class Game {
         GUI_Controller.getGameBoard().getBrewer(player).buyBrewer(player, gui_player, GUI_Controller.getGameBoard().getBrewers(), players, gui_players);
 
         if (!GUI_Controller.getGameBoard().getBrewer(player).getIsJustBought()) {
-            GUI_Controller.getGameBoard().getBrewer(player).payOwnerOfBrewer(player, gui_player, diceCup, GUI_Controller.getGameBoard().getBrewers());
+            GUI_Controller.getGameBoard().getBrewer(player).payOwnerOfBrewer(player, gui_player, diceCup);
         } else {
             GUI_Controller.getGameBoard().getBrewer(player).setJustBought(false);
         }

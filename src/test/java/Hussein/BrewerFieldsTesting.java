@@ -49,6 +49,6 @@ public class BrewerFieldsTesting {
         //Another player tests out the price when two is owned by the same player
         player1.moveToHere(28);
 
-        GUI_Controller.getGameBoard().getBrewer(player).payOwnerOfBrewer(player1, randomGuiPlayer1, diceCup, brewers);
+        GUI_Controller.getGameBoard().getBrewer(player).payOwnerOfBrewer(player1, randomGuiPlayer1, diceCup);
     }
 }
