@@ -41,7 +41,7 @@ public class BrewerOnAuctionTest {
         gui.getSpecificField(players[0].getSquare()).setCar(gui_players[0], true);
 
         DiceCup diceCup = new DiceCup();
-        gui.getGameBoard().getBrewer(players[0]).buyBrewer(players[0], gui.getGameBoard().getBrewers(), players, gui_players);
+        gui.getGameBoard().getBrewer(players[0]).buyBrewer(players[0], gui_players[0], gui.getGameBoard().getBrewers(), players, gui_players);
 
 
         gui.getGameBoard().getBrewer(players[0]).payOwnerOfBrewer(players[0], gui_players[0], diceCup, gui.getGameBoard().getBrewers());
