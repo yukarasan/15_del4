@@ -20,7 +20,7 @@ public class Brewer extends OwnableField {
     private final int[] brewerFields = {12, 28};
     private boolean isOwned;
     private boolean justBought, bidAgain;
-    private int brewerPrice, currentBid;
+    private int currentBid;
     private static int brewerNumber, guiFieldNumber;
 
 
