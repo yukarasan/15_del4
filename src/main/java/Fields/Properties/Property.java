@@ -734,10 +734,13 @@ public class Property {
         int buildingField2 = properties[propertyField2].getCurrentPriceOfBuilding();
         int playerBal = player.getAccount().getMoney();
 
-        if(playerBal < buildingField1 || playerBal < buildingField2){
-            GUI_Controller.getInstance().getUserButtonPressed("Du har ikke råd til at bygge her", "Okay");
-            chooseAgain = true;
-            chooseToBuildAgain = false;
+        if(player == properties[propertyField1].getOwner() || player == properties[propertyField2].getOwner()) {
+
+            if (playerBal < buildingField1 || playerBal < buildingField2) {
+                GUI_Controller.getInstance().getUserButtonPressed("Du har ikke råd til at bygge her", "Okay");
+                chooseAgain = true;
+                chooseToBuildAgain = false;
+            }
         }
     }
 
@@ -786,10 +789,14 @@ public class Property {
         int buildingField3 = properties[propertyField3].getCurrentPriceOfBuilding();
         int playerBal = player.getAccount().getMoney();
 
-        if(playerBal < buildingField1 || playerBal < buildingField2 || playerBal < buildingField3){
-            GUI_Controller.getInstance().getUserButtonPressed("Du har ikke råd til at bygge her", "Okay");
-            chooseAgain = true;
-            chooseToBuildAgain = false;
+
+        if(player == properties[propertyField1].getOwner() || player == properties[propertyField2].getOwner()
+                || player == properties[propertyField3].getOwner()) {
+            if (playerBal < buildingField1 || playerBal < buildingField2 || playerBal < buildingField3) {
+                GUI_Controller.getInstance().getUserButtonPressed("Du har ikke råd til at bygge her", "Okay");
+                chooseAgain = true;
+                chooseToBuildAgain = false;
+            }
         }
     }
 }
