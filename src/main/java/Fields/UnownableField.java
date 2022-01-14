@@ -10,6 +10,12 @@ import gui_fields.*;
  */
 
 public class UnownableField {
+
+    /**
+     * Creates the start field
+     * @param fields
+     */
+
     public void startField(GUI_Field[] fields) {
         fields[0] = new GUI_Start();
         fields[0].setTitle("Start");
@@ -17,10 +23,20 @@ public class UnownableField {
         fields[0].setDescription("Dette er startfeltet");
     }
 
+    /**
+     * Creates the jail fields
+     * @param fields
+     */
+
     public void jailField(GUI_Field[] fields) {
         fields[10] = new GUI_Jail();
         fields[30] = new GUI_Jail();
     }
+
+    /**
+     * Creates the free parking field
+     * @param fields
+     */
 
     public void freeParking(GUI_Field[] fields) {
         fields[20] = new GUI_Refuge();
@@ -28,6 +44,11 @@ public class UnownableField {
         fields[20].setSubText(" Gratis parkering ");
         fields[20].setDescription(" Du kan parkere gratis her");
     }
+
+    /**
+     * Creates the chance card fields
+     * @param fields
+     */
 
     public void chanceField(GUI_Field[] fields) {
         fields[2] = new GUI_Chance();
