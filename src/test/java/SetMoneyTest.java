@@ -2,7 +2,7 @@ import Main.Player;
 import junit.framework.TestCase;
 //This JUnit tests the method setMoney. So if we know set money to -100, then the players
 // account should be 29_900.
-public class Test1 extends TestCase {
+public class SetMoneyTest extends TestCase {
 
     public void testSetMoney() {
         Player player = new Player();

@@ -7,6 +7,7 @@ public class ChooseColorTest {
 
     public static void main(String[] args) {
 
+        //a and b resembles a color
         boolean a = false, b = false;
 
         Scanner scan = new Scanner(System.in);
@@ -25,11 +26,14 @@ public class ChooseColorTest {
 
                 switch (color) {
 
+                    //If player inputs color 'a'
                     case "a":
+                        //If a is already true
                         if (a) {
                             System.out.println("a is already taken, write a new color");
                             again = true;
                             break;
+                            //If a is not already true, then set it true
                         } else if(a != true){
                             a = true;
                             break;

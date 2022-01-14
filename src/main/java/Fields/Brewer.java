@@ -45,10 +45,20 @@ public class Brewer extends OwnableField {
         brewers[brewerNumber].setOwner(player);
         brewers[brewerNumber].setGuiOwner(gui_player);
         brewers[brewerNumber].setIsOwned(true);
-        brewers[brewerNumber].setJustBought(true);
     }
 
-    public void buyBrewer(Player player, Brewer[] brewers, Player[] players, GUI_Player[] gui_players) {
+    private void boughField(Player player, GUI_Player gui_player, Brewer[] brewers){
+        player.getAccount().setMoney(-3000);
+        gui_player.setBalance(player.getAccount().getMoney());
+        GUI_Controller.getSpecificField(guiFieldNumber).setSubText(player.getName());
+        player.setBrewersOwned();
+
+        brewers[brewerNumber].setOwner(player);
+        brewers[brewerNumber].setGuiOwner(gui_player);
+        brewers[brewerNumber].setIsOwned(true);
+    }
+
+    public void buyBrewer(Player player, GUI_Player gui_player, Brewer[] brewers, Player[] players, GUI_Player[] gui_players) {
 
         checkIfLandedBrewerField(player);
         guiFieldNumber = player.getSquare();
@@ -69,7 +79,7 @@ public class Brewer extends OwnableField {
             }
 
             if (buy.equals("Ja")) {
-                GUI_Controller.getSpecificField(player.getSquare()).setSubText(player.getName());
+                boughField(player, gui_player, brewers);
             }
 
             if(buy.equals("Sæt brygger på auktion") || buy.equals("Nej, sæt brygger på auktion")){

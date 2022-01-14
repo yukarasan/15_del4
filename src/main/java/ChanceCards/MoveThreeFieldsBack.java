@@ -17,7 +17,7 @@ public class MoveThreeFieldsBack extends ChanceCardParent {
         GUI_Controller.getInstance().displayChanceCard("Ryk tre felter tilbage.");
         GUI_Controller.getInstance().showMessage(player.getName() + ", træk et chancekort fra bunken");
 
-        /**
+        /*
         Here we are using the moveWithADelay object and its method movePlayerWithDelayInChanceCard which have been
         instantiated in the ChanceCardParent class. This method makes the player move to their respective field,
         with a delay, so that they move 1 field backwards, until they reach their destination. This is done with
