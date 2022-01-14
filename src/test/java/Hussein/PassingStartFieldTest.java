@@ -13,7 +13,7 @@ public class PassingStartFieldTest {
 
         System.out.println("Has passed start: " + player.getPassedStartField());
 
-        //Resetting the boolean
+        //Resetting the boolean after passing start
         player.resetPassedStartField();
 
         System.out.println("Has passed start: " + player.getPassedStartField());

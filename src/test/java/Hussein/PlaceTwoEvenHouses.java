@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class PlaceTwoEvenHouses {
 
 
+    //This test is described in PlaceThreeEvenHouses, it works the same, just with two house amounts
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         int a = 0;

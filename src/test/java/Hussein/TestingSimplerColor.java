@@ -8,6 +8,9 @@ public class TestingSimplerColor {
     private static String[] names;
 
 
+    //This is the method that will be implemented in Game class
+    //It is used to check if a color in a number of booleans are already taken
+    //If no, then that number is true, if no, then the chooseColorAgain
     public void colorChooser(boolean[] colorChosen,int numberOfOption, String colorString, int playerNumber) {
 
         if (colorChosen[numberOfOption]) {

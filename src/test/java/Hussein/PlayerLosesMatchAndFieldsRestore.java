@@ -30,7 +30,7 @@ public class PlayerLosesMatchAndFieldsRestore {
 
         gui.getInstance().addPlayer(gui_player);
 
-        //Moving player to a blue property and choosing to buy
+
         player.moveToHere(1);
         gui.getSpecificField(player.getSquare()).setCar(gui_player, true);
 
@@ -39,12 +39,17 @@ public class PlayerLosesMatchAndFieldsRestore {
 
         GUI_Player[] gui_players = new GUI_Player[2];
 
+        //Making the player buy a field
         gui.getGameBoard().getProperty(player).landOnProperty(player, gui_player, gui.getGameBoard().getProperties(), players, gui_players);
 
+        //Causing the player to go bankrupt
         player.getAccount().setMoney(-31000);
 
+        //Checking this method from game, if the player is bankrupt, the player's field will
+        //restore
         game.checkIfPlayerLooses(player, gui_player);
 
+        //Creating another player
         Player player1 = new Player();
         player1.setName("Hej");
         GUI_Car car1 = new GUI_Car();
@@ -54,6 +59,7 @@ public class PlayerLosesMatchAndFieldsRestore {
 
         player1.moveToHere(1);
 
+        //Making the other player buy the field that was just restored, to see if it works
         gui.getSpecificField(player1.getSquare()).setCar(gui_player1, true);
         gui.getGameBoard().getProperty(player1).landOnProperty(player1, gui_player1, gui.getGameBoard().getProperties(), players, gui_players);
 

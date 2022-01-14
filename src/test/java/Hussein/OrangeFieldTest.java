@@ -73,6 +73,6 @@ public class OrangeFieldTest {
 
         //Now checking the tester player on the same field as before, and see if the price has changed
         //since the same owner owns both blue
-        gameBoard.getProperty(player1).landOnProperty(player1, gui_player1, gameBoard.getProperties(), players, gui_players);
+        gameBoard.getProperty(player1).payOwner(player1, gui_player1);
     }
 }
