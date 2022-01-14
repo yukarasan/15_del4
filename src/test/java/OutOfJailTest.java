@@ -2,7 +2,7 @@ import Fields.Jail;
 import Main.Player;
 import junit.framework.TestCase;
 
-public class Test2 extends TestCase {
+public class OutOfJailTest extends TestCase {
 
     public void testOutOfJail() {
         Player player = new Player();
