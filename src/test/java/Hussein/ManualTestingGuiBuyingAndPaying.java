@@ -12,7 +12,7 @@ import static java.awt.Color.YELLOW;
 public class ManualTestingGuiBuyingAndPaying {
 
     public static void main(String[] args) {
-        GUI_Controller gui = new GUI_Controller();
+        GUI_Controller.getInstance();
 
         Player player = new Player();
 
@@ -23,18 +23,23 @@ public class ManualTestingGuiBuyingAndPaying {
 
         GUI_Player gui_player = new GUI_Player(player.getName(), player.getAccount().getMoney(), car);
 
-        gui.getGameBoard().instantiatingFerries();
+        GUI_Controller.getGameBoard().instantiatingFerries();
 
         player.moveToHere(5);
 
-        gui.getInstance().showMessage("First buy");
-        //gui.getGameBoard().getFerry(player).buyFerry(player,gui_player,gui.getGameBoard().getFerries());
-        System.out.println("Price of first ferry before second buy: " + gui.getGameBoard().getFerries()[0].getRentPrice());
+        Player[] players = new Player[1];
+        GUI_Player[] gui_players = new GUI_Player[1];
+
+
+        GUI_Controller.getInstance().showMessage("First buy");
+        GUI_Controller.getGameBoard().getFerry(player).buyFerry(player, gui_player, GUI_Controller.getGameBoard().getFerries(), players, gui_players);
+
+        System.out.println("Price of first ferry before second buy: " + GUI_Controller.getGameBoard().getFerries()[0].getRentPrice());
 
         player.moveToHere(15);
 
-        gui.getInstance().showMessage("Second buy");
-        //gui.getGameBoard().getFerry(player).buyFerry(player, gui_player, gui.getGameBoard().getFerries());
-        System.out.println("Price of first ferry after second buy: " + gui.getGameBoard().getFerries()[1].getRentPrice());
+        GUI_Controller.getInstance().showMessage("Second buy");
+        GUI_Controller.getGameBoard().getFerry(player).buyFerry(player, gui_player, GUI_Controller.getGameBoard().getFerries(), players, gui_players);
+        System.out.println("Price of first ferry after second buy: " + GUI_Controller.getGameBoard().getFerries()[1].getRentPrice());
     }
 }
