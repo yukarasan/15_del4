@@ -12,10 +12,18 @@ import java.awt.*;
  */
 
 public class OwnableField {
-    //Below is the rent on various occasions of ownable fields such as properties.
-    //Also below is cost of eventual upgrades and the rent if a set of one color are owned
+    /*
+    Below is the rent on various occasions of ownable fields such as properties.
+    Also, below is cost of eventual upgrades and the rent if a set of one color are owned
+     */
+
     private int rentNoHouse, rentAllOwned, rentOneHouse, rentTwoHouse, rentThreeHouse, rentFourHouse,
             rentHotel, fieldPrice, costOfOneHouse, costOfHotel;
+
+    /**
+     * Here we create a method that will allow us to create property fields. These will be shown on the GUI
+     * by setting them in the GameBoard class.
+     */
 
     public void setFields(GUI_Field[] fields, int fieldNumber, int price, Color color, String name, String description) {
         GUI_Street field = new GUI_Street();
@@ -28,6 +36,11 @@ public class OwnableField {
         fields[fieldNumber] = field;
     }
 
+    /**
+     * Here we create a method that will allow us to create ferry fields. These will be shown on the GUI
+     * by setting them in the GameBoard class.
+     */
+
     public void setFerryFields(GUI_Field[] field, int fieldNumber, Color color, String name, String subName, String description) {
         field[fieldNumber] = new GUI_Shipping();
         field[fieldNumber].setBackGroundColor(color);
@@ -36,6 +49,11 @@ public class OwnableField {
         field[fieldNumber].setDescription(description);
         field[fieldNumber].setSubText("");
     }
+
+    /**
+     * Here we create a method that will allow us to create brewer fields. These will be shown on the GUI
+     * by setting them in the GameBoard class.
+     */
 
     public void setBrewerFields(GUI_Field[] field, int fieldNumber, Color color, String name, String subName, String description) {
         field[fieldNumber] = new GUI_Brewery();
