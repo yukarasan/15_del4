@@ -10,7 +10,8 @@ import gui_fields.GUI_Player;
 
 public class BrewerFieldsTesting {
     public static void main(String[] args) {
-        GUI_Controller gui = new GUI_Controller();
+        GUI_Controller.getInstance();
+        GUI_Controller.getGameBoard().initializeBrewers();
         GUI_Car car = new GUI_Car();
         GUI_Player randomGuiPlayer = new GUI_Player("hej", 1, car);
         GUI_Car car1 = new GUI_Car();
@@ -18,9 +19,6 @@ public class BrewerFieldsTesting {
 
         Player player = new Player();
         player.setName("Hej");
-
-        GameBoard gameBoard = new GameBoard();
-        gameBoard.initializeBrewers();
 
         //Buying first brewer field
         player.moveToSquare(12,0);
@@ -36,16 +34,21 @@ public class BrewerFieldsTesting {
         DiceCup diceCup = new DiceCup();
 
         Brewer[] brewers = new Brewer[2];
-        gameBoard.getBrewer(player).payOwnerOfBrewer(player1, randomGuiPlayer1, diceCup, brewers);
+        GUI_Player[] gui_players = new GUI_Player[2];
+        Player[] players = new Player[2];
 
-        //Buying second brewer field to same player
+
+
+        GUI_Controller.getGameBoard().getBrewer(player).buyBrewer(player, randomGuiPlayer, GUI_Controller.getGameBoard().getBrewers(), players, gui_players);
+
+        //Buying second brewer field to same player, to see if the rent increases
         player.moveToHere(28);
-        //gameBoard.getBrewer(player).buyBrewerField(player, randomGuiPlayer);
+        GUI_Controller.getGameBoard().getBrewer(player).buyBrewer(player, randomGuiPlayer, GUI_Controller.getGameBoard().getBrewers(), players, gui_players);
 
 
         //Another player tests out the price when two is owned by the same player
         player1.moveToHere(28);
 
-        gameBoard.getBrewer(player).payOwnerOfBrewer(player1, randomGuiPlayer1, diceCup, brewers);
+        GUI_Controller.getGameBoard().getBrewer(player).payOwnerOfBrewer(player1, randomGuiPlayer1, diceCup, brewers);
     }
 }
