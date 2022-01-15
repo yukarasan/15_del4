@@ -12,9 +12,18 @@ public class DiceCup {
     private final Die die2 = new Die();
 
     // Creating two methods that returns each die object:
+
+    /**
+     * This method returns the die1 object
+     */
+
     public Die getDie1() {
         return die1;
     }
+
+    /**
+     * This method returns the die2 object
+     */
 
     public Die getDie2() {
         return die2;

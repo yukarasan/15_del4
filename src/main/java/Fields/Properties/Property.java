@@ -185,7 +185,7 @@ public class Property {
     }
 
     /**it asks if the player has enough money to be able to press
-     * “ja” (yes) to buy the field, if the player presses the button, the player
+     * ja (yes) to buy the field, if the player presses the button, the player
      * pays for the field. If the player does not have enough money, the field is auctioned
      * . If the player simply does not want to buy, the method setPropertyOnAuction is used:*/
     private void optionBuyProperty(Player player, GUI_Player gui_player, Property[] properties, Player[] players, GUI_Player[] gui_players) {

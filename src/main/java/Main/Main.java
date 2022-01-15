@@ -10,6 +10,9 @@ package Main;
  */
 
 public class Main {
+    /**
+     * This method is where our program will start running
+     */
     public static void main(String[] args) {
         Game game = new Game();
         game.startGame();
