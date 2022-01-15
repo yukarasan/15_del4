@@ -654,35 +654,4 @@ public class Game {
             }
         }
     }
-
-    public static void main(String[] args) {
-        GUI_Controller.getGameBoard().createPropertiesPrices();
-
-        Player[] players = new Player[2];
-        players[0] = new Player();
-        players[0].setName("hej111");
-        players[1] = new Player();
-        players[1].setName("hej222");
-        GUI_Car car = new GUI_Car();
-        GUI_Car car1 = new GUI_Car();
-
-        GUI_Player[] gui_players = new GUI_Player[2];
-
-        gui_players[0] = new GUI_Player("hej111", players[0].getAccount().getMoney(), car);
-        gui_players[1] = new GUI_Player("hej222", players[1].getAccount().getMoney(), car1);
-
-        GUI_Controller.getInstance().addPlayer(gui_players[0]);
-        GUI_Controller.getInstance().addPlayer(gui_players[1]);
-
-        players[0].moveToHere(1);
-        GUI_Controller.getSpecificField(1).setCar(gui_players[0], true);
-
-
-        GUI_Controller.getGameBoard().getProperty(players[0]).landOnProperty(players[0], gui_players[0], GUI_Controller.getGameBoard().getProperties(), players, gui_players);
-
-        players[1].moveToHere(1);
-        GUI_Controller.getSpecificField(1).setCar(gui_players[1], true);
-        //gui.getGameBoard().getProperty(players[1]).landOnProperty(players[1], gui_players[1], gui.getGameBoard().getProperties(), players, gui_players);
-        GUI_Controller.getGameBoard().getProperty(players[1]).payOwner(players[1], gui_players[1]);
-    }
 }
