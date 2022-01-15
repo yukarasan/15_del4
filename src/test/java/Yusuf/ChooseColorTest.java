@@ -6,6 +6,7 @@ import java.util.Scanner;
 /**
  * This test-class test for when a person chooses a color for their car. We've made it so, that the player can't
  * choose the same color for their car.
+ * This test was made in corroboration with Hussein.
  */
 
 public class ChooseColorTest {
