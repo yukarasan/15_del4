@@ -7,7 +7,7 @@ It is required that Java is installed on the computer.
 
 ## Further Contribution
 This project is free for other developers to contribute to. 
-We recommend reading our documentation before contributing. 
+We recommend reading our documentation before contributing. We've made a Javadoc folder, which can be found in the project folder.   
 
 ## License
 [Technical University of Denmark]
